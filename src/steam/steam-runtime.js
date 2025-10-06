@@ -19,7 +19,7 @@ let achievementNames = [];
 export const SteamRuntime = {
   initialize() {
     if (isInitialized) {
-      throw Error("Steam Runtime was initialized already.");
+      throw new Error("Steam Runtime was initialized already.");
     }
 
     isInitialized = true;
@@ -50,7 +50,7 @@ export const SteamRuntime = {
 
   get isActive() {
     if (!isInitialized) {
-      throw Error("Steam Runtime was called before init.");
+      throw new Error("Steam Runtime was called before init.");
     }
 
     return isActive;
@@ -152,7 +152,7 @@ function createForceRefreshCanvas() {
   // megawatts of electricity spent on this canvas.
   const canvas = document.createElement("canvas");
   canvas.classList.add("_steam-refresh-canvas");
-  document.body.appendChild(canvas);
+  document.body.append(canvas);
   const ctx = canvas.getContext("2d");
 
   function forceRefresh() {

@@ -203,7 +203,7 @@ const pluralDatabase = new Map([
  *                    plural form of the input {word}. If the {amount} is singular, return {word}
  */
 window.pluralize = function pluralize(word, amount, plural) {
-  if (word === undefined || amount === undefined) throw "Arguments must be defined";
+  if (word === undefined || amount === undefined) throw new Error("Arguments must be defined");
 
   if (Decimal.eq(amount, 1)) return word;
   const existingPlural = plural ?? pluralDatabase.get(word);
@@ -238,7 +238,7 @@ window.generatePlural = function generatePlural(word) {
  */
 // eslint-disable-next-line max-params
 window.quantify = function quantify(name, value, places, placesUnder1000, formatType = format) {
-  if (name === undefined || value === undefined) throw "Arguments must be defined";
+  if (name === undefined || value === undefined) throw new Error("Arguments must be defined");
 
   const number = formatType(value, places, placesUnder1000);
   const plural = pluralize(name, value);
@@ -252,7 +252,7 @@ window.quantify = function quantify(name, value, places, placesUnder1000, format
  * @return {string} - the formatted {value} followed by the {name} after having been pluralized based on the {value}
  */
 window.quantifyInt = function quantifyInt(name, value) {
-  if (name === undefined || value === undefined) throw "Arguments must be defined";
+  if (name === undefined || value === undefined) throw new Error("Arguments must be defined");
 
   const number = formatInt(value);
   const plural = pluralize(name, value);
@@ -268,7 +268,7 @@ window.makeEnumeration = function makeEnumeration(items) {
   if (items.length === 0) return "";
   if (items.length === 1) return items[0];
   if (items.length === 2) return `${items[0]} and ${items[1]}`;
-  const commaSeparated = items.slice(0, items.length - 1).join(", ");
+  const commaSeparated = items.slice(0, - 1).join(", ");
   const last = items[items.length - 1];
   return `${commaSeparated}, and ${last}`;
 };

@@ -18,7 +18,7 @@ export default {
       isAutoAdjustWeightsOn: false,
       factors: getGlyphLevelInputs(),
       shardsGained: 0,
-      weights: Object.assign({}, player.celestials.effarig.glyphWeights),
+      weights: { ...player.celestials.effarig.glyphWeights},
       rows: 3,
     };
   },
@@ -219,11 +219,11 @@ export default {
       player.celestials.effarig.glyphWeights[which] = value;
     },
     resetSavedWeights() {
-      this.savedWeights = Object.assign({}, player.celestials.effarig.glyphWeights);
+      this.savedWeights = { ...player.celestials.effarig.glyphWeights};
       this.lastAdjusted = null;
     },
     factorString(source) {
-      const name = this.adjustVisible ? source.name.substring(0, 4) : source.name;
+      const name = this.adjustVisible ? source.name.slice(0, 4) : source.name;
       return `${format(source.coeff, 2, 4)}×${name}^${format(source.exp, 2, 3)}`;
     }
   }

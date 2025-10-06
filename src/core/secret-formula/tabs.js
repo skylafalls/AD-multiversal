@@ -435,7 +435,7 @@ export const tabs = [
       {
         key: "enslaved",
         name: "The Nameless Ones",
-        symbol: "<div class='o-tab-btn--cel3'>\uf0c1</div>",
+        symbol: "<div class='o-tab-btn--cel3'>\uF0C1</div>",
         component: "EnslavedTab",
         condition: () => EffarigUnlock.eternity.isUnlocked,
         id: 3,

@@ -111,16 +111,18 @@ export default {
 
       for (const study of this.importedTree.invalidStudies) {
         const id = `${study}`.match(/(EC)?(\d+)/u);
-        const num = parseInt(id[2], 10);
+        const num = Number.parseInt(id[2], 10);
         switch (id[1]) {
-          case "EC":
+          case "EC": {
             coloredString = coloredString.replaceAll(new RegExp(`\\|(${num})`, "gu"),
               `|<span style="color: var(--color-bad);">$1</span>`);
             break;
-          default:
+          }
+          default: {
             coloredString = coloredString.replaceAll(new RegExp(`(\\D)(${num})(\\D)`, "gu"),
               `$1<span style="color: var(--color-bad);">$2</span>$3`);
             break;
+          }
         }
       }
       return `Your import string has invalid study IDs: ${coloredString.replaceAll("#", "").replaceAll(",", ", ")}

@@ -101,8 +101,8 @@ export default {
       this.totalUnlocks = V.spaceTheorems;
       this.pp.copyFrom(Currency.perkPoints.value);
       this.showReduction = VUnlocks.shardReduction.isUnlocked;
-      this.runRecords = cloneDeep(player.celestials.v.runRecords);
-      this.runGlyphs = cloneDeep(player.celestials.v.runGlyphs.map(gList => Glyphs.copyForRecords(gList)));
+      this.runRecords = structuredClone(player.celestials.v.runRecords);
+      this.runGlyphs = structuredClone(player.celestials.v.runGlyphs.map((gList) => Glyphs.copyForRecords(gList)));
       this.isFlipped = V.isFlipped;
       this.wantsFlipped = player.celestials.v.wantsFlipped;
       this.isRunning = V.isRunning;

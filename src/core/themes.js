@@ -40,9 +40,9 @@ export const Theme = function Theme(name, config) {
     if (this.isDark()) document.body.classList.add("s-base--dark");
 
     if (this.isAnimated && player.options.animations.background) {
-      document.getElementById("background-animations").style.display = "block";
+      document.querySelector("#background-animations").style.display = "block";
     } else {
-      document.getElementById("background-animations").style.display = "none";
+      document.querySelector("#background-animations").style.display = "none";
     }
     if (player.options.newUI) {
       player.options.themeModern = name;
@@ -55,7 +55,7 @@ export const Theme = function Theme(name, config) {
   };
 
   this.cssClass = function() {
-    return `t-${this.name.replace(/\s+/gu, "-").toLowerCase()}`;
+    return `t-${this.name.replaceAll(/\s+/gu, "-").toLowerCase()}`;
   };
 };
 
@@ -137,11 +137,11 @@ export const Themes = {
   all: [
     /* eslint-disable no-multi-spaces */
     // Note that "Normal" is a special case where dark is overridden elsewhere with whether or not the UI is Modern
-    Theme.create("Normal",          {                                                         }),
+    Theme.create("Normal",          {}),
     Theme.create("Metro",           {              metro: true,                               }),
     Theme.create("Dark",            { dark: true,                                             }),
     Theme.create("Dark Metro",      { dark: true,  metro: true,                               }),
-    Theme.create("Inverted",        {                                                         }),
+    Theme.create("Inverted",        {}),
     Theme.create("Inverted Metro",  {              metro: true,                               }),
     Theme.create("AMOLED",          { dark: true,                                             }),
     Theme.create("AMOLED Metro",    { dark: true,  metro: true,                               }),

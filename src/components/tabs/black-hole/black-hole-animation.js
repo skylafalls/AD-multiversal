@@ -34,7 +34,7 @@ export const BlackHoleAnimation = (function() {
      * @abstract
      */
     // eslint-disable-next-line no-empty-function, no-unused-vars
-    performDraw(context) { }
+    performDraw(context) {}
 
     static calculatePosition(distance, angle) {
       return {

@@ -58,13 +58,13 @@ export default {
       player.options.news.type = newValue;
     },
     repeatBuffer(newValue) {
-      player.options.news.repeatBuffer = parseInt(newValue, 10);
+      player.options.news.repeatBuffer = Number.parseInt(newValue, 10);
     },
     AIChance(newValue) {
-      player.options.news.AIChance = parseFloat(newValue, 10);
+      player.options.news.AIChance = Number.parseFloat(newValue, 10);
     },
     speed(newValue) {
-      player.options.news.speed = parseFloat(newValue, 10);
+      player.options.news.speed = Number.parseFloat(newValue, 10);
     },
     includeAnimated(newValue) {
       player.options.news.includeAnimated = newValue;

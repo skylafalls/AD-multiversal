@@ -1,8 +1,7 @@
 <script>
 export default {
   name: "GameSpeedDisplay",
-  props: {
-  },
+  props: {},
   data() {
     return {
       baseSpeed: new Decimal(),

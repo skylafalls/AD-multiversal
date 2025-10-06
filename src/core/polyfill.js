@@ -13,9 +13,9 @@ if (!String.prototype.includes) {
     if (start + search.length > this.length) {
       return false;
       // eslint-disable-next-line no-else-return
-    } else {
-      return this.indexOf(search, start) !== -1;
     }
+      return this.indexOf(search, start) !== -1;
+    
   };
 }
 
@@ -132,7 +132,7 @@ if (!Array.prototype.find) {
       }
 
       // 7. Return undefined.
-      return undefined;
+      return;
     }
   });
 }
@@ -171,7 +171,7 @@ if (typeof Object.assign !== "function") {
         if (nextSource !== null) { // Skip over if undefined or null
           for (const nextKey in nextSource) {
             // Avoid bugs when hasOwnProperty is shadowed
-            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+            if (Object.hasOwn(nextSource, nextKey)) {
               to[nextKey] = nextSource[nextKey];
             }
           }

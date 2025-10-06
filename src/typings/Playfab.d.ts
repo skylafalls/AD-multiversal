@@ -14,7 +14,7 @@
 /// <reference path="PlayFabMultiplayerApi.d.ts" />
 /// <reference path="PlayFabProfilesApi.d.ts" />
 
-declare module PlayFabModule {
+declare namespace PlayFabModule {
     export interface ISettings {
         titleId: string;
         developerSecretKey: string;
@@ -38,10 +38,10 @@ declare module PlayFabModule {
     }
     export interface IPlayFabResultCommon extends IPlayFabError { }
 
-    export interface ApiCallback<TResult extends IPlayFabResultCommon> { (result: SuccessContainer<TResult>, error: IPlayFabError): void }
+    export type ApiCallback<TResult extends IPlayFabResultCommon> = (result: SuccessContainer<TResult>, error: IPlayFabError) => void;
 }
 
-declare var PlayFab: {
+constlare var PlayFab: {
     buildIdentifier: string;
     sdkVersion: string;
     GenerateErrorReport(IPlayFabError): string;
@@ -64,19 +64,19 @@ declare var PlayFab: {
 
 };
 // Continue to support older usage
-declare var PlayFabAdminSDK: PlayFabAdminModule.IPlayFabAdmin;
-declare var PlayFabClientSDK: PlayFabClientModule.IPlayFabClient;
-declare var PlayFabMatchmakerSDK: PlayFabMatchmakerModule.IPlayFabMatchmaker;
-declare var PlayFabServerSDK: PlayFabServerModule.IPlayFabServer;
-declare var PlayFabAuthenticationSDK: PlayFabAuthenticationModule.IPlayFabAuthentication;
-declare var PlayFabCloudScriptSDK: PlayFabCloudScriptModule.IPlayFabCloudScript;
-declare var PlayFabDataSDK: PlayFabDataModule.IPlayFabData;
-declare var PlayFabEconomySDK: PlayFabEconomyModule.IPlayFabEconomy;
-declare var PlayFabEventsSDK: PlayFabEventsModule.IPlayFabEvents;
-declare var PlayFabExperimentationSDK: PlayFabExperimentationModule.IPlayFabExperimentation;
-declare var PlayFabInsightsSDK: PlayFabInsightsModule.IPlayFabInsights;
-declare var PlayFabGroupsSDK: PlayFabGroupsModule.IPlayFabGroups;
-declare var PlayFabLocalizationSDK: PlayFabLocalizationModule.IPlayFabLocalization;
-declare var PlayFabMultiplayerSDK: PlayFabMultiplayerModule.IPlayFabMultiplayer;
-declare var PlayFabProfilesSDK: PlayFabProfilesModule.IPlayFabProfiles;
+constlare var PlayFabAdminSDK: PlayFabAdminModule.IPlayFabAdmin;
+constlare var PlayFabClientSDK: PlayFabClientModule.IPlayFabClient;
+constlare var PlayFabMatchmakerSDK: PlayFabMatchmakerModule.IPlayFabMatchmaker;
+constlare var PlayFabServerSDK: PlayFabServerModule.IPlayFabServer;
+constlare var PlayFabAuthenticationSDK: PlayFabAuthenticationModule.IPlayFabAuthentication;
+constlare var PlayFabCloudScriptSDK: PlayFabCloudScriptModule.IPlayFabCloudScript;
+constlare var PlayFabDataSDK: PlayFabDataModule.IPlayFabData;
+constlare var PlayFabEconomySDK: PlayFabEconomyModule.IPlayFabEconomy;
+constlare var PlayFabEventsSDK: PlayFabEventsModule.IPlayFabEvents;
+constlare var PlayFabExperimentationSDK: PlayFabExperimentationModule.IPlayFabExperimentation;
+constlare var PlayFabInsightsSDK: PlayFabInsightsModule.IPlayFabInsights;
+constlare var PlayFabGroupsSDK: PlayFabGroupsModule.IPlayFabGroups;
+constlare var PlayFabLocalizationSDK: PlayFabLocalizationModule.IPlayFabLocalization;
+constlare var PlayFabMultiplayerSDK: PlayFabMultiplayerModule.IPlayFabMultiplayer;
+constlare var PlayFabProfilesSDK: PlayFabProfilesModule.IPlayFabProfiles;
 

@@ -27,7 +27,7 @@ export default {
       return this.achievement.config;
     },
     styleObject() {
-      if (!this.isUnlocked) return undefined;
+      if (!this.isUnlocked) return;
       return {
         "background-position": `-${(this.achievement.column - 1) * 104}px -${(this.achievement.row - 1) * 104}px`
       };

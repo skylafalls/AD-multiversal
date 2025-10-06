@@ -26,22 +26,25 @@ const SigilAttributes = {
 function sigilShape(type, att, draw, colorOverride) {
   let pos, path, pathStart, pathEnd;
   switch (type) {
-    case "circle":
+    case "circle": {
       pos = att.center;
       path = LogarithmicSpiral.fromPolarEndpoints(att.center, 0, att.radius * SigilAttributes.size,
         1, att.radius * SigilAttributes.size);
       pathStart = att.initAngle;
       pathEnd = att.finalAngle;
       break;
-    case "arc":
+    }
+    case "arc": {
       pos = att.center;
       pathStart = att.initAngle;
       pathEnd = att.finalAngle;
       path = LogarithmicSpiral.fromPolarEndpoints(att.center, pathStart, att.initRadius * SigilAttributes.size,
         pathEnd, att.finalRadius * SigilAttributes.size);
       break;
-    default:
+    }
+    default: {
       throw Error("Unrecognized shape in sigil specification");
+    }
   }
 
   return {

@@ -56,27 +56,30 @@ export default {
     },
     modeProps(mode) {
       switch (mode) {
-        case AUTO_CRUNCH_MODE.AMOUNT: return {
+        case AUTO_CRUNCH_MODE.AMOUNT: { return {
           title: "Big Crunch at X IP",
           input: {
             property: "amount",
             type: "decimal"
           },
         };
-        case AUTO_CRUNCH_MODE.TIME: return {
+        }
+        case AUTO_CRUNCH_MODE.TIME: { return {
           title: "Seconds between Crunches",
           input: {
             property: "time",
             type: "float"
           },
         };
-        case AUTO_CRUNCH_MODE.X_HIGHEST: return {
+        }
+        case AUTO_CRUNCH_MODE.X_HIGHEST: { return {
           title: "X times highest IP",
           input: {
             property: "xHighest",
             type: "decimal"
           },
         };
+        }
       }
       throw new Error("Unknown Auto Crunch mode");
     },

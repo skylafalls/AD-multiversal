@@ -23,7 +23,7 @@ export default {
       return GlyphInfo[this.type].regularGlyphSymbol;
     },
     capitalized() {
-      return `${this.type.charAt(0).toUpperCase()}${this.type.substring(1)}`;
+      return `${this.type.charAt(0).toUpperCase()}${this.type.slice(1)}`;
     },
     rarityStr() {
       return this.changedValue(this.currSettings.rarity, this.newSettings.rarity, x => formatPercents(x / 100));

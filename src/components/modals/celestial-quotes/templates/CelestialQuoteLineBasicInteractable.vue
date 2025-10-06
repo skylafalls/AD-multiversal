@@ -73,9 +73,12 @@ export default {
     progressIn(direction) {
       if (!this.isFocused) return false;
       switch (direction) {
-        case "left": return this.currentLine--;
-        case "right": return this.currentLine++;
-        default: return false;
+        case "left": { return this.currentLine--;
+        }
+        case "right": { return this.currentLine++;
+        }
+        default: { return false;
+        }
       }
     },
     close() {

@@ -47,17 +47,21 @@ export class NormalTimeStudyState extends TimeStudyState {
       : req());
     const currTree = GameCache.currentStudyTree.value;
     switch (this.config.reqType) {
-      case TS_REQUIREMENT_TYPE.AT_LEAST_ONE:
+      case TS_REQUIREMENT_TYPE.AT_LEAST_ONE: {
         return this.config.requirement.some(r => check(r));
-      case TS_REQUIREMENT_TYPE.ALL:
+      }
+      case TS_REQUIREMENT_TYPE.ALL: {
         return this.config.requirement.every(r => check(r));
-      case TS_REQUIREMENT_TYPE.DIMENSION_PATH:
+      }
+      case TS_REQUIREMENT_TYPE.DIMENSION_PATH: {
         // In some cases of loading, sometimes the current tree might be undefined when this code is executed. The
         // exact situations seem unclear, but it may be an interaction between the automator and offline progress
         return this.config.requirement.every(r => check(r)) && currTree &&
           currTree.currDimPathCount < currTree.allowedDimPathCount;
-      default:
+      }
+      default: {
         throw Error(`Unrecognized TS requirement type: ${this.reqType}`);
+      }
     }
   }
 
@@ -130,8 +134,8 @@ TimeStudy.preferredPaths = {
       return player.timestudy.preferredPaths[0];
     },
     set path(value) {
-      const options = [1, 2, 3];
-      player.timestudy.preferredPaths[0] = value.filter(id => options.includes(id));
+      const options = new Set([1, 2, 3]);
+      player.timestudy.preferredPaths[0] = value.filter(id => options.has(id));
     },
     get studies() {
       return player.timestudy.preferredPaths[0].flatMap(path => NormalTimeStudies.paths[path]);

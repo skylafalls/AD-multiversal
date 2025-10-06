@@ -112,7 +112,7 @@ export const SingularityMilestones = {
   lastNotified: player.celestials.laitela.lastCheckedMilestones,
 
   get sorted() {
-    return this.all.sort((a, b) => Decimal.compare(a.remainingSingularities, b.remainingSingularities));
+    return this.all.toSorted((a, b) => Decimal.compare(a.remainingSingularities, b.remainingSingularities));
   },
 
   sortedForCompletions(moveNewToTop) {
@@ -122,14 +122,15 @@ export const SingularityMilestones = {
     // to return unique values for all milestones for the sake of stable sorting
     let sortFn;
     switch (options.sortResource) {
-      case SINGULARITY_MILESTONE_SORT.SINGULARITIES_TO_NEXT:
+      case SINGULARITY_MILESTONE_SORT.SINGULARITIES_TO_NEXT: {
         sortFn = m => {
           // If it's maxed, we order based on the final goal value - higher goals are sorted later
           if (m.isMaxed) return Decimal.log10(m.isUnique ? m.nextGoal : m.previousGoal).add(1);
           return Decimal.log10(m.remainingSingularities).div(100);
         };
         break;
-      case SINGULARITY_MILESTONE_SORT.CURRENT_COMPLETIONS:
+      }
+      case SINGULARITY_MILESTONE_SORT.CURRENT_COMPLETIONS: {
         // Also counts partial completion on the current step
         sortFn = m => {
           // For never-completed repeatable milestones, this is zero and will cause NaN bugs if we don't set it to 1
@@ -139,7 +140,8 @@ export const SingularityMilestones = {
           return (m.completions.add(part)).div(20);
         };
         break;
-      case SINGULARITY_MILESTONE_SORT.PERCENT_COMPLETIONS:
+      }
+      case SINGULARITY_MILESTONE_SORT.PERCENT_COMPLETIONS: {
         // Orders infinite milestones based on completion count, putting them after all limited ones even if
         // they're completed
         sortFn = m => {
@@ -149,7 +151,8 @@ export const SingularityMilestones = {
           return Decimal.clampMax(currComp.add(m.completions).div(limit), 1).add(Number.isFinite(m.limit) ? 0 : 1);
         };
         break;
-      case SINGULARITY_MILESTONE_SORT.FINAL_COMPLETION:
+      }
+      case SINGULARITY_MILESTONE_SORT.FINAL_COMPLETION: {
         // Sorts infinite milestones as if they end at 50 steps; for any given number of completions, this
         // treats infinite milestones with larger steps as if they complete at a higher value
         sortFn = m => {
@@ -157,39 +160,46 @@ export const SingularityMilestones = {
           return Decimal.mul(m.config.start, Decimal.pow(m.config.repeat, limit - 1)).max(1).log10().div(100);
         };
         break;
-      case SINGULARITY_MILESTONE_SORT.MOST_RECENT:
+      }
+      case SINGULARITY_MILESTONE_SORT.MOST_RECENT: {
         sortFn = m => {
           if (!m.isUnlocked) return Decimal.log10(m.start).div(1000).add(1);
           // For unique milestones, previousGoal is actually 1 and nextGoal contains the completion amount
           return Decimal.log10(m.isUnique ? m.nextGoal : m.previousGoal).div(100);
         };
         break;
-      default:
+      }
+      default: {
         throw new Error("Unrecognized Singularity Milestone sorting option (order)");
+      }
     }
 
     // Shift the fully completed milestones to the front or back with a constant offset which should be larger
     // than the value that the sort function should ever evaluate to
     let completedVal;
     switch (options.showCompleted) {
-      case COMPLETED_MILESTONES.FIRST:
+      case COMPLETED_MILESTONES.FIRST: {
         completedVal = 10;
         break;
-      case COMPLETED_MILESTONES.LAST:
+      }
+      case COMPLETED_MILESTONES.LAST: {
         completedVal = -10;
         break;
-      case COMPLETED_MILESTONES.IGNORED:
+      }
+      case COMPLETED_MILESTONES.IGNORED: {
         completedVal = 0;
         break;
-      default:
+      }
+      default: {
         throw new Error("Unrecognized Singularity Milestone sorting option (completed milestones)");
+      }
     }
 
     // Compose the functions together; possibly reverse the final order and bring new milestones to the top
     const isNew = m => ((m.previousGoal.gt(player.celestials.laitela.lastCheckedMilestones) && moveNewToTop) ? 20 : 0);
     // eslint-disable-next-line max-len
     const compFn = m => Decimal.add(options.sortOrder ? sortFn(m) : sortFn(m).neg(), isNew(m) + (m.isMaxed ? completedVal : 0));
-    return this.sorted.sort((a, b) => Decimal.compare(compFn(a), compFn(b)));
+    return this.sorted.toSorted((a, b) => Decimal.compare(compFn(a), compFn(b)));
   },
 
   get nextMilestoneGroup() {
@@ -223,7 +233,7 @@ const SingularityMilestoneThresholds = (function() {
       .map(r => m.start * Math.pow(m.repeat, r)))
     .flat(Infinity)
     .filter(n => n < 1e100)
-    .sort((a, b) => a - b);
+    .toSorted((a, b) => a - b);
 }());
 
 export const Singularity = {

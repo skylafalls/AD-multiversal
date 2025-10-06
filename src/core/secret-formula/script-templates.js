@@ -28,7 +28,7 @@ export const automatorTemplates = {
     {
       name: "integer",
       isValidString: str => AutobuyerInputFunctions.int.tryParse(str),
-      map: x => Math.round(parseInt(x, 10)),
+      map: x => Math.round(Number.parseInt(x, 10)),
     },
     {
       name: "decimal",

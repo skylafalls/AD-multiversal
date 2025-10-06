@@ -70,7 +70,7 @@ export default {
       this.justCompleted = AutomatorBackend.hasJustCompleted;
       this.forceRestartOn = AutomatorBackend.state.forceRestart;
       this.followExecution = AutomatorBackend.state.followExecution;
-      this.hasErrors = AutomatorData.currentErrors().length !== 0;
+      this.hasErrors = AutomatorData.currentErrors().length > 0;
       this.currentLine = AutomatorBackend.currentLineNumber;
 
       // When the automator isn't running, the script name contains the last run script instead of the

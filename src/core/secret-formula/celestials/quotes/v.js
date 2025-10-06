@@ -49,7 +49,7 @@ export const vQuotes = {
   },
   hex1: {
     id: 6,
-    requirement: () => player.celestials.v.runUnlocks.filter(a => a === 6).length >= 1,
+    requirement: () => player.celestials.v.runUnlocks.filter(a => a === 6).length > 0,
     lines: [
       "Do not think it will get any easier from now on.",
       "You are awfully proud for such a little achievement.",

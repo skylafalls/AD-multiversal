@@ -206,7 +206,7 @@ class RaPetState extends GameMechanicState {
   get unlocks() {
     return Ra.unlocks.all
       .filter(x => x.pet === this)
-      .sort((a, b) => a.level - b.level);
+      .toSorted((a, b) => a.level - b.level);
   }
 
   tick(realDiff, generateChunks) {
@@ -377,7 +377,7 @@ export const Ra = {
     if (!Ra.unlocks.effarigUnlock.canBeApplied) return;
     const sortedReactions = AlchemyReactions.all
       .compact()
-      .sort((r1, r2) => Decimal.compare(r2.priority, r1.priority));
+      .toSorted((r1, r2) => Decimal.compare(r2.priority, r1.priority));
     for (const reaction of sortedReactions) {
       reaction.combineReagents();
     }

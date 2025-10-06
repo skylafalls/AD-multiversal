@@ -42,7 +42,7 @@ export const Effects = {
     let foundLast = false;
     const reversedSources = effectSources
       .filter(s => s !== null && s !== undefined)
-      .reverse();
+      .toReversed();
     const reducer = v => {
       result = v;
       foundLast = true;

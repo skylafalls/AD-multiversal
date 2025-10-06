@@ -20,7 +20,7 @@ export const NG = {
         name: speedrun.name,
         offlineTimeUsed: speedrun.offlineTimeUsed,
         records: [...speedrun.records],
-        achievementTimes: JSON.parse(JSON.stringify(speedrun.achievementTimes)),
+        achievementTimes: structuredClone(speedrun.achievementTimes),
         seedSelection: speedrun.seedSelection,
         initialSeed: speedrun.initialSeed,
       };

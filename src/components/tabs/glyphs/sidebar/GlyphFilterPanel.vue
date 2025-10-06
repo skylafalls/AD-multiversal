@@ -100,22 +100,30 @@ export default {
     },
     modeIcon(idx) {
       switch (idx) {
-        case this.modes.LOWEST_SACRIFICE:
+        case this.modes.LOWEST_SACRIFICE: {
           return "fas fa-burn";
-        case this.modes.EFFECT_COUNT:
+        }
+        case this.modes.EFFECT_COUNT: {
           return "fas fa-list-ul";
-        case this.modes.RARITY_THRESHOLD:
+        }
+        case this.modes.RARITY_THRESHOLD: {
           return "fas fa-gem";
-        case this.modes.SPECIFIED_EFFECT:
+        }
+        case this.modes.SPECIFIED_EFFECT: {
           return "fas fa-tasks";
-        case this.modes.EFFECT_SCORE:
+        }
+        case this.modes.EFFECT_SCORE: {
           return "fas fa-list-ol";
-        case this.modes.LOWEST_ALCHEMY:
+        }
+        case this.modes.LOWEST_ALCHEMY: {
           return "fas fa-atom";
-        case this.modes.ALCHEMY_VALUE:
+        }
+        case this.modes.ALCHEMY_VALUE: {
           return "fas fa-flask";
-        default:
+        }
+        default: {
           throw Error("Unrecognized glyph filter mode");
+        }
       }
     },
     strengthThreshold(type) {
@@ -151,13 +159,16 @@ export default {
         case this.modes.EFFECT_COUNT:
         case this.modes.RARITY_THRESHOLD:
         case this.modes.SPECIFIED_EFFECT:
-        case this.modes.EFFECT_SCORE:
+        case this.modes.EFFECT_SCORE: {
           return true;
+        }
         case this.modes.LOWEST_ALCHEMY:
-        case this.modes.ALCHEMY_VALUE:
+        case this.modes.ALCHEMY_VALUE: {
           return this.alchemyUnlocked;
-        default:
+        }
+        default: {
           throw Error("Unrecognized glyph filter mode");
+        }
       }
     },
     // Clicking bumps the rarity over to adjacent thresholds between rarities; normal clicks move to the higher one

@@ -76,7 +76,7 @@ export default {
       };
     },
     buttonText() {
-      if (this.overrideLabel.length) return this.overrideLabel;
+      if (this.overrideLabel.length > 0) return this.overrideLabel;
       if (this.isRunning) return "Running";
       if (this.isCompleted) {
         if (this.isUnlocked) return "Redo";

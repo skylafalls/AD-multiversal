@@ -64,7 +64,7 @@ export default {
     },
     errorTooltip() {
       const error = this.currentError();
-      if (!error) return undefined;
+      if (!error) return;
       return {
         content:
           `<div class="c-block-automator-error">

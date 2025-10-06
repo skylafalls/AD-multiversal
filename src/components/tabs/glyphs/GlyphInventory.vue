@@ -40,7 +40,7 @@ export default {
       if (event.dataTransfer.types.includes(GLYPH_MIME_TYPE)) event.preventDefault();
     },
     drop(idx, event) {
-      const id = parseInt(event.dataTransfer.getData(GLYPH_MIME_TYPE), 10);
+      const id = Number.parseInt(event.dataTransfer.getData(GLYPH_MIME_TYPE), 10);
       if (isNaN(id)) return;
       const glyph = Glyphs.findById(id);
       if (!glyph) return;

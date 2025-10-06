@@ -82,7 +82,7 @@ export default {
         const START_HEX = START.codePointAt(0) || 65;
         const SNOW = [];
         for (let i = 0; i < LEN; i++) {
-          SNOW.push(String.fromCharCode(START_HEX + i));
+          SNOW.push(String.fromCodePoint(START_HEX + i));
         }
         // \uE024 is :blobdead: and gets transitioned into as the game is ending, reaching
         // 100% at the same time the final achievement and speedrun milestone is given

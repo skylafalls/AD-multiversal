@@ -39,7 +39,7 @@ export class GameMechanicState extends Effect {
 
   registerEvents(events, callback) {
     if (events === undefined) return;
-    for (const event of events instanceof Array ? events : [events]) {
+    for (const event of Array.isArray(events) ? events : [events]) {
       EventHub.logic.on(event, callback, this);
     }
   }

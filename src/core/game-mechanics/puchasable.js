@@ -49,7 +49,7 @@ export class PurchasableMechanicState extends GameMechanicState {
   }
 
   // eslint-disable-next-line no-empty-function
-  onPurchased() { }
+  onPurchased() {}
 
   get isEffectActive() {
     return this.isBought;

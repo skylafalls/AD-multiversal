@@ -36,7 +36,7 @@ export default {
       },
       {
         pet: Ra.pets.effarig,
-        scalingUpgradeVisible: () => AlchemyResources.all.filter(r => r.isUnlocked).length > 0,
+        scalingUpgradeVisible: () => AlchemyResources.all.some(r => r.isUnlocked).length > 0,
         scalingUpgradeText: () => {
           const resources = AlchemyResources.all.filter(r => r.isUnlocked).length;
           return `You have unlocked ${quantifyInt("Alchemy Resource", resources)}.`;

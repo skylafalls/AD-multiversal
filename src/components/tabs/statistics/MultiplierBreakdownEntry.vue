@@ -6,7 +6,7 @@ import PrimaryToggleButton from "@/components/PrimaryToggleButton";
 
 // A few props are special-cased because they're base values which can be less than 1, but we don't want to
 // show them as nerfs
-const nerfBlacklist = ["IP_base", "EP_base", "TP_base"];
+const nerfBlacklist = new Set(["IP_base", "EP_base", "TP_base"]);
 
 function padPercents(percents) {
   // Add some padding to percents to prevent text flicker
@@ -157,7 +157,7 @@ export default {
 
         // This is clamped to a minimum of something that's still nonzero in order to show it at <0.1% instead of 0%
         percentList.push(
-          [entry.ignoresNerfPowers, nerfBlacklist.includes(entry.key) ? Decimal.clampMin(perc, 0.0001) : perc]
+          [entry.ignoresNerfPowers, nerfBlacklist.has(entry.key) ? Decimal.clampMin(perc, 0.0001) : perc]
         );
       }
 
@@ -227,7 +227,7 @@ export default {
     },
     entryString(index) {
       const percents = this.percentList[index];
-      if (percents < 0 && !nerfBlacklist.includes(this.entries[index].key)) {
+      if (percents < 0 && !nerfBlacklist.has(this.entries[index].key)) {
         return this.nerfString(index);
       }
 

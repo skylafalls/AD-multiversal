@@ -638,13 +638,13 @@ export function gameLoop(passedDiff, options = {}) {
   // Stopping these checks after CREDITS_START reduces lag and allows for the glyph customization modal to appear
   if (GameEnd.endState < END_STATE_MARKERS.CREDITS_START) {
     if (Tabs.current.isPermanentlyHidden) {
-      const tab = Tabs.all.reverse().find(t => !t.isPermanentlyHidden && t.id !== 10);
+      const tab = Tabs.all.toReversed().find(t => !t.isPermanentlyHidden && t.id !== 10);
       if (tab) tab.show(true);
-      else [...Tab.dimensions.subtabs].reverse().find(t => !t.isPermanentlyHidden).show(true);
+      else [...Tab.dimensions.subtabs].toReversed().find(t => !t.isPermanentlyHidden).show(true);
     }
 
     if (Tabs.current.subtabs.find(t => t.isOpen).isPermanentlyHidden) {
-      [...Tab.dimensions.subtabs].reverse().find(t => !t.isPermanentlyHidden).show(true);
+      [...Tab.dimensions.subtabs].toReversed().find(t => !t.isPermanentlyHidden).show(true);
     }
   }
 
@@ -781,20 +781,25 @@ function laitelaRealityTick(realDiff) {
 
 function laitelaBeatText(disabledDim) {
   switch (disabledDim) {
-    case 1: return `<br><br>Lai'tela's Reality will now completely disable production from all Dimensions.
+    case 1: { return `<br><br>Lai'tela's Reality will now completely disable production from all Dimensions.
         The Reality can still be entered, but further destabilization is no longer possible.
         For completely destabilizing the Reality, you also get an additional ${formatX(8)} to Dark Energy gain.`;
-    case 2: return `<br><br>Lai'tela's Reality will now disable production from all 2nd Dimensions during
+    }
+    case 2: { return `<br><br>Lai'tela's Reality will now disable production from all 2nd Dimensions during
       future runs, but the reward will be ${formatInt(100)} times stronger than before. Completely destabilizing
       the Reality for the final Dimension will give you an additional ${formatX(8)} to Dark Energy gain.`;
-    case 3: return `<br><br>Lai'tela's Reality will now disable production from all 3rd Dimensions during
+    }
+    case 3: { return `<br><br>Lai'tela's Reality will now disable production from all 3rd Dimensions during
         future runs, but the reward will be ${formatInt(100)} times stronger than before.`;
-    case 8: return `<br><br>Lai'tela's Reality will now disable production from all 8th Dimensions during
+    }
+    case 8: { return `<br><br>Lai'tela's Reality will now disable production from all 8th Dimensions during
         future runs, but the reward will be ${formatInt(100)} times stronger than before. This boost can be
         repeated for each remaining Dimension by reaching destabilization within ${formatInt(30)} seconds again.`;
-    default: return `<br><br>Lai'tela's Reality will now disable production from all
+    }
+    default: { return `<br><br>Lai'tela's Reality will now disable production from all
         ${disabledDim}th Dimensions during future runs, but the reward will be
         ${formatInt(100)} times stronger than before.`;
+    }
   }
 }
 
@@ -1048,12 +1053,12 @@ window.onload = function() {
   ui.view.initialized = supportedBrowser;
   setTimeout(() => {
     ElectronRuntime.updateZoom();
-    document.getElementById("loading").style.display = "none";
+    document.querySelector("#loading").style.display = "none";
   }, 500);
   if (!supportedBrowser) {
     GameIntervals.stop();
-    document.getElementById("loading").style.display = "none";
-    document.getElementById("browser-warning").style.display = "flex";
+    document.querySelector("#loading").style.display = "none";
+    document.querySelector("#browser-warning").style.display = "flex";
   }
 };
 

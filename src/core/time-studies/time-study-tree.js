@@ -33,22 +33,26 @@ export class TimeStudyTree {
     this.selectedStudies = [];
     this.startEC = false;
     switch (typeof studies) {
-      case "string":
+      case "string": {
         // Input parameter is an unparsed study import string
         if (TimeStudyTree.isValidImportString(studies)) {
           this.attemptBuyArray(this.parseStudyImport(studies), false);
         }
         break;
-      case "object":
+      }
+      case "object": {
         // Input parameter is an array of time study objects
         this.attemptBuyArray([...studies], false);
         this.selectedStudies = [...studies];
         break;
-      case "undefined":
+      }
+      case "undefined": {
         // If not supplied with anything, we leave everything at default values and don't attempt to buy anything
         break;
-      default:
+      }
+      default: {
         throw new Error("Unrecognized input parameter for TimeStudyTree constructor");
+      }
     }
   }
 
@@ -77,9 +81,9 @@ export class TimeStudyTree {
   static getECFromString(input) {
     if (!this.isValidImportString(input)) return 0;
     const parts = input.split("|");
-    if (parts.length < 1) return 0;
+    if (parts.length === 0) return 0;
     // Note: parseInt() seems to silently ignore the presence of "!"
-    return parseInt(parts[1], 10);
+    return Number.parseInt(parts[1], 10);
   }
 
   // THIS METHOD HAS LASTING CONSEQUENCES ON THE GAME STATE. STUDIES WILL ACTUALLY BE PURCHASED IF POSSIBLE.
@@ -115,13 +119,13 @@ export class TimeStudyTree {
   static truncateInput(input) {
     let internal = input.toLowerCase();
     // Convert every name into the ids it is a shorthand for
-    this.sets.forEach((ids, name) => (internal = internal.replace(name, ids.join())));
+    this.sets.forEach((ids, name) => (internal = internal.replace(name, ids.join(","))));
     return internal
       .replace(/[|,]$/u, "")
       .replaceAll(" ", "")
       // Allows 11,,21 to be parsed as 11,21 and 11,|1 to be parsed as 11|1
-      .replace(/,{2,}/gu, ",")
-      .replace(/,\|/gu, "|");
+      .replaceAll(/,{2,}/gu, ",")
+      .replaceAll(/,\|/gu, "|");
   }
 
   static formatStudyList(input) {
@@ -132,7 +136,7 @@ export class TimeStudyTree {
   // This reads off all the studies in the import string and splits them into invalid and valid study IDs. We hold on
   // to invalid studies for additional information to present to the player
   parseStudyImport(input) {
-    const studyDB = GameDatabase.eternity.timeStudies.normal.map(s => s.id);
+    const studyDB = new Set(GameDatabase.eternity.timeStudies.normal.map(s => s.id));
     const output = [];
     const studiesString = TimeStudyTree.truncateInput(input).split("|")[0];
     if (studiesString.length) {
@@ -143,7 +147,7 @@ export class TimeStudyTree {
           ? this.studyRangeToArray(studyRangeSplit[0], studyRangeSplit[1])
           : studyRangeSplit;
         for (const study of studyArray) {
-          if (studyDB.includes(parseInt(study, 10))) {
+          if (studyDB.has(Number.parseInt(study, 10))) {
             const tsObject = TimeStudy(study);
             this.selectedStudies.push(tsObject);
             output.push(tsObject);
@@ -162,7 +166,7 @@ export class TimeStudyTree {
       return output;
     }
     // Note: parseInt() seems to silently ignore the presence of "!"
-    const ecID = parseInt(ecString, 10);
+    const ecID = Number.parseInt(ecString, 10);
     const ecDB = GameDatabase.eternity.timeStudies.ec;
     // Specifically exclude 0 because saved presets will contain it by default
     if (!ecDB.map(c => c.id).includes(ecID) && ecID !== 0) {
@@ -188,7 +192,7 @@ export class TimeStudyTree {
   }
 
   checkTimeStudyNumber(token) {
-    const tsNumber = parseFloat(token);
+    const tsNumber = Number.parseFloat(token);
     if (!TimeStudy(tsNumber) || (TimeStudy(tsNumber).isTriad && !Ra.canBuyTriad)) {
       return 0;
     }
@@ -220,17 +224,21 @@ export class TimeStudyTree {
     const config = study.config;
     let reqSatisfied;
     switch (config.reqType) {
-      case TS_REQUIREMENT_TYPE.AT_LEAST_ONE:
+      case TS_REQUIREMENT_TYPE.AT_LEAST_ONE: {
         reqSatisfied = config.requirement.some(r => check(r));
         break;
-      case TS_REQUIREMENT_TYPE.ALL:
+      }
+      case TS_REQUIREMENT_TYPE.ALL: {
         reqSatisfied = config.requirement.every(r => check(r));
         break;
-      case TS_REQUIREMENT_TYPE.DIMENSION_PATH:
+      }
+      case TS_REQUIREMENT_TYPE.DIMENSION_PATH: {
         reqSatisfied = config.requirement.every(r => check(r)) && this.currDimPathCount < this.allowedDimPathCount;
         break;
-      default:
+      }
+      default: {
         throw Error(`Unrecognized TS requirement type: ${this.reqType}`);
+      }
     }
     if (study instanceof ECTimeStudyState) {
       if (this.purchasedStudies.some(s => s instanceof ECTimeStudyState)) return false;
@@ -294,7 +302,7 @@ export class TimeStudyTree {
         }
       }
     }
-    return Array.from(pathSet);
+    return [...pathSet];
   }
 
   get pacePaths() {
@@ -309,7 +317,7 @@ export class TimeStudyTree {
         }
       }
     }
-    return Array.from(pathSet);
+    return [...pathSet];
   }
 
   get ec() {

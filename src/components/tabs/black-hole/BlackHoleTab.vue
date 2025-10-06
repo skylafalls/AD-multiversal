@@ -32,14 +32,18 @@ export default {
     blackHoles: () => BlackHoles.list,
     pauseModeString() {
       switch (this.pauseMode) {
-        case BLACK_HOLE_PAUSE_MODE.NO_PAUSE:
+        case BLACK_HOLE_PAUSE_MODE.NO_PAUSE: {
           return "Do not pause";
-        case BLACK_HOLE_PAUSE_MODE.PAUSE_BEFORE_BH1:
+        }
+        case BLACK_HOLE_PAUSE_MODE.PAUSE_BEFORE_BH1: {
           return this.hasBH2 ? "Before BH1" : "Before activation";
-        case BLACK_HOLE_PAUSE_MODE.PAUSE_BEFORE_BH2:
+        }
+        case BLACK_HOLE_PAUSE_MODE.PAUSE_BEFORE_BH2: {
           return "Before BH2";
-        default:
+        }
+        default: {
           throw new Error("Unrecognized BH offline pausing mode");
+        }
       }
     },
   },
@@ -119,17 +123,21 @@ export default {
       let steps;
       switch (this.pauseMode) {
         case BLACK_HOLE_PAUSE_MODE.NO_PAUSE:
-          // Note: We don't need to check for permanent BH2 because the button disappears at that point
+          // Note: { We don't need to check for permanent BH2 because the button disappears at that point
           steps = BlackHole(1).isPermanent ? 2 : 1;
           break;
-        case BLACK_HOLE_PAUSE_MODE.PAUSE_BEFORE_BH1:
+        }
+        case BLACK_HOLE_PAUSE_MODE.PAUSE_BEFORE_BH1: {
           steps = this.hasBH2 ? 1 : 2;
           break;
-        case BLACK_HOLE_PAUSE_MODE.PAUSE_BEFORE_BH2:
+        }
+        case BLACK_HOLE_PAUSE_MODE.PAUSE_BEFORE_BH2: {
           steps = 1;
           break;
-        default:
+        }
+        default: {
           throw new Error("Unrecognized BH offline pausing mode");
+        }
       }
       player.blackHoleAutoPauseMode = (this.pauseMode + steps) % Object.values(BLACK_HOLE_PAUSE_MODE).length;
     },

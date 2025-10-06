@@ -379,7 +379,7 @@ export const devMigrations = {
     player => {
       const pets = player.celestials.ra.pets;
       for (const prop in pets) {
-        if (!Object.prototype.hasOwnProperty.call(pets, prop)) continue;
+        if (! Object.hasOwn(pets, prop)) continue;
         const pet = pets[prop];
         const oldExp = pet.exp + 10000 * (Math.pow(1.12, pet.level - 1) - 1) / (0.12);
         pet.level = 1;
@@ -391,7 +391,7 @@ export const devMigrations = {
     player => {
       const pets = player.celestials.ra.pets;
       for (const prop in pets) {
-        if (!Object.prototype.hasOwnProperty.call(pets, prop)) continue;
+        if (! Object.hasOwn(pets, prop)) continue;
         const pet = pets[prop];
         let oldExp = pet.exp;
         for (let lv = 1; lv < pet.level; lv++) {
@@ -418,17 +418,20 @@ export const devMigrations = {
       eternityAutobuyer.mode = ["amount", "time", "relative"].indexOf(player.autoEternityMode);
       const condition = new Decimal(old.limit);
       switch (player.autoEternityMode) {
-        case "amount":
+        case "amount": {
           eternityAutobuyer.amount = condition;
           break;
-        case "time":
+        }
+        case "time": {
           eternityAutobuyer.time = condition.lt(DC.NUMMAX)
             ? condition.toNumber()
             : eternityAutobuyer.time;
           break;
-        case "relative":
+        }
+        case "relative": {
           eternityAutobuyer.xLast = condition;
           break;
+        }
       }
 
       delete player.realityBuyer;
@@ -762,7 +765,7 @@ export const devMigrations = {
     player => {
       for (const script of Object.values(player.reality.automator.scripts)) {
         script.content =
-          script.content.replace(/^([ \t]*)(wait|if|while|until)([\t ]+)(completions)/igmu, "$1$2$3pending $4");
+          script.content.replaceAll(/^([ \t]*)(wait|if|while|until)([\t ]+)(completions)/igmu, "$1$2$3pending $4");
       }
     },
     player => {
@@ -1342,7 +1345,7 @@ export const devMigrations = {
     },
     player => {
       for (const script of Object.values(player.reality.automator.scripts)) {
-        script.id = parseInt(script.id, 10);
+        script.id = Number.parseInt(script.id, 10);
       }
     },
     player => {

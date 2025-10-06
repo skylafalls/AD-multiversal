@@ -111,13 +111,16 @@ export class BigCrunchAutobuyerState extends UpgradeableAutobuyerState {
     if (!player.break || Player.isInAntimatterChallenge) return true;
 
     switch (this.mode) {
-      case AUTO_CRUNCH_MODE.AMOUNT:
+      case AUTO_CRUNCH_MODE.AMOUNT: {
         return gainedInfinityPoints().gte(this.amount);
-      case AUTO_CRUNCH_MODE.TIME:
+      }
+      case AUTO_CRUNCH_MODE.TIME: {
         return Time.thisInfinityRealTime.totalSeconds.toNumber() > this.time;
+      }
       case AUTO_CRUNCH_MODE.X_HIGHEST:
-      default:
+      default: {
         return gainedInfinityPoints().gte(this.highestPrevPrestige.times(this.xHighest));
+      }
     }
   }
 

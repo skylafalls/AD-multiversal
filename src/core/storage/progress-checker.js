@@ -44,7 +44,7 @@ export const ProgressChecker = {
     for (let stage = db.length - 1; stage >= 0; stage--) {
       if (db[stage].hasReached(save)) return db[stage];
     }
-    throw Error("No valid progress stage found");
+    throw new Error("No valid progress stage found");
   },
 
   // Returns a value corresponding to keys in PROGRESS_STAGE, with a rough interpolation between stages

@@ -2,7 +2,7 @@ class AlchemyOrbitLayout {
   constructor(tier, radius, angleOffset = 0) {
     this._resources = AlchemyResources.all
       .filter(y => y.config.tier === tier)
-      .sort((x, y) => x.config.uiOrder - y.config.uiOrder);
+      .toSorted((x, y) => x.config.uiOrder - y.config.uiOrder);
     this._radius = radius;
     this._angleOffset = angleOffset;
   }

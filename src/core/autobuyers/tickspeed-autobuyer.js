@@ -71,12 +71,14 @@ export class TickspeedAutobuyerState extends UpgradeableAutobuyerState {
   tick() {
     super.tick();
     switch (this.mode) {
-      case AUTOBUYER_MODE.BUY_SINGLE:
+      case AUTOBUYER_MODE.BUY_SINGLE: {
         buyTickSpeed();
         break;
-      case AUTOBUYER_MODE.BUY_MAX:
+      }
+      case AUTOBUYER_MODE.BUY_MAX: {
         buyMaxTickSpeed();
         break;
+      }
     }
   }
 

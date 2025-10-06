@@ -1902,7 +1902,7 @@ Rifts once the current cap has been reached.`,
   };
 
   // Very suboptimal code coming up. If anybody has a better solution, PLEASE, implement it.
-  const keyboardify = keybrd => map2dToObject(keybrd.split(",").map(str => str.split("")),
+  const keyboardify = keybrd => map2dToObject(keybrd.split(",").map(str => [...str]),
     key => key, (_key, x, y) => ({ x, y }));
 
   const qwerty = keyboardify(`1234567890,qwertyuiop,asdfghjkl,zxcvbnm`);
@@ -2004,7 +2004,7 @@ Rifts once the current cap has been reached.`,
     // Provide both the relevance and the tab itself
 
     // Sort by id first, then push more relevant results to top.
-    results.sort((a, b) => a.tab.id - b.tab.id).sort((a, b) => a.relevance - b.relevance);
+    results.toSorted((a, b) => a.tab.id - b.tab.id).sort((a, b) => a.relevance - b.relevance);
     // Provide both the relevance and the tab itself
     return results;
   };

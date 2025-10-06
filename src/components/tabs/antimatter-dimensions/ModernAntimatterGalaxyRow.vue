@@ -52,30 +52,34 @@ export default {
     },
     typeName() {
       switch (this.type) {
-        case GALAXY_TYPE.NORMAL: return "Antimatter Galaxies";
-        case GALAXY_TYPE.DISTANT: return "Distant Antimatter Galaxies";
-        case GALAXY_TYPE.REMOTE: return "Remote Antimatter Galaxies";
+        case GALAXY_TYPE.NORMAL: { return "Antimatter Galaxies";
+        }
+        case GALAXY_TYPE.DISTANT: { return "Distant Antimatter Galaxies";
+        }
+        case GALAXY_TYPE.REMOTE: { return "Remote Antimatter Galaxies";
+        }
       }
-      return undefined;
+      return;
     },
     hasIncreasedScaling() {
       return this.type !== GALAXY_TYPE.NORMAL;
     },
     costScalingText() {
       switch (this.type) {
-        case GALAXY_TYPE.DISTANT:
+        case GALAXY_TYPE.DISTANT: {
           return `Each Galaxy is more expensive past ${quantifyInt("Galaxy", this.distantStart)}`;
+        }
         case GALAXY_TYPE.REMOTE: {
           const scalings = [
             { type: "distant", function: "quadratic", amount: this.distantStart },
             { type: "remote", function: "exponential", amount: this.remoteStart }
           ];
-          return `Increased Galaxy cost scaling: ${scalings.sort((a, b) => a.amount.compare(b.amount))
+          return `Increased Galaxy cost scaling: ${scalings.toSorted((a, b) => a.amount.compare(b.amount))
             .map(scaling => `${scaling.function} scaling past ${this.formatGalaxies(scaling.amount)} (${scaling.type})`)
             .join(", ").capitalize()}`;
         }
       }
-      return undefined;
+      return;
     },
     classObject() {
       return {

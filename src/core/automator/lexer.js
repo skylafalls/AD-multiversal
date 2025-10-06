@@ -1,7 +1,7 @@
 // Note: chevrotain doesn't play well with unicode regex
 /* eslint-disable require-unicode-regexp */
 /* eslint-disable camelcase */
-import { createToken, Lexer } from "chevrotain";
+import { Lexer, createToken } from "chevrotain";
 
 import { DC } from "../constants";
 
@@ -391,11 +391,11 @@ for (const token of lexer.lexerDefinition) {
 // We use this while building up the grammar
 export const tokenMap = automatorTokens.mapToObject(e => e.name, e => e);
 
-const automatorCurrencyNames = tokenLists.AutomatorCurrency.map(i => i.$autocomplete.toUpperCase());
+const automatorCurrencyNames = new Set(tokenLists.AutomatorCurrency.map(i => i.$autocomplete.toUpperCase()));
 
 export const standardizeAutomatorValues = function(x) {
   try {
-    if (automatorCurrencyNames.includes(x.toUpperCase())) return x.toUpperCase();
+    if (automatorCurrencyNames.has(x.toUpperCase())) return x.toUpperCase();
   } catch {
     // This only happens if the input is a number or Decimal, in which case we don't attempt to change any formatting
     // and simply return
@@ -415,8 +415,8 @@ export const standardizeAutomatorValues = function(x) {
 // In order to disallow individual words within command key words/phrases, we need to ignore certain patterns (mostly
 // ones with special regex characters), split the rest of them up across all spaces and tabs, and then flatten the
 // final resulting array. Note that this technically duplicates words present in multiple phrases (eg. "pending")
-const ignoredPatterns = ["Identifier", "LCurly", "RCurly"];
+const ignoredPatterns = new Set(["Identifier", "LCurly", "RCurly"]);
 export const forbiddenConstantPatterns = lexer.lexerDefinition
-  .filter(p => !ignoredPatterns.includes(p.name))
+  .filter(p => !ignoredPatterns.has(p.name))
   .map(p => p.PATTERN.source)
-  .flatMap(p => ((p.includes("(") || p.includes(")")) ? p : p.split("[ \\t]+")));
+  .flatMap(p => ((p.includes("(") || p.includes(")")) ? p : p.split(String.raw`[ \t]+`)));

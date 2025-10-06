@@ -18,10 +18,12 @@ export default {
     autobuyer: () => Autobuyer.tickspeed,
     modeDisplay() {
       switch (this.mode) {
-        case AUTOBUYER_MODE.BUY_SINGLE: return "Buys singles";
-        case AUTOBUYER_MODE.BUY_MAX: return "Buys max";
+        case AUTOBUYER_MODE.BUY_SINGLE: { return "Buys singles";
+        }
+        case AUTOBUYER_MODE.BUY_MAX: { return "Buys max";
+        }
       }
-      throw "Unknown tickspeed autobuyer mode";
+      throw new Error("Unknown tickspeed autobuyer mode");
     }
   },
   methods: {

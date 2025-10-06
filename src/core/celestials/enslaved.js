@@ -159,7 +159,7 @@ export const Enslaved = {
     // This is a special case for Nameless because it's one of the only two cases where a command becomes locked
     // again (the other being Pelle entry, which just force-stops the automator entirely).
     AutomatorData.recalculateErrors();
-    if (AutomatorBackend.state.mode === AUTOMATOR_MODE.RUN && AutomatorData.currentErrors().length) {
+    if (AutomatorBackend.state.mode === AUTOMATOR_MODE.RUN && AutomatorData.currentErrors().length > 0) {
       AutomatorBackend.stop();
       GameUI.notify.error("This Reality forbids Black Holes! (Automator stopped)");
     }
@@ -230,7 +230,7 @@ export const Enslaved = {
   },
   quotes: Quotes.enslaved,
   // Unicode f0c1.
-  symbol: "\uf0c1",
+  symbol: "\uF0C1",
 
   reset() {
     player.celestials.enslaved.isStoring = false;

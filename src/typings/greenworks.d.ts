@@ -1,4 +1,4 @@
-export declare module Greenworks {
+export declare namespace Greenworks {
   export interface NodeModule {
     initAPI(): boolean;
     getSteamId(): SteamId;

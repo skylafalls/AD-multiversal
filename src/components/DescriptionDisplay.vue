@@ -38,7 +38,7 @@ export default {
     classObject() {
       const name = this.name;
       if (name === undefined) {
-        return undefined;
+        return;
       }
       const classes = {};
       classes[name] = true;
@@ -52,7 +52,7 @@ export default {
     config: {
       immediate: true,
       handler(config) {
-        this.updateFunction = () => { };
+        this.updateFunction = () => {};
         const description = config?.description;
         // Descriptions in config entries are occasionally used both as standalone statements and mid-sentence,
         // so we explicitly capitalize them here because this only shows up in standalone places
@@ -94,7 +94,7 @@ export default {
     }
   },
   beforeCreate() {
-    this.updateFunction = () => { };
+    this.updateFunction = () => {};
   },
   methods: {
     update() {

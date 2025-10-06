@@ -1,4 +1,4 @@
-import { standardizeAutomatorValues, tokenMap as T } from "./lexer";
+import { tokenMap as T, standardizeAutomatorValues } from "./lexer";
 
 /**
  * Note: the $ shorthand for the parser object is required by Chevrotain. Don't mess with it.
@@ -58,18 +58,22 @@ function parseConditionalIntoText(ctx) {
 function findLastPrestigeRecord(layer) {
   let addedECs, gainedEP;
   switch (layer) {
-    case "INFINITY":
+    case "INFINITY": {
       return `${format(player.records.recentInfinities[0][1], 2)} IP`;
-    case "ETERNITY":
+    }
+    case "ETERNITY": {
       addedECs = AutomatorData.lastECCompletionCount;
       gainedEP = `${format(player.records.recentEternities[0][1], 2)} EP`;
       return addedECs === 0
         ? `${gainedEP}`
         : `${gainedEP}, ${addedECs} completions`;
-    case "REALITY":
+    }
+    case "REALITY": {
       return `${format(player.records.recentRealities[0][1], 2)} RM`;
-    default:
+    }
+    default: {
       throw Error(`Unrecognized prestige ${layer} in Automator event log`);
+    }
   }
 }
 
@@ -700,7 +704,7 @@ export const AutomatorCommands = [
           return false;
         }
 
-        const id = parseInt(split[1], 10);
+        const id = Number.parseInt(split[1], 10);
         if (id < 1 || id > 6) {
           V.addError(ctx.Id[0], `Could not find a preset with an id of ${id}`,
             "Type in a valid id (1 - 6) for your study preset");
@@ -881,17 +885,21 @@ export const AutomatorCommands = [
       const prestigeLevel = ctx.PrestigeEvent[0].tokenType.$prestigeLevel;
       let prestigeName;
       switch (ctx.PrestigeEvent[0].tokenType) {
-        case T.Infinity:
+        case T.Infinity: {
           prestigeName = "Infinity";
           break;
-        case T.Eternity:
+        }
+        case T.Eternity: {
           prestigeName = "Eternity";
           break;
-        case T.Reality:
+        }
+        case T.Reality: {
           prestigeName = "Reality";
           break;
-        default:
+        }
+        default: {
           throw Error("Unrecognized prestige layer in until loop");
+        }
       }
       return {
         run: S => {

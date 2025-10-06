@@ -108,14 +108,18 @@ export default {
     description() {
       const glyphName = `${this.type.capitalize()}`;
       switch (this.type) {
-        case "companion":
+        case "companion": {
           return "Companion Glyph";
-        case "cursed":
+        }
+        case "cursed": {
           return "Cursed Glyph";
-        case "reality":
+        }
+        case "reality": {
           return `Pure Glyph of ${glyphName}`;
-        default:
+        }
+        default: {
           return `${this.rarityInfo.name} Glyph of ${glyphName}`;
+        }
       }
     },
     isLevelCapped() {
@@ -188,12 +192,12 @@ export default {
   mounted() {
     // By attaching the tooltip to the body element, we make sure it ends up on top of anything
     // else, with no z order shenanigans
-    document.body.appendChild(this.$el);
+    document.body.append(this.$el);
   },
   destroyed() {
     try {
       document.body.removeChild(this.$el);
-    } catch (e) {
+    } catch {
       // If the tooltip isn't visible, then it can't be removed on account of not being there in the first place.
       // Trying to remove it anyway causes an exception to be thrown but otherwise nothing seems to actually affect
       // the game. Nevertheless, including this try/catch no-op suppresses console error spam.

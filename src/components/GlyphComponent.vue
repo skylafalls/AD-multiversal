@@ -104,7 +104,7 @@ function generateGradient(data, color, glyph, isCircular) {
   let borders, scaleFn, centers, specialData, isColor = false;
   const entries = [], elements = [];
   switch (data.lineType) {
-    case "linear":
+    case "linear": {
       // Produces stripes at the specified angle, where color sharply switches between the specified color and
       // transparent at each percentage in lines
       borders = [0, ...data.colorSplit, 100];
@@ -117,7 +117,8 @@ function generateGradient(data, color, glyph, isCircular) {
         elements.push(`repeating-linear-gradient(${angle}deg, ${entries.join(",")})`);
       }
       return elements.join(",");
-    case "bump":
+    }
+    case "bump": {
       // Produces four bumps on the cardinal directions of the glyph border, with specified color fade distances.
       // These bumps overlap some dots on effarig glyphs, so we conditionally make them more transparent (effectively
       // shrinking them so they don't overlap)
@@ -131,7 +132,8 @@ function generateGradient(data, color, glyph, isCircular) {
           transparent ${scaleFn(data.colorSplit[1])}%)`);
       }
       return entries.join(",");
-    case "radial":
+    }
+    case "radial": {
       // Produces a centered circle that only shades within a certain radial distance
       borders = [50, ...data.colorSplit, 100];
       scaleFn = perc => (isCircular ? 0.9 * perc : 100 - (100 - perc) / 2);
@@ -140,14 +142,16 @@ function generateGradient(data, color, glyph, isCircular) {
         isColor = !isColor;
       }
       return `radial-gradient(${entries.join(",")})`;
-    case "spike":
+    }
+    case "spike": {
       // Produces a single spike at the specified center, spanning between the specified angles with 5deg blur
       entries.push(`transparent ${data.angles[0] - 5}deg`);
       entries.push(`${color}b0 ${data.angles[0] + 5}deg`);
       entries.push(`${color}b0 ${data.angles[1] - 5}deg`);
       entries.push(`transparent ${data.angles[1] + 5}deg`);
       return `conic-gradient(from 0deg at ${data.center[0]}% ${data.center[1]}%, ${entries.join(",")})`;
-    case "companion":
+    }
+    case "companion": {
       // Special case to make the companion border look like a heart
       borders = [0, 30, 330, 360];
       specialData = [color, "transparent", "transparent", color];
@@ -163,8 +167,10 @@ function generateGradient(data, color, glyph, isCircular) {
           transparent ${scaleFn(50)}%)`);
       }
       return elements.join(",");
-    default:
+    }
+    default: {
       throw new Error("Unrecognized glyph border data");
+    }
   }
 }
 
@@ -397,16 +403,21 @@ export default {
       let directionID = this.$viewModel.tabs.reality.glyphTooltipDirection;
       if (this.flipTooltip) directionID += 1;
       switch (directionID) {
-        case -1:
+        case -1: {
           return "l-glyph-tooltip--down-left";
-        case 0:
+        }
+        case 0: {
           return "l-glyph-tooltip--down-right";
-        case 1:
+        }
+        case 1: {
           return "l-glyph-tooltip--up-left";
-        case 2:
+        }
+        case 2: {
           return "l-glyph-tooltip--up-right";
-        default:
+        }
+        default: {
           return "l-glyph-tooltip--down-left";
+        }
       }
     },
     // This finds all the effects of a glyph and shifts all their IDs so that type's lowest-ID effect is 0 and all
@@ -443,21 +454,28 @@ export default {
 
       const typeEnum = GlyphInfoVue.types;
       switch (options.glyphInfoType) {
-        case typeEnum.LEVEL:
+        case typeEnum.LEVEL: {
           this.updateDisplayLevel();
           return formatInt(this.displayLevel.eq(0) ? this.glyph.level : this.displayLevel);
-        case typeEnum.RARITY:
+        }
+        case typeEnum.RARITY: {
           return formatRarity(strengthToRarity(Pelle.isDoomed ? Pelle.glyphStrength : this.glyph.strength));
-        case typeEnum.SAC_VALUE:
+        }
+        case typeEnum.SAC_VALUE: {
           return format(this.sacrificeReward, 2, 2);
-        case typeEnum.FILTER_SCORE:
+        }
+        case typeEnum.FILTER_SCORE: {
           return format(AutoGlyphProcessor.filterValue(this.glyph), 1, 1);
-        case typeEnum.CURRENT_REFINE:
+        }
+        case typeEnum.CURRENT_REFINE: {
           return `${format(this.refineReward, 2, 2)} ${this.symbol}`;
-        case typeEnum.MAX_REFINE:
+        }
+        case typeEnum.MAX_REFINE: {
           return `${format(this.uncappedRefineReward, 2, 2)} ${this.symbol}`;
-        default:
+        }
+        default: {
           throw new Error("Unrecognized Glyph info type in info text");
+        }
       }
     },
     showBorders() {
@@ -668,7 +686,7 @@ export default {
       let numOfEffects = GlyphInfo[this.glyph.type].effects().length;
       if (numOfEffects > 6) numOfEffects += 1;
       // Take the smallest power of 2, greater than the number of effects
-      const angle = (Math.PI / (numOfEffects / 2)) * (parseInt(id, 10) + (numOfEffects / 8));
+      const angle = (Math.PI / (numOfEffects / 2)) * (Number.parseInt(id, 10) + (numOfEffects / 8));
       const scale = 0.28 * this.size.replace("rem", "");
       const dx = -scale * Math.sin(angle);
       const dy = scale * (Math.cos(angle) + 0.15);

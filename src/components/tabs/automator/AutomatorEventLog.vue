@@ -15,12 +15,12 @@ export default {
   computed: {
     events() {
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties, no-nested-ternary
-      const sorted = this.unsortedEvents.sort((a, b) => (a.timestamp === b.timestamp
+      const sorted = this.unsortedEvents.toSorted((a, b) => (a.timestamp === b.timestamp
         ? (a.thisReality === b.thisReality
           ? a.line - b.line
           : a.thisReality - b.thisReality)
         : a.timestamp - b.timestamp));
-      return this.newestFirst ? sorted.reverse() : sorted;
+      return this.newestFirst ? sorted.toReversed() : sorted;
     },
     clearTooltip() {
       return `Clear all entries (Max. ${this.maxEntries})`;
@@ -83,19 +83,25 @@ export default {
     },
     timestamp(entry) {
       switch (this.timestampMode) {
-        case AUTOMATOR_EVENT_TIMESTAMP_MODE.DISABLED:
+        case AUTOMATOR_EVENT_TIMESTAMP_MODE.DISABLED: {
           return "";
-        case AUTOMATOR_EVENT_TIMESTAMP_MODE.THIS_REALITY:
+        }
+        case AUTOMATOR_EVENT_TIMESTAMP_MODE.THIS_REALITY: {
           return `, ${TimeSpan.fromSeconds(new Decimal(entry.thisReality)).toStringShort()} (real-time) in Reality`;
-        case AUTOMATOR_EVENT_TIMESTAMP_MODE.RELATIVE_NOW:
+        }
+        case AUTOMATOR_EVENT_TIMESTAMP_MODE.RELATIVE_NOW: {
           return `, ${TimeSpan.fromMilliseconds(new Decimal(this.currentTime - entry.timestamp)).toStringShort()} ago`;
-        case AUTOMATOR_EVENT_TIMESTAMP_MODE.RELATIVE_PREV:
+        }
+        case AUTOMATOR_EVENT_TIMESTAMP_MODE.RELATIVE_PREV: {
           if (entry.timegap === entry.timestamp) return `, first logged event`;
           return `, ${TimeSpan.fromMilliseconds(new Decimal(entry.timegap)).toStringShort()} after previous event`;
-        case AUTOMATOR_EVENT_TIMESTAMP_MODE.DATE_TIME:
+        }
+        case AUTOMATOR_EVENT_TIMESTAMP_MODE.DATE_TIME: {
           return `, ${Time.toDateTimeString(entry.timestamp)}`;
-        default:
+        }
+        default: {
           throw Error("Unrecognized timestamp mode in Automator event log");
+        }
       }
     },
     scrollToLine(line) {

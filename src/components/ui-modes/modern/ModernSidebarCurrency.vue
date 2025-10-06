@@ -16,7 +16,7 @@ export default {
     resource() {
       // With "default" sorting, return the latest unlocked resource - otherwise, return the specified one
       return this.sidebarID === 0
-        ? this.resourceDB.filter(e => e.isAvailable()).sort((a, b) => b.id - a.id)[0]
+        ? this.resourceDB.filter(e => e.isAvailable()).toSorted((a, b) => b.id - a.id)[0]
         : this.resourceDB.find(e => e.id === this.sidebarID);
     },
     displayValue() {

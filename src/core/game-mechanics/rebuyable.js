@@ -60,5 +60,5 @@ export class RebuyableMechanicState extends GameMechanicState {
   }
 
   // eslint-disable-next-line no-empty-function
-  onPurchased() { }
+  onPurchased() {}
 }

@@ -12,78 +12,102 @@ export const MultiplierTabIcons = {
   DIMENSION(type, tier) {
     const tierText = tier ?? "";
     switch (type) {
-      case "AD":
+      case "AD": {
         return { symbol: `<b>Ω${tierText}</b>`, color: "var(--color-antimatter)" };
-      case "ID":
+      }
+      case "ID": {
         return { symbol: `<b>∞${tierText}</b>`, color: "var(--color-infinity)" };
-      case "TD":
+      }
+      case "TD": {
         return { symbol: `<b>Δ${tierText}</b>`, color: "var(--color-eternity)" };
-      default:
+      }
+      default: {
         throw new Error("Unrecognized dimension type in multiplier tab icons");
+      }
     }
   },
   PURCHASE(type, tier) {
     const symbol = `<i class="fas fa-arrow-up-right-dots" />${tier ?? ""}`;
     switch (type) {
-      case "AD":
+      case "AD": {
         return { symbol, color: "var(--color-antimatter)" };
-      case "ID":
+      }
+      case "ID": {
         return { symbol, color: "var(--color-infinity)" };
-      case "TD":
+      }
+      case "TD": {
         return { symbol, color: "var(--color-eternity)" };
-      case "baseID":
+      }
+      case "baseID": {
         return { symbol: `<i class="fas fa-arrows-up-to-line" />`, color: "var(--color-infinity)" };
-      case "tesseractID":
+      }
+      case "tesseractID": {
         return {
           symbol: `<i class="fas fa-up-right-and-down-left-from-center" />`,
           color: "var(--color-enslaved--base)"
         };
-      default:
+      }
+      default: {
         throw new Error("Unrecognized purchase type in multiplier tab icons");
+      }
     }
   },
   CHALLENGE(type, tier) {
     const tierText = `<i class="fas fa-arrow-down-wide-short" />${tier ?? ""}`;
     switch (type) {
-      case "infinity":
+      case "infinity": {
         return { symbol: `<b>∞</b>${tierText}`, color: "var(--color-infinity)" };
-      case "eternity":
+      }
+      case "eternity": {
         return { symbol: `<b>Δ</b>${tierText}`, color: "var(--color-eternity)" };
-      default:
+      }
+      default: {
         throw new Error("Unrecognized challenge type in multiplier tab icons");
+      }
     }
   },
   // Regular sacrifice and glyph sacrifice
   SACRIFICE(type) {
     const icon = `<i class="fas fa-turn-down" />`;
     switch (type) {
-      case "antimatter":
+      case "antimatter": {
         return { symbol: `<b>Ω</b>${icon}`, color: "var(--color-antimatter)" };
-      case "infinity":
+      }
+      case "infinity": {
         return { symbol: `<b>∞</b>${icon}`, color: "var(--color-infinity)" };
-      case "time":
+      }
+      case "time": {
         return { symbol: `<b>Δ</b>${icon}`, color: "var(--color-eternity)" };
-      case "dilation":
+      }
+      case "dilation": {
         return { symbol: `<b>Ψ</b>${icon}`, color: "var(--color-dilation)", textColor: "black" };
-      default:
+      }
+      default: {
         throw new Error("Unrecognized sacrifice type in multiplier tab icons");
+      }
     }
   },
   UPGRADE(type) {
     const icon = `<i class="fas fa-arrow-up" />`;
     switch (type) {
-      case "infinity":
+      case "infinity": {
         return { symbol: `<b>∞</b>${icon}`, color: "var(--color-infinity)" };
-      case "eternity":
+      }
+      case "eternity": {
         return { symbol: `<b>Δ</b>${icon}`, color: "var(--color-eternity)" };
-      case "dilation":
+      }
+      case "dilation": {
         return { symbol: `<b>Ψ</b>${icon}`, color: "var(--color-dilation)" };
-      case "reality":
+      }
+      case "reality": {
         return { symbol: `<b>Ϟ</b>${icon}`, color: "var(--color-reality)" };
-      case "imaginary":
+      }
+      case "imaginary": {
         return { symbol: `<i class="far fa-lightbulb" />${icon}`, color: "var(--color-ra--base)" };
-      default:
+      }
+      default: {
         throw new Error("Unrecognized upgrade type in multiplier tab icons");
+      }
     }
   },
   // Icons for base IP/EP
@@ -179,7 +203,7 @@ export const MultiplierTabIcons = {
     color: "var(--color-teresa--base)",
   },
   GENERIC_ENSLAVED: {
-    symbol: `<div class="o-tab-btn--cel3">\uf0c1</div>`,
+    symbol: `<div class="o-tab-btn--cel3">\uF0C1</div>`,
     color: "var(--color-enslaved--base)",
   },
   GENERIC_V: {

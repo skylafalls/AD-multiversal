@@ -22,11 +22,9 @@ export default {
       return this.$viewModel.currentContextMenu === this.componentID;
     },
     listeners() {
-      return Object.assign({}, this.$listeners, {
-        touchstart: () => this.startShowTimer(),
+      return { ...this.$listeners, touchstart: () => this.startShowTimer(),
         mouseenter: () => this.startShowTimer(),
-        mouseleave: () => this.startHideTimer(),
-      });
+        mouseleave: () => this.startHideTimer(),};
     }
   },
   methods: {

@@ -71,7 +71,7 @@ export function deepmerge(target, source, options = {}) {
 
 export function deepmergeAll(array, options) {
   if (!Array.isArray(array)) {
-    throw new Error("first argument should be an array");
+    throw new TypeError("first argument should be an array");
   }
 
   if (!options) {

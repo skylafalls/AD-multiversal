@@ -137,10 +137,10 @@ class GlyphEffectConfig {
 
   /** @private */
   static checkInputs(setup) {
-    const KNOWN_KEYS = ["id", "intID", "glyphTypes", "singleDesc", "totalDesc", "genericDesc", "effect",
+    const KNOWN_KEYS = new Set(["id", "intID", "glyphTypes", "singleDesc", "totalDesc", "genericDesc", "effect",
       "formatEffect", "formatSingleEffect", "combine", "softcap", "conversion", "formatSecondaryEffect",
-      "formatSingleSecondaryEffect", "alteredColor", "alterationType", "isGenerated", "shortDesc", "enabledInDoomed"];
-    const unknownField = Object.keys(setup).find(k => !KNOWN_KEYS.includes(k));
+      "formatSingleSecondaryEffect", "alteredColor", "alterationType", "isGenerated", "shortDesc", "enabledInDoomed"]);
+    const unknownField = Object.keys(setup).find(k => !KNOWN_KEYS.has(k));
     if (unknownField !== undefined) {
       throw new Error(`Glyph effect "${setup.id}" includes unrecognized field "${unknownField}"`);
     }

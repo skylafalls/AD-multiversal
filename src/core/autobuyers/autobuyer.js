@@ -45,7 +45,7 @@ export class AutobuyerState {
   tick() { throw new NotImplementedError(); }
 
   // eslint-disable-next-line no-empty-function
-  reset() { }
+  reset() {}
 
   static get entryCount() { return 1; }
 
@@ -107,14 +107,14 @@ export class IntervaledAutobuyerState extends AutobuyerState {
   /**
    * @abstract
    */
-  get resetTickOn() { return undefined; }
+  get resetTickOn() { return; }
 
   resetTick(prestigeEvent) {
     if (prestigeEvent >= this.resetTickOn) this.data.lastTick = 0;
   }
 
   // eslint-disable-next-line no-empty-function
-  reset() { }
+  reset() {}
 }
 
 

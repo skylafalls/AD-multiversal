@@ -67,7 +67,7 @@ export default {
     toggleAutomatorMode() {
       const currScript = player.reality.automator.scripts[this.currentScriptID].content;
       const hasTextErrors = this.automatorType === AUTOMATOR_TYPE.TEXT &&
-        (BlockAutomator.hasUnparsableCommands(currScript) || AutomatorData.currentErrors().length !== 0);
+        (BlockAutomator.hasUnparsableCommands(currScript) || AutomatorData.currentErrors().length > 0);
 
       if (player.options.confirmations.switchAutomatorMode && (hasTextErrors || AutomatorBackend.isRunning)) {
         const blockified = blockifyTextAutomator(currScript);

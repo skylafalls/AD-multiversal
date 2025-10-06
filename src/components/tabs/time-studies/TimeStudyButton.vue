@@ -63,7 +63,7 @@ export default {
     },
     pathClass() {
       switch (this.study.type) {
-        case TIME_STUDY_TYPE.NORMAL:
+        case TIME_STUDY_TYPE.NORMAL: {
           switch (this.setup.path) {
             case TIME_STUDY_PATH.ANTIMATTER_DIM: return "o-time-study-antimatter-dim";
             case TIME_STUDY_PATH.INFINITY_DIM: return "o-time-study-infinity-dim";
@@ -75,13 +75,17 @@ export default {
             case TIME_STUDY_PATH.DARK: return "o-time-study-dark";
             default: return "o-time-study-normal";
           }
-        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE:
+        }
+        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: {
           return "o-time-study-eternity-challenge";
-        case TIME_STUDY_TYPE.DILATION:
+        }
+        case TIME_STUDY_TYPE.DILATION: {
           if (this.study.id === 6) return "o-time-study-reality";
           return "o-time-study-dilation";
-        case TIME_STUDY_TYPE.TRIAD:
+        }
+        case TIME_STUDY_TYPE.TRIAD: {
           return "o-time-study-triad";
+        }
       }
       return "";
     },

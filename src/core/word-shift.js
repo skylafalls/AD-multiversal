@@ -10,7 +10,7 @@ function predictableRandom(x) {
 }
 
 function randomSymbol() {
-  return String.fromCharCode(Math.floor(Math.random() * 50) + 192);
+  return String.fromCodePoint(Math.floor(Math.random() * 50) + 192);
 }
 
 export default {
@@ -49,7 +49,7 @@ export default {
   // depending on the specific string length and random output sometimes giving outputs which aren't coprime
   randomCrossWords(str, frac = 0.7) {
     if (frac <= 0) return str;
-    const x = str.split("");
+    const x = [...str];
     for (let i = 0; i < x.length * frac; i++) {
       const randomIndex = Math.floor(predictableRandom(Math.floor(Date.now() / 500) % 964372 + 1.618 * i) * x.length);
       x[randomIndex] = randomSymbol();
@@ -62,7 +62,7 @@ export default {
   blendWords(first, second, param) {
     if (param <= 0) return first;
     if (param >= 1) return second;
-    return first.substring(0, first.length * (1 - param)) +
-      second.substring(second.length * (1 - param), second.length);
+    return first.slice(0, first.length * (1 - param)) +
+      second.slice(second.length * (1 - param), second.length);
   }
 };

@@ -66,32 +66,42 @@ export default {
     },
     showNextScalingUpgrade() {
       switch (this.pet.name) {
-        case "Teresa":
+        case "Teresa": {
           return Math.min(12, Math.floor(this.level / 2)) !== Math.min(12, Math.floor((this.level + 1) / 2));
-        case "Effarig":
+        }
+        case "Effarig": {
           return AlchemyResources.all.filter(res => res.unlockedAt === this.level + 1).length > 0;
-        case "Enslaved":
+        }
+        case "Enslaved": {
           return true;
-        case "V":
+        }
+        case "V": {
           return Math.min(Math.floor(this.level / 6), 4) !== Math.min(Math.floor((this.level + 1) / 6), 4);
-        default:
+        }
+        default: {
           return false;
+        }
       }
     },
     nextScalingUpgrade() {
       const effarigAlchemyResource = AlchemyResources.all.filter(res => res.unlockedAt === this.level + 1)[0];
       switch (this.pet.name) {
-        case "Teresa":
+        case "Teresa": {
           return "You can charge an additional Infinity Upgrade";
-        case "Effarig":
+        }
+        case "Effarig": {
           return `Unlock the ${effarigAlchemyResource.name} resource in Glyph Alchemy, which
           ${effarigAlchemyResource.description}`;
-        case "Enslaved":
+        }
+        case "Enslaved": {
           return `${formatX(20)} to stored game time, and you can store an additional hour of real time`;
-        case "V":
+        }
+        case "V": {
           return "You can purchase an additional Triad Study";
-        default:
+        }
+        default: {
           return "false";
+        }
       }
     },
     reward() {

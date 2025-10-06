@@ -1,15 +1,15 @@
 /* eslint-disable no-console */
 
-const fs = require("fs");
-const path = require("path");
-const proc = require("child_process");
-const readline = require("readline");
+const fs = require("node:fs");
+const path = require("node:path");
+const proc = require("node:child_process");
+const readline = require("node:readline");
 
 
 function getHash(string) {
   let hash = 0;
   for (let i = 0; i < string.length; i++) {
-    const char = string.charCodeAt(i);
+    const char = string.codePointAt(i);
     hash = ((hash << 5) - hash) + char;
     // Convert to 32bit integer
     hash &= hash;
@@ -18,7 +18,7 @@ function getHash(string) {
 }
 
 const hashPath = path.resolve(__dirname, "../.tmp/package-lock.json.hash");
-let currentHash = undefined;
+let currentHash;
 if (fs.existsSync(hashPath)) {
   currentHash = fs.readFileSync(hashPath, { encoding: "utf-8" });
 }

@@ -1,6 +1,6 @@
 import { EOF, Parser } from "chevrotain";
 
-import { automatorTokens, tokenMap as T } from "./lexer";
+import { tokenMap as T, automatorTokens } from "./lexer";
 import { AutomatorCommands } from "./automator-commands";
 
 // ----------------- parser -----------------

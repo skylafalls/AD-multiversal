@@ -111,8 +111,8 @@ export const Pelle = {
 
     // Force unhide MOST subtabs, although some of the tabs get ignored since they don't contain any
     // meaningful interactable gameplay elements in Doomed
-    const tabsToIgnore = ["statistics", "achievements", "reality", "celestials"];
-    const ignoredIDs = GameDatabase.tabs.filter(t => tabsToIgnore.includes(t.key)).map(t => t.id);
+    const tabsToIgnore = new Set(["statistics", "achievements", "reality", "celestials"]);
+    const ignoredIDs = GameDatabase.tabs.filter(t => tabsToIgnore.has(t.key)).map(t => t.id);
     for (let tabIndex = 0; tabIndex < GameDatabase.tabs.length; tabIndex++) {
       player.options.hiddenSubtabBits[tabIndex] &= ignoredIDs.includes(tabIndex) ? -1 : 0;
     }
@@ -233,29 +233,37 @@ export const Pelle = {
   },
   getSpecialGlyphEffectDescription(type) {
     switch (type) {
-      case "infinity":
+      case "infinity": {
         return `Infinity Point gain ${player.challenge.eternity.current <= 8
           ? formatX(Currency.infinityPoints.value.plus(1).pow(0.2), 2)
           : formatX(DC.D1, 2)} (based on current IP)`;
-      case "time":
+      }
+      case "time": {
         return `Eternity Point gain ${formatX(Currency.eternityPoints.value.plus(1).pow(0.3), 2)}
           (based on current EP)`;
-      case "replication":
+      }
+      case "replication": {
         return `Replication speed ${formatX(10 ** 53 ** (PelleRifts.vacuum.percentage), 2)} \
         (based on ${wordShift.wordCycle(PelleRifts.vacuum.name)})`;
-      case "dilation":
+      }
+      case "dilation": {
         return `Dilated Time gain ${formatX(Decimal.pow(player.dilation.totalTachyonGalaxies, 1.5).max(1), 2)}
           (based on Tachyon Galaxies)`;
-      case "power":
+      }
+      case "power": {
         return `Galaxies are ${formatPercents(0.02)} stronger`;
-      case "companion":
+      }
+      case "companion": {
         return `You feel ${formatPercents(0.34)} better`;
+      }
       // Undefined means that there is no glyph equipped, needs to be here since this function is used in
       // both Current Glyph Effects and Glyph Tooltip
-      case undefined:
+      case undefined: {
         return "No Glyph equipped!";
-      default:
+      }
+      default: {
         return "You cannot equip this Glyph while Doomed!";
+      }
     }
   },
 
@@ -510,4 +518,4 @@ export const PelleUpgrade = mapGameDataToObject(
 );
 
 PelleUpgrade.rebuyables = PelleUpgrade.all.filter(u => u.isRebuyable);
-PelleUpgrade.singles = PelleUpgrade.all.filter(u => !u.isRebuyable).sort((a, b) => a.cost - b.cost);
+PelleUpgrade.singles = PelleUpgrade.all.filter(u => !u.isRebuyable).toSorted((a, b) => a.cost - b.cost);

@@ -6,7 +6,7 @@ function D(x) {
 const BEMAX = new Decimal("10^^9000000000000000");
 
 function updateGlyphs(glyph) {
-  if (glyph.effects instanceof Array) return glyph;
+  if (Array.isArray(glyph.effects)) return glyph;
   let intIDindex = (["companion", "cursed", "reality"].includes(glyph.type) ? 28 : 0);
   const effectList = [];
   for (let i = 0; i < 32; i++) {

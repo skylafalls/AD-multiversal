@@ -1,6 +1,6 @@
-const fs = require("fs");
-const path = require("path");
-const proc = require("child_process");
+const fs = require("node:fs");
+const path = require("node:path");
+const proc = require("node:child_process");
 
 function executeCommand(command) {
   return proc.execSync(command).toString().trim();

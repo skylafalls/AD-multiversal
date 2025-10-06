@@ -12,7 +12,7 @@ window.GlobalErrorHandler = {
     if (this.handled) return;
     this.handled = true;
     if (!this.cleanStart) {
-      document.getElementById("loading").style.display = "none";
+      document.querySelector("#loading").style.display = "none";
       requestAnimationFrame(() => this.crash(event));
       return;
     }

@@ -33,7 +33,7 @@ CodeMirror.registerHelper("hint", "anyword", editor => {
   const lineStart = line.slice(0, start);
   const currentPrefix = line.slice(start, end);
   const lineLex = lexer.tokenize(lineStart);
-  if (lineLex.errors.length > 0) return undefined;
+  if (lineLex.errors.length > 0) return;
   const rawSuggestions = parser.computeContentAssist("command", lineLex.tokens);
   const suggestions = new Set();
   for (const s of rawSuggestions) {
@@ -41,7 +41,7 @@ CodeMirror.registerHelper("hint", "anyword", editor => {
     walkSuggestion(s.nextTokenType, currentPrefix, suggestions);
   }
   return {
-    list: Array.from(suggestions),
+    list: [...suggestions],
     from: CodeMirror.Pos(cursor.line, start),
     to: CodeMirror.Pos(cursor.line, end)
   };

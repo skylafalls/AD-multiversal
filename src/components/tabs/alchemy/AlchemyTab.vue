@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     update() {
-      this.reactionsAvailable = structuredClone(AlchemyResources.all.filter(res => !res.isBaseResource && res.isUnlocked).length !== 0);
+      this.reactionsAvailable = structuredClone(AlchemyResources.all.filter(res => !res.isBaseResource && res.isUnlocked).length > 0);
       this.realityCreationVisible = Ra.pets.effarig.level === 25;
       this.animationTimer += 35;
       this.alchemyCap = Ra.alchemyResourceCap;
@@ -132,7 +132,7 @@ export default {
         node.resource.reaction?.reagents.some(r => r.resource === focusedResource);
     },
     reactionArrowPositions(reactionArrow) {
-      if (!this.isDisplayed(reactionArrow) || this.isCapped(reactionArrow)) return undefined;
+      if (!this.isDisplayed(reactionArrow) || this.isCapped(reactionArrow)) return;
       const xStart = reactionArrow.reagent.x;
       const yStart = reactionArrow.reagent.y;
       const xEnd = reactionArrow.product.x;

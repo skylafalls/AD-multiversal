@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       pour: false,
-      time: new Date().getTime(),
+      time: Date.now(),
       pouredAmount: 0,
       isPouredAmountCapped: false,
       rm: new Decimal(0),
@@ -91,7 +91,7 @@ export default {
   },
   methods: {
     update() {
-      const now = new Date().getTime();
+      const now = Date.now();
       if (this.pour) {
         const diff = (now - this.time) / 1000;
         Teresa.pourRM(diff);
@@ -109,7 +109,7 @@ export default {
       this.hasPerkShop = TeresaUnlocks.shop.isUnlocked;
       this.raisedPerkShop = Ra.unlocks.perkShopIncrease.canBeApplied;
       this.bestAM.copyFrom(player.celestials.teresa.bestRunAM);
-      this.bestAMSet = cloneDeep(Glyphs.copyForRecords(player.celestials.teresa.bestAMSet));
+      this.bestAMSet = structuredClone(Glyphs.copyForRecords(player.celestials.teresa.bestAMSet));
       this.lastMachines.copyFrom(player.celestials.teresa.lastRepeatedMachines);
       this.lastiM.copyFrom(player.celestials.teresa.lastRepeatediM);
       this.runReward.copyFrom(Teresa.runRewardMultiplier);
@@ -117,7 +117,7 @@ export default {
       this.rm.copyFrom(Currency.realityMachines);
       this.isRunning = Teresa.isRunning;
       this.canUnlockNextPour = TeresaUnlocks.all
-        .filter(unlock => this.rm.plus(this.pouredAmount).gte(unlock.price) && !unlock.isUnlocked).length > 0;
+        .some(unlock => this.rm.plus(this.pouredAmount).gte(unlock.price) && !unlock.isUnlocked).length > 0;
     },
     startRun() {
       if (this.isDoomed) return;

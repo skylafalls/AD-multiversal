@@ -20,7 +20,7 @@ export default {
     sampleNums() {
       const largestExponent = "123456789012345";
       const numbers = [];
-      for (let digits = 4; digits < 16; digits++) numbers.push(Decimal.pow10(largestExponent.substring(0, digits)));
+      for (let digits = 4; digits < 16; digits++) numbers.push(Decimal.pow10(largestExponent.slice(0, digits)));
       return numbers;
     },
     sliderProps() {

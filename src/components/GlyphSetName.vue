@@ -79,9 +79,10 @@ export default {
     basicTypePhrase() {
       const basicGlyphList = this.sortedGlyphs.filter(t => GlyphInfo[t.type].isBasic && t.perc !== 0);
       switch (basicGlyphList.length) {
-        case 1:
+        case 1: {
           return GLYPH_NAMES[basicGlyphList[0].type].noun;
-        case 2:
+        }
+        case 2: {
           // Call it a mixture if they're equal and apply adjectives of appropriate magnitude
           if (basicGlyphList[0].perc === basicGlyphList[1].perc) {
             return [this.getAdjective(basicGlyphList[0]),
@@ -91,7 +92,8 @@ export default {
           }
           // Otherwise, give it a noun from the largest component
           return `${this.getAdjective(basicGlyphList[1])} ${this.getNoun(basicGlyphList[0])}`;
-        case 3:
+        }
+        case 3: {
           // Give it a noun if there's a clear majority
           if (basicGlyphList[0].perc > basicGlyphList[1].perc) {
             return [this.getAdjective(basicGlyphList[1]),
@@ -108,17 +110,21 @@ export default {
             this.getAdjective(basicGlyphList[2]),
             "Irregularity"
           ].join(" ");
-        case 4:
+        }
+        case 4: {
           // Don't bother filling the name with excessive adjectives if we have an equal proportion (1/1/1/1),
           // otherwise we take the largest component and ignore all the others (2/1/1/1)
           if (basicGlyphList[0].perc === basicGlyphList[1].perc) return "Irregular Jumble";
           return `${this.getAdjective(basicGlyphList[0])} Jumble`;
-        case 5:
+        }
+        case 5: {
           // This is in reference to the achievement name, and can only occur with exactly one of every basic glyph.
           // Due to music glyphs doubling-up contributions, this may result in a "Melodic Royal Flush" or similar
           return "Royal Flush";
-        default:
+        }
+        default: {
           throw new Error("Unexpected glyph set configuration in GlyphSetName");
+        }
       }
     },
     // Check for single-type sets and give them a special name based on how much of the full equipped slots they take up
@@ -221,7 +227,7 @@ export default {
       this.sortedGlyphs = this.glyphTypeList.filter(t => t.perc !== 0);
       // This composite function is required in order to ensure consistent names with equal percentages, as JS doesn't
       // guarantee .sort() operations are stable sorts. Sorts by adjOrder, followed by perc, followed by alphabetical.
-      const sortFn = t => 100 * t.adjOrder + t.perc + t.type.charCodeAt(0) / 1000;
+      const sortFn = t => 100 * t.adjOrder + t.perc + t.type.codePointAt(0) / 1000;
       this.sortedGlyphs.sort((a, b) => sortFn(b) - sortFn(a));
     },
     getAdjective(listEntry) {

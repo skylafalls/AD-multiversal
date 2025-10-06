@@ -93,12 +93,12 @@ export const AutobuyerInputFunctions = {
     formatValue: value => Notation.scientific.format(value, 2, 2),
     copyValue: value => new Decimal(value),
     tryParse: input => {
-      if (!input) return undefined;
+      if (!input) return;
       try {
         let decimal;
         if (/^e\d*[.]?\d+$/u.test(input.replaceAll(",", ""))) {
           // Logarithm Notation
-          decimal = Decimal.pow10(parseFloat(input.replaceAll(",", "").slice(1)));
+          decimal = Decimal.pow10(Number.parseFloat(input.replaceAll(",", "").slice(1)));
         } else {
           // Scientific notation; internals of break-eternity will gladly strip extraneous letters before parsing, but
           // since this is largely uncommunicated to the user, we instead explicitly check for formatting and reject
@@ -108,8 +108,8 @@ export const AutobuyerInputFunctions = {
           decimal = Decimal.fromString(input.replaceAll(",", ""));
         }
         return isNaN(decimal.mag) || isNaN(decimal.layer) || isNaN(decimal.sign) ? undefined : decimal;
-      } catch (e) {
-        return undefined;
+      } catch {
+        return;
       }
     }
   },
@@ -118,7 +118,7 @@ export const AutobuyerInputFunctions = {
     formatValue: value => value.toString(),
     copyValue: value => value,
     tryParse: input => {
-      const float = parseFloat(input);
+      const float = Number.parseFloat(input);
       return isNaN(float) ? undefined : float;
     }
   },
@@ -127,11 +127,11 @@ export const AutobuyerInputFunctions = {
     formatValue: value => value.toString(),
     copyValue: value => value,
     tryParse: input => {
-      if (!input) return undefined;
+      if (!input) return;
       // We explicitly check formatting here instead of letting parseInt handle the whole thing because otherwise the
       // fact that parseInt removes extraneous letters means junk like "361ebqv3" registers as valid and parses as 361
-      if (!/^\d+$/u.test(input.replaceAll(",", ""))) return undefined;
-      const int = parseInt(input, 10);
+      if (!/^\d+$/u.test(input.replaceAll(",", ""))) return;
+      const int = Number.parseInt(input, 10);
       return isNaN(int) || !Number.isInteger(int) ? undefined : int;
     }
   }

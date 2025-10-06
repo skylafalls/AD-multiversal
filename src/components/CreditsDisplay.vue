@@ -17,7 +17,7 @@ export default {
     relevantPeople(role) {
       return this.people
         .filter(x => (typeof x.roles === "number" ? x.roles === role : x.roles.includes(role)))
-        .sort((a, b) => a.name.localeCompare(b.name));
+        .toSorted((a, b) => a.name.localeCompare(b.name));
     },
   }
 };

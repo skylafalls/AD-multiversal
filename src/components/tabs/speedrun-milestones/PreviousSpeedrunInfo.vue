@@ -42,20 +42,25 @@ export default {
     seedAttr() {
       let symbol;
       switch (this.prevRunInfo.seedSelection) {
-        case SPEEDRUN_SEED_STATE.UNKNOWN:
+        case SPEEDRUN_SEED_STATE.UNKNOWN: {
           symbol = "fa-question";
           break;
-        case SPEEDRUN_SEED_STATE.FIXED:
+        }
+        case SPEEDRUN_SEED_STATE.FIXED: {
           symbol = "fa-gamepad";
           break;
-        case SPEEDRUN_SEED_STATE.RANDOM:
+        }
+        case SPEEDRUN_SEED_STATE.RANDOM: {
           symbol = "fa-dice";
           break;
-        case SPEEDRUN_SEED_STATE.PLAYER:
+        }
+        case SPEEDRUN_SEED_STATE.PLAYER: {
           symbol = "fa-user-pen";
           break;
-        default:
+        }
+        default: {
           throw new Error("Unrecognized speedrun seed option in previous run subtab");
+        }
       }
 
       return {

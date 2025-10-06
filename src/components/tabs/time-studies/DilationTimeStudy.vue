@@ -61,17 +61,21 @@ export default {
     },
     clickHandler() {
       switch (this.id) {
-        case 1:
+        case 1: {
           return () => Tab.eternity.dilation.show();
+        }
         case 2:
         case 3:
         case 4:
-        case 5:
+        case 5: {
           return () => Tab.dimensions.time.show();
-        case 6:
+        }
+        case 6: {
           return () => Tab.reality.glyphs.show();
-        default:
+        }
+        default: {
           throw new Error("Unrecognized Dilation study was clicked");
+        }
       }
     }
   }

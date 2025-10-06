@@ -1,8 +1,8 @@
 
 import {
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
-  GoogleAuthProvider,
   signInWithEmailAndPassword,
   signOut
 } from "firebase/auth";
@@ -55,7 +55,7 @@ export const Cloud = {
 
     const email = `${accountId}@ad.com`;
     const pass = staticAccountId;
-    let error = undefined;
+    let error;
 
     await signInWithEmailAndPassword(this.auth, email, pass)
       .catch(() => createUserWithEmailAndPassword(this.auth, email, pass))
@@ -85,7 +85,7 @@ export const Cloud = {
         differentName: cloud?.options.saveFileName !== local?.options.saveFileName,
         hashMismatch: this.lastCloudHash && this.lastCloudHash !== hash,
       };
-    } catch (e) {
+    } catch {
       return null;
     }
   },

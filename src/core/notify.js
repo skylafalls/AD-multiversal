@@ -11,8 +11,8 @@ export const notify = (function() {
     const el = template.cloneNode();
     el.textContent = text;
     el.classList.add(elClass, enterAnimation);
-    const container = document.getElementById("notification-container");
-    container.appendChild(el);
+    const container = document.querySelector("#notification-container");
+    container.append(el);
     let entered = false;
     function stopEnter() {
       if (entered) return;

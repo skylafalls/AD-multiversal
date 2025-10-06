@@ -221,7 +221,7 @@ window.player = {
     },
     totalSeen: 0,
   },
-  lastUpdate: new Date().getTime(),
+  lastUpdate: Date.now(),
   backupTimer: 0,
   chall2Pow: DC.D1,
   chall3Pow: DC.D0_01,
@@ -537,8 +537,7 @@ window.player = {
         followExecution: true,
         stack: [],
       },
-      scripts: {
-      },
+      scripts: {},
       constants: {},
       constantSortOrder: [],
       execTimer: 0,
@@ -1004,7 +1003,7 @@ export const Player = {
     const glyphCount = player.requirementChecks.reality.maxGlyphs;
     // This switch case intentionally falls through because every lower layer should be reset as well
     switch (key) {
-      case "reality":
+      case "reality": {
         player.requirementChecks.reality = {
           noAM: true,
           noTriads: true,
@@ -1022,24 +1021,28 @@ export const Player = {
           maxGlyphs: glyphCount,
           slowestBH: BlackHoles.areNegative ? player.blackHoleNegative : DC.D1,
         };
+      }
       // eslint-disable-next-line no-fallthrough
-      case "eternity":
+      case "eternity": {
         player.requirementChecks.eternity = {
           onlyAD1: true,
           onlyAD8: true,
           noAD1: true,
           noRG: true,
         };
+      }
       // eslint-disable-next-line no-fallthrough
-      case "infinity":
+      case "infinity": {
         player.requirementChecks.infinity = {
           maxAll: false,
           noSacrifice: true,
           noAD8: true,
         };
         break;
-      default:
+      }
+      default: {
         throw Error("Unrecognized prestige layer for requirement reset");
+      }
     }
   }
 };
@@ -1050,7 +1053,7 @@ export function guardFromNaNValues(obj) {
   }
 
   for (const key in obj) {
-    if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
+    if (! Object.hasOwn(obj, key)) continue;
 
     if (key === "automator") continue;
 
@@ -1074,7 +1077,7 @@ export function guardFromNaNValues(obj) {
             throw new Error("Non-Number assignment to Number player property");
           }
           if (!Decimal.isFinite(newValue)) {
-            throw new Error("NaN player property assignment");
+            throw new TypeError("NaN player property assignment");
           }
           value = newValue;
         }
@@ -1095,7 +1098,7 @@ export function guardFromNaNValues(obj) {
             throw new Error("Non-Decimal assignment to Decimal player property");
           }
           if (!isFinite(newValue.mag) || !isFinite(newValue.sign) || !isFinite(newValue.layer)) {
-            throw new Error("NaN player property assignment");
+            throw new TypeError("NaN player property assignment");
           }
           value = newValue;
         }

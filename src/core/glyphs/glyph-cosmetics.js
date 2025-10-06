@@ -110,14 +110,14 @@ export const GlyphAppearanceHandler = {
     const sortedArray = Object.values(GameDatabase.reality.glyphCosmeticSets)
       .filter(s => this.unlockedSets.includes(s.id))
       .flatMap(s => s.color)
-      .sort((a, b) => {
+      .toSorted((a, b) => {
         const getHue = hex => {
           const parts = hex.split("#");
           const color = parts[1];
           const rgb = [
-            parseInt(color.substring(0, 2), 16) / 255,
-            parseInt(color.substring(2, 4), 16) / 255,
-            parseInt(color.substring(4), 16) / 255
+            Number.parseInt(color.slice(0, 2), 16) / 255,
+            Number.parseInt(color.slice(2, 4), 16) / 255,
+            Number.parseInt(color.slice(4), 16) / 255
           ];
           const min = Math.min(...rgb), max = Math.max(...rgb);
           if (max - min < 0.3) return max;
@@ -155,8 +155,7 @@ export const GlyphAppearanceHandler = {
   get unblurredSymbols() {
     return Object.values(GameDatabase.reality.glyphCosmeticSets)
       .filter(s => s.preventBlur)
-      .map(s => s.symbol)
-      .flat();
+      .flatMap(s => s.symbol);
   },
   // Note: This can *technically* be inconsistent with the actual number of sets, but only y a cheated save.
   get expectedSetCount() {
@@ -166,14 +165,18 @@ export const GlyphAppearanceHandler = {
   // Returns true for "light" BG glyphs and false for "dark" BG glyphs
   get isLightBG() {
     switch (player.options.glyphBG) {
-      case GLYPH_BG_SETTING.AUTO:
+      case GLYPH_BG_SETTING.AUTO: {
         return !Theme.current().isDark();
-      case GLYPH_BG_SETTING.LIGHT:
+      }
+      case GLYPH_BG_SETTING.LIGHT: {
         return true;
-      case GLYPH_BG_SETTING.DARK:
+      }
+      case GLYPH_BG_SETTING.DARK: {
         return false;
-      default:
+      }
+      default: {
         throw new Error("Unrecognized Glyph BG setting");
+      }
     }
   },
   getBorderColor(type) {
@@ -196,7 +199,7 @@ export const GlyphAppearanceHandler = {
       };
     }
     return {
-      border: colorStr.substring(1),
+      border: colorStr.slice(1),
       bg: colorStr.charAt(0) === "B" ? "black" : "white",
     };
   },
@@ -266,17 +269,17 @@ export const GlyphAppearanceHandler = {
   // to not be accounted for when loading an already-existing local save
   clearInvalidCosmetics() {
     const allGlyphs = player.reality.glyphs.active.concat(player.reality.glyphs.inventory);
-    const allSymbols = GlyphAppearanceHandler.availableSymbols.flat();
+    const allSymbols = new Set(GlyphAppearanceHandler.availableSymbols.flat());
     const allColors = GlyphAppearanceHandler.availableSymbols.flat();
     for (const glyph of allGlyphs) {
-      if (!allSymbols.includes(glyph.symbol)) glyph.symbol = undefined;
+      if (!allSymbols.has(glyph.symbol)) glyph.symbol = undefined;
       if (!allColors.includes(glyph.color)) glyph.color = undefined;
       if (!GlyphAppearanceHandler.availableTypes.includes(glyph.cosmetic)) glyph.cosmetic = undefined;
     }
     const cosmetics = player.reality.glyphs.cosmetics;
     for (const key of Object.keys(cosmetics.symbolMap)) {
       const selectedSymbol = cosmetics.symbolMap[key];
-      if (!allSymbols.includes(selectedSymbol)) cosmetics.symbolMap[key] = undefined;
+      if (!allSymbols.has(selectedSymbol)) cosmetics.symbolMap[key] = undefined;
     }
     for (const key of Object.keys(cosmetics.colorMap)) {
       const selectedColor = cosmetics.symbolMap[key];

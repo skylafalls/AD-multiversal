@@ -37,7 +37,7 @@ export default {
       this.realityReward.copyFrom(Laitela.realityReward);
       this.isRunning = Laitela.isRunning;
       this.singularitiesUnlocked = Currency.singularities.gt(0);
-      this.bestSet = cloneDeep(Glyphs.copyForRecords(player.records.bestReality.laitelaSet));
+      this.bestSet = structuredClone(Glyphs.copyForRecords(player.records.bestReality.laitelaSet));
       this.tierNotCompleted = this.realityTime.eq(3600) || (this.realityTime.eq(300) && this.maxDimTier < 8);
     },
     startRun() {

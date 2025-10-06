@@ -93,13 +93,15 @@ export default {
     extraInfo() {
       // This logic takes advantage of AUTO_CRUNCH_MODE and AUTO_ETERNITY_MODE being identical
       switch (this.currMode) {
-        case AUTO_ETERNITY_MODE.TIME:
+        case AUTO_ETERNITY_MODE.TIME: {
           return this.nextTime > 0
             ? `Will trigger in ${TimeSpan.fromSeconds(new Decimal(this.nextTime)).toStringShort()}`
             : "Will trigger ASAP";
+        }
         case AUTO_ETERNITY_MODE.X_HIGHEST:
-        default:
+        default: {
           return `Will trigger at ${format(this.nextValue, 2)} ${this.autobuyer.name === "Infinity" ? "IP" : "EP"}`;
+        }
       }
     }
   },

@@ -1,4 +1,4 @@
-import { cosmeticGlyphs, GlyphInfo } from "./core-glyph-info";
+import { GlyphInfo, cosmeticGlyphs } from "./core-glyph-info";
 import { perkConnections, perks } from "./perks";
 
 import { automator } from "./automator";

@@ -56,10 +56,14 @@ export default {
     },
     upgradeDirectionIcon() {
       switch (this.milestone.config.upgradeDirection) {
-        case LAITELA_UPGRADE_DIRECTION.SELF_BOOST: return `<b>ᛝ</b>`;
-        case LAITELA_UPGRADE_DIRECTION.BOOSTS_MAIN: return `<i class="fas fa-arrows-alt"></i>`;
-        case LAITELA_UPGRADE_DIRECTION.BOOSTS_LAITELA: return `<i class="fas fa-compress-arrows-alt"></i>`;
-        default: throw new Error("Unspecified Lai'tela upgrade direction in singularity milestone");
+        case LAITELA_UPGRADE_DIRECTION.SELF_BOOST: { return `<b>ᛝ</b>`;
+        }
+        case LAITELA_UPGRADE_DIRECTION.BOOSTS_MAIN: { return `<i class="fas fa-arrows-alt"></i>`;
+        }
+        case LAITELA_UPGRADE_DIRECTION.BOOSTS_LAITELA: { return `<i class="fas fa-compress-arrows-alt"></i>`;
+        }
+        default: { throw new Error("Unspecified Lai'tela upgrade direction in singularity milestone");
+        }
       }
     },
     maxCompletions() {
@@ -73,21 +77,26 @@ export default {
       const condenseCount = this.remainingSingularities.div(this.singularitiesPerCondense);
       let thisSingularityTime, extraTime, timeText;
       switch (this.milestoneMode) {
-        case SINGULARITY_MILESTONE_RESOURCE.SINGULARITIES:
+        case SINGULARITY_MILESTONE_RESOURCE.SINGULARITIES: {
           return `In ${quantify("Singularity", this.remainingSingularities, 2)}`;
-        case SINGULARITY_MILESTONE_RESOURCE.CONDENSE_COUNT:
+        }
+        case SINGULARITY_MILESTONE_RESOURCE.CONDENSE_COUNT: {
           return `Condense ${quantify("time", condenseCount, 2, 2)}`;
-        case SINGULARITY_MILESTONE_RESOURCE.MANUAL_TIME:
+        }
+        case SINGULARITY_MILESTONE_RESOURCE.MANUAL_TIME: {
           thisSingularityTime = Decimal.clampMin(0, this.currentCondenseTime);
           extraTime = Decimal.ceil(condenseCount.sub(1)).mul(this.baseCondenseTime);
           return `In ${TimeSpan.fromSeconds(new Decimal(thisSingularityTime.add(extraTime))).toStringShort()} (manual)`;
-        case SINGULARITY_MILESTONE_RESOURCE.AUTO_TIME:
+        }
+        case SINGULARITY_MILESTONE_RESOURCE.AUTO_TIME: {
           thisSingularityTime = Decimal.clampMin(0, this.currentCondenseTime.add(this.autoCondenseDelay));
           extraTime = Decimal.ceil(condenseCount.sub(1)).mul(this.baseCondenseTime.add(this.autoCondenseDelay));
           timeText = `In ${TimeSpan.fromSeconds(new Decimal(thisSingularityTime.add(extraTime))).toStringShort()}`;
           return this.autoSingActive ? timeText : `Auto-Singularity is OFF`;
-        default:
+        }
+        default: {
           throw new Error("Unrecognized Singularity Milestone mode");
+        }
       }
     },
     isDoomed: () => Pelle.isDoomed,

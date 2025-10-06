@@ -42,10 +42,10 @@
     }
   },
   "include": [
-    "**/*.js",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.jsx",
+    "src/**/*.js",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.jsx",
     "src/**/*.vue",
     "src/typings/*.d.ts"
   ],

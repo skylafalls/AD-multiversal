@@ -295,7 +295,7 @@ class ReplicantiUpgradeState {
   /** @abstract */
   set baseCost(value) { throw new NotImplementedError(); }
 
-  get cap() { return undefined; }
+  get cap() { return; }
   get isCapped() { return false; }
 
   /** @abstract */

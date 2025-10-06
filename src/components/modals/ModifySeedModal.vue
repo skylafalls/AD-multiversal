@@ -32,7 +32,7 @@ export default {
       this.seedText = Speedrun.seedModeText();
     },
     handleSeedInput() {
-      if (this.inputSeed.match(/^-?\d+$/gu)) {
+      if (/^-?\d+$/gu.test(this.inputSeed)) {
         const num = Number(this.inputSeed);
         this.seedValue = Math.abs(num) > 9e15
           ? this.hashStringToSeed(this.inputSeed)
@@ -47,7 +47,7 @@ export default {
     },
     setMode(mode, seed) {
       if (mode === this.choiceEnum.PLAYER && this.seedValue === 0) return;
-      Speedrun.modifySeed(mode, parseInt(seed, 10));
+      Speedrun.modifySeed(mode, Number.parseInt(seed, 10));
     },
     buttonClass(mode) {
       return {
@@ -59,9 +59,9 @@ export default {
     // See https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript
     hashStringToSeed(str) {
       const seed = 17977308;
-      let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+      let h1 = 0xDEADBEEF ^ seed, h2 = 0x41C6CE57 ^ seed;
       for (let i = 0, ch; i < str.length; i++) {
-        ch = str.charCodeAt(i);
+        ch = str.codePointAt(i);
         h1 = Math.imul(h1 ^ ch, 2654435761);
         h2 = Math.imul(h2 ^ ch, 1597334677);
       }

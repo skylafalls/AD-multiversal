@@ -57,7 +57,7 @@ const secretImports = [
 ];
 
 function secretImportIndex(data) {
-  const sha = sha512_256(data.replace(/\s/gu, "").toUpperCase());
+  const sha = sha512_256(data.replaceAll(/\s/gu, "").toUpperCase());
   return secretImports.indexOf(sha);
 }
 
@@ -69,24 +69,30 @@ export function tryImportSecret(data) {
   const index = secretImportIndex(data);
 
   switch (index) {
-    case 0:
+    case 0: {
       FullScreenAnimationHandler.display("a-barrel-roll", 5);
       SecretAchievement(15).unlock();
       return true;
-    case 1:
+    }
+    case 1: {
       SecretAchievement(14).unlock();
       return true;
-    case 2:
+    }
+    case 2: {
       SecretAchievement(37).unlock();
       return true;
-    case 3:
+    }
+    case 3: {
       if (player.records.fullGameCompletions > 0 || DEV) Speedrun.unlock();
       else GameUI.notify.error("Complete the game at least once first!", 15000);
       return true;
-    case 4:
+    }
+    case 4: {
       SecretAchievement(33).unlock();
       return true;
-    default:
+    }
+    default: {
       return false;
+    }
   }
 }

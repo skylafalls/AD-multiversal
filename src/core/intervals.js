@@ -31,8 +31,8 @@ export const GameIntervals = (function() {
     all() {
       return Object.values(GameIntervals)
         .filter(i =>
-          Object.prototype.hasOwnProperty.call(i, "start") &&
-          Object.prototype.hasOwnProperty.call(i, "stop")
+          Object.hasOwn(i, "start") &&
+          Object.hasOwn(i, "stop")
         );
     },
     start() {

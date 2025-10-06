@@ -50,27 +50,30 @@ export default {
     },
     modeProps(mode) {
       switch (mode) {
-        case AUTO_ETERNITY_MODE.AMOUNT: return {
+        case AUTO_ETERNITY_MODE.AMOUNT: { return {
           title: "Eternity at X EP",
           input: {
             property: "amount",
             type: "decimal"
           },
         };
-        case AUTO_ETERNITY_MODE.TIME: return {
+        }
+        case AUTO_ETERNITY_MODE.TIME: { return {
           title: "Seconds between Eternities",
           input: {
             property: "time",
             type: "float"
           },
         };
-        case AUTO_ETERNITY_MODE.X_HIGHEST: return {
+        }
+        case AUTO_ETERNITY_MODE.X_HIGHEST: { return {
           title: "X times highest EP",
           input: {
             property: "xHighest",
             type: "decimal"
           },
         };
+        }
       }
       throw new Error("Unknown Auto Eternity mode");
     },

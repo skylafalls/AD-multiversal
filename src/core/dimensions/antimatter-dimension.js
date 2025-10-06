@@ -400,17 +400,21 @@ class AntimatterDimensionState extends DimensionState {
   get infinityUpgrade() {
     switch (this.tier) {
       case 1:
-      case 8:
+      case 8: {
         return InfinityUpgrade.dim18mult;
+      }
       case 2:
-      case 7:
+      case 7: {
         return InfinityUpgrade.dim27mult;
+      }
       case 3:
-      case 6:
+      case 6: {
         return InfinityUpgrade.dim36mult;
+      }
       case 4:
-      case 5:
+      case 5: {
         return InfinityUpgrade.dim45mult;
+      }
     }
     return false;
   }

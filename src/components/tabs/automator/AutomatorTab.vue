@@ -27,7 +27,7 @@ export default {
       return this.$viewModel.tabs.reality.automator.fullScreen;
     },
     tabClass() {
-      if (!this.fullScreen) return undefined;
+      if (!this.fullScreen) return;
       return "c-automator-tab--full-screen";
     },
     fullScreenIconClass() {

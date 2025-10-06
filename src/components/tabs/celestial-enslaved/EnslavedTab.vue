@@ -129,7 +129,7 @@ export default {
       this.storedReal.copyFrom(player.celestials.enslaved.storedReal);
       this.storedRealEffiency = Enslaved.storedRealTimeEfficiency;
       this.storedRealCap.copyFrom(Enslaved.storedRealTimeCap);
-      this.unlocks = Array.from(player.celestials.enslaved.unlocks);
+      this.unlocks = [...player.celestials.enslaved.unlocks];
       this.buyableUnlocks = Object.values(ENSLAVED_UNLOCKS).map(x => Enslaved.canBuy(x));
       this.quote = Enslaved.quote;
       this.autoRelease = player.celestials.enslaved.isAutoReleasing;

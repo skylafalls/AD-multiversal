@@ -31,7 +31,7 @@ export default {
       const order = [];
       for (const nodeId of Object.keys(db)) {
         const node = db[nodeId];
-        if (node.connector instanceof Array) {
+        if (Array.isArray(node.connector)) {
           for (const config of node.connector) {
             order.push({
               nodeId,

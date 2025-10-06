@@ -76,21 +76,26 @@ GameDatabase.celestials.descriptions = [
       let disabledDims;
       const highestActive = 8 - Laitela.difficultyTier;
       switch (highestActive) {
-        case 0:
+        case 0: {
           disabledDims = "all Dimensions";
           break;
-        case 1:
+        }
+        case 1: {
           disabledDims = "2nd and higher Dimensions";
           break;
-        case 2:
+        }
+        case 2: {
           disabledDims = "3rd and higher Dimensions";
           break;
-        case 7:
+        }
+        case 7: {
           disabledDims = "8th Dimensions";
           break;
-        default:
+        }
+        default: {
           disabledDims = `${highestActive + 1}th and higher Dimensions`;
           break;
+        }
       }
       const disabledText = highestActive === 8
         ? ""

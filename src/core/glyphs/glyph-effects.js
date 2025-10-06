@@ -86,9 +86,9 @@ export function separateEffectKey(effectKey) {
   let type = "";
   let effect = "";
   for (let i = 0; i < GlyphInfo.glyphTypes.length; i++) {
-    if (effectKey.substring(0, GlyphInfo.glyphTypes[i].length) === GlyphInfo.glyphTypes[i]) {
+    if (effectKey.slice(0, GlyphInfo.glyphTypes[i].length) === GlyphInfo.glyphTypes[i]) {
       type = GlyphInfo.glyphTypes[i];
-      effect = effectKey.substring(GlyphInfo.glyphTypes[i].length);
+      effect = effectKey.slice(GlyphInfo.glyphTypes[i].length);
       break;
     }
   }
@@ -122,7 +122,7 @@ export function getGlyphEffectValuesFromArray(array, level, baseStrength, type) 
 // Pulls out a single effect value from a glyph's bitmask, returning just the value (nothing for missing effects)
 export function getSingleGlyphEffectFromBitmask(effectName, glyph) {
   const glyphEffect = GlyphEffects[effectName];
-  if (!glyph.effects.includes(effectName)) return undefined;
+  if (!glyph.effects.includes(effectName)) return;
   return glyphEffect.effect(getAdjustedGlyphLevel(glyph), Pelle.isDoomed ? Pelle.glyphStrength : glyph.strength);
 }
 
@@ -146,14 +146,14 @@ export function getActiveGlyphEffects() {
       id: ev.effect,
       value: GlyphEffects[ev.effect].combine(ev.values),
     }));
-  const effectNames = effectValues.map(e => e.id);
+  const effectNames = new Set(effectValues.map(e => e.id));
 
   // Numerically combine cursed effects with other glyph effects which directly conflict with them
   const cursedEffects = ["cursedgalaxies", "curseddimensions", "cursedEP"];
   const conflictingEffects = ["realitygalaxies", "effarigdimensions", "timeEP"];
   const combineFunction = [GlyphCombiner.multiply, GlyphCombiner.multiply, GlyphCombiner.multiplyDecimal];
   for (let i = 0; i < cursedEffects.length; i++) {
-    if (effectNames.includes(cursedEffects[i]) && effectNames.includes(conflictingEffects[i])) {
+    if (effectNames.has(cursedEffects[i]) && effectNames.has(conflictingEffects[i])) {
       const combined = combineFunction[i]([getAdjustedGlyphEffect(cursedEffects[i]),
         getAdjustedGlyphEffect(conflictingEffects[i])]);
       if (Decimal.lt(combined, 1)) {

@@ -47,7 +47,7 @@ export default {
     // that arbitrary Unicode inputs can allow for massive text overflow
     isASCII(input) {
       // eslint-disable-next-line no-control-regex
-      return !/[^\u0000-\u00ff]/u.test(input);
+      return !/[^\u0000-\u00FF]/u.test(input);
     },
     save() {
       this.hideContextMenu();

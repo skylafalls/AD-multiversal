@@ -27,7 +27,7 @@ export default {
       return GlyphInfo[this.type].sacrificeInfo;
     },
     style() {
-      if (!this.isColored) return { };
+      if (!this.isColored) return {};
       const color = GlyphAppearanceHandler.getBorderColor(this.type);
       const animateReality = this.typeConfig.id === "reality" && !player.reality.glyphs.cosmetics.colorMap.reality;
       return {

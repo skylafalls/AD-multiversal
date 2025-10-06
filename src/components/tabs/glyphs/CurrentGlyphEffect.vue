@@ -28,7 +28,7 @@ export default {
         .replace("{value2}", value2);
     },
     textColor() {
-      if (!this.isColored) return { };
+      if (!this.isColored) return {};
       const typeObject = this.effectConfig.id === "timeshardpow"
         ? CosmeticGlyphTypes.time
         : CosmeticGlyphTypes[this.effectConfig.glyphTypes[0]()];

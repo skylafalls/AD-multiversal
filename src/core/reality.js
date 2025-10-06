@@ -221,22 +221,22 @@ export function processManualReality(sacrifice, glyphID) {
 }
 
 export function runRealityAnimation() {
-  document.getElementById("ui").style.userSelect = "none";
-  document.getElementById("ui").style.animation = "a-realize 10s 1";
-  document.getElementById("realityanimbg").style.animation = "a-realizebg 10s 1";
-  document.getElementById("realityanimbg").style.display = "block";
-  if (Theme.current().isDark()) document.getElementById("realityanimbg").style.filter = "invert(1)";
-  else document.getElementById("realityanimbg").style.filter = "";
+  document.querySelector("#ui").style.userSelect = "none";
+  document.querySelector("#ui").style.animation = "a-realize 10s 1";
+  document.querySelector("#realityanimbg").style.animation = "a-realizebg 10s 1";
+  document.querySelector("#realityanimbg").style.display = "block";
+  if (Theme.current().isDark()) document.querySelector("#realityanimbg").style.filter = "invert(1)";
+  else document.querySelector("#realityanimbg").style.filter = "";
   setTimeout(() => {
-    document.getElementById("realityanimbg").play();
-    document.getElementById("realityanimbg").currentTime = 0;
-    document.getElementById("realityanimbg").play();
+    document.querySelector("#realityanimbg").play();
+    document.querySelector("#realityanimbg").currentTime = 0;
+    document.querySelector("#realityanimbg").play();
   }, 2000);
   setTimeout(() => {
-    document.getElementById("ui").style.userSelect = "auto";
-    document.getElementById("ui").style.animation = "";
-    document.getElementById("realityanimbg").style.animation = "";
-    document.getElementById("realityanimbg").style.display = "none";
+    document.querySelector("#ui").style.userSelect = "auto";
+    document.querySelector("#ui").style.animation = "";
+    document.querySelector("#realityanimbg").style.animation = "";
+    document.querySelector("#realityanimbg").style.display = "none";
   }, 10000);
 }
 
@@ -550,10 +550,10 @@ export function beginProcessReality(realityProps) {
             // Incrementing sacrifice totals without regard to glyph type and reassigning the final values in the same
             // ascending order as the starting order makes the code simpler to work with, so we do that
             const generatable = generatedTypes.filter(x => EffarigUnlock.reality.isUnlocked || x !== "effarig");
-            const sacArray = generatable.map(x => player.reality.glyphs.sac[x]).sort((a, b) => a - b);
+            const sacArray = generatable.map(x => player.reality.glyphs.sac[x]).toSorted((a, b) => a - b);
             const typeMap = [];
             for (const type of generatable) typeMap.push({ type, value: player.reality.glyphs.sac[type] });
-            const sortedSacTotals = Object.values(typeMap).sort((a, b) => a.value - b.value);
+            const sortedSacTotals = Object.values(typeMap).toSorted((a, b) => a.value - b.value);
 
             // Attempt to fill up all the lowest sacrifice totals up to the next highest, stopping early if there isn't
             // enough left to use for filling. The filling process causes the array to progress something like

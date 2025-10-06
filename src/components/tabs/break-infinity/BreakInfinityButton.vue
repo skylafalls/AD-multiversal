@@ -21,7 +21,7 @@ export default {
     },
     tooltip() {
       if (this.isEnslaved) return "...eons stacked on eons stacked on eons stacked on eons stacked on ...";
-      return undefined;
+      return;
     },
     text() {
       if (this.isEnslaved) return "FEEL ETERNITY";

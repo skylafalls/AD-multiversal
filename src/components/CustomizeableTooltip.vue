@@ -80,16 +80,21 @@ export default {
     },
     tooltipTransform() {
       switch (this.mode) {
-        case "top":
+        case "top": {
           return `translate(${this.showNegativeSign("X")}50%, -100%)`;
-        case "bottom":
+        }
+        case "bottom": {
           return `translate(${this.showNegativeSign("X")}50%, 100%)`;
-        case "right":
+        }
+        case "right": {
           return `translate(100%, ${this.showNegativeSign("Y")}50%)`;
-        case "left":
+        }
+        case "left": {
           return `translate(-100%, ${this.showNegativeSign("Y")}50%)`;
-        default:
+        }
+        default: {
           return "";
+        }
       }
     },
     showTooltip() {

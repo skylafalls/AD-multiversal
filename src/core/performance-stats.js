@@ -1,5 +1,5 @@
 export const PerformanceStats = {
-  container: document.getElementById("performance-stats"),
+  container: document.querySelector("#performance-stats"),
   samplePeriod: 10 * 1000,
   isOn: false,
   currentBlocks: [],
@@ -49,7 +49,7 @@ export const PerformanceStats = {
     function render(rootBlock) {
       indentLevel++;
       for (const blockName in rootBlock) {
-        if (!Object.prototype.hasOwnProperty.call(rootBlock, blockName)) continue;
+        if (! Object.hasOwn(rootBlock, blockName)) continue;
         const block = rootBlock[blockName];
         const records = block.records;
         while (records.length > 1 && records.last().timestamp - records.first().timestamp > samplePeriod) {

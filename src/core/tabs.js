@@ -137,7 +137,7 @@ class TabState {
     return this.subtabs.some(tab => tab.hasNotification);
   }
 
-  show(manual, subtab = undefined) {
+  show(manual, subtab) {
     if (!manual && !player.options.automaticTabSwitching || Quote.isOpen) return;
     if (subtab !== undefined) {
       if (!Enslaved.isRunning) subtab.unhideTab();

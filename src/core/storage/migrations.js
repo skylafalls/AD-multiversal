@@ -296,7 +296,7 @@ export const migrations = {
         const oldData = effarig.glyphScoreSettings?.types[type];
         const typeEffects = effectDB
           .filter(t => t.glyphTypes.includes(type))
-          .sort((a, b) => a.bitmaskIndex - b.bitmaskIndex);
+          .toSorted((a, b) => a.bitmaskIndex - b.bitmaskIndex);
 
         // Two of these effects were renamed to be shorter
         reducedFilter[type] = {
@@ -331,7 +331,7 @@ export const migrations = {
       // will have some slightly weird saves. We don't need to modify the glyph filter settings here because these are
       // migrated above by their effect keys; this properly places them into the correct bit positions automatically
       const updateBitmask = bitmask => {
-        if (bitmask instanceof Array) return bitmask;
+        if (Array.isArray(bitmask)) return bitmask;
         const modifiedBits = [20, 21, 22].map(b => 1 << b).nSum();
         const foundBits = [20, 21, 22].map(b => (bitmask & (1 << b)) !== 0);
         foundBits.push(foundBits.shift());
@@ -489,7 +489,7 @@ export const migrations = {
     function unfuckChallengeId(id) {
       if (!id.startsWith("challenge")) return id;
       wasFucked = true;
-      const legacyId = parseInt(id.substr(9), 10);
+      const legacyId = Number.parseInt(id.slice(9), 10);
       const config = GameDatabase.challenges.normal.find(c => c.legacyId === legacyId);
       return `challenge${config.id}`;
     }
@@ -528,15 +528,15 @@ export const migrations = {
         player.achievements.add(achByName.id);
         continue;
       }
-      const newId = parseInt(oldId.slice(1), 10);
+      const newId = Number.parseInt(oldId.slice(1), 10);
       if (isNaN(newId)) throw new Error(`Could not parse achievement id ${oldId}`);
       if (oldId.startsWith("r")) {
-        if (GameDatabase.achievements.normal.find(a => a.id === newId) === undefined) {
+        if (GameDatabase.achievements.normal.some(a => a.id === newId) === undefined) {
           throw new Error(`Unrecognized achievement ${oldId}`);
         }
         player.achievements.add(newId);
       } else if (oldId.startsWith("s")) {
-        if (GameDatabase.achievements.secret.find(a => a.id === newId) === undefined) {
+        if (GameDatabase.achievements.secret.some(a => a.id === newId) === undefined) {
           throw new Error(`Unrecognized secret achievement ${newId}`);
         }
         player.secretAchievements.add(newId);
@@ -571,10 +571,10 @@ export const migrations = {
   moveChallengeInfo(player) {
     function parseChallengeName(name) {
       if (name.startsWith("challenge")) {
-        return { type: "normal", id: parseInt(name.slice(9), 10) };
+        return { type: "normal", id: Number.parseInt(name.slice(9), 10) };
       }
       if (name.startsWith("postc")) {
-        return { type: "infinity", id: parseInt(name.slice(5), 10) };
+        return { type: "infinity", id: Number.parseInt(name.slice(5), 10) };
       }
       if (name !== "") throw new Error(`Unrecognized challenge ID ${name}`);
       return null;
@@ -611,7 +611,7 @@ export const migrations = {
       const saved = player.currentEternityChall;
       delete player.currentEternityChall;
       if (saved.startsWith("eterc")) {
-        player.challenge.eternity.current = parseInt(saved.slice(5), 10);
+        player.challenge.eternity.current = Number.parseInt(saved.slice(5), 10);
       } else if (saved !== "") throw new Error(`Unrecognized eternity challenge ${saved}`);
     }
     if (player.eternityChallUnlocked !== undefined) {
@@ -875,15 +875,18 @@ export const migrations = {
       autobuyer.mode = ["amount", "time", "relative"].indexOf(player.autoCrunchMode);
       const condition = new Decimal(old.priority);
       switch (player.autoCrunchMode) {
-        case "amount":
+        case "amount": {
           autobuyer.amount = condition;
           break;
-        case "time":
+        }
+        case "time": {
           autobuyer.time = condition.lt(DC.NUMMAX) ? condition.toNumber() : autobuyer.time;
           break;
-        case "relative":
+        }
+        case "relative": {
           autobuyer.xHighest = condition;
           break;
+        }
       }
       autobuyer.isActive = old.isOn;
       autobuyer.lastTick = player.realTimePlayed;
@@ -938,7 +941,7 @@ export const migrations = {
     for (const id of oldNewsArray) {
       const groups = id.match(/([a-z]+)(\d+)/u);
       const type = groups[1];
-      const number = parseInt(groups[2], 10);
+      const number = Number.parseInt(groups[2], 10);
       if (!player.news.seen[type]) player.news.seen[type] = [];
       while (maskLength * player.news.seen[type].length < number) player.news.seen[type].push(0);
       player.news.seen[type][Math.floor(number / maskLength)] |= 1 << (number % maskLength);
@@ -1233,7 +1236,7 @@ export const migrations = {
     this.prePatch(saveData);
     // This adds all the undefined properties to the save which are in player.js
     const player = deepmergeAll([Player.defaultStart, saveData]);
-    const versions = Object.keys(this.patches).map(parseFloat).sort();
+    const versions = Object.keys(this.patches).map(parseFloat).toSorted();
     let version;
     while ((version = versions.find(v => player.version < v && v < maxVersion)) !== undefined) {
       const patch = this.patches[version];

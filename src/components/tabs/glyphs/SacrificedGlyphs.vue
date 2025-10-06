@@ -94,7 +94,7 @@ export default {
     },
     drop(event) {
       if (this.isDoomed || !event.dataTransfer.types.includes(GLYPH_MIME_TYPE)) return;
-      const id = parseInt(event.dataTransfer.getData(GLYPH_MIME_TYPE), 10);
+      const id = Number.parseInt(event.dataTransfer.getData(GLYPH_MIME_TYPE), 10);
       if (isNaN(id)) return;
       const glyph = Glyphs.findById(id);
       if (!glyph) return;

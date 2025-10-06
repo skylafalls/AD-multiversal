@@ -45,7 +45,7 @@ export default {
         Glyph equipped${uniqueGlyphs.length > 1 ? " each." : "."}`;
     },
     noEffects() {
-      return !this.effects.length;
+      return this.effects.length === 0;
     },
     glyphSet() {
       return Glyphs.activeList;

@@ -44,7 +44,7 @@ export default {
   methods: {
     setActiveTab(tab) {
       this.activeTab = tab;
-      document.getElementById("h2p-body").scrollTop = 0;
+      document.querySelector("#h2p-body").scrollTop = 0;
     },
     isFirstIrrelevant(idx) {
       const matches = this.matchingTabs;

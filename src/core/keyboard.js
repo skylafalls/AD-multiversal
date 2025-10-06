@@ -11,9 +11,9 @@ function getKeys(combination) {
 
 // Extract "a" from "a", "shift+a", "shift+alt+a" and whatever else
 // Returns undefined for mod-only combos, like "shift+alt"
-const modifierKeys = ["ctrl", "shift", "alt", "mod"];
+const modifierKeys = new Set(["ctrl", "shift", "alt", "mod"]);
 function getMainKey(keys) {
-  return keys.find(key => !modifierKeys.includes(key));
+  return keys.find(key => !modifierKeys.has(key));
 }
 
 class KeySpin {
@@ -122,7 +122,7 @@ const spins = [];
 
 function executeKey(action) {
   if (ui.$viewModel.modal.progressBar !== undefined || GameEnd.endState >= END_STATE_MARKERS.INTERACTIVITY_DISABLED) {
-    return undefined;
+    return;
   }
   return action();
 }
@@ -131,7 +131,7 @@ function executeHotkey(action) {
   if (!player.options.hotkeys ||
     document.activeElement.type === "text" ||
     document.activeElement.type === "textarea") {
-    return undefined;
+    return;
   }
   return executeKey(action);
 }

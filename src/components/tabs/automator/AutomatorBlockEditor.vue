@@ -64,8 +64,8 @@ export const BlockAutomator = {
   _idArray: [],
 
   initialize() {
-    this.editor = document.getElementsByClassName("c-automator-block-editor")[0];
-    this.gutter = document.getElementsByClassName("c-automator-block-editor--gutter")[0];
+    this.editor = document.querySelectorAll(".c-automator-block-editor")[0];
+    this.gutter = document.querySelectorAll(".c-automator-block-editor--gutter")[0];
   },
 
   get lines() {

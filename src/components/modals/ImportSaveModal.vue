@@ -69,14 +69,18 @@ export default {
       this.updateOfflineSettings();
 
       switch (this.offlineImport) {
-        case OFFLINE_PROGRESS_TYPE.IMPORTED:
+        case OFFLINE_PROGRESS_TYPE.IMPORTED: {
           return "Using imported save settings";
-        case OFFLINE_PROGRESS_TYPE.LOCAL:
+        }
+        case OFFLINE_PROGRESS_TYPE.LOCAL: {
           return "Using existing save settings";
-        case OFFLINE_PROGRESS_TYPE.IGNORED:
+        }
+        case OFFLINE_PROGRESS_TYPE.IGNORED: {
           return "Will not simulate offline time";
-        default:
+        }
+        default: {
           throw new Error("Unrecognized offline progress setting for importing");
+        }
       }
     },
     offlineDetails() {
@@ -94,7 +98,7 @@ export default {
     willLoseCosmetics() {
       const currSets = player.reality.glyphs.cosmetics.unlockedFromNG;
       const importedSets = this.player.reality?.glyphs.cosmetics?.unlockedFromNG ?? [];
-      return currSets.filter(set => !importedSets.includes(set)).length > 0;
+      return currSets.some(set => !importedSets.includes(set)).length > 0;
     },
     willLoseSpeedrun() {
       return player.speedrun.isUnlocked && !this.player.speedrun?.isUnlocked;
@@ -115,18 +119,21 @@ export default {
     },
     updateOfflineSettings() {
       switch (this.offlineImport) {
-        case OFFLINE_PROGRESS_TYPE.IMPORTED:
+        case OFFLINE_PROGRESS_TYPE.IMPORTED: {
           // These are default values from a new save, used if importing from pre-reality where these props don't exist
           GameStorage.offlineEnabled = this.player.options.offlineProgress ?? true;
           GameStorage.offlineTicks = this.player.options.offlineTicks ?? 1e5;
           break;
-        case OFFLINE_PROGRESS_TYPE.LOCAL:
+        }
+        case OFFLINE_PROGRESS_TYPE.LOCAL: {
           GameStorage.offlineEnabled = player.options.offlineProgress;
           GameStorage.offlineTicks = player.options.offlineTicks;
           break;
-        case OFFLINE_PROGRESS_TYPE.IGNORED:
+        }
+        case OFFLINE_PROGRESS_TYPE.IGNORED: {
           GameStorage.offlineEnabled = false;
           break;
+        }
       }
     },
     importSave() {

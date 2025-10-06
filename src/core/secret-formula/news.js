@@ -692,7 +692,7 @@ export const news = [
     text: "Click this to unlock that one secret achievement.",
     // This next line is needed for this news ticker to unlock
     // the secret achievement.
-    onClick: () => undefined
+    onClick: () => {}
   },
   {
     id: "a131",
@@ -1443,7 +1443,7 @@ export const news = [
           `it makes you feel warm and comfortable, as if you were right at home. However, it is highly recommended
           to update your theme to the newest theme for the best user experience.`,
       };
-      const reason = reasons[Theme.current().name.replace(/\s/gu, "")];
+      const reason = reasons[Theme.current().name.replaceAll(/\s/gu, "")];
       return `Ah, a fellow ${theme} theme user. I see that you have impeccable taste.
         I myself like the ${theme} theme too, because ${reason}`;
     },
@@ -1802,7 +1802,7 @@ export const news = [
         wasClicked = false;
       },
       onClick() {
-        if (wasClicked) return undefined;
+        if (wasClicked) return;
         wasClicked = true;
         player.news.specialTickerData.paperclips++;
         return this.text;
@@ -2061,7 +2061,7 @@ export const news = [
         wasClicked = false;
       },
       onClick() {
-        if (wasClicked) return undefined;
+        if (wasClicked) return;
         wasClicked = true;
         return this.text;
       }
@@ -2146,7 +2146,7 @@ export const news = [
         wasClicked = false;
       },
       onClick() {
-        if (wasClicked) return undefined;
+        if (wasClicked) return;
         wasClicked = true;
         return this.text;
       }
@@ -2285,7 +2285,7 @@ export const news = [
         wasClicked = false;
       },
       onClick() {
-        if (wasClicked) return undefined;
+        if (wasClicked) return;
         wasClicked = true;
         return this.text;
       }
@@ -3696,7 +3696,7 @@ export const news = [
         wasClicked = false;
       },
       onClick() {
-        if (wasClicked) return undefined;
+        if (wasClicked) return;
         wasClicked = true;
         return this.text;
       }

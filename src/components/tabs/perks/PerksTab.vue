@@ -31,7 +31,7 @@ export default {
     else PerkNetwork.setLabelVisibility(ui.view.shiftDown || player.options.showHintText.perks);
     PerkNetwork.updatePerkColor();
     PerkNetwork.updatePerkSize();
-    this.$refs.tab.appendChild(PerkNetwork.container);
+    this.$refs.tab.append(PerkNetwork.container);
     PerkNetwork.moveToDefaultLayoutPositions(player.options.perkLayout);
   }
 };
@@ -157,7 +157,7 @@ export const PerkNetwork = {
     });
 
     this.network.on("dragStart", () => {
-      const tooltip = this.container.getElementsByClassName("vis-tooltip")[0];
+      const tooltip = this.container.querySelectorAll(".vis-tooltip")[0];
       if (tooltip !== undefined) {
         tooltip.style.visibility = "hidden";
       }
@@ -223,7 +223,7 @@ export const PerkNetwork = {
       for (const connectedPerk of perk.connectedPerks) {
         const from = Math.min(perk.id, connectedPerk.id);
         const to = Math.max(perk.id, connectedPerk.id);
-        if (edges.find(edge => edge.from === from && edge.to === to)) continue;
+        if (edges.some(edge => edge.from === from && edge.to === to)) continue;
         edges.push({ from, to });
       }
     }
@@ -266,7 +266,7 @@ export const PerkNetwork = {
     container.tabIndex = 900;
     const canvas = document.createElement("canvas");
     canvas.className = "c-perk-network__canvas";
-    container.appendChild(canvas);
+    container.append(canvas);
     this.container = container;
 
     this.network = new Network(container, nodeData, nodeOptions);

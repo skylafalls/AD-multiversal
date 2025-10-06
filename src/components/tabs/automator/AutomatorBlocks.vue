@@ -8,7 +8,7 @@ export default {
   },
   data() {
     return {
-      allBlocks: automatorBlocks.filter(b => !AUTOMATOR_BLOCKS_BLACKLIST.includes(b.cmd)),
+      allBlocks: automatorBlocks.filter(b => !AUTOMATOR_BLOCKS_BLACKLIST.has(b.cmd)),
       blocks: []
     };
   },
@@ -184,7 +184,7 @@ export const automatorBlocks = [
     alias: "STOP EXECUTION"
   }
 ];
-const AUTOMATOR_BLOCKS_BLACKLIST = ["BLOB"];
+const AUTOMATOR_BLOCKS_BLACKLIST = new Set(["BLOB"]);
 
 export const automatorBlocksMap = automatorBlocks.mapToObject(b => b.cmd, b => b);
 </script>

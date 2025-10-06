@@ -109,24 +109,30 @@ export class RealityAutobuyerState extends AutobuyerState {
     const rmProc = MachineHandler.gainedRealityMachines.times(ampFactor).gte(this.rm);
     const glyphProc = gainedGlyphLevel().actualLevel.gte(this.glyph);
     switch (this.mode) {
-      case AUTO_REALITY_MODE.RM:
+      case AUTO_REALITY_MODE.RM: {
         proc = rmProc;
         break;
-      case AUTO_REALITY_MODE.GLYPH:
+      }
+      case AUTO_REALITY_MODE.GLYPH: {
         proc = glyphProc;
         break;
-      case AUTO_REALITY_MODE.EITHER:
+      }
+      case AUTO_REALITY_MODE.EITHER: {
         proc = rmProc || glyphProc;
         break;
-      case AUTO_REALITY_MODE.BOTH:
+      }
+      case AUTO_REALITY_MODE.BOTH: {
         proc = rmProc && glyphProc;
         break;
-      case AUTO_REALITY_MODE.TIME:
+      }
+      case AUTO_REALITY_MODE.TIME: {
         proc = player.records.thisReality.realTime / 1000 > this.time;
         break;
-      case AUTO_REALITY_MODE.RELIC_SHARD:
+      }
+      case AUTO_REALITY_MODE.RELIC_SHARD: {
         proc = Effarig.shardsGained.mul(ampFactor).gt(this.shard);
         break;
+      }
     }
     if (proc) autoReality();
   }

@@ -88,21 +88,27 @@ export default {
       this.processRequest(newState, this.openRequest);
       this.updateHeightInfo();
       switch (this.state) {
-        case this.states.CLOSED:
+        case this.states.CLOSED: {
           break;
-        case this.states.OPEN_REQUESTED:
+        }
+        case this.states.OPEN_REQUESTED: {
           this.$nextTick(() => this.state = this.states.OPENING);
           break;
-        case this.states.OPENING:
+        }
+        case this.states.OPENING: {
           break;
-        case this.states.OPEN:
+        }
+        case this.states.OPEN: {
           break;
-        case this.states.CLOSE_REQUESTED:
+        }
+        case this.states.CLOSE_REQUESTED: {
           // Need to have DOM update with CLOSE_REQUESTED state to re-enable transitions
           this.$nextTick(() => this.state = this.states.CLOSING);
           break;
-        case this.CLOSING:
+        }
+        case this.CLOSING: {
           break;
+        }
       }
     },
     openRequest(newOpen) {

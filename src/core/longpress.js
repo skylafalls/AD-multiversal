@@ -31,8 +31,8 @@ class LongPress {
   }
 
   static addTo(obj, timeout, handlers) {
-    if (!Object.prototype.hasOwnProperty.call(handlers, "longPress")) {
-      throw "Need to specify a longPress handler";
+    if (! Object.hasOwn(handlers, "longPress")) {
+      throw new Error("Need to specify a longPress handler");
     }
     const begin = e => LongPress._pressBegin(timeout, handlers.longPress, handlers.cancel, handlers.repeat, e);
     obj.addEventListener("mousedown", begin);

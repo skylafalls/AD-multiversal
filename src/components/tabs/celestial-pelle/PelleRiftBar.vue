@@ -23,7 +23,7 @@ export default {
       hasEffectiveFill: false,
       selectedHoverMilestone: this.rift.milestones[0],
       // Converts 1 rem to number of px
-      remToPx: parseInt(getComputedStyle(document.documentElement).fontSize, 10),
+      remToPx: Number.parseInt(getComputedStyle(document.documentElement).fontSize, 10),
       effects: [],
       selectedMilestoneResourceText: "",
       selectedMilestoneDescriptionText: "",
@@ -93,8 +93,8 @@ export default {
         return { dist, m };
       });
 
-      if (milestonesCloseTo.length) {
-        this.selectedHoverMilestone = milestonesCloseTo.sort((a, b) => a.dist - b.dist)[0].m;
+      if (milestonesCloseTo.length > 0) {
+        this.selectedHoverMilestone = milestonesCloseTo.toSorted((a, b) => a.dist - b.dist)[0].m;
       }
     },
     tooltipContentClass() {

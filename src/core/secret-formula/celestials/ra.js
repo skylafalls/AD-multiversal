@@ -6,7 +6,7 @@ export const ra = {
       color: "#8596ea",
       chunkGain: "Eternity Points",
       memoryGain: "current RM",
-      requiredUnlock: () => undefined,
+      requiredUnlock: () => {},
       rawMemoryChunksPerSecond: () => Decimal.pow(Currency.eternityPoints.value.add(1).log10().div(1e4), 3).mul(4),
       memoryProductionMultiplier: () => Ra.unlocks.teresaXP.effectOrDefault(new Decimal(1))
     },
@@ -136,7 +136,7 @@ export const ra = {
       reward: "Unlock Nameless's Memories",
       pet: "effarig",
       level: 8,
-      displayIcon: `<span class="c-ra-pet-milestones-effarig-link">\uf0c1</span>`
+      displayIcon: `<span class="c-ra-pet-milestones-effarig-link">\uF0C1</span>`
     },
     relicShardGlyphLevelBoost: {
       id: 12,

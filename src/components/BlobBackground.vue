@@ -30,7 +30,7 @@ export default {
         const START_HEX = START.codePointAt(0) || 65;
         const SNOW = [];
         for (let i = 0; i < LEN; i++) {
-          SNOW.push(String.fromCharCode(START_HEX + i));
+          SNOW.push(String.fromCodePoint(START_HEX + i));
         }
         return SNOW[Math.floor(Math.random() * SNOW.length)];
       }

@@ -17,23 +17,29 @@ export class ScriptTemplate {
     this.lines = [];
     this.warnings = [];
     switch (templateName) {
-      case "Climb EP":
+      case "Climb EP": {
         this.templateClimbEP(params);
         break;
-      case "Grind Eternities":
+      }
+      case "Grind Eternities": {
         this.templateGrindEternities(params);
         break;
-      case "Grind Infinities":
+      }
+      case "Grind Infinities": {
         this.templateGrindInfinities(params);
         break;
-      case "Complete Eternity Challenge":
+      }
+      case "Complete Eternity Challenge": {
         this.templateDoEC(params);
         break;
-      case "Unlock Dilation":
+      }
+      case "Unlock Dilation": {
         this.templateUnlockDilation(params);
         break;
-      default:
+      }
+      default: {
         throw new Error(`Unrecognized template name ${templateName} in ScriptTemplate`);
+      }
     }
   }
 
@@ -64,7 +70,7 @@ export class ScriptTemplate {
   storeTreeData(params) {
     const nowaitStr = params.treeNowait ? " nowait" : "";
     if (params.treePreset) {
-      const presetObj = player.timestudy.presets.map((p, i) => ({ ...p, id: i + 1 }))
+      const presetObj = player.timestudy.presets.map((p, i) => (Object.assign(p, {id:i+1})))
         .find(p => (p.name === params.treePreset || p.id === Number(params.treePreset)));
       const preset = presetObj.name ? `name ${presetObj.name}` : `id ${presetObj.id}`;
       this.storedTreeStr = `studies${nowaitStr} load ${preset}`;
@@ -89,12 +95,15 @@ export class ScriptTemplate {
    */
   parseAutobuyerProp(mode, value) {
     switch (mode) {
-      case "mult":
+      case "mult": {
         return `${this.format(value)} x highest`;
-      case "time":
+      }
+      case "time": {
         return `${this.format(value)} seconds`;
-      default:
+      }
+      default: {
         throw new Error(`Unrecognized autobuyer mode ${mode} in automator script templates`);
+      }
     }
   }
 

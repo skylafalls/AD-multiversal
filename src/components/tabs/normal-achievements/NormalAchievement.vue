@@ -147,9 +147,9 @@ export default {
       for (let i = 0; i < text.length; i++) {
         if (text[i] === " ") garbled += " ";
         else {
-          const n = text[i].charCodeAt();
+          const n = text[i].codePointAt();
           // Essentially seeded randomness so that the static parts of the randomized text are deterministic
-          garbled += String.fromCharCode(33 + ((n * n + i * i) % 93));
+          garbled += String.fromCodePoint(33 + ((n * n + i * i) % 93));
         }
       }
       return garbled;

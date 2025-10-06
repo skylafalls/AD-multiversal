@@ -53,7 +53,7 @@ export default {
       // Prevent tickers from repeating if they aren't unlocked or were seen recently
       const canShow = news => (news.unlocked ?? true) && !this.recentTickers.includes(news.id);
 
-      if (nextNewsMessageId && GameDatabase.news.find(message => message.id === nextNewsMessageId)) {
+      if (nextNewsMessageId && GameDatabase.news.some(message => message.id === nextNewsMessageId)) {
         this.currentNews = GameDatabase.news.find(message => message.id === nextNewsMessageId);
         nextNewsMessageId = undefined;
       } else if (this.currentNews && this.currentNews.id === "a236") {
@@ -78,7 +78,7 @@ export default {
       let text = this.currentNews.text;
       if (STEAM) {
         window.openNewsLink = openExternalLink;
-        text = text.replace(
+        text = text.replaceAll(
           /href=['"]([^"']+)['"]/gu,
           "href onClick='window.openNewsLink(\"$1\"); return false;'"
         );

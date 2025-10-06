@@ -34,7 +34,7 @@ export default {
     config: {
       immediate: true,
       handler(config) {
-        this.updateFunction = () => { };
+        this.updateFunction = () => {};
         const cost = config?.cost;
         this.isVisible = cost !== undefined;
         if (!this.isVisible) return;
@@ -74,7 +74,7 @@ export default {
     }
   },
   beforeCreate() {
-    this.updateFunction = () => { };
+    this.updateFunction = () => {};
   },
   methods: {
     update() {

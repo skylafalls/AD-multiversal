@@ -14,7 +14,7 @@ export default {
   computed: {
     milestones() {
       return Object.values(GameDatabase.eternity.milestones)
-        .sort((a, b) => a.eternities - b.eternities)
+        .toSorted((a, b) => a.eternities - b.eternities)
         .map(config => new EternityMilestoneState(config));
     },
     rows() {

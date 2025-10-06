@@ -11,12 +11,15 @@ export const ForceBoughtState = {
 
   getState(forceState, currentState) {
     switch (forceState) {
-      case this.notBought:
+      case this.notBought: {
         return false;
-      case this.unspecified:
+      }
+      case this.unspecified: {
         return currentState;
-      case this.bought:
+      }
+      case this.bought: {
         return true;
+      }
     }
     return currentState;
   }
@@ -88,17 +91,22 @@ export default {
     },
     studyComponent(study) {
       switch (study.type) {
-        case TIME_STUDY_TYPE.NORMAL: return NormalTimeStudy;
-        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: return ECTimeStudy;
-        case TIME_STUDY_TYPE.DILATION: return DilationTimeStudy;
-        case TIME_STUDY_TYPE.TRIAD: return TriadTimeStudy;
+        case TIME_STUDY_TYPE.NORMAL: { return NormalTimeStudy;
+        }
+        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: { return ECTimeStudy;
+        }
+        case TIME_STUDY_TYPE.DILATION: { return DilationTimeStudy;
+        }
+        case TIME_STUDY_TYPE.TRIAD: { return TriadTimeStudy;
+        }
       }
-      throw "Unknown Time Study type";
+      throw new Error("Unknown Time Study type");
     },
     studyString(study) {
       switch (study.type) {
-        case TIME_STUDY_TYPE.NORMAL: case TIME_STUDY_TYPE.TRIAD: return `${study.id}`;
-        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: return `EC${study.id}`;
+        case TIME_STUDY_TYPE.NORMAL: case TIME_STUDY_TYPE.TRIAD: { return `${study.id}`;}
+        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: { return `EC${study.id}`;
+        }
       }
       return "Dilation Study";
     },

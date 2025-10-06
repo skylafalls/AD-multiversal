@@ -13,18 +13,18 @@ export const GameSaveSerializer = {
       return "Infinity";
     }
     if (value instanceof Set) {
-      return Array.from(value.keys());
+      return [...value.keys()];
     }
     return value;
   },
   deserialize(data) {
-    if (typeof data !== "string") return undefined;
+    if (typeof data !== "string") return;
     try {
       const json = this.decodeText(data, "savefile");
       // eslint-disable-next-line no-unused-vars
       return JSON.parse(json, (k, v) => ((v === Infinity) ? "Infinity" : v));
-    } catch (e) {
-      return undefined;
+    } catch {
+      return;
     }
   },
   // Define these now so we don't keep creating new ones, which vaguely seems bad.
@@ -76,8 +76,8 @@ export const GameSaveSerializer = {
     // This step converts from unsigned 8-bit arrays to strings with codepoints less than 256.
     // We need to do this outselves because GameSaveSerializer.decoder would give us unicode sometimes.
     {
-      encode: x => Array.from(x).map(i => String.fromCharCode(i)).join(""),
-      decode: x => Uint8Array.from(Array.from(x).map(i => i.charCodeAt(0)))
+      encode: x => [...x].map(i => String.fromCodePoint(i)).join(""),
+      decode: x => Uint8Array.from([...x].map(i => i.codePointAt(0)))
     },
     // This step makes the characters in saves printable. At this point in the process, all characters
     // will already have codepoints less than 256 (from the previous step), so emoji in the original save
@@ -88,8 +88,8 @@ export const GameSaveSerializer = {
     // because btoa just ignores it. These regex have no potentially-unicode characters, I think,
     // and they're applied to strings with just ASCII anyway, but I'm adding u to make Codeacy happy.
     {
-      encode: x => x.replace(/=+$/gu, "").replace(/0/gu, "0a").replace(/\+/gu, "0b").replace(/\//gu, "0c"),
-      decode: x => x.replace(/0b/gu, "+").replace(/0c/gu, "/").replace(/0a/gu, "0")
+      encode: x => x.replaceAll(/=+$/gu, "").replaceAll(/0/gu, "0a").replaceAll(/\+/gu, "0b").replaceAll(/\//gu, "0c"),
+      decode: x => x.replaceAll(/0b/gu, "+").replaceAll(/0c/gu, "/").replaceAll(/0a/gu, "0")
     },
     {
       encode: (x, type) => x + GameSaveSerializer.endingString[type],

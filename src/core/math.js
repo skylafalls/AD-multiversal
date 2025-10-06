@@ -689,7 +689,7 @@ window.logFactorial = (function() {
     TABLE.push(TABLE[TABLE.length - 1] + x);
   }
   return x => {
-    if (typeof x !== "number" || x < 0) return NaN;
+    if (typeof x !== "number" || x < 0) return Number.NaN;
     if (x < TABLE.length) return TABLE[x];
     return lngamma(x + 1);
   };
@@ -729,7 +729,7 @@ window.normalDistribution = (function() {
   let haveSpare = false;
   let spare = 0;
   return (mean, stdDev) => {
-    if (typeof mean !== "number" || typeof stdDev !== "number") return NaN;
+    if (typeof mean !== "number" || typeof stdDev !== "number") return Number.NaN;
     if (haveSpare) {
       haveSpare = false;
       return mean + stdDev * spare;
@@ -753,7 +753,7 @@ window.binomialGeneratorFC = (function() {
   const stirlingBase = x => -8.10614667953272582e-2 + (x + 0.5) * Math.log1p(x) - x;
   const TABLE = Array.range(0, 20).map(x => logFactorial(x) - stirlingBase(x));
   return x => {
-    if (typeof x !== "number" || x < 0) return NaN;
+    if (typeof x !== "number" || x < 0) return Number.NaN;
     if (x < TABLE.length) return TABLE[x];
     const xr = 1 / (x + 1);
     return (1 / 12 - (1 / 360 - (xr * xr) / 1260) * (xr * xr)) * xr;
@@ -1150,7 +1150,7 @@ window.AffineTransform = class AffineTransform {
     throw new Error("unsupported operation");
   }
 
-  translated(offX, offY = undefined) {
+  translated(offX, offY) {
     if (offX instanceof Vector) {
       return new AffineTransform(this.a00, this.a01, this.a10, this.a11, this.o0 + offX.x, this.o1 + offX.y);
     }
@@ -1558,7 +1558,7 @@ window.LogarithmicSpiral = class LogarithmicSpiral extends Curve {
 };
 
 window.PiecewisePath = class PiecewisePath {
-  constructor(data = undefined) {
+  constructor(data) {
     this.path = data ? data : [];
   }
 

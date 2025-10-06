@@ -335,7 +335,7 @@ export const InfinityDimensions = {
 
   next() {
     if (InfinityDimension(8).isUnlocked)
-      throw "All Infinity Dimensions are unlocked";
+      throw new Error("All Infinity Dimensions are unlocked");
     return this.all.first(dim => !dim.isUnlocked);
   },
 
@@ -401,7 +401,7 @@ export const InfinityDimensions = {
     const unlockedDimensions = this.all.filter(dimension => dimension.unlock());
 
     // Try to buy single from the highest affordable new dimensions
-    unlockedDimensions.slice().reverse().forEach(dimension => {
+    [...unlockedDimensions].toReversed().forEach(dimension => {
       if (dimension.purchases === 0) dimension.buySingle();
     });
 

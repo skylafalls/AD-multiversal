@@ -53,8 +53,8 @@ export default {
     config: {
       immediate: true,
       handler(config) {
-        this.updateEffect = () => { };
-        this.updateCap = () => { };
+        this.updateEffect = () => {};
+        this.updateCap = () => {};
         const effect = config?.effect;
         const formatEffect = config?.formatEffect;
         this.isVisible = effect !== undefined && formatEffect !== undefined;
@@ -132,8 +132,8 @@ export default {
     },
   },
   beforeCreate() {
-    this.updateEffect = () => { };
-    this.updateCap = () => { };
+    this.updateEffect = () => {};
+    this.updateCap = () => {};
   },
   methods: {
     update() {

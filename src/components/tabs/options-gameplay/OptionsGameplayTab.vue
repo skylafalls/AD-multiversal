@@ -62,7 +62,7 @@ export default {
       player.options.automaticTabSwitching = newValue;
     },
     automatorLogSize(newValue) {
-      player.options.automatorEvents.maxEntries = parseInt(newValue, 10);
+      player.options.automatorEvents.maxEntries = Number.parseInt(newValue, 10);
     },
   },
   // This puts the slider in the right spot on initialization
@@ -87,7 +87,7 @@ export default {
     // Given the endpoints of 22-54, this produces 500, 600, ... , 900, 1000, 2000, ... , 1e6 ticks
     // It's essentially 10^(x/10) but with the mantissa spaced linearly instead of logarithmically
     parseOfflineSlider(str) {
-      const value = parseInt(str, 10);
+      const value = Number.parseInt(str, 10);
       return (1 + value % 9) * Math.pow(10, Math.floor(value / 9));
     },
     adjustSliderValueOfflineTicks(value) {

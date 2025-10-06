@@ -12,7 +12,7 @@ export const GalaxyGenerator = {
   get generationCaps() {
     return PelleRifts.all
       .map(x => ({ rift: x.config.key, cap: x.config.galaxyGeneratorThreshold }))
-      .sort((a, b) => Decimal.compare(a.cap, b.cap));
+      .toSorted((a, b) => Decimal.compare(a.cap, b.cap));
   },
 
   get spentGalaxies() {
@@ -88,7 +88,7 @@ export const GalaxyGenerator = {
       // Force-unequip glyphs when the player loses the respective milestone. We call the respec option as normally
       // except for one particular case - when we want to respec into protected slots but have no room to do so. In
       // that case, we force-respec into the inventory instead
-      if (!PelleRifts.vacuum.milestones[0].canBeApplied && Glyphs.active.filter(g => g).length > 0) {
+      if (!PelleRifts.vacuum.milestones[0].canBeApplied && Glyphs.active.some(g => g).length > 0) {
         Glyphs.unequipAll(player.options.respecIntoProtected && Glyphs.findFreeIndex(true) === -1);
         Glyphs.refreshActive();
       }

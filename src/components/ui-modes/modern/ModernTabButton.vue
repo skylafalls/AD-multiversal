@@ -39,7 +39,7 @@ export default {
       this.isAvailable = this.tab.isAvailable;
       this.isHidden = this.tab.isHidden;
       this.subtabVisibilities = this.tab.subtabs.map(x => x.isAvailable);
-      this.showSubtabs = this.isAvailable && this.subtabVisibilities.length >= 1;
+      this.showSubtabs = this.isAvailable && this.subtabVisibilities.length > 0;
       this.hasNotification = this.tab.hasNotification;
       if (this.tabPosition < Pelle.endTabNames.length) {
         this.tabName = Pelle.transitionText(

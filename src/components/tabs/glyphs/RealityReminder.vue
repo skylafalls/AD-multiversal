@@ -47,7 +47,7 @@ export default {
       return arr;
     },
     canBeExpanded() {
-      return this.canReality && this.suggestions.length !== 0;
+      return this.canReality && this.suggestions.length > 0;
     },
     styleObject() {
       const color = (!this.canReality || this.canBeExpanded) ? "var(--color-bad)" : "var(--color-good)";

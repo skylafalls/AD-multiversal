@@ -110,7 +110,7 @@ export class Modal {
   show(modalConfig) {
     if (!GameUI.initialized) return;
     this._uniqueID = nextModalID++;
-    this._props = Object.assign({}, modalConfig || {});
+    this._props = { ...modalConfig || {}};
     if (this._closeEvent) this.applyCloseListeners(this._closeEvent);
     if (modalConfig?.closeEvent) this.applyCloseListeners(modalConfig.closeEvent);
 
@@ -162,7 +162,7 @@ export class Modal {
 
   static hideAll() {
     if (!GameUI.initialized) return;
-    while (ui.view.modal.queue.length) {
+    while (ui.view.modal.queue.length > 0) {
       if (ui.view.modal.queue[0].hide) {
         ui.view.modal.queue[0].hide();
       } else {

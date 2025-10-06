@@ -8,7 +8,7 @@ function mergeIntoGlobal(object) {
     const value = object[key];
     const existingValue = window[key];
     if (existingValue !== undefined) {
-      throw `Property ${key} already exists in global context`;
+      throw new Error(`Property ${key} already exists in global context`);
     }
 
     window[key] = value;

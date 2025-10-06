@@ -115,12 +115,16 @@ export default {
     },
     studyComponent(study) {
       switch (study.type) {
-        case TIME_STUDY_TYPE.NORMAL: return NormalTimeStudy;
-        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: return ECTimeStudy;
-        case TIME_STUDY_TYPE.DILATION: return DilationTimeStudy;
-        case TIME_STUDY_TYPE.TRIAD: return TriadTimeStudy;
+        case TIME_STUDY_TYPE.NORMAL: { return NormalTimeStudy;
+        }
+        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: { return ECTimeStudy;
+        }
+        case TIME_STUDY_TYPE.DILATION: { return DilationTimeStudy;
+        }
+        case TIME_STUDY_TYPE.TRIAD: { return TriadTimeStudy;
+        }
       }
-      throw "Unknown Time Study type";
+      throw new Error("Unknown Time Study type");
     },
     exportStudyTree() {
       if (player.timestudy.studies.length === 0) {

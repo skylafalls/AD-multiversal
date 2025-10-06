@@ -193,7 +193,7 @@ export default {
     validateInput() {
       let validator, lines;
       if (this.b.nest) {
-        const clone = Object.assign({}, this.b);
+        const clone = { ...this.b};
         clone.nest = [];
         lines = BlockAutomator.parseLines([clone]);
         validator = validateLine(lines.join("\n"));
@@ -264,7 +264,7 @@ export default {
       }
     },
     errorTooltip() {
-      if (!this.hasError || this.suppressTooltip) return undefined;
+      if (!this.hasError || this.suppressTooltip) return;
 
       // We want to keep the verbose error info for the error panel, but we need to shorten it for the tooltips here
       // The problematic errors all seem to have the same format, which we can explicitly modify

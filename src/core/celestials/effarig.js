@@ -38,13 +38,16 @@ export const Effarig = {
   },
   get currentStageName() {
     switch (this.currentStage) {
-      case EFFARIG_STAGES.INFINITY:
+      case EFFARIG_STAGES.INFINITY: {
         return "Infinity";
-      case EFFARIG_STAGES.ETERNITY:
+      }
+      case EFFARIG_STAGES.ETERNITY: {
         return "Eternity";
+      }
       case EFFARIG_STAGES.REALITY:
-      default:
+      default: {
         return "Reality";
+      }
     }
   },
   get eternityCap() {
@@ -52,13 +55,16 @@ export const Effarig = {
   },
   get glyphLevelCap() {
     switch (this.currentStage) {
-      case EFFARIG_STAGES.INFINITY:
+      case EFFARIG_STAGES.INFINITY: {
         return new Decimal(DC.E2);
-      case EFFARIG_STAGES.ETERNITY:
+      }
+      case EFFARIG_STAGES.ETERNITY: {
         return new Decimal(1500);
+      }
       case EFFARIG_STAGES.REALITY:
-      default:
+      default: {
         return new Decimal(2000);
+      }
     }
   },
 
@@ -73,16 +79,19 @@ export const Effarig = {
   nerfFactor(power) {
     let c;
     switch (this.currentStage) {
-      case EFFARIG_STAGES.INFINITY:
+      case EFFARIG_STAGES.INFINITY: {
         c = 1500;
         break;
-      case EFFARIG_STAGES.ETERNITY:
+      }
+      case EFFARIG_STAGES.ETERNITY: {
         c = 29.29;
         break;
+      }
       case EFFARIG_STAGES.REALITY:
-      default:
+      default: {
         c = 25;
         break;
+      }
     }
     return (DC.D1.sub(new Decimal(c).div(Decimal.sqrt(power.add(1).absLog10()).add(c)))).times(3);
   },

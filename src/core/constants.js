@@ -412,7 +412,7 @@ window.SPEEDRUN_SEED_STATE = {
 };
 
 // We're just going to use cloneDeep from lodash, since its better
-window.cloneDeep = value => cloneDeep(value);
+window.cloneDeep = value => structuredClone(value);
 
 //
 // window.cloneDeep = function cloneDeep(obj) {

@@ -44,21 +44,24 @@ function reflectAcrossVertical(vec) {
 function sigilShape(type, att, fill, colorOverride) {
   let pos, path, pathStart, pathEnd;
   switch (type) {
-    case "edge":
+    case "edge": {
       pos = att.start;
       path = new LinearPath(att.start, att.end);
       pathStart = 0;
       pathEnd = 1;
       break;
-    case "circle":
+    }
+    case "circle": {
       pos = att.center;
       path = LogarithmicSpiral.fromPolarEndpoints(att.center, 0, att.radius * SigilAttributes.size,
         1, att.radius * SigilAttributes.size);
       pathStart = att.initAngle;
       pathEnd = att.finalAngle;
       break;
-    default:
+    }
+    default: {
       throw Error("Unrecognized shape in sigil specification");
+    }
   }
 
   return {

@@ -73,18 +73,22 @@ export default {
     this.$nextTick(() => {
       this.on$(GAME_EVENT.ARROW_KEY_PRESSED, arrow => {
         switch (arrow[0]) {
-          case "up":
+          case "up": {
             this.progressUp();
             break;
-          case "down":
+          }
+          case "down": {
             this.progressDown();
             break;
-          case "left":
+          }
+          case "left": {
             this.progressLeft();
             break;
-          case "right":
+          }
+          case "right": {
             this.progressRight();
             break;
+          }
         }
       });
     });

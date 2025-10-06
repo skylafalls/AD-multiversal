@@ -46,16 +46,21 @@ export default {
   computed: {
     resourceText() {
       switch (this.resourceType) {
-        case RECENT_PRESTIGE_RESOURCE.ABSOLUTE_GAIN:
+        case RECENT_PRESTIGE_RESOURCE.ABSOLUTE_GAIN: {
           return "total resource gain";
-        case RECENT_PRESTIGE_RESOURCE.RATE:
+        }
+        case RECENT_PRESTIGE_RESOURCE.RATE: {
           return "resource gain rate";
-        case RECENT_PRESTIGE_RESOURCE.CURRENCY:
+        }
+        case RECENT_PRESTIGE_RESOURCE.CURRENCY: {
           return "prestige currency";
-        case RECENT_PRESTIGE_RESOURCE.PRESTIGE_COUNT:
+        }
+        case RECENT_PRESTIGE_RESOURCE.PRESTIGE_COUNT: {
           return "prestige count";
-        default:
+        }
+        default: {
           throw new Error("Unrecognized Statistics tab resource type");
+        }
       }
     }
   },

@@ -34,14 +34,18 @@ export default {
     },
     glyphBGStr() {
       switch (this.glyphBG) {
-        case GLYPH_BG_SETTING.AUTO:
+        case GLYPH_BG_SETTING.AUTO: {
           return "Auto";
-        case GLYPH_BG_SETTING.LIGHT:
+        }
+        case GLYPH_BG_SETTING.LIGHT: {
           return "Light";
-        case GLYPH_BG_SETTING.DARK:
+        }
+        case GLYPH_BG_SETTING.DARK: {
           return "Dark";
-        default:
+        }
+        default: {
           throw new Error("Unrecognized Glyph BG setting");
+        }
       }
     }
   },

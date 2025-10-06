@@ -160,7 +160,7 @@ export const pelleRifts = {
     milestones: [
       {
         resource: "recursion",
-        requirement: 0.10,
+        requirement: 0.1,
         description: "Dimensional Boosts are more powerful based on EC completions",
         effect: () => Math.max(100 * EternityChallenges.completions ** 2, 1) *
           Math.max(1e4 ** (EternityChallenges.completions - 40), 1),

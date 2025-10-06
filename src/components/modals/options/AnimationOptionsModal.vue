@@ -65,7 +65,7 @@ export default {
       player.options.animations.background = newValue;
     },
     blobSnowflakes(newValue) {
-      player.options.animations.blobSnowflakes = parseInt(newValue, 10);
+      player.options.animations.blobSnowflakes = Number.parseInt(newValue, 10);
     },
     blobHole(newValue) {
       player.options.animations.blobHole = newValue;

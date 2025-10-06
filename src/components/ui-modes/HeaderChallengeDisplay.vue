@@ -107,7 +107,7 @@ export default {
       // Dilation in Pelle can't be left once entered, but we still want to allow leaving more nested challenges
       this.showExit = this.inPelle && player.dilation.active
         ? this.activeChallengeNames.length > 1
-        : this.activeChallengeNames.length !== 0;
+        : this.activeChallengeNames.length > 0;
       this.exitText = this.exitDisplay();
       this.resetCelestial = player.options.retryCelestial;
       this.inPelle = Pelle.isDoomed;
@@ -185,7 +185,7 @@ export default {
     textClassObject() {
       return {
         "l-challenge-display": true,
-        "l-challenge-display--clickable": this.activeChallengeNames.length !== 0,
+        "l-challenge-display--clickable": this.activeChallengeNames.length > 0,
       };
     }
   },

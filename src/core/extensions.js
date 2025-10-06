@@ -25,7 +25,7 @@ Math.clampMax = function(value, max) {
 Array.prototype.nextSiblingIndex = function(current) {
   const currentIndex = this.indexOf(current);
   if (currentIndex === -1)
-    throw "Current item is not in array";
+    throw new Error("Current item is not in array");
   return currentIndex === this.length - 1 ? 0 : currentIndex + 1;
 };
 
@@ -36,7 +36,7 @@ Array.prototype.nextSibling = function(current) {
 Array.prototype.previousSiblingIndex = function(current) {
   const currentIndex = this.indexOf(current);
   if (currentIndex === -1)
-    throw "Current item is not in array";
+    throw new Error("Current item is not in array");
   return currentIndex === 0 ? this.length - 1 : currentIndex - 1;
 };
 
@@ -66,7 +66,7 @@ Decimal.maxReducer = function(a, b) {
 
 Decimal.prototype.copyFrom = function(decimal) {
   if (!(decimal instanceof Decimal) && !(decimal instanceof DecimalCurrency)) {
-    throw "Copy value is not Decimal or DecimalCurrency";
+    throw new Error("Copy value is not Decimal or DecimalCurrency");
   }
   this.mag = decimal.mag;
   this.layer = decimal.layer;
@@ -81,7 +81,7 @@ Decimal.prototype.expEquiv = function(decimal, floor = false) {
 
 window.copyToClipboard = (function() {
   const el = document.createElement("textarea");
-  document.body.appendChild(el);
+  document.body.append(el);
   el.style.position = "absolute";
   el.style.left = "-9999999px";
   el.setAttribute("readonly", "");
@@ -136,11 +136,11 @@ Array.prototype.first = function(predicate) {
     return this.length > 0 ? this[0] : undefined;
   }
   if (typeof predicate !== "function")
-    throw "Predicate must be a function";
+    throw new Error("Predicate must be a function");
   for (let i = 0; i < this.length; i++) {
     if (predicate(this[i]) === true) return this[i];
   }
-  throw "Array doesn't contain a matching item";
+  throw new Error("Array doesn't contain a matching item");
 };
 
 /**
@@ -151,11 +151,11 @@ Array.prototype.last = function(predicate) {
     return this.length > 0 ? this[this.length - 1] : undefined;
   }
   if (typeof predicate !== "function")
-    throw "Predicate must be a function";
+    throw new Error("Predicate must be a function");
   for (let i = this.length - 1; i >= 0; i--) {
     if (predicate(this[i]) === true) return this[i];
   }
-  throw "Array doesn't contain a matching item";
+  throw new Error("Array doesn't contain a matching item");
 };
 
 /**
@@ -165,7 +165,7 @@ Array.prototype.last = function(predicate) {
  */
 Array.prototype.mapToObject = function(keyFun, valueFun) {
   if (typeof keyFun !== "function" || typeof valueFun !== "function")
-    throw "keyFun and valueFun must be functions";
+    throw new Error("keyFun and valueFun must be functions");
   const out = {};
   for (let idx = 0; idx < this.length; ++idx) {
     out[keyFun(this[idx], idx)] = valueFun(this[idx], idx);
@@ -275,7 +275,7 @@ Set.prototype.find = function(predicate) {
   for (const item of this) {
     if (predicate(item)) return item;
   }
-  return undefined;
+  return;
 };
 
 Set.prototype.some = function(predicate) {
