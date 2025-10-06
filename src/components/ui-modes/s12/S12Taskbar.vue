@@ -4,7 +4,7 @@ import TaskbarIcon from "./TaskbarIcon";
 
 import { S12Windows } from "./windows";
 
-const startupSound = new Audio("audio/s12-startup.mp3");
+const startupSound = new Audio("/audio/s12-startup.mp3");
 export default {
   name: "S12Taskbar",
   components: {
@@ -38,7 +38,7 @@ export default {
     <div class="c-taskbar">
       <img
         class="c-start-icon"
-        src="images/s12/win7-start-menu-inactive.png"
+        src="/images/s12/win7-start-menu-inactive.png"
         @click="startupSound.play()"
       >
       <template
