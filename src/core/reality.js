@@ -12,8 +12,8 @@ export const GlyphSelection = {
   },
 
   get choiceCount() {
-    return Effects.nMax(1, Perk.firstPerk) *
-      Ra.unlocks.extraGlyphChoicesAndRelicShardRarityAlwaysMax.effectOrDefault(1);
+    return Effects.nMax(1, Perk.firstPerk)
+      * Ra.unlocks.extraGlyphChoicesAndRelicShardRarityAlwaysMax.effectOrDefault(1);
   },
 
   glyphUncommonGuarantee(glyphList, rng) {
@@ -44,7 +44,7 @@ export const GlyphSelection = {
     // effects are spread out over the choices of each consecutive group of 5 realities
 
     // Code needs rewriting at a later date as it is all bitmask stuff rn, so we use a constant false fn
-    // eslint-disable-next-line no-constant-condition
+
     if (GlyphGenerator.isUniformityActive) {
       glyphList = GlyphGenerator.uniformGlyphSelections(level, rng, player.realities);
     } else {
@@ -116,7 +116,7 @@ export const GlyphSelection = {
   get indexWithoutSTART() {
     const lexIndex = player.realities.times((player.reality.initialSeed % 5) + 3).toNumber();
     return permutationIndex(4, lexIndex)[0];
-  }
+  },
 };
 
 export function isRealityAvailable() {
@@ -300,7 +300,7 @@ function updateRealityRecords(realityProps) {
     player.records.bestReality.realTime = player.records.thisReality.realTime;
     player.records.bestReality.speedSet = Glyphs.copyForRecords(Glyphs.active.filter(g => g !== null));
   }
-  player.records.bestReality.trueTime = Math.min(player.records.bestReality.trueTime, player.records.thisReality.trueTime)
+  player.records.bestReality.trueTime = Math.min(player.records.bestReality.trueTime, player.records.thisReality.trueTime);
 }
 
 function giveRealityRewards(realityProps) {
@@ -483,7 +483,7 @@ export function beginProcessReality(realityProps) {
       batchSize: 100,
       maxTime: 33,
       sleepTime: 1,
-      asyncEntry: doneSoFar => {
+      asyncEntry: (doneSoFar) => {
         GameIntervals.stop();
         ui.$viewModel.modal.progressBar = {
           label: "Simulating Amplified Reality",
@@ -492,8 +492,10 @@ export function beginProcessReality(realityProps) {
             more than ${formatInt(glyphsToSample)} Glyphs remaining will speed up the calculation by automatically
             sacrificing all the remaining Glyphs you would get. Pressing "Skip Glyphs" will ignore all resources
             related to Glyphs and stop the simulation after giving all other resources.
-            ${Ra.unlocks.unlockGlyphAlchemy.canBeApplied ? `Pressing either button to speed up
-            simulation will not update any resources within Glyph Alchemy.` : ""}`,
+            ${Ra.unlocks.unlockGlyphAlchemy.canBeApplied
+              ? `Pressing either button to speed up
+            simulation will not update any resources within Glyph Alchemy.`
+              : ""}`,
           progressName: "Realities",
           current: doneSoFar,
           max: glyphsToProcess,
@@ -512,7 +514,7 @@ export function beginProcessReality(realityProps) {
               progress.remaining = glyphsToSample;
               // We update the progress bar max data (remaining will update automatically).
               ui.$viewModel.modal.progressBar.max = progress.maxIter;
-            }
+            },
           },
           {
             text: "Skip Glyphs",
@@ -521,11 +523,11 @@ export function beginProcessReality(realityProps) {
               // Shortcut to the end since we're ignoring all glyph-related resources
               progress.maxIter -= progress.remaining;
               progress.remaining = 0;
-            }
-          }]
+            },
+          }],
         };
       },
-      asyncProgress: doneSoFar => {
+      asyncProgress: (doneSoFar) => {
         ui.$viewModel.modal.progressBar.current = doneSoFar;
       },
       asyncExit: () => {
@@ -535,7 +537,6 @@ export function beginProcessReality(realityProps) {
       then: () => {
         // This is where we update sacrifice values if we ended up doing quick mode
         if (glyphSample.toGenerate > 0) {
-
           // Note: This is the only score mode we consider doing special behavior for because it's the only mode where
           // sacrificing a glyph can significantly affect future glyph choices. Alchemy is not a factor because
           // the in-game wording specifically disallows it.
@@ -585,12 +586,11 @@ export function beginProcessReality(realityProps) {
           }
         }
       },
-      progress
+      progress,
     });
   Glyphs.processSortingAfterReality();
 }
 
-// eslint-disable-next-line complexity
 export function finishProcessReality(realityProps) {
   const finalEP = Currency.eternityPoints.value.plus(gainedEternityPoints());
   if (player.records.bestReality.bestEP.lt(finalEP)) {
@@ -666,8 +666,8 @@ export function finishProcessReality(realityProps) {
   player.eterc8ids = 50;
   player.eterc8repl = 40;
   if (realityProps.glyphUndo) {
-    player.requirementChecks.reality.maxGlyphs =
-      Math.max(Glyphs.bestUndoGlyphCount, player.requirementChecks.reality.maxGlyphs);
+    player.requirementChecks.reality.maxGlyphs
+      = Math.max(Glyphs.bestUndoGlyphCount, player.requirementChecks.reality.maxGlyphs);
   } else {
     Player.resetRequirements("reality");
   }
@@ -688,7 +688,7 @@ export function finishProcessReality(realityProps) {
       3: DC.D0,
       11: DC.D0,
       12: DC.D0,
-      13: DC.D0
+      13: DC.D0,
     };
   }
   if (!PelleUpgrade.tachyonParticlesNoReset.canBeApplied) {
@@ -793,7 +793,7 @@ export function applyRUPG10() {
     mode: current.mode,
     priority: current.priority,
     isActive: current.isActive,
-    lastTick: player.records.trueTimePlayed
+    lastTick: player.records.trueTimePlayed,
   }));
 
   for (const autobuyer of Autobuyers.all) {

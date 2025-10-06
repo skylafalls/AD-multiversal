@@ -22,7 +22,7 @@ export default {
     TriadTimeStudy,
     SecretTimeStudy,
     TimeStudyConnection,
-    HiddenTimeStudyConnection
+    HiddenTimeStudyConnection,
   },
   data() {
     return {
@@ -54,15 +54,15 @@ export default {
     treeStyleObject() {
       return {
         width: `${this.layout.width}rem`,
-        height: `${this.layout.height}rem`
+        height: `${this.layout.height}rem`,
       };
     },
     respecClassObject() {
       return {
         "o-primary-btn--subtab-option": true,
-        "o-primary-btn--respec-active": this.respec
+        "o-primary-btn--respec-active": this.respec,
       };
-    }
+    },
   },
   watch: {
     respec(newValue) {
@@ -71,7 +71,7 @@ export default {
     vLevel() {
       // When vLevel changes, we recompute the study tree because of triad studies
       this.$recompute("layout");
-    }
+    },
   },
   created() {
     const incrementRenderedCount = () => {
@@ -133,8 +133,8 @@ export default {
         copyToClipboard(GameCache.currentStudyTree.value.exportString);
         GameUI.notify.info("Exported current Time Studies to your clipboard");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

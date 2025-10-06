@@ -4,8 +4,8 @@ export default {
   props: {
     autobuyer: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -15,7 +15,7 @@ export default {
       bulkUnlimited: false,
       bulk: 1,
       cost: 1,
-      isAffordable: false
+      isAffordable: false,
     };
   },
   computed: {
@@ -30,9 +30,9 @@ export default {
       return {
         "o-autobuyer-btn": true,
         "o-autobuyer-btn--unavailable": !this.isAffordable && !this.hasMaxedBulk,
-        "o-non-clickable": this.hasMaxedBulk
+        "o-non-clickable": this.hasMaxedBulk,
       };
-    }
+    },
   },
   methods: {
     update() {
@@ -47,8 +47,8 @@ export default {
     },
     upgradeBulk() {
       this.autobuyer.upgradeBulk();
-    }
-  }
+    },
+  },
 };
 </script>
 

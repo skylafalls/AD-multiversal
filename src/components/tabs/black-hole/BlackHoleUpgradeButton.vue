@@ -10,20 +10,20 @@ export default {
     PrimaryToggleButton,
     DescriptionDisplay,
     EffectDisplay,
-    CostDisplay
+    CostDisplay,
   },
   props: {
     config: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       isAffordable: false,
       isCapped: false,
       isAutoUnlocked: false,
-      isAutobuyerOn: false
+      isAutobuyerOn: false,
     };
   },
   computed: {
@@ -31,26 +31,26 @@ export default {
       const { config } = this;
       return {
         effect: () => config.upgrade.value,
-        formatEffect: value => config.formatEffect(value)
+        formatEffect: value => config.formatEffect(value),
       };
     },
     costConfig() {
       const { config } = this;
       return {
         cost: () => config.upgrade.cost,
-        formatCost: value => format(value, 2, 0)
+        formatCost: value => format(value, 2, 0),
       };
     },
     classObject() {
       return {
-        "c-reality-upgrade-btn--unavailable": !this.isAffordable
+        "c-reality-upgrade-btn--unavailable": !this.isAffordable,
       };
-    }
+    },
   },
   watch: {
     isAutobuyerOn(newValue) {
       Autobuyer.blackHolePower(this.config.upgrade.id).isActive = newValue;
-    }
+    },
   },
   methods: {
     update() {
@@ -60,8 +60,8 @@ export default {
       const autobuyer = Autobuyer.blackHolePower(this.config.upgrade.id);
       this.isAutoUnlocked = hasAutobuyer && autobuyer.isUnlocked;
       this.isAutobuyerOn = hasAutobuyer && autobuyer.isActive;
-    }
-  }
+    },
+  },
 };
 </script>
 

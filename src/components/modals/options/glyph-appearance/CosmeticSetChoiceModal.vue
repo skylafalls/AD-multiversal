@@ -10,7 +10,7 @@ export default {
     ModalWrapperChoice,
     ExpandingControlBox,
     CosmeticSetDropdown,
-    GlyphComponent
+    GlyphComponent,
   },
   data() {
     return {
@@ -44,7 +44,7 @@ export default {
     },
     glyphIconProps() {
       return {
-        size: "3rem",
+        "size": "3rem",
         "glow-blur": "0.3rem",
         "glow-spread": "0.1rem",
         "text-proportion": 0.66,
@@ -73,7 +73,7 @@ export default {
         color,
       };
     },
-  }
+  },
 };
 </script>
 

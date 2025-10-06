@@ -4,7 +4,7 @@ import ToggleButton from "@/components/ToggleButton";
 export default {
   name: "GlyphProtectedRowButtonGroup",
   components: {
-    ToggleButton
+    ToggleButton,
   },
   data() {
     return {
@@ -16,7 +16,7 @@ export default {
     questionMarkTooltip() {
       return `Protected slots are unaffected by anything which may move or purge Glyphs.
         New Glyphs will never be inserted into these slots.`;
-    }
+    },
   },
   watch: {
     moveGlyphs(newValue) {
@@ -40,16 +40,16 @@ export default {
     addRowButtonClass() {
       return {
         "c-glyph-inventory-option": true,
-        "o-non-clickable": this.isProtectedRowsMax()
+        "o-non-clickable": this.isProtectedRowsMax(),
       };
     },
     removeRowButtonClass() {
       return {
         "c-glyph-inventory-option": true,
-        "o-non-clickable": this.protectedRows === 0
+        "o-non-clickable": this.protectedRows === 0,
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

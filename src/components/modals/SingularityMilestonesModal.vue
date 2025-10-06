@@ -99,12 +99,12 @@ export default {
     glowOptionClass() {
       return {
         "c-modal__confirmation-toggle__checkbox": true,
-        "c-modal__confirmation-toggle__checkbox--active": this.milestoneGlow
+        "c-modal__confirmation-toggle__checkbox--active": this.milestoneGlow,
       };
     },
     toggleGlow() {
       this.milestoneGlow = !this.milestoneGlow;
-    }
+    },
   },
 };
 </script>

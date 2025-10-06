@@ -5,7 +5,7 @@ import SingleAutobuyerBox from "./SingleAutobuyerBox";
 export default {
   name: "MultipleSingleAutobuyersGroup",
   components: {
-    SingleAutobuyerBox
+    SingleAutobuyerBox,
   },
   computed: {
     singles() {
@@ -24,8 +24,8 @@ export default {
       // The 2% reduced flex-basis is used to prevent wrapping due to the margins.
       // It would be 1%, but apparently the margins are larger here.
       return `flex: 1 0 ${100 / this.entryCountPerRow - 2}%`;
-    }
-  }
+    },
+  },
 };
 </script>
 

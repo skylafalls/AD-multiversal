@@ -5,7 +5,7 @@ export default {
     bounds: {
       type: Object,
       required: true,
-    }
+    },
   },
   mounted() {
     this.drop();
@@ -17,7 +17,7 @@ export default {
       const bounds = this.bounds;
       const snowPos = {
         x: Math.random() * (bounds.x - windowBorderOffset),
-        y: windowBorderOffset + Math.random() * (bounds.y - windowBorderOffset)
+        y: windowBorderOffset + Math.random() * (bounds.y - windowBorderOffset),
       };
       this.$el.textContent = snowText();
       this.$el.setAttribute("x", snowPos.x);

@@ -6,16 +6,16 @@ export default {
   props: {
     setup: {
       type: Object,
-      required: true
+      required: true,
     },
     forceIsBought: {
       type: Number,
-      default: 1
+      default: 1,
     },
     isNewFromImport: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -31,7 +31,7 @@ export default {
     styleObject() {
       return {
         top: `${this.setup.top}rem`,
-        left: `${this.setup.left}rem`
+        left: `${this.setup.left}rem`,
       };
     },
     classObject() {
@@ -44,7 +44,7 @@ export default {
         "o-pseudo-time-study--small": this.setup.isSmall,
         "o-time-study--unavailable": !this.isBought && !this.isUseless,
         "o-time-study--bought": this.isBought && !this.isUseless,
-        "o-time-study--new-import": this.isNewFromImport && !this.isBought
+        "o-time-study--new-import": this.isNewFromImport && !this.isBought,
       };
     },
     pathClass() {
@@ -81,12 +81,12 @@ export default {
     },
     studyString() {
       switch (this.study.type) {
-        case TIME_STUDY_TYPE.NORMAL: case TIME_STUDY_TYPE.TRIAD: { return `${this.study.id}`;}
+        case TIME_STUDY_TYPE.NORMAL: case TIME_STUDY_TYPE.TRIAD: { return `${this.study.id}`; }
         case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: { return `EC${this.study.id}`;
         }
       }
       return "";
-    }
+    },
   },
   methods: {
     update() {
@@ -95,7 +95,7 @@ export default {
       this.isBought = ForceBoughtState.getState(this.forceIsBought, study.isBought);
       this.doomedRealityStudy = study.type === TIME_STUDY_TYPE.DILATION && study.id === 6 && Pelle.isDoomed;
     },
-  }
+  },
 };
 </script>
 
@@ -129,7 +129,6 @@ export default {
 .o-time-study-dark--bought {
   color: white;
 }
-
 
 .o-time-study--new-import::before {
   content: "";

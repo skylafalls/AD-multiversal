@@ -22,18 +22,18 @@ export const POWER_DE_PER_ASCENSION = new Decimal(500);
 const COST_MULT_PER_TIER = 1200;
 
 export class DarkMatterDimensionState extends DimensionState {
-
   static get dimensionCount() {
     return 4;
   }
 
   constructor(tier) {
-    // eslint-disable-next-line no-debugger, max-statements-per-line
     super(() => player.celestials.laitela.dimensions, tier);
   }
 
   // Does not include DM, only DE per second
-  get productionPerSecond() { return this.powerDE.mul(DC.E3.div(this.interval)); }
+  get productionPerSecond() {
+    return this.powerDE.mul(DC.E3.div(this.interval));
+  }
 
   get unlockUpgrade() {
     // The 15th Imaginary Upgrade unlocked Laitela and the 1st DMD
@@ -71,7 +71,7 @@ export class DarkMatterDimensionState extends DimensionState {
       SingularityMilestone.darkFromTheorems,
       SingularityMilestone.darkFromDM4,
       SingularityMilestone.darkFromGamespeed,
-      SingularityMilestone.darkFromDilatedTime
+      SingularityMilestone.darkFromDilatedTime,
     );
   }
 
@@ -101,7 +101,7 @@ export class DarkMatterDimensionState extends DimensionState {
       .timesEffectsOf(
         SingularityMilestone.darkEnergyMult,
         SingularityMilestone.realityDEMultiplier,
-        SingularityMilestone.multFromInfinitied
+        SingularityMilestone.multFromInfinitied,
       ).mul(destabilizeBoost);
   }
 
@@ -162,7 +162,7 @@ export class DarkMatterDimensionState extends DimensionState {
         .times(POWER_DE_START_COST),
       baseIncrease: this.powerDECostIncrease,
       costScale: new Decimal(10),
-      scalingCostThreshold: DC.NUMMAX.div(SingularityMilestone.darkDimensionCostReduction.effectOrDefault(1))
+      scalingCostThreshold: DC.NUMMAX.div(SingularityMilestone.darkDimensionCostReduction.effectOrDefault(1)),
     });
   }
 
@@ -172,7 +172,7 @@ export class DarkMatterDimensionState extends DimensionState {
         .times(POWER_DM_START_COST),
       baseIncrease: this.powerDMCostIncrease,
       costScale: new Decimal(10),
-      scalingCostThreshold: DC.NUMMAX.div(SingularityMilestone.darkDimensionCostReduction.effectOrDefault(1))
+      scalingCostThreshold: DC.NUMMAX.div(SingularityMilestone.darkDimensionCostReduction.effectOrDefault(1)),
     });
   }
 
@@ -182,7 +182,7 @@ export class DarkMatterDimensionState extends DimensionState {
         .times(INTERVAL_START_COST),
       baseIncrease: this.intervalCostIncrease,
       costScale: new Decimal(10),
-      scalingCostThreshold: DC.NUMMAX.div(SingularityMilestone.darkDimensionCostReduction.effectOrDefault(1))
+      scalingCostThreshold: DC.NUMMAX.div(SingularityMilestone.darkDimensionCostReduction.effectOrDefault(1)),
     });
   }
 
@@ -212,16 +212,14 @@ export class DarkMatterDimensionState extends DimensionState {
   }
 
   buyManyInterval(x) {
-    // eslint-disable-next-line max-len
     const calc = this.costScaleInterval.getMaxBought(this.data.intervalUpgrades, Currency.darkMatter.value, DC.D1);
     const quant = calc?.quantity;
     if (calc === null) return;
     if (Decimal.lte(x, quant.clampMax(this.maxIntervalPurchases))) {
-      // eslint-disable-next-line max-len
       Currency.darkMatter.purchase(this.costScaleInterval.calculateCost(this.data.intervalUpgrades.add(Decimal.min(x, this.maxIntervalPurchases)).sub(1)));
       this.data.intervalUpgrades = this.data.intervalUpgrades.add(Decimal.min(x, this.maxIntervalPurchases));
     }
-    // eslint-disable-next-line max-len
+
     Currency.darkMatter.purchase(this.costScaleInterval.calculateCost(this.data.intervalUpgrades.add(quant.clampMax(this.maxIntervalPurchases)).sub(1)));
     this.data.intervalUpgrades = this.data.intervalUpgrades.add(quant.clampMax(this.maxIntervalPurchases));
     // S this.data.intervalUpgrades

@@ -9,7 +9,7 @@ export default {
   components: {
     PrimaryButton,
     AlchemyCircleNode,
-    AlchemyResourceInfo
+    AlchemyResourceInfo,
   },
   data() {
     return {
@@ -38,7 +38,7 @@ export default {
       return {
         width: `${size}rem`,
         height: `${size}rem`,
-        opacity: this.isDoomed ? 0.8 : 1
+        opacity: this.isDoomed ? 0.8 : 1,
       };
     },
     orbitClass() {
@@ -47,7 +47,7 @@ export default {
     realityGlyphCreationClass() {
       return {
         "o-primary-btn--subtab-option": true,
-        "tutorial--glow": !this.createdRealityGlyph
+        "tutorial--glow": !this.createdRealityGlyph,
       };
     },
     reactions() {
@@ -58,7 +58,7 @@ export default {
     },
     pelleSymbol() {
       return Pelle.symbol;
-    }
+    },
   },
   methods: {
     update() {
@@ -109,27 +109,27 @@ export default {
       return (outRes.amount.gt(0) && outRes.amount.lte(inRes.amount)) || outRes.amount.gte(outRes.cap);
     },
     isLessThanRequired(reactionArrow) {
-      return reactionArrow.product.resource.amount.gt(0) &&
-        Decimal.lt(reactionArrow.reagent.cost, reactionArrow.reagent.resource.cap);
+      return reactionArrow.product.resource.amount.gt(0)
+        && Decimal.lt(reactionArrow.reagent.cost, reactionArrow.reagent.resource.cap);
     },
     isActiveReaction(reactionArrow) {
       return reactionArrow.reaction.isActive && !this.isDoomed;
     },
     isFocusedReaction(reactionArrow) {
       if (this.isDoomed) return false;
-      return this.isUnlocked(reactionArrow) && (reactionArrow.product.resource.id === this.focusedResourceId ||
-        reactionArrow.reagent.resource.id === this.focusedResourceId);
+      return this.isUnlocked(reactionArrow) && (reactionArrow.product.resource.id === this.focusedResourceId
+        || reactionArrow.reagent.resource.id === this.focusedResourceId);
     },
     isDisplayed(reactionArrow) {
-      return this.isUnlocked(reactionArrow) &&
-        (this.isActiveReaction(reactionArrow) || this.isFocusedReaction(reactionArrow));
+      return this.isUnlocked(reactionArrow)
+        && (this.isActiveReaction(reactionArrow) || this.isFocusedReaction(reactionArrow));
     },
     isFocusedNode(node) {
       if (this.focusedResourceId === -1 || this.isDoomed) return true;
       const focusedResource = this.resources[this.focusedResourceId];
       if (focusedResource === node.resource) return true;
-      return focusedResource.reaction?.reagents.some(r => r.resource === node.resource) ||
-        node.resource.reaction?.reagents.some(r => r.resource === focusedResource);
+      return focusedResource.reaction?.reagents.some(r => r.resource === node.resource)
+        || node.resource.reaction?.reagents.some(r => r.resource === focusedResource);
     },
     reactionArrowPositions(reactionArrow) {
       if (!this.isDisplayed(reactionArrow) || this.isCapped(reactionArrow)) return;
@@ -161,11 +161,11 @@ export default {
       return {
         "o-alchemy-reaction-path": this.isUnlocked(reactionArrow),
         "o-alchemy-reaction-path--capped": this.isCapped(reactionArrow) && this.isDisplayed(reactionArrow),
-        "o-alchemy-reaction-path--less-than-required": this.isLessThanRequired(reactionArrow) &&
-          this.isDisplayed(reactionArrow),
+        "o-alchemy-reaction-path--less-than-required": this.isLessThanRequired(reactionArrow)
+          && this.isDisplayed(reactionArrow),
         "o-alchemy-reaction-path--focused": !this.isCapped(reactionArrow) && this.isFocusedReaction(reactionArrow),
         "o-alchemy-reaction-path--not-focused": !this.isFocusedReaction(reactionArrow) && this.focusedResourceId !== -1,
-        "o-alchemy-reaction-path--doomed": this.isDoomed
+        "o-alchemy-reaction-path--doomed": this.isDoomed,
       };
     },
     reactionArrowClass(reactionArrow) {
@@ -187,10 +187,10 @@ export default {
     nodeClass(node) {
       const resource = node.resource;
       return {
-        "o-clickable": resource.isUnlocked && !resource.isBaseResource && !this.isDoomed
+        "o-clickable": resource.isUnlocked && !resource.isBaseResource && !this.isDoomed,
       };
     },
-  }
+  },
 };
 </script>
 

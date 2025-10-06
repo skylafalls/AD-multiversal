@@ -4,14 +4,14 @@ export default {
   computed: {
     lockedSets() {
       return GlyphAppearanceHandler.lockedSets.map(key => GameDatabase.reality.glyphCosmeticSets[key]);
-    }
+    },
   },
   methods: {
     select(set) {
       GlyphAppearanceHandler.setInModal = set;
       this.$parent.openRequest = false;
-    }
-  }
+    },
+  },
 };
 </script>
 

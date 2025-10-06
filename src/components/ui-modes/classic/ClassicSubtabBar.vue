@@ -4,23 +4,23 @@ import ClassicSubtabButton from "./ClassicSubtabButton";
 export default {
   name: "ClassicSubtabBar",
   components: {
-    ClassicSubtabButton
+    ClassicSubtabButton,
   },
   data() {
     return {
-      isVisible: false
+      isVisible: false,
     };
   },
   computed: {
     tab: () => Tabs.current,
     subtabs() {
       return this.tab.subtabs;
-    }
+    },
   },
   methods: {
     update() {
       this.isVisible = this.subtabs.countWhere(subtab => subtab.isAvailable) > 1;
-    }
+    },
   },
 };
 </script>

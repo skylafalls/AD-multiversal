@@ -17,7 +17,6 @@ export const AUTOMATOR_MODE = Object.freeze({
   SINGLE_STEP: 3,
 });
 
-
 export const AUTOMATOR_VAR_TYPES = {
   NUMBER: { id: 0, name: "number" },
   STUDIES: { id: 1, name: "studies" },
@@ -27,7 +26,7 @@ export const AUTOMATOR_VAR_TYPES = {
 
 export const AUTOMATOR_TYPE = Object.freeze({
   TEXT: 0,
-  BLOCK: 1
+  BLOCK: 1,
 });
 
 /**
@@ -216,7 +215,7 @@ export const AutomatorData = {
       line: AutomatorBackend.translateLineNumber(line),
       thisReality: Time.thisRealityRealTime.totalSeconds,
       timestamp: currTime,
-      timegap: currTime - this.lastEvent
+      timegap: currTime - this.lastEvent,
     });
     this.lastEvent = currTime;
     // Remove the oldest entry if the log is too large
@@ -238,12 +237,12 @@ export const AutomatorData = {
     return Object.values(player.reality.automator.scripts)
       .filter(s => s.id !== this.scriptIndex())
       .map(s => s.content.length)
-      .reduce((sum, len) => sum + len, 0) +
-      this.singleScriptCharacters();
+      .reduce((sum, len) => sum + len, 0)
+      + this.singleScriptCharacters();
   },
   isWithinLimit() {
-    return this.singleScriptCharacters() <= this.MAX_ALLOWED_SCRIPT_CHARACTERS &&
-      this.totalScriptCharacters() <= this.MAX_ALLOWED_TOTAL_CHARACTERS;
+    return this.singleScriptCharacters() <= this.MAX_ALLOWED_SCRIPT_CHARACTERS
+      && this.totalScriptCharacters() <= this.MAX_ALLOWED_TOTAL_CHARACTERS;
   },
 
   // This must be called every time the current script or editor mode are changed
@@ -295,7 +294,7 @@ export const AutomatorData = {
     AutomatorBackend.saveScript(this.scriptIndex(), redoContent);
     if (player.reality.automator.type === AUTOMATOR_TYPE.TEXT) AutomatorTextUI.editor.setValue(redoContent);
     else BlockAutomator.updateEditor(redoContent);
-  }
+  },
 };
 
 export const LineEnum = { Active: "active", Event: "event", Error: "error" };
@@ -344,7 +343,7 @@ export const AutomatorHighlighter = {
       }
       this.lines[lineType] = -1;
     }
-  }
+  },
 };
 
 // Manages line highlighting in a way which is agnostic to the current editor mode (line or block)
@@ -382,7 +381,7 @@ export const AutomatorScroller = {
     if (player.reality.automator.type === AUTOMATOR_TYPE.BLOCK) {
       BlockAutomator.gutter.style.bottom = `${editor.scrollTop}px`;
     }
-  }
+  },
 };
 
 export const AutomatorBackend = {
@@ -742,7 +741,7 @@ export const AutomatorBackend = {
 
     player.reality.automator.execTimer += diff;
     const commandsThisUpdate = Math.min(
-      Math.floor(player.reality.automator.execTimer / this.currentInterval.toNumber()), this.MAX_COMMANDS_PER_UPDATE
+      Math.floor(player.reality.automator.execTimer / this.currentInterval.toNumber()), this.MAX_COMMANDS_PER_UPDATE,
     );
     player.reality.automator.execTimer -= commandsThisUpdate * this.currentInterval.toNumber();
 
@@ -846,7 +845,7 @@ export const AutomatorBackend = {
         }
         this.stop();
       } else if (this.stack.top.commandState && this.stack.top.commandState.advanceOnPop) {
-        AutomatorData.logCommandEvent(`Exiting IF block`, this.stack.top.commandState.ifEndLine);
+        AutomatorData.logCommandEvent("Exiting IF block", this.stack.top.commandState.ifEndLine);
         return this.nextCommand();
       }
     } else {
@@ -1081,6 +1080,6 @@ export const AutomatorBackend = {
     },
     get isEmpty() {
       return this._data.length === 0;
-    }
+    },
   },
 };

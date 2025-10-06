@@ -45,10 +45,10 @@ export const Autobuyer = {
   singularity: new SingularityAutobuyerState(),
   tickspeed: new TickspeedAutobuyerState(),
   timeDimension: TimeDimensionAutobuyerState.createAccessor(),
-  timeTheorem: new TimeTheoremAutobuyerState()
+  timeTheorem: new TimeTheoremAutobuyerState(),
 };
 
-export const Autobuyers = (function() {
+export const Autobuyers = (function () {
   const antimatterDimensions = Autobuyer.antimatterDimension.zeroIndexed;
   const infinityDimensions = Autobuyer.infinityDimension.zeroIndexed;
   const timeDimensions = Autobuyer.timeDimension.zeroIndexed;
@@ -148,7 +148,7 @@ export const Autobuyers = (function() {
       for (const autobuyer of Autobuyers.all) {
         autobuyer.reset();
       }
-    }
+    },
   };
 }());
 

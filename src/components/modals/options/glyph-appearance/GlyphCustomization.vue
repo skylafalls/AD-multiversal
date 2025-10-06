@@ -10,7 +10,7 @@ export default {
     GlyphCustomizationSingleType,
     PrimaryButton,
     PrimaryToggleButton,
-    GlyphComponent
+    GlyphComponent,
   },
   data() {
     return {
@@ -30,10 +30,10 @@ export default {
     },
     glyphIconProps() {
       return {
-        size: "2.5rem",
+        "size": "2.5rem",
         "glow-blur": "0.3rem",
         "glow-spread": "0.1rem",
-        "text-proportion": 0.7
+        "text-proportion": 0.7,
       };
     },
     hasCustomSets() {
@@ -41,7 +41,7 @@ export default {
     },
     hasSpecialTypes() {
       return GlyphAppearanceHandler.availableTypes.length > 0;
-    }
+    },
   },
   watch: {
     enabled(newValue) {
@@ -99,7 +99,7 @@ export default {
       this.defaultKeySwap = false;
       EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE);
     },
-  }
+  },
 };
 </script>
 

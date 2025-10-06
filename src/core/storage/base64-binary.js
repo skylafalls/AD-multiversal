@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 // Copyright (c) 2011, Daniel Guerrero
 // All rights reserved.
 //

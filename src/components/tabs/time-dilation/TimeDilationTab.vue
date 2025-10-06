@@ -6,7 +6,7 @@ export default {
   name: "TimeDilationTab",
   components: {
     DilationButton,
-    DilationUpgradeButton
+    DilationUpgradeButton,
   },
   data() {
     return {
@@ -29,7 +29,7 @@ export default {
       return [
         DilationUpgrade.dtGain,
         DilationUpgrade.galaxyThreshold,
-        DilationUpgrade.tachyonGain
+        DilationUpgrade.tachyonGain,
       ];
     },
     upgrades() {
@@ -37,12 +37,12 @@ export default {
         [
           DilationUpgrade.doubleGalaxies,
           DilationUpgrade.tdMultReplicanti,
-          DilationUpgrade.ndMultDT
+          DilationUpgrade.ndMultDT,
         ],
         [
           DilationUpgrade.ipMultDT,
           DilationUpgrade.timeStudySplit,
-          DilationUpgrade.dilationPenalty
+          DilationUpgrade.dilationPenalty,
         ],
       ];
     },
@@ -56,13 +56,13 @@ export default {
       return [
         DilationUpgrade.dtGainPelle,
         DilationUpgrade.galaxyMultiplier,
-        DilationUpgrade.tickspeedPower
+        DilationUpgrade.tickspeedPower,
       ];
     },
     pelleUpgrades() {
       return [
         DilationUpgrade.galaxyThresholdPelle,
-        DilationUpgrade.flatDilationMult
+        DilationUpgrade.flatDilationMult,
       ];
     },
     ttGenerator() {
@@ -121,8 +121,8 @@ export default {
       const estimateText = getDilationTimeEstimate(this.maxDT);
       if (this.dilatedTimeIncome.lte(0)) this.toMaxTooltip = "No DT gain";
       else this.toMaxTooltip = estimateText.startsWith("<") ? "Currently Increasing" : estimateText;
-    }
-  }
+    },
+  },
 };
 </script>
 

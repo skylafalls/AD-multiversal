@@ -12,7 +12,7 @@ export default {
   name: "ImportSaveModal",
   components: {
     ModalWrapperChoice,
-    PrimaryButton
+    PrimaryButton,
   },
   data() {
     return {
@@ -85,7 +85,7 @@ export default {
     },
     offlineDetails() {
       if (this.offlineImport === OFFLINE_PROGRESS_TYPE.IGNORED) {
-        return `Save will be imported without offline progress.`;
+        return "Save will be imported without offline progress.";
       }
       if (!GameStorage.offlineEnabled) return "This setting will not apply any offline progress after importing.";
       if (this.isFromFuture) return "Offline progress cannot be simulated due to an inconsistent system clock time.";
@@ -102,7 +102,7 @@ export default {
     },
     willLoseSpeedrun() {
       return player.speedrun.isUnlocked && !this.player.speedrun?.isUnlocked;
-    }
+    },
   },
   mounted() {
     this.$refs.input.select();

@@ -13,8 +13,8 @@ export default {
   props: {
     diff: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     progressStage: () => ProgressChecker.getProgressStage(player).id,
@@ -29,13 +29,13 @@ export default {
     },
     titleText() {
       return this.diff ? "Content Catch-up" : "Content Summary";
-    }
+    },
   },
   methods: {
     stageName(stage) {
       return GameProgress(stage).name;
-    }
-  }
+    },
+  },
 };
 </script>
 

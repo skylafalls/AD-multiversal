@@ -17,7 +17,7 @@ export default {
       return {
         "margin-top": this.isModern ? "4.5rem" : "1rem",
       };
-    }
+    },
   },
   methods: {
     update() {
@@ -29,8 +29,8 @@ export default {
     },
     showInfo() {
       Modal.information.show();
-    }
-  }
+    },
+  },
 };
 </script>
 

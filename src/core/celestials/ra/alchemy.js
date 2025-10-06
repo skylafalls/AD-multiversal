@@ -88,7 +88,9 @@ class AlchemyResourceState extends GameMechanicState {
   /**
    * @abstract
    */
-  get cap() { throw new NotImplementedError(); }
+  get cap() {
+    throw new NotImplementedError();
+  }
 
   get capped() {
     return this.amount.gte(this.cap);
@@ -143,7 +145,7 @@ class AlchemyReaction {
   get reactionYield() {
     if (!this._product.isUnlocked || this._reagents.some(r => !r.resource.isUnlocked)) return new Decimal();
     let forcingFactor = (this._reagents
-      .map(r => r.resource.amount))
+      .map(r => r.resource.amount));
     while (forcingFactor.length > 1) {
       if (forcingFactor[0].gt(forcingFactor[1])) forcingFactor.splice(1, 1);
       else forcingFactor.splice(0, 1);
@@ -239,25 +241,25 @@ export const AlchemyResource = mapGameDataToObject(
   GameDatabase.celestials.alchemy.resources,
   config => (config.isBaseResource
     ? new BasicAlchemyResourceState(config)
-    : new AdvancedAlchemyResourceState(config))
+    : new AdvancedAlchemyResourceState(config)),
 );
 
 export const AlchemyResources = {
   all: AlchemyResource.all,
-  base: AlchemyResource.all.filter(r => r.isBaseResource)
+  base: AlchemyResource.all.filter(r => r.isBaseResource),
 };
 
-export const AlchemyReactions = (function() {
+export const AlchemyReactions = (function () {
   // For convenience and readability, stuff is named differently in GameDatabase
   function mapReagents(resource) {
     return resource.config.reagents
       .map(r => ({
         resource: AlchemyResources.all.find(x => x.id === r.resource),
-        cost: r.amount
+        cost: r.amount,
       }));
   }
   return {
     all: AlchemyResources.all
-      .map(r => (r.isBaseResource ? null : new AlchemyReaction(r, mapReagents(r))))
+      .map(r => (r.isBaseResource ? null : new AlchemyReaction(r, mapReagents(r)))),
   };
 }());

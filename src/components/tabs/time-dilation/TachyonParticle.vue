@@ -6,12 +6,12 @@ export default {
   props: {
     bounds: {
       type: Object,
-      required: true
+      required: true,
     },
     isBlob: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -31,7 +31,7 @@ export default {
       const bounds = this.bounds;
       const start = {
         x: Math.random() * bounds.x,
-        y: Math.random() * bounds.y
+        y: Math.random() * bounds.y,
       };
       const direction = randomUnitVector();
       const blobSlowdown = this.isBlob ? 0.5 : 0;
@@ -41,7 +41,7 @@ export default {
       const intersectionLength = intersect(start, direction, { x: 0, y: 0 }, bounds);
       const intersection = {
         x: start.x + direction.x * intersectionLength,
-        y: start.y + direction.y * intersectionLength
+        y: start.y + direction.y * intersectionLength,
       };
       const duration = Math.max(intersectionLength / speed, 1);
 
@@ -60,14 +60,14 @@ export default {
         const azimuth = Math.random() * 2 * Math.PI;
         return {
           x: Math.cos(azimuth),
-          y: Math.sin(azimuth)
+          y: Math.sin(azimuth),
         };
       }
-      // eslint-disable-next-line max-params
+
       function intersect(rayStart, rayUnit, rectAA, rectBB) {
         const dirfrac = {
           x: 1 / rayUnit.x,
-          y: 1 / rayUnit.y
+          y: 1 / rayUnit.y,
         };
         const t1 = (rectAA.x - rayStart.x) * dirfrac.x;
         const t2 = (rectBB.x - rayStart.x) * dirfrac.x;
@@ -75,8 +75,8 @@ export default {
         const t4 = (rectBB.y - rayStart.y) * dirfrac.y;
         return Math.min(Math.max(t1, t2), Math.max(t3, t4));
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

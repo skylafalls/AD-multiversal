@@ -1,6 +1,6 @@
 const formatCost = c => format(c, 2);
 
-const rebuyable = config => {
+const rebuyable = (config) => {
   const { id, description, cost, effect, formatEffect, currency, currencyLabel } = config;
   return {
     id,
@@ -10,7 +10,7 @@ const rebuyable = config => {
     effect: (x = player.celestials.pelle.rebuyables[id]) => effect(x),
     formatEffect,
     currency,
-    currencyLabel
+    currencyLabel,
   };
 };
 
@@ -22,7 +22,7 @@ export const pelleGalaxyGeneratorUpgrades = {
     effect: x => x.mul(2),
     formatEffect: x => `${format(x, 2, 2)}/s`,
     currency: () => Currency.galaxyGeneratorGalaxies,
-    currencyLabel: "Galaxy"
+    currencyLabel: "Galaxy",
   }),
   multiplicative: rebuyable({
     id: "galaxyGeneratorMultiplicative",
@@ -31,7 +31,7 @@ export const pelleGalaxyGeneratorUpgrades = {
     effect: x => Decimal.pow(2.5, x),
     formatEffect: x => formatX(x, 2, 1),
     currency: () => Currency.galaxyGeneratorGalaxies,
-    currencyLabel: "Galaxy"
+    currencyLabel: "Galaxy",
   }),
   antimatterMult: rebuyable({
     id: "galaxyGeneratorAntimatterMult",
@@ -40,7 +40,7 @@ export const pelleGalaxyGeneratorUpgrades = {
     effect: x => Decimal.pow(2, x),
     formatEffect: x => formatX(x, 2),
     currency: () => Currency.antimatter,
-    currencyLabel: "Antimatter"
+    currencyLabel: "Antimatter",
   }),
   IPMult: rebuyable({
     id: "galaxyGeneratorIPMult",
@@ -49,7 +49,7 @@ export const pelleGalaxyGeneratorUpgrades = {
     effect: x => Decimal.pow(2, x),
     formatEffect: x => formatX(x, 2),
     currency: () => Currency.infinityPoints,
-    currencyLabel: "Infinity Point"
+    currencyLabel: "Infinity Point",
   }),
   EPMult: rebuyable({
     id: "galaxyGeneratorEPMult",
@@ -58,6 +58,6 @@ export const pelleGalaxyGeneratorUpgrades = {
     effect: x => Decimal.pow(2, x),
     formatEffect: x => formatX(x, 2),
     currency: () => Currency.eternityPoints,
-    currencyLabel: "Eternity Point"
+    currencyLabel: "Eternity Point",
   }),
 };

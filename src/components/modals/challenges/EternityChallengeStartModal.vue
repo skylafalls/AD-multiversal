@@ -4,13 +4,13 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "EternityChallengeStartModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   props: {
     id: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     challenge() {
@@ -43,7 +43,7 @@ export default {
         conditionOfChallenge = conditionOfChallenge();
       }
       return `Inside this Eternity Challenge, ${conditionOfChallenge}`;
-    }
+    },
   },
   created() {
     this.on$(GAME_EVENT.ETERNITY_RESET_AFTER, this.emitClose);
@@ -53,7 +53,7 @@ export default {
     handleYesClick() {
       this.challenge.start(true);
       EventHub.ui.offAll(this);
-    }
+    },
   },
 };
 </script>

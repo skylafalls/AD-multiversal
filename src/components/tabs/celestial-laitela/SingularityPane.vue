@@ -25,7 +25,8 @@ export default {
   computed: {
     isDoomed: () => Pelle.isDoomed,
     singularityFormText() {
-      const formText = this.singularitiesGained.eq(1) ? "all Dark Energy into a Singularity"
+      const formText = this.singularitiesGained.eq(1)
+        ? "all Dark Energy into a Singularity"
         : `all Dark Energy into ${quantify("Singularity", this.singularitiesGained, 2)}`;
       if (this.canPerformSingularity) {
         return `Condense ${formText}`;
@@ -70,7 +71,7 @@ export default {
       return this.singularityCapIncreases.gte(50)
         ? "You cannot increase the cap any further!"
         : null;
-    }
+    },
   },
   methods: {
     update() {
@@ -114,8 +115,8 @@ export default {
         "o-pelle-disabled": this.isDoomed,
         "o-pelle-disabled-pointer": this.isDoomed,
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

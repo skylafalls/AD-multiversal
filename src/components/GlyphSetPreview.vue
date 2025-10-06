@@ -8,63 +8,63 @@ export default {
   name: "GlyphSetPreview",
   components: {
     GlyphComponent,
-    GlyphSetName
+    GlyphSetName,
   },
   props: {
     text: {
       type: String,
       required: false,
-      default: ""
+      default: "",
     },
     textHidden: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     glyphs: {
       type: Array,
-      required: true
+      required: true,
     },
     ignoreModifiedLevel: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     flipTooltip: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     isInModal: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     showName: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     forceNameColor: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     showSacrifice: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     noneText: {
       type: String,
       required: false,
-      default: "(No Glyphs equipped)"
+      default: "(No Glyphs equipped)",
     },
     sort: {
       type: Boolean,
       required: false,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
@@ -84,7 +84,7 @@ export default {
   watch: {
     glyphs() {
       this.$recompute("orderedGlyphs");
-    }
+    },
   },
   methods: {
     update() {
@@ -108,8 +108,8 @@ export default {
     // Necessary to force a re-render for the set name if the set itself changes
     glyphIds() {
       return this.glyphs.map(x => x.id).reduce(Number.sumReducer);
-    }
-  }
+    },
+  },
 };
 </script>
 

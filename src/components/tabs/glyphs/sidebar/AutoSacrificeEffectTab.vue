@@ -4,13 +4,13 @@ import SelectedEffectToggle from "./SelectedEffectToggle";
 export default {
   name: "AutoSacrificeEffectTab",
   components: {
-    SelectedEffectToggle
+    SelectedEffectToggle,
   },
   props: {
     glyphType: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -30,14 +30,14 @@ export default {
     descStyle() {
       return {
         "color": GlyphAppearanceHandler.getBorderColor(this.glyphType),
-        "border-color": this.typeConfig.color
+        "border-color": this.typeConfig.color,
       };
     },
     questionmarkTooltip() {
       return `Glyph score is rarity, minus ${formatInt(200)} for every missing effect.
         Glyphs with less than the specified rarity are sacrificed. Additional effects
         beyond ones specified will not increase Glyph score.`;
-    }
+    },
   },
   methods: {
     update() {
@@ -48,8 +48,8 @@ export default {
       if (!isNaN(inputValue)) {
         this.autoSacrificeSettings.effectCount = Math.clamp(inputValue, 0, 8);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

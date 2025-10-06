@@ -20,7 +20,7 @@ export const AutomatorPanels = {
   DATA_TRANSFER: 4,
   CONSTANTS: 5,
   TEMPLATES: 6,
-  BLOCKS: 7
+  BLOCKS: 7,
 };
 
 export default {
@@ -49,7 +49,7 @@ export default {
       runningScriptID: 0,
       totalChars: 0,
       scriptCount: 0,
-      canMakeNewScript: true
+      canMakeNewScript: true,
     };
   },
   computed: {
@@ -60,7 +60,7 @@ export default {
       set(value) {
         this.$viewModel.tabs.reality.automator.fullScreen = value;
         AutomatorData.isEditorFullscreen = value;
-      }
+      },
     },
     fullScreenIconClass() {
       return this.fullScreen ? "fa-compress-arrows-alt" : "fa-expand-arrows-alt";
@@ -83,7 +83,7 @@ export default {
       set(value) {
         this.$viewModel.tabs.reality.automator.editorScriptID = value;
         if (AutomatorTextUI.editor) AutomatorTextUI.editor.performLint();
-      }
+      },
     },
     currentScriptContent() {
       return player.reality.automator.scripts[this.currentScriptID].content;
@@ -93,7 +93,7 @@ export default {
     },
     errorStyle() {
       return {
-        "background-color": this.errorCount === 0 ? "" : "red"
+        "background-color": this.errorCount === 0 ? "" : "red",
       };
     },
     maxTotalChars() {
@@ -117,7 +117,7 @@ export default {
   watch: {
     infoPaneID(newValue) {
       player.reality.automator.currentInfoPane = newValue;
-    }
+    },
   },
   created() {
     this.on$(GAME_EVENT.GAME_LOAD, () => this.onGameLoad());
@@ -232,8 +232,8 @@ export default {
       return {
         "c-automator__button--active": this.infoPaneID === id,
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

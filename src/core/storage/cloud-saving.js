@@ -1,10 +1,9 @@
-
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
 } from "firebase/auth";
 import { get, getDatabase, ref, set } from "firebase/database";
 import { initializeApp } from "firebase/app";
@@ -42,7 +41,6 @@ export const Cloud = {
     return this.user !== null;
   },
 
-
   async loginWithSteam(accountId, staticAccountId, screenName) {
     if (!this.isAvailable) {
       return;
@@ -62,7 +60,6 @@ export const Cloud = {
       .catch(x => error = x);
 
     if (error !== undefined) {
-      // eslint-disable-next-line no-console
       console.log(`Firebase Login Error: ${error}`);
       return;
     }
@@ -116,8 +113,8 @@ export const Cloud = {
       // Bring up the modal if cloud saving will overwrite a cloud save which is older or possibly farther
       const hasBoth = cloudSave && localSave;
       // NOTE THIS CHECK IS INTENTIONALLY DIFFERENT FROM THE LOAD CHECK
-      const hasConflict = hasBoth && saveComparison && (saveComparison.older === -1 || saveComparison.farther === -1 ||
-        saveComparison.differentName || saveComparison.hashMismatch);
+      const hasConflict = hasBoth && saveComparison && (saveComparison.older === -1 || saveComparison.farther === -1
+        || saveComparison.differentName || saveComparison.hashMismatch);
       if (forceModal || (hasConflict && player.options.showCloudModal)) {
         Modal.addCloudConflict(saveId, saveComparison, cloudSave, localSave, overwriteAndSendCloudSave);
         Modal.cloudSaveConflict.show();
@@ -159,7 +156,7 @@ export const Cloud = {
 
     const save = await this.load();
     if (save === null) {
-      if (player.options.hideGoogleName) GameUI.notify.info(`No cloud save for current Google Account`);
+      if (player.options.hideGoogleName) GameUI.notify.info("No cloud save for current Google Account");
       else GameUI.notify.info(`No cloud save for user ${this.user.displayName}`);
     } else {
       const cloudSave = save;
@@ -167,12 +164,11 @@ export const Cloud = {
       const localSave = GameStorage.saves[saveId];
       const saveComparison = this.compareSaves(cloudSave, localSave);
 
-      // eslint-disable-next-line no-loop-func
       const overwriteLocalSave = () => {
         GameStorage.overwriteSlot(saveId, cloudSave);
 
         if (STEAM) {
-          GameUI.notify.info(`Cloud save loaded`);
+          GameUI.notify.info("Cloud save loaded");
           return;
         }
 
@@ -189,8 +185,8 @@ export const Cloud = {
 
       // Bring up the modal if cloud loading will overwrite a local save which is older or possibly farther
       const hasBoth = cloudSave && localSave;
-      const hasConflict = hasBoth && (saveComparison.older === 1 || saveComparison.farther !== -1 ||
-        saveComparison.differentName);
+      const hasConflict = hasBoth && (saveComparison.older === 1 || saveComparison.farther !== -1
+        || saveComparison.differentName);
       if (hasConflict) {
         Modal.addCloudConflict(saveId, saveComparison, cloudSave, localSave, overwriteLocalSave);
         Modal.cloudLoadConflict.show();
@@ -254,7 +250,7 @@ export const Cloud = {
       return;
     }
 
-    getAuth().onAuthStateChanged(user => {
+    getAuth().onAuthStateChanged((user) => {
       if (user) {
         this.user = {
           id: user.uid,

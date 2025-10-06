@@ -22,7 +22,7 @@ export class GameMechanicState extends Effect {
         }
         Object.defineProperty(effect, "isEffectActive", {
           configurable: false,
-          get: () => this.isEffectActive
+          get: () => this.isEffectActive,
         });
         this.effects[key] = effect;
       }

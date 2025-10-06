@@ -22,10 +22,10 @@ export default {
   },
   computed: {
     statusText() {
-      if (this.isComplete) return `<span style="color: var(--color-good)">Finished!</span>`;
+      if (this.isComplete) return "<span style=\"color: var(--color-good)\">Finished!</span>";
       return this.hasStarted
-        ? `<span style="color: var(--color-good)">Running!</span>`
-        : `<span style="color: var(--color-bad)">Not Started Yet</span>`;
+        ? "<span style=\"color: var(--color-good)\">Running!</span>"
+        : "<span style=\"color: var(--color-bad)\">Not Started Yet</span>";
     },
     segmentText() {
       return this.isSegmented ? "Segmented Speedrun (imported save)" : "Single-segment Speedrun (no save import)";
@@ -35,8 +35,8 @@ export default {
     },
     offlineText() {
       const stateText = this.offlineProgress
-        ? `<span style="color: var(--color-good)">Enabled</span>`
-        : `<span style="color: var(--color-bad)">Disabled</span>`;
+        ? "<span style=\"color: var(--color-good)\">Enabled</span>"
+        : "<span style=\"color: var(--color-bad)\">Disabled</span>";
       const fractionText = this.offlineFraction === 0
         ? "(No offline time used)"
         : `(${formatPercents(this.offlineFraction, 2)} time spent offline)`;
@@ -46,7 +46,7 @@ export default {
       return this.isCollapsed
         ? "fas fa-expand-arrows-alt"
         : "fas fa-compress-arrows-alt";
-    }
+    },
   },
   methods: {
     update() {
@@ -81,7 +81,7 @@ export default {
       Modal.changeName.show();
     },
     collapseText() {
-      return this.isCollapsed ? "Expand" : `Click to collapse Speedrun info`;
+      return this.isCollapsed ? "Expand" : "Click to collapse Speedrun info";
     },
     toggleCollapse() {
       player.speedrun.hideInfo = !this.isCollapsed;
@@ -89,7 +89,7 @@ export default {
     openSeedModal() {
       if (!this.canModifySeed) return;
       Modal.modifySeed.show();
-    }
+    },
   },
 };
 </script>

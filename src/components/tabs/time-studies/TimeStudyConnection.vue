@@ -4,13 +4,13 @@ export default {
   props: {
     setup: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       isOverridden: false,
-      isBought: false
+      isBought: false,
     };
   },
   computed: {
@@ -60,7 +60,7 @@ export default {
         classObject[pathClass] = true;
       }
       return classObject;
-    }
+    },
   },
   methods: {
     update() {
@@ -69,8 +69,8 @@ export default {
     },
     percents(value) {
       return `${value * 100}%`;
-    }
-  }
+    },
+  },
 };
 
 export class TimeStudyConnectionSetup {

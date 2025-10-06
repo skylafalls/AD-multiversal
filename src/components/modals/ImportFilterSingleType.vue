@@ -13,7 +13,7 @@ export default {
     newSettings: {
       type: Object,
       required: true,
-    }
+    },
   },
   computed: {
     settingsChanged() {
@@ -47,7 +47,7 @@ export default {
         });
       }
       return changes;
-    }
+    },
   },
   methods: {
     changedValue(oldVal, newVal, applyFn) {
@@ -79,7 +79,7 @@ export default {
     },
     getEffectDesc(effectEntry) {
       return GlyphEffects.all.find(e => e.bitmaskIndex === effectEntry.bitmaskIndex && e.isGenerated).genericDesc;
-    }
+    },
   },
 };
 </script>

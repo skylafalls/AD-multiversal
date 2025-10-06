@@ -65,7 +65,7 @@ export class DilationTimeStudyState extends TimeStudyState {
 
 DilationTimeStudyState.studies = mapGameData(
   GameDatabase.eternity.timeStudies.dilation,
-  config => new DilationTimeStudyState(config)
+  config => new DilationTimeStudyState(config),
 );
 
 /**
@@ -77,7 +77,7 @@ TimeStudy.dilation = DilationTimeStudyState.studies[1];
  * @param {number} tier
  * @returns {DilationTimeStudyState}
  */
-TimeStudy.timeDimension = function(tier) {
+TimeStudy.timeDimension = function (tier) {
   return DilationTimeStudyState.studies[tier - 3];
 };
 
@@ -86,6 +86,6 @@ TimeStudy.timeDimension = function(tier) {
  */
 TimeStudy.reality = DilationTimeStudyState.studies[6];
 
-TimeStudy.boughtDilationTS = function() {
+TimeStudy.boughtDilationTS = function () {
   return player.dilation.studies.map(id => DilationTimeStudyState.studies[id]);
 };

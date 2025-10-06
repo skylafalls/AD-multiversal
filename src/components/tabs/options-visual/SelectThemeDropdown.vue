@@ -3,19 +3,19 @@ export default {
   name: "SelectThemeDropdown",
   data() {
     return {
-      availableThemeNames: []
+      availableThemeNames: [],
     };
   },
   computed: {
     themes() {
       return this.availableThemeNames.map(name => Themes.find(name));
-    }
+    },
   },
   methods: {
     update() {
       this.availableThemeNames = Themes.available().map(t => t.name);
-    }
-  }
+    },
+  },
 };
 </script>
 

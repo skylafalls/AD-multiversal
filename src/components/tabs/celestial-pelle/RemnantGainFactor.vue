@@ -4,31 +4,31 @@ import ExpandingControlBox from "@/components/ExpandingControlBox";
 export default {
   name: "RemnantGainFactor",
   components: {
-    ExpandingControlBox
+    ExpandingControlBox,
   },
   props: {
     hide: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       best: {
         am: new Decimal(0),
         ip: new Decimal(0),
-        ep: new Decimal(0)
+        ep: new Decimal(0),
       },
       dilationMult: [1, 1, 1],
       remnants: new Decimal(0),
-      remnantsGain: new Decimal(0)
+      remnantsGain: new Decimal(0),
     };
   },
   computed: {
     opacity() {
       return Number(!this.hide);
-    }
+    },
   },
   methods: {
     update() {
@@ -38,8 +38,8 @@ export default {
       this.dilationMult = PelleStrikes.dilation.hasStrike ? [500, 10, 5] : [1, 1, 1];
       this.remnants.copyFrom(Pelle.cel.remnants);
       this.remnantsGain.copyFrom(Pelle.remnantsGain);
-    }
-  }
+    },
+  },
 };
 </script>
 

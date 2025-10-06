@@ -24,7 +24,6 @@ function getGlyphTypes() {
 
 export const generatedTypes = Object.keys(getGlyphTypes());
 
-// eslint-disable-next-line no-unused-vars
 export const GlyphEffectOrder = orderedEffectList.mapToObject(e => e, (e, idx) => idx);
 
 export function rarityToStrength(x) {
@@ -260,7 +259,7 @@ export const Glyphs = {
           glyph,
           // Flatten glyph qualities, with 10% rarity, 500 levels, and an extra effect all being equal value. This
           // is used to sort the options by some rough measure of distance from the target glyph
-          gap: str.add(lvl).add(eff / 10)
+          gap: str.add(lvl).add(eff / 10),
         });
       }
     }
@@ -562,13 +561,13 @@ export const Glyphs = {
       return false;
     }
     const toCompare = (inventoryIn ?? this.inventory).concat(this.active)
-      .filter(g => g !== null &&
-        g.type === glyph.type &&
-        g.id !== glyph.id &&
-        (g.level.gte(glyph.level) || g.strength.gte(glyph.strength)) &&
-        // eslint-disable-next-line eqeqeq
-        (glyph.effects.every(el => g.effects.includes(el)))
-      )
+      .filter(g => g !== null
+        && g.type === glyph.type
+        && g.id !== glyph.id
+        && (g.level.gte(glyph.level) || g.strength.gte(glyph.strength))
+
+        && (glyph.effects.every(el => g.effects.includes(el))),
+      );
     let compareThreshold = ["effarig", "reality"].includes(glyph.type) ? 1 : 5;
     compareThreshold = Math.clampMax(compareThreshold, threshold);
     if (toCompare.length < compareThreshold) return false;
@@ -590,8 +589,8 @@ export const Glyphs = {
     for (let inventoryIndex = this.totalSlots - 1; inventoryIndex >= this.protectedSlots; --inventoryIndex) {
       const glyph = (inventoryCopy ?? this.inventory)[inventoryIndex];
       // Never clean companion, and only clean cursed if we choose to sacrifice all
-      if (glyph === null || ["companion"].includes(glyph.type) ||
-      (glyph.type === "cursed" && threshold !== 0)) continue;
+      if (glyph === null || ["companion"].includes(glyph.type)
+        || (glyph.type === "cursed" && threshold !== 0)) continue;
       // Don't auto-clean individually customized glyphs (eg. music glyphs) unless it's harsh or delete all
       const isCustomGlyph = glyph.color !== undefined || glyph.symbol !== undefined;
       if (isCustomGlyph && !isHarsh) continue;
@@ -612,14 +611,14 @@ export const Glyphs = {
     return this.inventory.map(g => (g === null
       ? null
       : {
-        id: g.id,
-        type: g.type,
-        level: g.level,
-        strength: g.strength,
-        effects: g.effects,
-        color: g.color,
-        symbol: g.symbol
-      }));
+          id: g.id,
+          type: g.type,
+          level: g.level,
+          strength: g.strength,
+          effects: g.effects,
+          color: g.color,
+          symbol: g.symbol,
+        }));
   },
   harshAutoClean() {
     this.autoClean(1);
@@ -653,7 +652,7 @@ export const Glyphs = {
       LEVEL: 1,
       POWER: 2,
       EFFECT: 3,
-      SCORE: 4
+      SCORE: 4,
     };
     switch (player.reality.autoSort) {
       case AUTO_SORT_MODE.NONE: {
@@ -755,11 +754,12 @@ export const Glyphs = {
   },
   copyForRecords(glyphList) {
     // Sorting by effect ensures consistent ordering by type, based on how the effect bitmasks are structured
-    // eslint-disable-next-line max-len
+
     function sort(val) {
       // AQc console.log(val);
-      // eslint-disable-next-line no-negated-condition
-      return !(Array.isArray(val.effects)) ? val.effects
+
+      return !(Array.isArray(val.effects))
+        ? val.effects
         : val.effects.toSorted((c, d) => getIntIDFromEffect(c) - getIntIDFromEffect(d))[0];
     }
     const getIntIDFromEffect = value => GlyphEffects.all.filter(e => e.id === value)[0].intID;
@@ -769,8 +769,8 @@ export const Glyphs = {
       strength: g.strength,
       effects: g.effects,
       color: g.color,
-      symbol: g.symbol, }));
-    // eslint-disable-next-line max-len
+      symbol: g.symbol }));
+
     return newList.toSorted((a, b) => sort(b) - sort(a));
   },
   // Normal glyph count minus 3 for each cursed glyph, uses 4 instead of 3 in the calculation because cursed glyphs
@@ -815,7 +815,7 @@ export const Glyphs = {
     let hash = DC.D1;
     for (const glyph of glyphSet) {
       const singleGlyphHash = glyph.level.pow(2).mul(glyph.strength.pow(4))
-        // eslint-disable-next-line no-loop-func
+
         .mul(glyph.effects.map(x => GlyphEffects[x].intID).max()).mul(glyph.type.codePointAt(0));
       hash = hash.mul(singleGlyphHash);
     }
@@ -834,7 +834,7 @@ export const Glyphs = {
       this.addToInventory(GlyphGenerator.cursedGlyph());
       GameUI.notify.error("Created a Cursed Glyph");
     }
-  }
+  },
 };
 
 export function recalculateAllGlyphs() {
@@ -858,7 +858,8 @@ export function calculateGlyph(glyph) {
     if (glyph.rawLevel === undefined) {
       // Only correct below the second round of instability, but it only matters for glyphs produced before
       // this was merged, so it's not a big deal.
-      glyph.rawLevel = glyph.level.lt(1000) ? glyph.level
+      glyph.rawLevel = glyph.level.lt(1000)
+        ? glyph.level
         : (Decimal.pow(glyph.level.times(0.004).min(3), 2) - 1).times(125).add(1000);
     }
     // Used to randomly generate strength in this case; I don't think we actually care.

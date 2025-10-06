@@ -25,8 +25,8 @@ export default {
       return this.conflict.saveComparison.hashMismatch;
     },
     suggestionText() {
-      const goodStyle = `style="color: var(--color-good)"`;
-      const badStyle = `style="color: var(--color-infinity)"`;
+      const goodStyle = "style=\"color: var(--color-good)\"";
+      const badStyle = "style=\"color: var(--color-infinity)\"";
 
       const suggestions = ["Saving to the Cloud "];
       const cloudProg = this.conflict.cloud.compositeProgress, localProg = this.conflict.local.compositeProgress;
@@ -44,12 +44,12 @@ export default {
       return suggestions.join("");
     },
     noOverwriteInfo() {
-      return `Save conflicts will keep occurring without overwriting.`;
+      return "Save conflicts will keep occurring without overwriting.";
     },
     overwriteInfo() {
       return `If another device is also saving to the cloud on this Google Account at the same time,
         this modal may appear repeatedly.`;
-    }
+    },
   },
   methods: {
     doNotSave() {
@@ -59,7 +59,7 @@ export default {
     overwrite() {
       this.conflict.onAccept?.();
       EventHub.dispatch(GAME_EVENT.CLOSE_MODAL);
-    }
+    },
   },
 };
 </script>

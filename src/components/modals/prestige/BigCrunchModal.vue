@@ -4,7 +4,7 @@ import ResetModal from "@/components/modals/prestige/ResetModal";
 export default {
   name: "BigCrunchModal",
   components: {
-    ResetModal
+    ResetModal,
   },
   data() {
     return {
@@ -12,7 +12,7 @@ export default {
       gainedInfinityPoints: new Decimal(),
       startingBoosts: 0,
       startingAM: new Decimal(10),
-      willStartWithGalaxy: false
+      willStartWithGalaxy: false,
     };
   },
   computed: {
@@ -20,7 +20,7 @@ export default {
       return !PlayerProgress.infinityUnlocked();
     },
     message() {
-      const info = this.isFirstInfinity ? this.firstInfinityInfo : ``;
+      const info = this.isFirstInfinity ? this.firstInfinityInfo : "";
       return `Upon Infinity, all Dimensions, Dimension Boosts, and Antimatter Galaxies are reset. ${info}`;
     },
     firstInfinityInfo() {
@@ -38,7 +38,7 @@ export default {
       if (this.willStartWithGalaxy) gainedResources.push(`${quantify("Galaxy", 1)}`);
 
       return `You will start your next Infinity with ${makeEnumeration(gainedResources)}.`;
-    }
+    },
   },
   methods: {
     update() {
@@ -56,7 +56,7 @@ export default {
           you would like to disable it, there is a setting to do so in the Options tab. This can be done for any
           visual animation effect in the game after seeing it for the first time.`, {}, 3), 2000);
       }
-    }
+    },
   },
 };
 </script>

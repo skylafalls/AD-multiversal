@@ -8,17 +8,17 @@ export default {
   name: "NormalAchievement",
   components: {
     EffectDisplay,
-    HintText
+    HintText,
   },
   props: {
     achievement: {
       type: Object,
-      required: true
+      required: true,
     },
     isObscured: {
       type: Boolean,
-      required: false
-    }
+      required: false,
+    },
   },
   data() {
     return {
@@ -45,7 +45,7 @@ export default {
     },
     styleObject() {
       return {
-        "background-position": `-${(this.achievement.column - 1) * 104}px -${(this.achievement.row - 1) * 104}px`
+        "background-position": `-${(this.achievement.column - 1) * 104}px -${(this.achievement.row - 1) * 104}px`,
       };
     },
     classObject() {
@@ -104,7 +104,7 @@ export default {
       return this.achievementTime === 0
         ? "Given at Speedrun start"
         : `Achieved after ${TimeSpan.fromMilliseconds(new Decimal(this.achievementTime)).toStringShort()}`;
-    }
+    },
   },
   beforeDestroy() {
     clearTimeout(this.mouseOverInterval);
@@ -168,8 +168,8 @@ export default {
         else modified += raw[i];
       }
       return modified;
-    }
-  }
+    },
+  },
 };
 </script>
 

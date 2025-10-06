@@ -4,12 +4,12 @@ import AutobuyerToggleLabel from "./AutobuyerToggleLabel";
 export default {
   name: "AutobuyerSingleToggleLabel",
   components: {
-    AutobuyerToggleLabel
+    AutobuyerToggleLabel,
   },
   props: {
     autobuyer: {
       type: Object,
-      required: true
+      required: true,
     },
     parentDisabled: Boolean,
   },
@@ -32,7 +32,7 @@ export default {
     toggle() {
       this.autobuyer.toggle();
     },
-  }
+  },
 };
 </script>
 

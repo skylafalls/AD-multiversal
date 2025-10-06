@@ -11,11 +11,11 @@ export default {
   props: {
     group: {
       type: Number,
-      required: true
+      required: true,
     },
     name: {
       type: String,
-      required: true
+      required: true,
     },
   },
   data() {
@@ -30,7 +30,7 @@ export default {
     dropDownIconClass() {
       return this.collapsed ? "far fa-plus-square" : "far fa-minus-square";
     },
-  }
+  },
 };
 </script>
 

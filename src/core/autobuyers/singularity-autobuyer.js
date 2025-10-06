@@ -6,7 +6,7 @@ export class SingularityAutobuyerState extends AutobuyerState {
   }
 
   get name() {
-    return `Singularity`;
+    return "Singularity";
   }
 
   get isUnlocked() {

@@ -4,13 +4,13 @@ import ChallengeRecordsList from "./ChallengeRecordsList";
 export default {
   name: "ChallengeRecordsTab",
   components: {
-    ChallengeRecordsList
+    ChallengeRecordsList,
   },
   data() {
     return {
       infinityChallengesUnlocked: false,
       normalChallenges: [],
-      infinityChallenges: []
+      infinityChallenges: [],
     };
   },
   methods: {
@@ -35,12 +35,12 @@ export default {
       return timesi;
     },
     update() {
-      this.infinityChallengesUnlocked = PlayerProgress.infinityChallengeCompleted() ||
-        PlayerProgress.eternityUnlocked();
+      this.infinityChallengesUnlocked = PlayerProgress.infinityChallengeCompleted()
+        || PlayerProgress.eternityUnlocked();
       this.normalChallenges = this.getNormalChallengeTimes();
       this.infinityChallenges = this.getInfinityChallengeTimes();
-    }
-  }
+    },
+  },
 };
 </script>
 

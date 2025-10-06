@@ -155,13 +155,13 @@ export function timeDimensionCommonMultiplier() {
       Replicanti.areUnlocked && Replicanti.amount.gt(1) ? DilationUpgrade.tdMultReplicanti : null,
       Pelle.isDoomed ? null : RealityUpgrade(22),
       AlchemyResource.dimensionality,
-      PelleRifts.chaos
+      PelleRifts.chaos,
     );
 
   if (EternityChallenge(9).isRunning) {
     mult = mult.times(
       Decimal.pow(
-        // eslint-disable-next-line max-len
+
         Decimal.clampMin(Currency.infinityPower.value.max(1).pow(InfinityDimensions.powerConversionRate.div(7)).log2(), 1),
         4)
         .clampMin(1));
@@ -183,7 +183,7 @@ class TimeDimensionState extends DimensionState {
     this._baseCost = BASE_COSTS[tier];
     const COST_MULTS = [null, 3, 9, 27, 81, 24300, 72900, 218700, 656100].map(e => (e ? new Decimal(e) : null));
     this._costMultiplier = COST_MULTS[tier];
-    // eslint-disable-next-line max-len
+
     const E6000_SCALING_AMOUNTS = [null, 7322, 4627, 3382, 2665, 833, 689, 562, 456].map(e => (e ? new Decimal(e) : null));
     this._e6000ScalingAmount = E6000_SCALING_AMOUNTS[tier];
     const COST_THRESHOLDS = [DC.NUMMAX, DC.E1300, DC.E6000];
@@ -196,7 +196,9 @@ class TimeDimensionState extends DimensionState {
   }
 
   /** @param {Decimal} value */
-  set cost(value) { this.data.cost = value; }
+  set cost(value) {
+    this.data.cost = value;
+  }
 
   nextCost(bought) {
     if (this._tier > 4 && bought.lt(this.e6000ScalingAmount)) {
@@ -245,7 +247,7 @@ class TimeDimensionState extends DimensionState {
       .timesEffectsOf(
         tier === 1 ? TimeStudy(11) : null,
         tier === 3 ? TimeStudy(73) : null,
-        tier === 4 ? TimeStudy(227) : null
+        tier === 4 ? TimeStudy(227) : null,
       );
 
     const dim = TimeDimension(tier);
@@ -274,8 +276,8 @@ class TimeDimensionState extends DimensionState {
   }
 
   get productionPerSecond() {
-    if (EternityChallenge(1).isRunning || EternityChallenge(10).isRunning ||
-    (Laitela.isRunning && this.tier > Laitela.maxAllowedDimension)) {
+    if (EternityChallenge(1).isRunning || EternityChallenge(10).isRunning
+      || (Laitela.isRunning && this.tier > Laitela.maxAllowedDimension)) {
       return DC.D0;
     }
     if (EternityChallenge(11).isRunning) {
@@ -303,9 +305,9 @@ class TimeDimensionState extends DimensionState {
 
   get isProducing() {
     const tier = this.tier;
-    if (EternityChallenge(1).isRunning ||
-      EternityChallenge(10).isRunning ||
-      (Laitela.isRunning && tier > Laitela.maxAllowedDimension)) {
+    if (EternityChallenge(1).isRunning
+      || EternityChallenge(10).isRunning
+      || (Laitela.isRunning && tier > Laitela.maxAllowedDimension)) {
       return false;
     }
     return this.amount.gt(0);
@@ -334,8 +336,8 @@ class TimeDimensionState extends DimensionState {
   }
 
   get requirementReached() {
-    return this._tier < 5 ||
-      (TimeStudy.timeDimension(this._tier).isAffordable && TimeStudy.timeDimension(this._tier - 1).isBought);
+    return this._tier < 5
+      || (TimeStudy.timeDimension(this._tier).isAffordable && TimeStudy.timeDimension(this._tier - 1).isBought);
   }
 
   tryUnlock() {
@@ -372,10 +374,10 @@ export const TimeDimensions = {
       TimeDimension(1).produceCurrency(Currency.timeShards, diff);
     }
 
-    EternityChallenge(7).reward.applyEffect(production => {
+    EternityChallenge(7).reward.applyEffect((production) => {
       InfinityDimension(8).amount = InfinityDimension(8).amount.plus(production.times(diff.div(1000)));
     });
-  }
+  },
 };
 
 export function tryUnlockTimeDimensions() {

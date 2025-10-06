@@ -8,7 +8,7 @@ export default {
   components: {
     PrimaryButton,
     InfinityUpgradeButton,
-    IpMultiplierButton
+    IpMultiplierButton,
   },
   data() {
     return {
@@ -21,7 +21,7 @@ export default {
       ipMultHardCap: 0,
       eternityUnlocked: false,
       bottomRowUnlocked: false,
-      styleOfColumnBg: undefined
+      styleOfColumnBg: undefined,
     };
   },
   computed: {
@@ -31,26 +31,26 @@ export default {
           InfinityUpgrade.totalTimeMult,
           InfinityUpgrade.dim18mult,
           InfinityUpgrade.dim36mult,
-          InfinityUpgrade.resetBoost
+          InfinityUpgrade.resetBoost,
         ],
         [
           InfinityUpgrade.buy10Mult,
           InfinityUpgrade.dim27mult,
           InfinityUpgrade.dim45mult,
-          InfinityUpgrade.galaxyBoost
+          InfinityUpgrade.galaxyBoost,
         ],
         [
           InfinityUpgrade.thisInfinityTimeMult,
           InfinityUpgrade.unspentIPMult,
           InfinityUpgrade.dimboostMult,
-          InfinityUpgrade.ipGen
+          InfinityUpgrade.ipGen,
         ],
         [
           InfinityUpgrade.skipReset1,
           InfinityUpgrade.skipReset2,
           InfinityUpgrade.skipReset3,
-          InfinityUpgrade.skipResetGalaxy
-        ]
+          InfinityUpgrade.skipResetGalaxy,
+        ],
       ];
     },
     allColumnUpgrades() {
@@ -59,15 +59,15 @@ export default {
     disChargeClassObject() {
       return {
         "o-primary-btn--subtab-option": true,
-        "o-primary-btn--charged-respec-active": this.disCharge
+        "o-primary-btn--charged-respec-active": this.disCharge,
       };
     },
-    offlineIpUpgrade: () => InfinityUpgrade.ipOffline
+    offlineIpUpgrade: () => InfinityUpgrade.ipOffline,
   },
   watch: {
     disCharge(newValue) {
       player.celestials.ra.disCharge = newValue;
-    }
+    },
   },
   created() {
     this.on$(GAME_EVENT.INFINITY_UPGRADE_BOUGHT, () => this.setStyleOfColumnBg());
@@ -90,7 +90,7 @@ export default {
     },
     btnClassObject(column) {
       const classObject = {
-        "l-infinity-upgrade-grid__cell": true
+        "l-infinity-upgrade-grid__cell": true,
       };
       if (column > 0) {
         // Indexing starts from 0, while css classes start from 2 (and first column has default css class)
@@ -110,10 +110,10 @@ export default {
           ${this.getColumnColor(col[0])} 15%,
           ${this.getColumnColor(col[1])} 35% 40%,
           ${this.getColumnColor(col[2])} 60% 65%,
-          ${this.getColumnColor(col[3])} 85% 100%`
+          ${this.getColumnColor(col[3])} 85% 100%`,
       }));
     },
-  }
+  },
 };
 </script>
 

@@ -15,8 +15,8 @@ export default {
       initialized: false,
       bounds: {
         x: 0,
-        y: 0
-      }
+        y: 0,
+      },
     };
   },
   mounted() {
@@ -35,7 +35,7 @@ export default {
     updateSize() {
       this.bounds.x = document.documentElement.clientWidth;
       this.bounds.y = document.documentElement.clientHeight;
-    }
+    },
   },
 };
 </script>

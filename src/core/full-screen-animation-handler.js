@@ -12,5 +12,5 @@ export default {
     if (!this.isDisplaying) {
       this.displayForce(name, duration);
     }
-  }
+  },
 };

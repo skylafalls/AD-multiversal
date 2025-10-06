@@ -24,7 +24,7 @@ export const gamespeed = {
     isActive: () => PlayerProgress.seenAlteredSpeed(),
     dilationEffect: () => (Effarig.isRunning ? Effarig.multDilation : 1),
     isDilated: true,
-    overlay: ["Δ", `<i class="fas fa-clock" />`, `<i class="fas fa-circle" />`],
+    overlay: ["Δ", "<i class=\"fas fa-clock\" />", "<i class=\"fas fa-circle\" />"],
   },
   glyph: {
     name: "Equipped Glyphs",
@@ -97,5 +97,5 @@ export const gamespeed = {
     powValue: () => Math.clampMax(Time.thisRealityRealTime.totalMinutes / 10, 1),
     isActive: () => Laitela.isRunning,
     icon: MultiplierTabIcons.GENERIC_LAITELA,
-  }
+  },
 };

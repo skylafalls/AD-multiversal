@@ -4,8 +4,8 @@ export default {
   props: {
     tier: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -46,21 +46,21 @@ export default {
       return {
         "o-dark-matter-dimension-button": true,
         "o-dark-matter-dimension-button--available": this.canBuyInterval,
-        "o-dark-matter-dimension-button--ascend": this.isIntervalCapped
+        "o-dark-matter-dimension-button--ascend": this.isIntervalCapped,
       };
     },
     darkMatterClassObject() {
       return {
         "o-dark-matter-dimension-button": true,
         "o-dark-matter-dimension-button--available": this.hoverOverAscension || this.canBuyPowerDM,
-        "o-dark-matter-dimension-button--accent": this.hoverOverAscension
+        "o-dark-matter-dimension-button--accent": this.hoverOverAscension,
       };
     },
     darkEnergyClassObject() {
       return {
         "o-dark-matter-dimension-button": true,
         "o-dark-matter-dimension-button--available": this.hoverOverAscension || this.canBuyPowerDE,
-        "o-dark-matter-dimension-button--accent": this.hoverOverAscension
+        "o-dark-matter-dimension-button--accent": this.hoverOverAscension,
       };
     },
     intervalText() {
@@ -98,7 +98,7 @@ export default {
       return `Interval is capped at ${formatInt(DarkMatterDimension(this.tier).intervalPurchaseCap)}ms.
         Ascension multiplies interval by ${formatInt(this.intervalAscensionBump)},
         DM by ${formatInt(this.powerDMPerAscension)}, and DE by ${formatInt(POWER_DE_PER_ASCENSION)}.`;
-    }
+    },
   },
   methods: {
     update() {
@@ -152,8 +152,8 @@ export default {
     hoverState(state) {
       if (!this.isIntervalCapped) return;
       this.hoverOverAscension = state;
-    }
-  }
+    },
+  },
 };
 </script>
 

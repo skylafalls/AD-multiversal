@@ -18,11 +18,11 @@ export default {
       },
       set(entry) {
         this.entryId = entry.id;
-      }
+      },
     },
     entries() {
       return GameDatabase.changelog;
-    }
+    },
   },
   methods: {
     setShownEntry(tab) {
@@ -31,7 +31,7 @@ export default {
     },
     formatDate(date) {
       return date.map(n => (Math.log10(n) >= 2 ? n : `0${n}`.slice(-2))).join("-");
-    }
+    },
   },
 };
 </script>

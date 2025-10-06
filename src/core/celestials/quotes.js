@@ -28,7 +28,7 @@ export const Quote = {
   },
   get isHistoryOpen() {
     return ui.view.quotes.history !== undefined;
-  }
+  },
 };
 
 // Gives an array specifying proportions of celestials to blend together on the modal, as a function of time, to
@@ -117,8 +117,13 @@ class CelQuotes extends BitUpgradeState {
     this._lines = config.lines.map(line => new QuoteLine(line, this));
   }
 
-  get bits() { return player.celestials[this._celestial].quoteBits; }
-  set bits(value) { player.celestials[this._celestial].quoteBits = value; }
+  get bits() {
+    return player.celestials[this._celestial].quoteBits;
+  }
+
+  set bits(value) {
+    player.celestials[this._celestial].quoteBits = value;
+  }
 
   get requirement() {
     // If requirement is defined, it is always a function returning a boolean.
@@ -137,42 +142,46 @@ class CelQuotes extends BitUpgradeState {
     return this._lines.length;
   }
 
-  show() { this.unlock(); }
-  onUnlock() { this.present(); }
+  show() {
+    this.unlock();
+  }
+
+  onUnlock() {
+    this.present();
+  }
 
   present() {
     Quote.addToQueue(this);
   }
 }
 
-
 export const Quotes = {
   teresa: mapGameDataToObject(
     GameDatabase.celestials.quotes.teresa,
-    config => new CelQuotes(config, "teresa")
+    config => new CelQuotes(config, "teresa"),
   ),
   effarig: mapGameDataToObject(
     GameDatabase.celestials.quotes.effarig,
-    config => new CelQuotes(config, "effarig")
+    config => new CelQuotes(config, "effarig"),
   ),
   enslaved: mapGameDataToObject(
     GameDatabase.celestials.quotes.enslaved,
-    config => new CelQuotes(config, "enslaved")
+    config => new CelQuotes(config, "enslaved"),
   ),
   v: mapGameDataToObject(
     GameDatabase.celestials.quotes.v,
-    config => new CelQuotes(config, "v")
+    config => new CelQuotes(config, "v"),
   ),
   ra: mapGameDataToObject(
     GameDatabase.celestials.quotes.ra,
-    config => new CelQuotes(config, "ra")
+    config => new CelQuotes(config, "ra"),
   ),
   laitela: mapGameDataToObject(
     GameDatabase.celestials.quotes.laitela,
-    config => new CelQuotes(config, "laitela")
+    config => new CelQuotes(config, "laitela"),
   ),
   pelle: mapGameDataToObject(
     GameDatabase.celestials.quotes.pelle,
-    config => new CelQuotes(config, "pelle")
+    config => new CelQuotes(config, "pelle"),
   ),
 };

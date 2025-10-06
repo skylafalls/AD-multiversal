@@ -19,7 +19,7 @@ class AlchemyOrbitLayout {
       nodes.push({
         resource,
         x: this._radius * Math.sin(angle),
-        y: this._radius * Math.cos(angle)
+        y: this._radius * Math.cos(angle),
       });
       angle += step;
     }
@@ -34,7 +34,7 @@ export class AlchemyCircleLayout {
       new AlchemyOrbitLayout(2, 3),
       new AlchemyOrbitLayout(3, 2, Math.PI / 3),
       new AlchemyOrbitLayout(4, 1, -Math.PI / 6),
-      new AlchemyOrbitLayout(5, 0)
+      new AlchemyOrbitLayout(5, 0),
     ];
     const nodes = [];
     for (const orbitNodes of this.orbits.map(o => o.nodes)) {
@@ -42,7 +42,7 @@ export class AlchemyCircleLayout {
     }
     const size = Decimal.max(
       nodes.map(p => Math.abs(p.x)).max(),
-      nodes.map(p => Math.abs(p.y)).max()
+      nodes.map(p => Math.abs(p.y)).max(),
     ).toNumber() * 2;
     for (const node of nodes) {
       node.x = (node.x / size + 0.5) * 100;

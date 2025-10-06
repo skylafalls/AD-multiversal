@@ -22,7 +22,7 @@ export default {
     DimensionBoostAutobuyerBox,
     TickspeedAutobuyerBox,
     DimensionAutobuyerBox,
-    SimpleAutobuyersMultiBox
+    SimpleAutobuyersMultiBox,
   },
   data() {
     return {
@@ -40,7 +40,7 @@ export default {
     },
     gameTickLength() {
       return `${formatInt(player.options.updateRate)} ms`;
-    }
+    },
   },
   methods: {
     update() {
@@ -60,7 +60,7 @@ export default {
       this.hasInstant = ad.hasInstant;
       this.displayADAutobuyersIndividually = !ad.collapseDisplay;
     },
-  }
+  },
 };
 </script>
 

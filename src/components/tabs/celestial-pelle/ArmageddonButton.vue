@@ -5,8 +5,8 @@ export default {
     isHeader: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -26,9 +26,9 @@ export default {
         "l-armageddon-button": !this.isHeader,
         "l-reality-button": this.isHeader,
         "l-armageddon-button--header": this.isHeader,
-        "c-armageddon-button--unavailable": !this.canArmageddon
+        "c-armageddon-button--unavailable": !this.canArmageddon,
       };
-    }
+    },
   },
   methods: {
     update() {
@@ -42,8 +42,8 @@ export default {
 
       if (player.options.confirmations.armageddon) Modal.armageddon.show();
       else Pelle.armageddon(true);
-    }
-  }
+    },
+  },
 };
 </script>
 

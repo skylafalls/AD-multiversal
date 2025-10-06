@@ -4,7 +4,7 @@ export default {
   props: {
     currentScriptId: {
       type: [Number, String],
-      required: true
+      required: true,
     },
   },
   data() {
@@ -41,7 +41,7 @@ export default {
     },
     fullScreen() {
       this.$nextTick(() => this.UI.editor.refresh());
-    }
+    },
   },
   created() {
     AutomatorTextUI.initialize();
@@ -91,7 +91,7 @@ export default {
       if (`${this.currentScriptId}` === scriptID) this.markActiveLine(lineNumber);
       else this.unmarkActiveLine();
     },
-  }
+  },
 };
 
 export const AutomatorTextUI = {
@@ -107,11 +107,11 @@ export const AutomatorTextUI = {
     theme: "liquibyte",
     tabSize: 2,
     extraKeys: {
-      Tab: cm => cm.execCommand("indentMore"),
+      "Tab": cm => cm.execCommand("indentMore"),
       "Shift-Tab": cm => cm.execCommand("indentLess"),
     },
     autoCloseBrackets: true,
-    lineWrapping: true
+    lineWrapping: true,
   },
   initialize() {
     if (this.container) return;

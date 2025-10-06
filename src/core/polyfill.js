@@ -1,8 +1,5 @@
-/* eslint-disable no-inline-comments */
-/* eslint-disable line-comment-position */
-/* eslint-disable prefer-spread */
 if (!String.prototype.includes) {
-  String.prototype.includes = function(search, starting) {
+  String.prototype.includes = function (search, starting) {
     let start;
     if (typeof starting === "number") {
       start = starting;
@@ -12,21 +9,17 @@ if (!String.prototype.includes) {
 
     if (start + search.length > this.length) {
       return false;
-      // eslint-disable-next-line no-else-return
     }
-      return this.indexOf(search, start) !== -1;
-    
+    return this.indexOf(search, start) !== -1;
   };
 }
-
 
 if (!Array.prototype.includes) {
   Object.defineProperty(Array.prototype, "includes", {
     value(searchElement, fromIndex) {
-
       // 1. Let O be ? ToObject(this value).
       if (this === null) {
-        throw new TypeError('"this" is null or not defined');
+        throw new TypeError("\"this\" is null or not defined");
       }
 
       const o = Object(this);
@@ -67,24 +60,24 @@ if (!Array.prototype.includes) {
 
       // 8. Return false
       return false;
-    }
+    },
   });
 }
 
 if (!Math.log10) {
-  Math.log10 = Math.log10 || function(x) {
+  Math.log10 = Math.log10 || function (x) {
     return Math.log(x) * Math.LOG10E;
   };
 }
 
 if (!Math.log2) {
-  Math.log2 = Math.log2 || function(x) {
+  Math.log2 = Math.log2 || function (x) {
     return Math.log(x) * Math.LOG2E;
   };
 }
 
 if (window.NodeList && !NodeList.prototype.forEach) {
-  NodeList.prototype.forEach = function(callback, thisArgu) {
+  NodeList.prototype.forEach = function (callback, thisArgu) {
     thisArg = thisArgu || window;
     for (let i = 0; i < this.length; i++) {
       callback.call(thisArg, this[i], i, this);
@@ -97,7 +90,7 @@ if (!Array.prototype.find) {
     value(predicate) {
       // 1. Let O be ? ToObject(this value).
       if (this === null) {
-        throw new TypeError('"this" is null or not defined');
+        throw new TypeError("\"this\" is null or not defined");
       }
 
       const o = Object(this);
@@ -111,7 +104,7 @@ if (!Array.prototype.find) {
       }
 
       // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
-      // eslint-disable-next-line prefer-rest-params
+
       const thisArg = arguments[1];
 
       // 5. Let k be 0.
@@ -133,19 +126,19 @@ if (!Array.prototype.find) {
 
       // 7. Return undefined.
       return;
-    }
+    },
   });
 }
 
-Array.max = function(array) {
+Array.max = function (array) {
   return Math.max.apply(Math, array);
 };
 
-Array.min = function(array) {
+Array.min = function (array) {
   return Math.min.apply(Math, array);
 };
 
-Object.invert = function(obj) {
+Object.invert = function (obj) {
   const result = {};
   const keys = Object.keys(obj);
   for (let i = 0, length = keys.length; i < length; i++) {
@@ -165,7 +158,6 @@ if (typeof Object.assign !== "function") {
       const to = Object(target);
 
       for (let index = 1; index < arguments.length; index++) {
-        // eslint-disable-next-line prefer-rest-params
         const nextSource = arguments[index];
 
         if (nextSource !== null) { // Skip over if undefined or null
@@ -180,6 +172,6 @@ if (typeof Object.assign !== "function") {
       return to;
     },
     writable: true,
-    configurable: true
+    configurable: true,
   });
 }

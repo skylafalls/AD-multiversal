@@ -14,8 +14,8 @@ export default {
       return this.isCancerImages ? "😂" : symbol;
     },
     imageSwapperStyleObject() {
-      return this.canSwapImages ? { "cursor": "pointer" } : {};
-    }
+      return this.canSwapImages ? { cursor: "pointer" } : {};
+    },
   },
   methods: {
     update() {
@@ -28,8 +28,8 @@ export default {
       if (this.canSwapImages) {
         player.secretUnlocks.cancerAchievements = !player.secretUnlocks.cancerAchievements;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

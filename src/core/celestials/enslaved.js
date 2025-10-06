@@ -25,8 +25,8 @@ export const ENSLAVED_UNLOCKS = {
       const hasRarityRequirement = strengthToRarity(player.records.bestReality.glyphStrength).gte(100);
       return `Unlock The Nameless Ones' Reality (requires ${hasLevelRequirement ? "[✓]" : "[✗]"} a level
       ${formatInt(5000)} Glyph and ${hasRarityRequirement ? "[✓]" : "[✗]"} a ${formatRarity(new Decimal(100))} rarity Glyph)`;
-    }
-  }
+    },
+  },
 };
 
 export const Enslaved = {
@@ -57,8 +57,8 @@ export const Enslaved = {
     player.celestials.enslaved.autoStoreReal = !player.celestials.enslaved.autoStoreReal;
   },
   get canModifyGameTimeStorage() {
-    return Enslaved.isUnlocked && !Pelle.isDoomed && !BlackHoles.arePaused && !EternityChallenge(12).isRunning &&
-      !Enslaved.isRunning && !Laitela.isRunning;
+    return Enslaved.isUnlocked && !Pelle.isDoomed && !BlackHoles.arePaused && !EternityChallenge(12).isRunning
+      && !Enslaved.isRunning && !Laitela.isRunning;
   },
   get canModifyRealTimeStorage() {
     return Enslaved.isUnlocked && !Pelle.isDoomed;
@@ -108,8 +108,8 @@ export const Enslaved = {
     return diffMs - used;
   },
   canRelease(auto) {
-    return !Enslaved.isStoringRealTime && !EternityChallenge(12).isRunning && !Laitela.isRunning &&
-      !(Enslaved.isRunning && auto) && !Pelle.isDoomed;
+    return !Enslaved.isStoringRealTime && !EternityChallenge(12).isRunning && !Laitela.isRunning
+      && !(Enslaved.isRunning && auto) && !Pelle.isDoomed;
   },
   // "autoRelease" should only be true when called with the Ra upgrade
   useStoredTime(autoRelease) {
@@ -250,8 +250,13 @@ export const Enslaved = {
 };
 
 class EnslavedProgressState extends BitUpgradeState {
-  get bits() { return player.celestials.enslaved.hintBits; }
-  set bits(value) { player.celestials.enslaved.hintBits = value; }
+  get bits() {
+    return player.celestials.enslaved.hintBits;
+  }
+
+  set bits(value) {
+    player.celestials.enslaved.hintBits = value;
+  }
 
   get hasProgress() {
     return Boolean(player.celestials.enslaved.progressBits & (1 << this.id));
@@ -272,8 +277,8 @@ class EnslavedProgressState extends BitUpgradeState {
   giveProgress() {
     // Bump the last hint time appropriately if the player found the hint
     if (this.hasHint && !this.hasProgress) {
-      player.celestials.enslaved.zeroHintTime -= Math.log(2) /
-        Math.log(3) * TimeSpan.fromDays(1).totalMilliseconds.toNumber();
+      player.celestials.enslaved.zeroHintTime -= Math.log(2)
+        / Math.log(3) * TimeSpan.fromDays(1).totalMilliseconds.toNumber();
       GameUI.notify.success("You found a crack in The Nameless Ones' Reality!", 10000);
     }
     player.celestials.enslaved.progressBits |= (1 << this.id);
@@ -282,7 +287,7 @@ class EnslavedProgressState extends BitUpgradeState {
 
 export const EnslavedProgress = mapGameDataToObject(
   GameDatabase.celestials.enslaved.progress,
-  config => new EnslavedProgressState(config)
+  config => new EnslavedProgressState(config),
 );
 
 export const Tesseracts = {
@@ -308,7 +313,6 @@ export const Tesseracts = {
   // This used to be an array, but tess costs are just a super easy thing to calculate in BE so i dont care
 
   costs(index) {
-    // eslint-disable-next-line no-param-reassign
     index = index.add(1);
     if (index.lte(3)) return Decimal.pow10(index.times(2e7));
     return Decimal.pow10((index.sub(3)).factorial().times(Decimal.pow(2, index.sub(3))).times(6e7));

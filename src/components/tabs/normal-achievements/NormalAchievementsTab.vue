@@ -8,7 +8,7 @@ export default {
   components: {
     SwapAchievementImagesButton,
     NormalAchievementRow,
-    PrimaryToggleButton
+    PrimaryToggleButton,
   },
   data() {
     return {
@@ -26,7 +26,7 @@ export default {
       achMultToBH: false,
       achMultToTP: false,
       achMultToTT: false,
-      renderedRowIndices: []
+      renderedRowIndices: [],
     };
   },
   computed: {
@@ -60,7 +60,7 @@ export default {
     hideCompletedRows(newValue) {
       player.options.hideCompletedAchievementRows = newValue;
       this.startRowRendering();
-    }
+    },
   },
   created() {
     this.startRowRendering();
@@ -125,7 +125,7 @@ export default {
     },
     timeDisplay,
     timeDisplayNoDecimals,
-  }
+  },
 };
 </script>
 

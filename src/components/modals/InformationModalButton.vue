@@ -6,21 +6,21 @@ export default {
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     icon: {
       type: String,
-      required: true
+      required: true,
     },
     link: {
       type: String,
       required: false,
-      default: null
+      default: null,
     },
     showModal: {
       type: String,
       required: false,
-      default: null
+      default: null,
     },
   },
   methods: {
@@ -29,8 +29,8 @@ export default {
     },
     openLink() {
       openExternalLink(this.link);
-    }
-  }
+    },
+  },
 };
 </script>
 

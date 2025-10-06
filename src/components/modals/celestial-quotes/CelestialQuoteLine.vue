@@ -4,16 +4,16 @@ import CelestialQuoteBackground from "./CelestialQuoteBackground";
 export default {
   name: "CelestialQuoteLine",
   components: {
-    CelestialQuoteBackground
+    CelestialQuoteBackground,
   },
   props: {
     quote: {
       type: Object,
-      required: true
+      required: true,
     },
     currentLine: {
       type: Number,
-      required: true
+      required: true,
     },
     primary: {
       type: Boolean,
@@ -23,17 +23,17 @@ export default {
     leftVisible: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     rightVisible: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     closeVisible: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
   },
   data() {
@@ -41,7 +41,7 @@ export default {
       message: "",
       celestialSymbols: [],
       celestials: [],
-      celestialName: ""
+      celestialName: "",
     };
   },
   computed: {
@@ -74,7 +74,7 @@ export default {
       this.message = line.line;
       this.celestials = line.celestials;
       this.celestialName = line.celestialName;
-    }
+    },
   },
 };
 </script>

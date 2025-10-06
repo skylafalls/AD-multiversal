@@ -4,7 +4,7 @@ import GameSpeedDisplay from "@/components/GameSpeedDisplay";
 export default {
   name: "HeaderTickspeedInfo",
   components: {
-    GameSpeedDisplay
+    GameSpeedDisplay,
   },
   data() {
     return {

@@ -5,7 +5,7 @@ export default {
     script: {
       type: Object,
       required: true,
-    }
+    },
   },
   data() {
     return {
@@ -41,8 +41,8 @@ export default {
       } else {
         GameUI.notify.error("Could not export data from blank Automator script!");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -21,10 +21,10 @@ export default {
     },
     textColor(hasBought) {
       return {
-        color: hasBought ? "var(--color-good)" : "var(--color-bad)"
+        color: hasBought ? "var(--color-good)" : "var(--color-bad)",
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

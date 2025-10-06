@@ -4,23 +4,23 @@ export default {
   props: {
     challenge: {
       type: Object,
-      required: true
+      required: true,
     },
     isChallengeVisible: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      isVisible: false
+      isVisible: false,
     };
   },
   methods: {
     update() {
       this.isVisible = this.isChallengeVisible(this.challenge);
-    }
-  }
+    },
+  },
 };
 </script>
 

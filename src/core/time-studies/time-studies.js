@@ -11,7 +11,7 @@ function showSecondPreferredWarning(currTree) {
 }
 
 // This is only ever called from manual player actions, which means we can immediately commit them to the game state
-// eslint-disable-next-line complexity
+
 export function buyStudiesUntil(id, ec = -1) {
   let studyArray = [];
   const lastInPrevRow = Math.floor(id / 10) * 10 - 1;

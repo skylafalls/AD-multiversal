@@ -18,7 +18,7 @@ export function infinityDimensionCommonMultiplier() {
       EternityUpgrade.idMultICRecords,
       AlchemyResource.dimensionality,
       ImaginaryUpgrade(8),
-      PelleRifts.recursion.milestones[1]
+      PelleRifts.recursion.milestones[1],
     );
 
   if (Replicanti.areUnlocked && Replicanti.amount.gt(1)) {
@@ -60,9 +60,14 @@ class InfinityDimensionState extends DimensionState {
   }
 
   /** @returns {Decimal} */
-  get cost() { return this.data.cost; }
+  get cost() {
+    return this.data.cost;
+  }
+
   /** @param {Decimal} value */
-  set cost(value) { this.data.cost = value; }
+  set cost(value) {
+    this.data.cost = value;
+  }
 
   get baseAmount() {
     return this.data.baseAmount;
@@ -97,8 +102,8 @@ class InfinityDimensionState extends DimensionState {
   }
 
   get canUnlock() {
-    return (Perk.bypassIDAntimatter.canBeApplied || this.antimatterRequirementReached) &&
-      this.ipRequirementReached;
+    return (Perk.bypassIDAntimatter.canBeApplied || this.antimatterRequirementReached)
+      && this.ipRequirementReached;
   }
 
   get isAvailableForPurchase() {
@@ -125,8 +130,8 @@ class InfinityDimensionState extends DimensionState {
   }
 
   get productionPerSecond() {
-    if (EternityChallenge(2).isRunning || EternityChallenge(10).isRunning ||
-      (Laitela.isRunning && this.tier > Laitela.maxAllowedDimension)) {
+    if (EternityChallenge(2).isRunning || EternityChallenge(10).isRunning
+      || (Laitela.isRunning && this.tier > Laitela.maxAllowedDimension)) {
       return DC.D0;
     }
     let production = this.amount;
@@ -146,15 +151,13 @@ class InfinityDimensionState extends DimensionState {
       .timesEffectsOf(
         tier === 1 ? Achievement(94) : null,
         tier === 4 ? TimeStudy(72) : null,
-        tier === 1 ? EternityChallenge(2).reward : null
+        tier === 1 ? EternityChallenge(2).reward : null,
       );
     mult = mult.times(Decimal.pow(this.powerMultiplier, Decimal.floor(this.baseAmount.div(DC.E1))));
-
 
     if (tier === 1) {
       mult = mult.times(PelleRifts.decay.milestones[0].effectOrDefault(1));
     }
-
 
     mult = mult.pow(getAdjustedGlyphEffect("infinitypow"));
     mult = mult.pow(getAdjustedGlyphEffect("effarigdimensions"));
@@ -182,9 +185,9 @@ class InfinityDimensionState extends DimensionState {
 
   get isProducing() {
     const tier = this.tier;
-    if (EternityChallenge(2).isRunning ||
-      EternityChallenge(10).isRunning ||
-      (Laitela.isRunning && tier > Laitela.maxAllowedDimension)) {
+    if (EternityChallenge(2).isRunning
+      || EternityChallenge(10).isRunning
+      || (Laitela.isRunning && tier > Laitela.maxAllowedDimension)) {
       return false;
     }
     return this.amount.gt(0);
@@ -295,7 +298,7 @@ class InfinityDimensionState extends DimensionState {
       Currency.infinityPoints.value,
       this.cost,
       this.costMultiplier,
-      purchasesUntilHardcap
+      purchasesUntilHardcap,
     );
 
     if (costScaling.purchases.lte(0)) return false;
@@ -361,9 +364,9 @@ export const InfinityDimensions = {
   },
 
   canBuy() {
-    return !EternityChallenge(2).isRunning &&
-      !EternityChallenge(10).isRunning &&
-      (!EternityChallenge(8).isRunning || player.eterc8ids > 0);
+    return !EternityChallenge(2).isRunning
+      && !EternityChallenge(10).isRunning
+      && (!EternityChallenge(8).isRunning || player.eterc8ids > 0);
   },
 
   canAutobuy() {
@@ -401,7 +404,7 @@ export const InfinityDimensions = {
     const unlockedDimensions = this.all.filter(dimension => dimension.unlock());
 
     // Try to buy single from the highest affordable new dimensions
-    [...unlockedDimensions].toReversed().forEach(dimension => {
+    [...unlockedDimensions].toReversed().forEach((dimension) => {
       if (dimension.purchases === 0) dimension.buySingle();
     });
 
@@ -412,5 +415,5 @@ export const InfinityDimensions = {
   get powerConversionRate() {
     return getAdjustedGlyphEffect("infinityrate").add(7)
       .add(PelleUpgrade.infConversion.effectOrDefault(0)).mul(PelleRifts.paradox.milestones[2].effectOrDefault(1));
-  }
+  },
 };

@@ -144,7 +144,7 @@ ImaginaryUpgradeState.index = mapGameData(
   GameDatabase.reality.imaginaryUpgrades,
   config => (config.id <= 10
     ? new RebuyableImaginaryUpgradeState(config)
-    : new ImaginaryUpgradeState(config))
+    : new ImaginaryUpgradeState(config)),
 );
 
 export const ImaginaryUpgrade = id => ImaginaryUpgradeState.index[id];
@@ -162,5 +162,5 @@ export const ImaginaryUpgrades = {
   },
   get allBought() {
     return (player.reality.imaginaryUpgradeBits >> 6) + 1 === 1 << (GameDatabase.reality.imaginaryUpgrades.length - 5);
-  }
+  },
 };

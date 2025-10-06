@@ -39,12 +39,12 @@ export const MultiplierTabIcons = {
         return { symbol, color: "var(--color-eternity)" };
       }
       case "baseID": {
-        return { symbol: `<i class="fas fa-arrows-up-to-line" />`, color: "var(--color-infinity)" };
+        return { symbol: "<i class=\"fas fa-arrows-up-to-line\" />", color: "var(--color-infinity)" };
       }
       case "tesseractID": {
         return {
-          symbol: `<i class="fas fa-up-right-and-down-left-from-center" />`,
-          color: "var(--color-enslaved--base)"
+          symbol: "<i class=\"fas fa-up-right-and-down-left-from-center\" />",
+          color: "var(--color-enslaved--base)",
         };
       }
       default: {
@@ -68,7 +68,7 @@ export const MultiplierTabIcons = {
   },
   // Regular sacrifice and glyph sacrifice
   SACRIFICE(type) {
-    const icon = `<i class="fas fa-turn-down" />`;
+    const icon = "<i class=\"fas fa-turn-down\" />";
     switch (type) {
       case "antimatter": {
         return { symbol: `<b>Ω</b>${icon}`, color: "var(--color-antimatter)" };
@@ -88,7 +88,7 @@ export const MultiplierTabIcons = {
     }
   },
   UPGRADE(type) {
-    const icon = `<i class="fas fa-arrow-up" />`;
+    const icon = "<i class=\"fas fa-arrow-up\" />";
     switch (type) {
       case "infinity": {
         return { symbol: `<b>∞</b>${icon}`, color: "var(--color-infinity)" };
@@ -114,13 +114,13 @@ export const MultiplierTabIcons = {
   CONVERT_FROM(currency) {
     if (currency === "AM") {
       return {
-        symbol: `<i class='fas fa-atom' /><i class='fa-solid fa-arrow-right-arrow-left' />`,
+        symbol: "<i class='fas fa-atom' /><i class='fa-solid fa-arrow-right-arrow-left' />",
         color: "var(--color-antimatter)",
       };
     }
     if (currency === "IP") {
       return {
-        symbol: `<b>∞</b><i class='fa-solid fa-arrow-right-arrow-left' />`,
+        symbol: "<b>∞</b><i class='fa-solid fa-arrow-right-arrow-left' />",
         color: "var(--color-infinity)",
       };
     }
@@ -132,56 +132,56 @@ export const MultiplierTabIcons = {
     if (currency === "IP") color = "var(--color-infinity)";
     if (currency === "EP") color = "var(--color-eternity)";
     return {
-      symbol: `<i class='fas fa-calculator' />`,
+      symbol: "<i class='fas fa-calculator' />",
       color,
     };
   },
   ANTIMATTER: {
-    symbol: `<i class='fas fa-atom' />`,
+    symbol: "<i class='fas fa-atom' />",
     color: "var(--color-antimatter)",
   },
   DIMBOOST: {
-    symbol: `<i class="fas fa-angles-up" />`,
+    symbol: "<i class=\"fas fa-angles-up\" />",
     color: reality.GlyphInfo.power.color,
   },
   TICKSPEED: {
-    symbol: `<i class="fas fa-clock" />`,
+    symbol: "<i class=\"fas fa-clock\" />",
     color: "var(--color-eternity)",
   },
   GALAXY: {
-    symbol: `<i class="fas fa-bahai" />`,
+    symbol: "<i class=\"fas fa-bahai\" />",
     color: "var(--color-eternity)",
   },
   ACHIEVEMENT: {
-    symbol: `<i class="fas fa-trophy" />`,
+    symbol: "<i class=\"fas fa-trophy\" />",
     color: "var(--color-v--base)",
     textColor: "black",
   },
   BREAK_INFINITY: {
-    symbol: `<b>∝</b>`,
+    symbol: "<b>∝</b>",
     color: "var(--color-infinity)",
     textColor: "black",
   },
   INFINITY_POWER: {
-    symbol: `<b>∞</b><i class="fas fa-arrows-turn-right" />`,
+    symbol: "<b>∞</b><i class=\"fas fa-arrows-turn-right\" />",
     color: "var(--color-infinity)",
     textColor: "black",
   },
   IPOW_CONVERSION: {
-    symbol: `<i class="fas fa-arrow-down-up-across-line" />`,
+    symbol: "<i class=\"fas fa-arrow-down-up-across-line\" />",
     color: "var(--color-infinity)",
     textColor: "black",
   },
   TIME_STUDY: {
-    symbol: `<i class="fas fa-book" />`,
+    symbol: "<i class=\"fas fa-book\" />",
     color: "var(--color-eternity)",
   },
   TACHYON_PARTICLES: {
-    symbol: `<i class="fas fa-meteor" />`,
+    symbol: "<i class=\"fas fa-meteor\" />",
     color: "var(--color-dilation)",
   },
   GENERIC_GLYPH: {
-    symbol: `<i class="fas fa-clone" />`,
+    symbol: "<i class=\"fas fa-clone\" />",
     color: "var(--color-reality)",
   },
   SPECIFIC_GLYPH(type) {
@@ -191,11 +191,11 @@ export const MultiplierTabIcons = {
     };
   },
   BLACK_HOLE: {
-    symbol: `<i class="fas fa-circle" />`,
+    symbol: "<i class=\"fas fa-circle\" />",
     color: "var(--color-reality)",
   },
   GAMESPEED: {
-    symbol: `<i class="fas fa-clock" />`,
+    symbol: "<i class=\"fas fa-clock\" />",
     color: "var(--color-reality)",
   },
   GENERIC_TERESA: {
@@ -203,7 +203,7 @@ export const MultiplierTabIcons = {
     color: "var(--color-teresa--base)",
   },
   GENERIC_ENSLAVED: {
-    symbol: `<div class="o-tab-btn--cel3">\uF0C1</div>`,
+    symbol: "<div class=\"o-tab-btn--cel3\">\uF0C1</div>",
     color: "var(--color-enslaved--base)",
   },
   GENERIC_V: {
@@ -212,15 +212,15 @@ export const MultiplierTabIcons = {
     textColor: "black",
   },
   GENERIC_RA: {
-    symbol: `<i class="fas fa-sun" />`,
+    symbol: "<i class=\"fas fa-sun\" />",
     color: "var(--color-ra--base)",
   },
   ALCHEMY: {
-    symbol: `<i class="fas fa-vial" />`,
+    symbol: "<i class=\"fas fa-vial\" />",
     color: "var(--color-ra-pet--effarig)",
   },
   BH_PULSE: {
-    symbol: `<i class="fas fa-expand-arrows-alt" />`,
+    symbol: "<i class=\"fas fa-expand-arrows-alt\" />",
     color: "var(--color-reality)",
   },
   GENERIC_LAITELA: {
@@ -229,7 +229,7 @@ export const MultiplierTabIcons = {
     textColor: "var(--color-laitela--accent)",
   },
   SINGULARITY: {
-    symbol: `<i class="fas fa-arrows-up-down-left-right" />`,
+    symbol: "<i class=\"fas fa-arrows-up-down-left-right\" />",
     color: "var(--color-laitela--base)",
     textColor: "var(--color-laitela--accent)",
   },
@@ -238,7 +238,7 @@ export const MultiplierTabIcons = {
     color: "var(--color-pelle--base)",
   },
   IAP: {
-    symbol: `<i class="fas fa-coins" />`,
+    symbol: "<i class=\"fas fa-coins\" />",
     color: "var(--color-accent)",
   },
 };

@@ -1,7 +1,6 @@
 import { GameMechanicState } from "../../utils";
 
 class RiftMilestoneState extends GameMechanicState {
-
   lastChecked = false;
 
   get requirement() {
@@ -117,7 +116,9 @@ class RiftState extends GameMechanicState {
     return [base, ...additional];
   }
 
-  get isCustomEffect() { return true; }
+  get isCustomEffect() {
+    return true;
+  }
 
   get effectValue() {
     return this.config.effect(this.config.percentageToFill(this.percentage));
@@ -137,7 +138,7 @@ class RiftState extends GameMechanicState {
 
   toggle() {
     const active = PelleRifts.all.filter(r => r.isActive).length;
-    if (!this.isActive && active === 2) GameUI.notify.error(`You can only have 2 rifts active at the same time!`);
+    if (!this.isActive && active === 2) GameUI.notify.error("You can only have 2 rifts active at the same time!");
     else this.rift.active = !this.rift.active;
   }
 
@@ -164,7 +165,6 @@ class RiftState extends GameMechanicState {
       this.fillCurrency.value = this.fillCurrency.value.minus(spent).max(1);
       this.totalFill = this.totalFill.plus(spent).min(this.maxValue);
     } else {
-      // eslint-disable-next-line max-len
       const afterTickAmount = this.fillCurrency.value * (Decimal.pow(1 - Pelle.riftDrainPercent, diff.div(1e3))).toNumber();
       const spent = this.fillCurrency.value - afterTickAmount;
       this.fillCurrency.value = Math.max(this.fillCurrency.value - spent, 0);
@@ -177,7 +177,7 @@ class RiftState extends GameMechanicState {
 
 export const PelleRifts = mapGameDataToObject(
   GameDatabase.celestials.pelle.rifts,
-  config => new RiftState(config)
+  config => new RiftState(config),
 );
 
 PelleRifts.totalMilestones = () => PelleRifts.all.flatMap(x => x.milestones).countWhere(x => x.canBeApplied);

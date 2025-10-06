@@ -4,13 +4,13 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "RefineGlyphModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   props: {
     idx: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -19,7 +19,7 @@ export default {
       gain: new Decimal(),
       after: new Decimal(),
       cap: new Decimal(),
-      confirmedRefine: false
+      confirmedRefine: false,
     };
   },
   computed: {
@@ -45,7 +45,6 @@ export default {
 
       const newGlyph = Glyphs.findByInventoryIndex(this.idx);
       if (this.glyph !== newGlyph && !this.confirmedRefine) {
-
         // Why is confirmedRefine here: refer to SacrificeGlyphModal.vue
 
         this.emitClose();

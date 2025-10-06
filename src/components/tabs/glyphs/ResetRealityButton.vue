@@ -32,13 +32,13 @@ export default {
           challengeName: "a Celestial Reality",
           normalName: "Reality",
           hasHigherLayers: false,
-          exitFn: () => beginProcessReality(getRealityProps(true))
+          exitFn: () => beginProcessReality(getRealityProps(true)),
         });
         else beginProcessReality(getRealityProps(true));
       } else if (confirms.resetReality) Modal.resetReality.show();
       else beginProcessReality(getRealityProps(true));
     },
-  }
+  },
 };
 </script>
 

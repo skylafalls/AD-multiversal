@@ -5,11 +5,10 @@ import { DC } from "@/core/constants";
 
 import TypeSacrifice from "./TypeSacrifice";
 
-
 export default {
   name: "SacrificedGlyphs",
   components: {
-    TypeSacrifice
+    TypeSacrifice,
   },
   data() {
     return {
@@ -56,7 +55,7 @@ export default {
     },
     hasSeenRealityGlyph() {
       return player.reality.glyphs.createdRealityGlyph;
-    }
+    },
   },
   created() {
     this.on$(GAME_EVENT.GLYPH_VISUAL_CHANGE, () => {
@@ -80,16 +79,16 @@ export default {
     },
     dragleave(event) {
       if (
-        this.isDoomed ||
-        !event.relatedTarget ||
-        !event.relatedTarget.classList ||
-        event.relatedTarget.classList.contains("c-current-glyph-effects") ||
-        event.relatedTarget.classList.contains("c-sacrificed-glyphs__header") ||
-        event.relatedTarget.classList.contains("l-sacrificed-glyphs__type") ||
-        event.relatedTarget.classList.contains("l-sacrificed-glyphs__type-symbol") ||
-        event.relatedTarget.classList.contains("l-sacrificed-glyphs__type-amount") ||
-        event.relatedTarget.classList.contains("c-sacrificed-glyphs__type-new-amount") ||
-        event.relatedTarget.classList.length === 0) return;
+        this.isDoomed
+        || !event.relatedTarget
+        || !event.relatedTarget.classList
+        || event.relatedTarget.classList.contains("c-current-glyph-effects")
+        || event.relatedTarget.classList.contains("c-sacrificed-glyphs__header")
+        || event.relatedTarget.classList.contains("l-sacrificed-glyphs__type")
+        || event.relatedTarget.classList.contains("l-sacrificed-glyphs__type-symbol")
+        || event.relatedTarget.classList.contains("l-sacrificed-glyphs__type-amount")
+        || event.relatedTarget.classList.contains("c-sacrificed-glyphs__type-new-amount")
+        || event.relatedTarget.classList.length === 0) return;
       this.hasDragover = false;
     },
     drop(event) {
@@ -106,8 +105,8 @@ export default {
     },
     glyphSymbol(type) {
       return GlyphInfo[type].regularGlyphSymbol;
-    }
-  }
+    },
+  },
 };
 </script>
 

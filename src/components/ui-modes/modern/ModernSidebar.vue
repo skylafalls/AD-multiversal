@@ -6,16 +6,16 @@ export default {
   name: "ModernSidebar",
   components: {
     ModernSidebarCurrency,
-    ModernTabButton
+    ModernTabButton,
   },
   data() {
     return {
       isHidden: false,
-      tabVisibilities: []
+      tabVisibilities: [],
     };
   },
   computed: {
-    tabs: () => Tabs.newUI
+    tabs: () => Tabs.newUI,
   },
   methods: {
     update() {

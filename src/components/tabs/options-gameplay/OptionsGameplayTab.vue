@@ -10,7 +10,7 @@ export default {
     OpenModalHotkeysButton,
     OptionsButton,
     PrimaryToggleButton,
-    SliderComponent
+    SliderComponent,
   },
   data() {
     return {
@@ -32,7 +32,7 @@ export default {
         max: 54,
         interval: 1,
         width: "100%",
-        tooltip: false
+        tooltip: false,
       };
     },
     sliderPropsAutomatorLogSize() {
@@ -41,9 +41,9 @@ export default {
         max: 500,
         interval: 50,
         width: "100%",
-        tooltip: false
+        tooltip: false,
       };
-    }
+    },
   },
   watch: {
     offlineProgress(newValue) {
@@ -97,8 +97,8 @@ export default {
     adjustSliderValueAutomatorLogSize(value) {
       this.automatorLogSize = value;
       player.options.automatorEvents.maxEntries = this.automatorLogSize;
-    }
-  }
+    },
+  },
 };
 </script>
 

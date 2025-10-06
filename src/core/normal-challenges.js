@@ -164,5 +164,5 @@ export const NormalChallenges = {
   },
   clearCompletions() {
     player.challenge.normal.completedBits = 0;
-  }
+  },
 };

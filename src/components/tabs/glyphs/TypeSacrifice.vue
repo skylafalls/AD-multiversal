@@ -4,12 +4,12 @@ export default {
   props: {
     type: {
       type: String,
-      required: true
+      required: true,
     },
     hasDragover: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -35,7 +35,7 @@ export default {
         "text-shadow": `-1px 1px 1px var(--color-text-base), 1px 1px 1px var(--color-text-base),
                             -1px -1px 1px var(--color-text-base), 1px -1px 1px var(--color-text-base),
                             0 0 3px ${color}`,
-        animation: animateReality ? "a-reality-glyph-description-cycle 10s infinite" : undefined,
+        "animation": animateReality ? "a-reality-glyph-description-cycle 10s infinite" : undefined,
       };
     },
     symbol() {
@@ -79,11 +79,11 @@ export default {
       this.amount.copyFrom(player.reality.glyphs.sac[this.type]);
       this.effectValue = GlyphInfo[this.type].sacrificeInfo.effect();
       this.isColored = player.options.glyphTextColors;
-      this.willSacrifice = AutoGlyphProcessor.sacMode === AUTO_GLYPH_REJECT.SACRIFICE ||
-        (AutoGlyphProcessor.sacMode === AUTO_GLYPH_REJECT.REFINE_TO_CAP &&
-          this.currentSacrifice.refineValue === 0);
-    }
-  }
+      this.willSacrifice = AutoGlyphProcessor.sacMode === AUTO_GLYPH_REJECT.SACRIFICE
+        || (AutoGlyphProcessor.sacMode === AUTO_GLYPH_REJECT.REFINE_TO_CAP
+          && this.currentSacrifice.refineValue === 0);
+    },
+  },
 };
 </script>
 

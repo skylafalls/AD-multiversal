@@ -10,7 +10,7 @@ function isEND() {
 
 window.format = function format(value, places = 0, placesUnder1000 = 0) {
   if (isEND()) return "END";
-  // eslint-disable-next-line no-param-reassign
+
   if (!isDecimal(value)) value = new Decimal(value);
   if (value.lt("e9e15")) return Notations.current.format(value, places, placesUnder1000, 3);
   return LNotations.current.formatLDecimal(value, places);
@@ -27,7 +27,8 @@ window.formatInt = function formatInt(value) {
     return value > 1e9 ? format(value, 2, 2) : formatWithCommas(value.toFixed(0));
   }
   return (!(value instanceof Decimal) || value.lt(1e9))
-    ? formatWithCommas(value instanceof Decimal ? value.toNumber().toFixed(0) : 1) : format(value, 2, 2);
+    ? formatWithCommas(value instanceof Decimal ? value.toNumber().toFixed(0) : 1)
+    : format(value, 2, 2);
 };
 
 window.formatFloat = function formatFloat(value, digits) {
@@ -111,7 +112,6 @@ window.formatTet = function formatTet(value, places, placesUnder1000) {
 
 window.formatEffectPos = function formatEffectPos(effect, effectedValue, tet = true) {
   if (effect.lt(1000)) {
-    // eslint-disable-next-line prefer-template
     return formatInt(effect, 2, 4) + "%";
   }
   if (effect.lt("1e100000") || effectedValue.lt(2)) {
@@ -126,18 +126,16 @@ window.formatEffectPos = function formatEffectPos(effect, effectedValue, tet = t
   }
   val = new Decimal(effect);
   val.layer = 1;
-  // eslint-disable-next-line prefer-template
+
   return formatInt(Math.floor(effect.slog() - 1)) + "th Expo " + formatPow(val, 2, 2);
 };
 
 // Does not take negative numbers fyi, just ints between 0-1 (excluding)
 window.formatEffectNeg = function formatEffectNeg(effect, effectedValue) {
   if (effect.gt(0.001)) {
-    // eslint-disable-next-line prefer-template
     return formatInt(effect, 2, 4) + "%";
   }
   if (effect.lt("1e100000") || effectedValue.lt(2)) {
-    // eslint-disable-next-line prefer-template
     return "/" + format(effect.recip(), 2, 2);
   }
   if (effect.recip().lt("10^^4") || effectedValue.lt(10)) {
@@ -145,7 +143,7 @@ window.formatEffectNeg = function formatEffectNeg(effect, effectedValue) {
   }
   val = new Decimal(effect);
   val.layer = 1;
-  // eslint-disable-next-line prefer-template
+
   return formatInt(Math.floor(effect.recip().slog().toNumber() - 1)) + "th Expo " + formatPow(val, 2, 2);
 };
 
@@ -155,7 +153,6 @@ window.formatEffectAuto = function formatEffectAuto(value, effectedValue) {
   }
   return formatEffectNeg(value, effectedValue, false);
 };
-
 
 window.timeDisplay = function timeDisplay(ms) {
   return TimeSpan.fromMilliseconds(ms).toString();
@@ -184,7 +181,7 @@ window.formatWithCommas = function formatWithCommas(value) {
 const PLURAL_HELPER = new Map([
   [/y$/u, "ies"],
   [/x$/u, "xes"],
-  [/$/u, "s"]
+  [/$/u, "s"],
 ]);
 
 // Some terms require specific (or no) handling when plural. These terms should be added, in Word Case, to this Map.
@@ -236,7 +233,7 @@ window.generatePlural = function generatePlural(word) {
  * @param  {function} [formatType=format] - how to format the {value}. defaults to format
  * @return {string} - the formatted {value} followed by the {name} after having been pluralized based on the {value}
  */
-// eslint-disable-next-line max-params
+
 window.quantify = function quantify(name, value, places, placesUnder1000, formatType = format) {
   if (name === undefined || value === undefined) throw new Error("Arguments must be defined");
 
@@ -268,7 +265,7 @@ window.makeEnumeration = function makeEnumeration(items) {
   if (items.length === 0) return "";
   if (items.length === 1) return items[0];
   if (items.length === 2) return `${items[0]} and ${items[1]}`;
-  const commaSeparated = items.slice(0, - 1).join(", ");
+  const commaSeparated = items.slice(0, -1).join(", ");
   const last = items[items.length - 1];
   return `${commaSeparated}, and ${last}`;
 };

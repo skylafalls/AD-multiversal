@@ -41,7 +41,7 @@ declare namespace PlayFabModule {
     export type ApiCallback<TResult extends IPlayFabResultCommon> = (result: SuccessContainer<TResult>, error: IPlayFabError) => void;
 }
 
-constlare var PlayFab: {
+declare var PlayFab: {
     buildIdentifier: string;
     sdkVersion: string;
     GenerateErrorReport(IPlayFabError): string;

@@ -8,7 +8,7 @@ export default {
   components: {
     RaPet,
     RaPetRemembranceButton,
-    CelestialQuoteHistory
+    CelestialQuoteHistory,
   },
   data() {
     return {
@@ -56,7 +56,7 @@ export default {
           const triadCount = Ra.unlocks.unlockHardV.effectOrDefault(0);
           return `You have unlocked ${quantifyInt("Triad Study", triadCount)}.`;
         },
-      }
+      },
     ],
     petStyle() {
       return {
@@ -70,7 +70,7 @@ export default {
         "c-ra-run-button__icon": true,
         "c-ra-run-button__icon--running": this.isRunning,
         "c-celestial-run-button--clickable": !this.isDoomed,
-        "o-pelle-disabled-pointer": this.isDoomed
+        "o-pelle-disabled-pointer": this.isDoomed,
       };
     },
     runDescription() {
@@ -102,7 +102,7 @@ export default {
     },
     toggleMode() {
       Ra.toggleMode();
-    }
+    },
   },
 };
 </script>

@@ -6,7 +6,7 @@ export default {
   name: "ReplicantiGalaxyButton",
   components: {
     PrimaryButton,
-    PrimaryToggleButton
+    PrimaryToggleButton,
   },
   data() {
     return {
@@ -16,7 +16,7 @@ export default {
       isAutoEnabled: false,
       isDivideUnlocked: false,
       boughtGalaxies: 0,
-      extraGalaxies: 0
+      extraGalaxies: 0,
     };
   },
   computed: {
@@ -58,8 +58,8 @@ export default {
     },
     handleClick() {
       replicantiGalaxyRequest();
-    }
-  }
+    },
+  },
 };
 </script>
 

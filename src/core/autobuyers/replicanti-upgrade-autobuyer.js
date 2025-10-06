@@ -1,10 +1,12 @@
 import { IntervaledAutobuyerState } from "./autobuyer";
 
 export class ReplicantiUpgradeAutobuyerState extends IntervaledAutobuyerState {
-  get _upgradeName() { return ["chance", "interval", "galaxies"][this.id - 1]; }
+  get _upgradeName() {
+    return ["chance", "interval", "galaxies"][this.id - 1];
+  }
 
   get name() {
-    return `Replicanti ${[`Chance`, `Interval`, `Max Galaxies`][this.id - 1]}`;
+    return `Replicanti ${["Chance", "Interval", "Max Galaxies"][this.id - 1]}`;
   }
 
   get data() {
@@ -16,8 +18,8 @@ export class ReplicantiUpgradeAutobuyerState extends IntervaledAutobuyerState {
   }
 
   get isUnlocked() {
-    return ReplicantiUpgrade[this._upgradeName].autobuyerMilestone.isReached ||
-      PelleUpgrade.replicantiAutobuyers.canBeApplied;
+    return ReplicantiUpgrade[this._upgradeName].autobuyerMilestone.isReached
+      || PelleUpgrade.replicantiAutobuyers.canBeApplied;
   }
 
   get resetTickOn() {
@@ -34,8 +36,19 @@ export class ReplicantiUpgradeAutobuyerState extends IntervaledAutobuyerState {
     ReplicantiUpgrade[this._upgradeName].autobuyerTick();
   }
 
-  static get entryCount() { return 3; }
-  static get autobuyerGroupName() { return "Replicanti Upgrade"; }
-  static get isActive() { return player.auto.replicantiUpgrades.isActive; }
-  static set isActive(value) { player.auto.replicantiUpgrades.isActive = value; }
+  static get entryCount() {
+    return 3;
+  }
+
+  static get autobuyerGroupName() {
+    return "Replicanti Upgrade";
+  }
+
+  static get isActive() {
+    return player.auto.replicantiUpgrades.isActive;
+  }
+
+  static set isActive(value) {
+    player.auto.replicantiUpgrades.isActive = value;
+  }
 }

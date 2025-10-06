@@ -9,40 +9,40 @@ export default {
   props: {
     header: {
       type: String,
-      required: true
+      required: true,
     },
     message: {
       type: String,
-      required: true
+      required: true,
     },
     gainedResources: {
       type: String,
-      required: true
+      required: true,
     },
     startingResources: {
       type: String,
       required: false,
-      default: undefined
+      default: undefined,
     },
     confirmOption: {
       type: String,
       required: false,
-      default: undefined
+      default: undefined,
     },
     confirmFn: {
       type: Function,
-      required: true
+      required: true,
     },
     alternateText: {
       type: String,
       required: false,
-      default: undefined
+      default: undefined,
     },
     alternateCondition: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
 };
 </script>

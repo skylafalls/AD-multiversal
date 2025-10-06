@@ -9,7 +9,7 @@ function executeCommand(command) {
 const commit = {
   sha: executeCommand("git rev-parse HEAD"),
   message: executeCommand("git log -1 --pretty=%B"),
-  author: executeCommand("git log -1 --pretty=format:%an")
+  author: executeCommand("git log -1 --pretty=format:%an"),
 };
 
 const json = JSON.stringify(commit);

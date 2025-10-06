@@ -7,7 +7,6 @@ import { DEV } from "@/env";
 import FullScreenAnimationHandler from "./full-screen-animation-handler";
 
 export class GameOptions {
-
   static toggleNews() {
     player.options.news.enabled = !player.options.news.enabled;
     ui.view.news = player.options.news.enabled;

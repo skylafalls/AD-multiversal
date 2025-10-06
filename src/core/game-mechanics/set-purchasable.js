@@ -7,7 +7,9 @@ export class SetPurchasableMechanicState extends PurchasableMechanicState {
   /**
    * @abstract
    */
-  get set() { throw new NotImplementedError(); }
+  get set() {
+    throw new NotImplementedError();
+  }
 
   get isBought() {
     return this.set.has(this.id);

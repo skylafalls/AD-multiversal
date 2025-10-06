@@ -2,7 +2,7 @@ export const vQuotes = {
   initial: {
     id: 0,
     lines: [
-      "How pathetic..."
+      "How pathetic...",
     ],
   },
   unlock: {
@@ -90,5 +90,5 @@ export const vQuotes = {
       "No one is better than me...",
       "No one... no one... no on-",
     ],
-  }
+  },
 };

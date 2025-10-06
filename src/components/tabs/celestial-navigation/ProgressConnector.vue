@@ -4,12 +4,12 @@ export default {
   props: {
     complete: {
       type: Number,
-      required: true
+      required: true,
     },
     completeWidth: {
       type: Number,
       required: false,
-      default: 8
+      default: 8,
     },
     incompleteWidth: {
       type: Number,
@@ -38,15 +38,15 @@ export default {
     },
     path: {
       type: Object,
-      required: true
+      required: true,
     },
     pathStart: {
       type: Number,
-      required: true
+      required: true,
     },
     pathEnd: {
       type: Number,
-      required: true
+      required: true,
     },
     pathPadStart: {
       type: Number,
@@ -153,8 +153,8 @@ export default {
         shape.derivative = shape.derivative.negative;
       }
       return shape;
-    }
-  }
+    },
+  },
 };
 </script>
 

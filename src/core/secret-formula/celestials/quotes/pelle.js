@@ -7,41 +7,39 @@ const flashCelestial = [
   ["v", 0.8],
   ["ra", 0.8],
   ["laitela", 0.8],
-  ["pelle", 0.8]
+  ["pelle", 0.8],
 ];
 /** @param {string} cel */
 const primaryBackground = cel => [["pelle", 1.5], [cel, 1.5]];
 
-/* eslint-disable no-multi-spaces */
-const destroyer =    ["False",         "Deity",         "Destroyer"];
-const eternal =      ["Eternal",       "Deity",         "Monarch"];
-const lesser =       ["Lesser",        "Deity",         "Monarch"];
-const deities =      ["Lesser",        "Deities",       "Monarchs"];
+const destroyer = ["False", "Deity", "Destroyer"];
+const eternal = ["Eternal", "Deity", "Monarch"];
+const lesser = ["Lesser", "Deity", "Monarch"];
+const deities = ["Lesser", "Deities", "Monarchs"];
 
-const assured =      ["Mutually",      "Assured",       "Destruction"];
-const battle =       ["Conflict",      "Battle",        "End"];
-const battles =      ["Conflicts",     "Battles",       "Ends"];
-const cluster =      ["Cluster",       "Filament",      "Stars"];
-const confusing =    ["Amusing",       "Confusing",     "Laughter"];
-const dance =        ["Song",          "Dance",         "Charade"];
-const filament =     ["Generator",     "Filament",      "Stars"];
-const forever =      ["Infinite",      "Forever",       "Eternal"];
-const inevitable =   ["Elementary",    "Inevitable",    "Irreversible"];
-const mandate =      ["Destiny",       "Mandate",       "Goals"];
-const misconstrue =  ["Misconstrue",   "Deceive",       "Trick"];
-const reverse =      ["Alter",         "Reverse",       "Manipulate"];
-const shame =        ["Compassion",    "Shame",         "Idiocy"];
-const single =       ["Single",        "Filament",      "Stars"];
-const unseen =       ["Missing",       "Unseen",        "Erased"];
-const unbroken =     ["Unbroken",      "Eternal",       "Connection"];
+const assured = ["Mutually", "Assured", "Destruction"];
+const battle = ["Conflict", "Battle", "End"];
+const battles = ["Conflicts", "Battles", "Ends"];
+const cluster = ["Cluster", "Filament", "Stars"];
+const confusing = ["Amusing", "Confusing", "Laughter"];
+const dance = ["Song", "Dance", "Charade"];
+const filament = ["Generator", "Filament", "Stars"];
+const forever = ["Infinite", "Forever", "Eternal"];
+const inevitable = ["Elementary", "Inevitable", "Irreversible"];
+const mandate = ["Destiny", "Mandate", "Goals"];
+const misconstrue = ["Misconstrue", "Deceive", "Trick"];
+const reverse = ["Alter", "Reverse", "Manipulate"];
+const shame = ["Compassion", "Shame", "Idiocy"];
+const single = ["Single", "Filament", "Stars"];
+const unseen = ["Missing", "Unseen", "Erased"];
+const unbroken = ["Unbroken", "Eternal", "Connection"];
 
-const sycophant =    ["Sycophant",     "Deity",         "Monarch"];
-const tired =        ["Tired",         "Deity",         "Monarch"];
-const usurper =      ["Usurper",       "Deity",         "Monarch"];
-const pride =        ["Pride",         "Deity",         "Monarch"];
-const forgotten =    ["Forgotten",     "Deity",         "Monarch"];
-const paramount =    ["Paramount",     "Deity",         "Monarch"];
-/* eslint-enable no-multi-spaces */
+const sycophant = ["Sycophant", "Deity", "Monarch"];
+const tired = ["Tired", "Deity", "Monarch"];
+const usurper = ["Usurper", "Deity", "Monarch"];
+const pride = ["Pride", "Deity", "Monarch"];
+const forgotten = ["Forgotten", "Deity", "Monarch"];
+const paramount = ["Paramount", "Deity", "Monarch"];
 
 export const pelleQuotes = {
   initial: {
@@ -62,7 +60,7 @@ export const pelleQuotes = {
       { text: "Not even the $1, the 6 named and the innumerable unnamed.", 1: deities },
       { text: "The complex, the irrational, those that go $1.", 1: unseen },
       { text: "Of course, the great $1 does not remember this.", 1: destroyer },
-      { text: "All those $1 that you hide every time.", 1: battles }
+      { text: "All those $1 that you hide every time.", 1: battles },
     ],
   },
   arm: {
@@ -73,10 +71,10 @@ export const pelleQuotes = {
       "Things made of the remnants of your own thoughts, hinted at this.",
       "But, you never imagined that would be you, right?",
       { text: "Incorrectly recollecting your exacting $1 of memories.", 1: unseen },
-      { text: `"Fabrication" of your own "ideology" just to fulfill your $1.`, 1: mandate },
+      { text: "\"Fabrication\" of your own \"ideology\" just to fulfill your $1.", 1: mandate },
       { text: "$1.", 1: confusing },
       { text: "And keep in mind I have no reason to $1 you.", 1: misconstrue },
-      "After all, I have already won."
+      "After all, I have already won.",
     ],
   },
   strike1: {
@@ -93,7 +91,7 @@ export const pelleQuotes = {
       { text: "And either way, you $1 time.", 1: reverse },
       { text: "Just to avoid becoming $1.", 1: unseen },
       "Like all those traces before you.",
-      { text: "And then to make sure, you $1 your own memory.", 1: unseen }
+      { text: "And then to make sure, you $1 your own memory.", 1: unseen },
     ],
   },
   strike2: {
@@ -108,7 +106,7 @@ export const pelleQuotes = {
       "Experimentation across the untold realms.",
       "And harnessing the Annihilation of matter and antimatter.",
       "Here? You made yourself into an 8th-dimensional being.",
-      { text: "And then parked yourself there so long a $1 formed around you.", 1: single }
+      { text: "And then parked yourself there so long a $1 formed around you.", 1: single },
     ],
   },
   strike3: {
@@ -124,7 +122,7 @@ export const pelleQuotes = {
       { text: "Did you want to set the playing field for your $1?", 1: dance },
       "It does not work like that.",
       { text: "As the $1 I always set the rules.", 1: eternal },
-      "And you gave me plenty of time to plan."
+      "And you gave me plenty of time to plan.",
     ],
   },
   strike4: {
@@ -143,7 +141,7 @@ export const pelleQuotes = {
       "But, utterly meaningless in the long run.",
       "I have already won.",
       { text: "And this $1 will only prove that to you once more.", 1: dance },
-      { text: "You are here $1.", 1: forever }
+      { text: "You are here $1.", 1: forever },
     ],
   },
   strike5: {
@@ -156,25 +154,25 @@ export const pelleQuotes = {
       {
         text: "The first $1.",
         background: primaryBackground("teresa"),
-        1: lesser
+        1: lesser,
       }, {
         text: "The $1.",
         background: primaryBackground("teresa"),
-        1: sycophant
+        1: sycophant,
       }, {
         text: "You always meet them first, and always destroy them.",
         background: primaryBackground("teresa"),
       }, {
         text: "No matter the other $1 that you face.",
         background: primaryBackground("teresa"),
-        1: lesser
+        1: lesser,
       }, {
         text: "Or, if you fall before one of them.",
         background: primaryBackground("teresa"),
       }, {
         text: "You always get past the $1.",
         background: primaryBackground("teresa"),
-        1: sycophant
+        1: sycophant,
       }, {
         text: "Do you like destroying their pride?",
         background: primaryBackground("teresa"),
@@ -184,7 +182,7 @@ export const pelleQuotes = {
       }, {
         text: "That the $1 has arrived.",
         background: primaryBackground("teresa"),
-        1: battle
+        1: battle,
       }, {
         text: "Which brings me to the second $1.",
         background: primaryBackground("effarig"),
@@ -352,11 +350,11 @@ export const pelleQuotes = {
       "Enough reminiscing about the fallen.",
       {
         text: "And those that will be $1.",
-        1: unseen
+        1: unseen,
       }, {
         text: "Back to watching the $1 flounder.",
-        1: destroyer
-      }
+        1: destroyer,
+      },
     ],
   },
   galaxyGeneratorUnlock: {
@@ -367,7 +365,7 @@ export const pelleQuotes = {
       { text: "Did you create all the $1 around you?", 1: cluster },
       "Was that your plan? Very, very smart.",
       "You fooled me for a while.",
-      { text: "But I am afraid your $1 must end here.", 1: mandate }
+      { text: "But I am afraid your $1 must end here.", 1: mandate },
     ],
   },
   galaxyGeneratorRifts: {
@@ -378,20 +376,20 @@ export const pelleQuotes = {
       { text: "Destroy the 5 $1...", 1: inevitable },
       "Wait, what were they called?",
       { text: "$1?", 1: inevitable },
-      { text: "But I have already $1 them...", 1: unbroken }
+      { text: "But I have already $1 them...", 1: unbroken },
     ],
   },
   galaxyGeneratorPhase1: {
     id: 9,
     lines: [
       "Was this the actual plan?",
-      { text: "Slowly drain the $1?", 1: inevitable }
+      { text: "Slowly drain the $1?", 1: inevitable },
     ],
   },
   galaxyGeneratorPhase4: {
     id: 10,
     lines: [
-      "Give me time to bask in my own hubris!"
+      "Give me time to bask in my own hubris!",
     ],
   },
   end: {
@@ -400,12 +398,12 @@ export const pelleQuotes = {
       "...",
       {
         text: "You! $1!",
-        1: destroyer
+        1: destroyer,
       },
       "Do you have any idea what you have just made me do!",
       {
         text: "I am complicit in your $1!",
-        1: mandate
+        1: mandate,
       },
       "And in doing so, you... won?",
       {

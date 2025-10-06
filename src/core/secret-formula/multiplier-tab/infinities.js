@@ -9,8 +9,8 @@ export const infinities = {
     isBase: true,
     multValue: () => gainedInfinities(),
     // The earliest sources of infinity multipliers are ach87 and TS32, which may happen in either order
-    isActive: () => (Achievement(87).isUnlocked || PlayerProgress.eternityUnlocked()) &&
-      !EternityChallenge(4).isRunning && !Pelle.isDoomed,
+    isActive: () => (Achievement(87).isUnlocked || PlayerProgress.eternityUnlocked())
+      && !EternityChallenge(4).isRunning && !Pelle.isDoomed,
     overlay: ["∞", "<i class='fa-solid fa-arrows-rotate' />"],
   },
   achievement: {
@@ -18,7 +18,7 @@ export const infinities = {
     multValue: () => DC.D1.timesEffectsOf(
       Achievement(87),
       Achievement(131).effects.infinitiesGain,
-      Achievement(164)
+      Achievement(164),
     ),
     isActive: () => Achievement(87).isUnlocked,
     icon: MultiplierTabIcons.ACHIEVEMENT,

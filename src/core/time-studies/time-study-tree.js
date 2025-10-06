@@ -112,7 +112,7 @@ export class TimeStudyTree {
       ["dark", [222, 224, 226, 228, 232, 234]],
       ...(Ra.unlocks.unlockHardV.canBeApplied
         ? [["triad", [301, 302, 303, 304].slice(0, Ra.unlocks.unlockHardV.effectOrDefault(0))]]
-        : [])
+        : []),
     ]);
   }
 
@@ -242,8 +242,8 @@ export class TimeStudyTree {
     }
     if (study instanceof ECTimeStudyState) {
       if (this.purchasedStudies.some(s => s instanceof ECTimeStudyState)) return false;
-      const hasForbiddenStudies = !Perk.studyECRequirement.isBought &&
-        study.config.secondary.forbiddenStudies?.some(s => check(s));
+      const hasForbiddenStudies = !Perk.studyECRequirement.isBought
+        && study.config.secondary.forbiddenStudies?.some(s => check(s));
       // We want to only check the structure for script template error instructions
       if (checkOnlyStructure) {
         return reqSatisfied && !hasForbiddenStudies;

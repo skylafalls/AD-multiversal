@@ -49,7 +49,7 @@ export class ECTimeStudyState extends TimeStudyState {
       171, 171, 171,
       143, 42, 121,
       111, 123, 151,
-      181, 181, 181
+      181, 181, 181,
     ];
     // If the player shift clicks an EC study that is immediately buyable, we try to
     // buy it first - in case buying studies up to that point renders it unaffordable.
@@ -129,26 +129,26 @@ export class ECTimeStudyState extends TimeStudyState {
 
 ECTimeStudyState.studies = mapGameData(
   GameDatabase.eternity.timeStudies.ec,
-  config => new ECTimeStudyState(config)
+  config => new ECTimeStudyState(config),
 );
 
 /**
  * @param {number} id
  * @returns {ECTimeStudyState}
  */
-TimeStudy.eternityChallenge = function(id) {
+TimeStudy.eternityChallenge = function (id) {
   return ECTimeStudyState.studies[id];
 };
 
 /**
  * @returns {ECTimeStudyState|undefined}
  */
-TimeStudy.eternityChallenge.current = function() {
+TimeStudy.eternityChallenge.current = function () {
   return player.challenge.eternity.unlocked
     ? TimeStudy.eternityChallenge(player.challenge.eternity.unlocked)
     : undefined;
 };
 
-ECTimeStudyState.invalidateCachedRequirements = function() {
+ECTimeStudyState.invalidateCachedRequirements = function () {
   ECTimeStudyState.studies.forEach(study => study.invalidateRequirement());
 };

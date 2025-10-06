@@ -4,7 +4,7 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "PurgeAllUnprotectedGlyphsModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   data() {
     return {
@@ -14,9 +14,9 @@ export default {
   },
   computed: {
     refiningSacrificingOrDeleting() {
-      if (this.isRefining) return `Refine`;
-      if (this.isSacrificing) return `Sacrifice`;
-      return `delete`;
+      if (this.isRefining) return "Refine";
+      if (this.isSacrificing) return "Sacrifice";
+      return "delete";
     },
     topLabel() {
       return `You are about to ${this.refiningSacrificingOrDeleting} all unprotected Glyphs`;

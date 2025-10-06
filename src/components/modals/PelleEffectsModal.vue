@@ -23,7 +23,7 @@ export default {
         "Achievement multiplier and many achievement rewards are disabled",
         "All Infinity and Eternity multipliers and generation are disabled",
         "Black Holes are disabled",
-        `Reality Upgrade "Temporal Transcendence" is disabled`,
+        "Reality Upgrade \"Temporal Transcendence\" is disabled",
 
         // Initial QoL and automation
         "All rewards which increase your starting resources except Achievement 21 are disabled",
@@ -55,10 +55,10 @@ export default {
         "Infinity Upgrades cannot be charged",
         "Triad Studies and Space Theorems are disabled",
         "Imaginary Upgrades are disabled excluding those relating to DMD's and Celestial unlocks",
-        "Continuum and Singularity rewards are disabled"
+        "Continuum and Singularity rewards are disabled",
       ];
-    }
-  }
+    },
+  },
 };
 </script>
 

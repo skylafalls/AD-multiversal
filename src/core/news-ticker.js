@@ -44,5 +44,5 @@ export const NewsHandler = {
       }
     }
     return totalSeen;
-  }
+  },
 };

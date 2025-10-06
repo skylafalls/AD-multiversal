@@ -22,7 +22,7 @@ export const ForceBoughtState = {
       }
     }
     return currentState;
-  }
+  },
 };
 
 export default {
@@ -34,7 +34,7 @@ export default {
   props: {
     disregardCurrentStudies: {
       type: Boolean,
-      default: false
+      default: false,
     },
     newStudies: {
       required: true,
@@ -42,8 +42,8 @@ export default {
     },
     showPreview: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
@@ -67,21 +67,21 @@ export default {
     treeStyleObject() {
       return {
         width: `${this.layout.width}rem`,
-        height: `${this.layout.height}rem`
+        height: `${this.layout.height}rem`,
       };
     },
     respecClassObject() {
       return {
         "o-primary-btn--subtab-option": true,
-        "o-primary-btn--respec-active": this.respec
+        "o-primary-btn--respec-active": this.respec,
       };
-    }
+    },
   },
   watch: {
     vLevel() {
       // When vLevel changes, we recompute the study tree because of triad studies
       this.$recompute("layout");
-    }
+    },
   },
   methods: {
     update() {
@@ -104,7 +104,7 @@ export default {
     },
     studyString(study) {
       switch (study.type) {
-        case TIME_STUDY_TYPE.NORMAL: case TIME_STUDY_TYPE.TRIAD: { return `${study.id}`;}
+        case TIME_STUDY_TYPE.NORMAL: case TIME_STUDY_TYPE.TRIAD: { return `${study.id}`; }
         case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: { return `EC${study.id}`;
         }
       }
@@ -116,12 +116,12 @@ export default {
     },
     getConnectionForceBoughtState(setup) {
       if (!this.disregardCurrentStudies) return ForceBoughtState.unspecified;
-      return (this.newStudies.includes(this.studyString(setup.connection.to)) &&
-        this.newStudies.includes(this.studyString(setup.connection.from)))
+      return (this.newStudies.includes(this.studyString(setup.connection.to))
+        && this.newStudies.includes(this.studyString(setup.connection.from)))
         ? ForceBoughtState.bought
         : ForceBoughtState.notBought;
-    }
-  }
+    },
+  },
 };
 </script>
 

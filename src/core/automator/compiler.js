@@ -13,7 +13,7 @@ class Validator extends BaseVisitor {
     for (const cmd of AutomatorCommands) {
       if (!cmd.validate) continue;
       const ownMethod = this[cmd.id];
-      this[cmd.id] = ctx => {
+      this[cmd.id] = (ctx) => {
         if (!cmd.validate(ctx, this)) return;
         if (ownMethod) ownMethod.call(this, ctx);
       };
@@ -37,7 +37,7 @@ class Validator extends BaseVisitor {
         startOffset: err.offset,
         endOffset: err.offset + err.length,
         info: `Unexpected characters: ${this.rawText.slice(err.offset, err.length)}`,
-        tip: `${this.rawText.slice(err.offset, err.length)} cannot be part of a command, remove them`
+        tip: `${this.rawText.slice(err.offset, err.length)} cannot be part of a command, remove them`,
       });
     }
   }
@@ -97,7 +97,7 @@ class Validator extends BaseVisitor {
       return ctx.reduce((prev, el) => Validator.combinePositionRanges(prev, Validator.getPositionRange(el)), pos);
     }
     for (const k in ctx) {
-      if (! Object.hasOwn(ctx, k) || !Array.isArray(ctx[k])) continue;
+      if (!Object.hasOwn(ctx, k) || !Array.isArray(ctx[k])) continue;
       pos = Validator.combinePositionRanges(pos, Validator.getPositionRange(ctx[k]));
     }
     return pos;
@@ -182,7 +182,7 @@ class Validator extends BaseVisitor {
     const tsNumber = Number.parseFloat(token.image);
     if (!TimeStudy(tsNumber) || (TimeStudy(tsNumber).isTriad && !Ra.canBuyTriad)) {
       this.addError(token, `Invalid Time Study identifier ${tsNumber}`,
-        `Make sure you copied or typed in your time study IDs correctly`);
+        "Make sure you copied or typed in your time study IDs correctly");
       return 0;
     }
     return tsNumber;
@@ -287,8 +287,8 @@ class Validator extends BaseVisitor {
   }
 
   studyRange(ctx, studiesOut) {
-    if (!ctx.firstStudy || ctx.firstStudy[0].isInsertedInRecovery ||
-      !ctx.lastStudy || ctx.lastStudy[0].isInsertedInRecovery) {
+    if (!ctx.firstStudy || ctx.firstStudy[0].isInsertedInRecovery
+      || !ctx.lastStudy || ctx.lastStudy[0].isInsertedInRecovery) {
       this.addError(ctx, "Missing Time Study number in range",
         "Provide starting and ending IDs for Time Study number ranges");
       return;
@@ -364,8 +364,8 @@ class Validator extends BaseVisitor {
 
   comparison(ctx) {
     super.comparison(ctx);
-    if (!ctx.compareValue || ctx.compareValue[0].recoveredNode ||
-      ctx.compareValue.length !== 2 || ctx.compareValue[1].recoveredNode) {
+    if (!ctx.compareValue || ctx.compareValue[0].recoveredNode
+      || ctx.compareValue.length !== 2 || ctx.compareValue[1].recoveredNode) {
       this.addError(ctx, "Missing value for comparison", "Ensure that the comparison has two values");
     }
     if (!ctx.ComparisonOperator || ctx.ComparisonOperator[0].isInsertedInRecovery) {
@@ -433,7 +433,7 @@ class Compiler extends BaseVisitor {
     for (const cmd of AutomatorCommands) {
       if (!cmd.compile) continue;
       const ownMethod = this[cmd.id];
-      // eslint-disable-next-line no-loop-func
+
       this[cmd.id] = (ctx, output) => {
         // For the compiler, we don't bother doing the default recursive visitation behavior
         if (ownMethod && ownMethod !== super[cmd.id]) ownMethod.call(this, ctx, output);
@@ -447,14 +447,14 @@ class Compiler extends BaseVisitor {
   }
 
   comparison(ctx) {
-    const getters = ctx.compareValue.map(cv => {
+    const getters = ctx.compareValue.map((cv) => {
       if (cv.children.AutomatorCurrency) return cv.children.AutomatorCurrency[0].tokenType.$getter;
       const val = cv.children.$value;
       if (typeof val === "string") return () => player.reality.automator.constants[val];
       return () => val;
     });
     // Some currencies are locked and should always evaluate to false if they're attempted to be used
-    const canUseInComp = ctx.compareValue.map(cv => {
+    const canUseInComp = ctx.compareValue.map((cv) => {
       if (cv.children.AutomatorCurrency) {
         const unlockedFn = cv.children.AutomatorCurrency[0].tokenType.$unlocked;
         return unlockedFn ? unlockedFn() : true;
@@ -489,14 +489,14 @@ class Blockifier extends BaseVisitor {
       const blockify = cmd.blockify;
       if (!blockify) continue;
       const ownMethod = this[cmd.id];
-      // eslint-disable-next-line no-loop-func
+
       this[cmd.id] = (ctx, output) => {
         if (ownMethod && ownMethod !== super[cmd.id]) ownMethod.call(this, ctx, output);
         try {
           const block = blockify(ctx, this);
           output.push({
             ...block,
-            id: UIID.next()
+            id: UIID.next(),
           });
         } catch {
           // If a command is invalid, it will throw an exception in blockify and fail to assign a value to block
@@ -509,7 +509,7 @@ class Blockifier extends BaseVisitor {
   }
 
   comparison(ctx) {
-    const parseInput = index => {
+    const parseInput = (index) => {
       const comp = ctx.compareValue[index];
       const isCurrency = Boolean(comp.children.AutomatorCurrency);
       if (isCurrency) return comp.children.AutomatorCurrency[0].image;
@@ -565,7 +565,7 @@ export function blockifyTextAutomator(input) {
   // associated with unparsable commands. This results in a discrepancy in line count whenever a line can't be
   // parsed as a specific command, and in general this is a problem we can't try to guess a fix for, so we just
   // don't convert it at all. In both cases nested commands are stored recursively, but with different structure.
-  const validatedCount = entry => {
+  const validatedCount = (entry) => {
     if (!entry) return 0;
     const commandDepth = entry.children;
     let foundChildren = 0;
@@ -584,7 +584,7 @@ export function blockifyTextAutomator(input) {
     }
     return foundChildren;
   };
-  const visitedCount = block => {
+  const visitedCount = (block) => {
     if (!block.nest) return 1;
     return 1 + block.nest.map(b => visitedCount(b)).reduce((sum, val) => sum + val, 0);
   };

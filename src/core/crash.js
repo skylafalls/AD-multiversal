@@ -23,7 +23,6 @@ window.GlobalErrorHandler = {
     GameKeyboard.disable();
     GameIntervals.stop();
     function clearHandles(set, clear) {
-      // eslint-disable-next-line no-empty-function
       let id = set(() => {}, 9999);
       while (id--) {
         clear(id);
@@ -37,9 +36,9 @@ window.GlobalErrorHandler = {
     if (window.GameUI !== undefined && GameUI.initialized) {
       Modal.message.show(`${message}<br>Check the console for more details`, {}, 3);
     }
-    // eslint-disable-next-line no-debugger
+
     // debugger;
-  }
+  },
 };
 
 window.onerror = (event, source) => {

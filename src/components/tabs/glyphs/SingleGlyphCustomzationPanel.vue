@@ -6,7 +6,7 @@ export default {
   name: "SingleGlyphCustomzationPanel",
   components: {
     GlyphComponent,
-    PrimaryButton
+    PrimaryButton,
   },
   data() {
     return {
@@ -42,7 +42,7 @@ export default {
       if (this.glyph.color) changes.push("Color");
       if (changes.length === 0) return "None";
       return changes.join("/");
-    }
+    },
   },
   created() {
     // Whenever the inventory changes, this glyph might not exist afterwards
@@ -56,8 +56,8 @@ export default {
   },
   methods: {
     update() {
-      this.isVisible = player.reality.glyphs.cosmetics.active && (GlyphAppearanceHandler.availableTypes.length > 0 ||
-        CosmeticGlyphTypes.list.some(t => t.isCosmetic && t.isUnlocked()));
+      this.isVisible = player.reality.glyphs.cosmetics.active && (GlyphAppearanceHandler.availableTypes.length > 0
+        || CosmeticGlyphTypes.list.some(t => t.isCosmetic && t.isUnlocked()));
     },
     dragover(event) {
       if (!event.dataTransfer.types.includes(GLYPH_MIME_TYPE)) return;
@@ -74,7 +74,7 @@ export default {
     openModal() {
       Modal.singleGlyphAppearance.show({ glyphId: this.glyphID });
     },
-  }
+  },
 };
 </script>
 

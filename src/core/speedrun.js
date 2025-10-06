@@ -45,7 +45,7 @@ export const Speedrun = {
     const record = rec ?? player.speedrun;
     switch (record.seedSelection) {
       case SPEEDRUN_SEED_STATE.UNKNOWN: {
-        return `No seed data (old save)`;
+        return "No seed data (old save)";
       }
       case SPEEDRUN_SEED_STATE.FIXED: {
         return `Official fixed seed (${record.initialSeed})`;
@@ -119,7 +119,7 @@ export const Speedrun = {
     const newestTime = player.speedrun.records.max();
     if (newestTime === 0) return 0;
     return player.speedrun.records.indexOf(newestTime);
-  }
+  },
 };
 
 class SpeedrunMilestone extends GameMechanicState {

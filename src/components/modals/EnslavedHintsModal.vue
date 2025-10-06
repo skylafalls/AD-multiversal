@@ -6,7 +6,7 @@ export default {
   name: "EnslavedHintsModal",
   components: {
     ModalWrapper,
-    PrimaryButton
+    PrimaryButton,
   },
   data() {
     return {
@@ -54,7 +54,7 @@ export default {
       const x = Decimal.ln(K).mul(Decimal.pow(K, alreadyWaited)).mul(decaylessTime);
       const timeToGoal = decimalProductLog(x).div(Decimal.ln(K).sub(alreadyWaited));
       return `${TimeSpan.fromSeconds(timeToGoal).toStringShort(true)}`;
-    }
+    },
   },
   methods: {
     update() {
@@ -86,7 +86,7 @@ export default {
     giveGlyphHint(available) {
       if (available <= 0 || !Enslaved.spendTimeForHint()) return;
       player.celestials.enslaved.glyphHintsGiven++;
-    }
+    },
   },
 
 };

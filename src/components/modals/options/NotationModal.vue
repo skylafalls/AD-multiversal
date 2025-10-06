@@ -8,7 +8,7 @@ export default {
   name: "NotationModal",
   components: {
     ModalWrapper,
-    SliderComponent
+    SliderComponent,
   },
   data() {
     return {
@@ -29,7 +29,7 @@ export default {
         max: 15,
         interval: 1,
         width: "100%",
-        tooltip: false
+        tooltip: false,
       };
     },
   },
@@ -66,7 +66,7 @@ export default {
       this.notationDigits = value;
       player.options.notationDigits.notation = value;
       if (value < this.commaDigits) this.adjustSliderComma(value);
-    }
+    },
   },
 };
 </script>

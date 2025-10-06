@@ -19,14 +19,14 @@ class GlyphEffectState {
 
 export const GlyphEffect = {
   dimBoostPower: new GlyphEffectState("powerdimboost", {
-    adjustApply: value => Decimal.max(1, value)
+    adjustApply: value => Decimal.max(1, value),
   }),
   ipMult: new GlyphEffectState("infinityIP", {
-    adjustApply: value => Decimal.max(1, value)
+    adjustApply: value => Decimal.max(1, value),
   }),
   epMult: new GlyphEffectState("timeEP", {
-    adjustApply: value => Decimal.max(1, value)
-  })
+    adjustApply: value => Decimal.max(1, value),
+  }),
 };
 
 /**
@@ -97,7 +97,7 @@ export function separateEffectKey(effectKey) {
 
 // Turns a glyph effect bitmask into an effect list and corresponding values. This also picks up non-generated effects,
 // since there is some id overlap. Those should be filtered out as needed after calling this function.
-// eslint-disable-next-line max-params
+
 export function getGlyphEffectValuesFromBitmask(bitmask, level, baseStrength, type) {
   // If we don't specifically exclude companion glyphs, the first-reality EP record is wrong within Doomed since its
   // value is encoded in the rarity field
@@ -105,17 +105,16 @@ export function getGlyphEffectValuesFromBitmask(bitmask, level, baseStrength, ty
   return getGlyphEffectsFromBitmask(bitmask)
     .map(effect => ({
       id: effect.id,
-      value: effect.effect(level, strength)
+      value: effect.effect(level, strength),
     }));
 }
 
-// eslint-disable-next-line max-params
 export function getGlyphEffectValuesFromArray(array, level, baseStrength, type) {
   const strength = (Pelle.isDoomed && type !== "companion") ? Pelle.glyphStrength : baseStrength;
   return getGlyphEffectsFromArray(array)
     .map(effect => ({
       id: effect.id,
-      value: effect.effect(level, strength)
+      value: effect.effect(level, strength),
     }));
 }
 

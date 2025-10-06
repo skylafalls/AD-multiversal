@@ -24,7 +24,7 @@ export const PerformanceStats = {
     if (block === undefined) {
       block = {
         records: [],
-        childBlocks: {}
+        childBlocks: {},
       };
       blockRoot[blockName] = block;
     }
@@ -49,7 +49,7 @@ export const PerformanceStats = {
     function render(rootBlock) {
       indentLevel++;
       for (const blockName in rootBlock) {
-        if (! Object.hasOwn(rootBlock, blockName)) continue;
+        if (!Object.hasOwn(rootBlock, blockName)) continue;
         const block = rootBlock[blockName];
         const records = block.records;
         while (records.length > 1 && records.last().timestamp - records.first().timestamp > samplePeriod) {
@@ -81,5 +81,5 @@ export const PerformanceStats = {
     }
     render(this.stats);
     this.container.innerHTML = text;
-  }
+  },
 };

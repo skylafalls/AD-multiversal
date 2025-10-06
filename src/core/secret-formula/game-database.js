@@ -41,7 +41,7 @@ export const GameDatabase = {
   sidebarResources,
   speedrunMilestones,
   tabNotifications,
-  tabs
+  tabs,
 };
 
 window.GameDatabase = GameDatabase;
@@ -62,6 +62,6 @@ window.mapGameDataToObject = function mapGameDataToObject(gameData, mapFun) {
   }
   return {
     all: Object.values(out),
-    ...out
+    ...out,
   };
 };

@@ -9,7 +9,7 @@ export const state = {
     quotes: {
       queue: [],
       current: undefined,
-      history: undefined
+      history: undefined,
     },
     tabs: {
       reality: {
@@ -32,8 +32,8 @@ export const state = {
         automator: {
           fullScreen: false,
           editorScriptID: "",
-          lines: []
-        }
+          lines: [],
+        },
       },
     },
     shiftDown: false,

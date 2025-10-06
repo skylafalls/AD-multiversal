@@ -4,7 +4,7 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "SacrificeModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   data() {
     return {
@@ -34,7 +34,7 @@ export default {
     },
     handleYesClick() {
       sacrificeReset();
-    }
+    },
   },
 };
 </script>

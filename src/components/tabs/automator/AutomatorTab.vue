@@ -11,7 +11,7 @@ export default {
     SplitPane,
     AutomatorEditor,
     AutomatorPointsList,
-    AutomatorDocs
+    AutomatorDocs,
   },
   data() {
     return {
@@ -58,8 +58,8 @@ export default {
       this.currentChars = AutomatorData.singleScriptCharacters();
       this.totalChars = AutomatorData.totalScriptCharacters();
       this.withinLimit = AutomatorData.isWithinLimit();
-    }
-  }
+    },
+  },
 };
 </script>
 

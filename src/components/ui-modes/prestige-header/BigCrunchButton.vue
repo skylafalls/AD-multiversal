@@ -23,18 +23,18 @@ export default {
     buttonClassObject() {
       return {
         "o-infinity-button--unavailable": !this.canCrunch,
-        "o-pelle-disabled-pointer": this.creditsClosed
+        "o-pelle-disabled-pointer": this.creditsClosed,
       };
     },
     // Show IP/min below this threshold, color the IP number above it
     rateThreshold: () => 5e11,
     amountStyle() {
       if (!this.headerTextColored || this.currentIP.lt(this.rateThreshold)) return {
-        "transition-duration": "0s"
+        "transition-duration": "0s",
       };
       if (this.hover) return {
-        color: "black",
-        "transition-duration": "0.2s"
+        "color": "black",
+        "transition-duration": "0.2s",
       };
 
       // Dynamically generate red-text-green based on the CSS entry for text color, returning a raw 6-digit hex color
@@ -46,12 +46,12 @@ export default {
         [
           Number.parseInt(textHexCode.slice(0, 2), 16),
           Number.parseInt(textHexCode.slice(2, 4), 16),
-          Number.parseInt(textHexCode.slice(4), 16)
+          Number.parseInt(textHexCode.slice(4), 16),
         ],
-        [0, 255, 0]
+        [0, 255, 0],
       ];
       const ratio = this.gainedIP.max(1).log10().div(this.currentIP.max(1).log10());
-      const interFn = index => {
+      const interFn = (index) => {
         if (ratio.lt(0.9)) return stepRGB[0][index];
         if (ratio.lt(1)) {
           const r = ratio.sub(0.9).mul(10);
@@ -65,8 +65,8 @@ export default {
       };
       const rgb = [interFn(0), interFn(1), interFn(2)];
       return {
-        color: `rgb(${rgb.join(",")})`,
-        "transition-duration": "0.2s"
+        "color": `rgb(${rgb.join(",")})`,
+        "transition-duration": "0.2s",
       };
     },
   },
@@ -95,7 +95,7 @@ export default {
     crunch() {
       if (!Player.canCrunch) return;
       manualBigCrunchResetRequest();
-    }
+    },
   },
 };
 </script>

@@ -14,8 +14,8 @@ export default {
     },
     noConfirmations() {
       return ConfirmationTypes.index.every(x => !x.isUnlocked());
-    }
-  }
+    },
+  },
 };
 </script>
 

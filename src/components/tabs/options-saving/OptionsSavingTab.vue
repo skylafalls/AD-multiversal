@@ -14,7 +14,7 @@ export default {
     OpenModalHotkeysButton,
     OptionsButton,
     PrimaryToggleButton,
-    SaveFileName
+    SaveFileName,
   },
   data() {
     return {
@@ -41,12 +41,12 @@ export default {
     overwriteTooltip() {
       if (this.showCloudModal) return "This setting does nothing since the modal is being shown.";
       return this.forceCloudOverwrite
-        ? `Your local save will always overwrite your cloud save no matter what.`
-        : `Save conflicts will prevent your local save from being saved to the cloud.`;
+        ? "Your local save will always overwrite your cloud save no matter what."
+        : "Save conflicts will prevent your local save from being saved to the cloud.";
     },
     STEAM() {
       return STEAM;
-    }
+    },
   },
   watch: {
     cloudEnabled(newValue) {
@@ -66,7 +66,7 @@ export default {
     },
     hideGoogleName(newValue) {
       player.options.hideGoogleName = newValue;
-    }
+    },
   },
   methods: {
     update() {
@@ -91,7 +91,7 @@ export default {
       if (event.target.files.length === 0) return;
 
       const reader = new FileReader();
-      reader.onload = function() {
+      reader.onload = function () {
         // File importing behavior should use the behavior on the existing and to-be-overwritten save instead of the
         // settings in the to-be-imported save. This is largely because the former is more easily edited by the player,
         // and in contrast with the import-as-string case which allows the player to choose.
@@ -110,8 +110,8 @@ export default {
         Modal.message.show(`You cannot modify your seed any more. Glyph RNG has already been used to generate
           at least one Glyph on this run.`);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

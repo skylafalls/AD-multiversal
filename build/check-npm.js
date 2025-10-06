@@ -1,10 +1,7 @@
-/* eslint-disable no-console */
-
 const fs = require("node:fs");
 const path = require("node:path");
 const proc = require("node:child_process");
 const readline = require("node:readline");
-
 
 function getHash(string) {
   let hash = 0;
@@ -35,7 +32,7 @@ if (newHash !== currentHash) {
 
   const rl = readline.createInterface({
     input: process.stdin,
-    output: process.stdout
+    output: process.stdout,
   });
 
   console.log("package-lock.json changes were detected");
@@ -46,9 +43,8 @@ if (newHash !== currentHash) {
     fs.writeFileSync(hashPath, newHash, {});
   }, 5000);
 
-  // eslint-disable-next-line max-len
-  rl.question(`Press enter within the next five seconds to skip running 'npm ci' - this will leave your packages out of sync!`, () => {
-    console.log(`'npm ci' step skipped`);
+  rl.question("Press enter within the next five seconds to skip running 'npm ci' - this will leave your packages out of sync!", () => {
+    console.log("'npm ci' step skipped");
     rl.close();
     clearTimeout(timeout);
   });

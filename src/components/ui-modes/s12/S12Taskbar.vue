@@ -20,7 +20,7 @@ export default {
     };
   },
   computed: {
-    tabs: () => Tabs.newUI
+    tabs: () => Tabs.newUI,
   },
   methods: {
     update() {

@@ -6,7 +6,7 @@ export default {
   name: "GlyphSetSavePanel",
   components: {
     ToggleButton,
-    GlyphSetPreview
+    GlyphSetPreview,
   },
   data() {
     return {
@@ -24,7 +24,7 @@ export default {
         full set of previously-saved Glyphs`;
     },
     noSet() {
-      return `No Glyph Preset saved in this slot`;
+      return "No Glyph Preset saved in this slot";
     },
   },
   watch: {
@@ -54,7 +54,7 @@ export default {
       this.level = player.options.ignoreGlyphLevel;
     },
     refreshGlyphSets() {
-      this.glyphSets = structuredClone(player.reality.glyphs.sets.map((g) => cloneDeep(Glyphs.copyForRecords(g.glyphs))));
+      this.glyphSets = structuredClone(player.reality.glyphs.sets.map(g => cloneDeep(Glyphs.copyForRecords(g.glyphs))));
     },
     setName(id) {
       const name = this.names[id] === "" ? "" : `: ${this.names[id]}`;
@@ -81,7 +81,7 @@ export default {
         const options = Glyphs.findByValues(glyph, glyphsToLoad, {
           level: this.level ? -1 : 0,
           strength: this.rarity ? -1 : 0,
-          effects: this.effects ? -1 : 0
+          effects: this.effects ? -1 : 0,
         });
         activeOptions.push({ glyph, options });
       }
@@ -99,7 +99,7 @@ export default {
         const options = Glyphs.findByValues(glyph, Glyphs.sortedInventoryList, {
           level: this.level ? 1 : 0,
           strength: this.rarity ? 1 : 0,
-          effects: this.effects ? 1 : 0
+          effects: this.effects ? 1 : 0,
         });
         remainingOptions[index] = { glyph, options };
       }
@@ -177,8 +177,8 @@ export default {
     },
     glyphSetKey(set, index) {
       return `${index} ${Glyphs.hash(set)}`;
-    }
-  }
+    },
+  },
 };
 </script>
 

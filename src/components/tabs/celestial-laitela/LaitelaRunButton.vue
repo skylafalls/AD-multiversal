@@ -4,7 +4,7 @@ import GlyphSetPreview from "@/components/GlyphSetPreview";
 export default {
   name: "LaitelaRunButton",
   components: {
-    GlyphSetPreview
+    GlyphSetPreview,
   },
   data() {
     return {
@@ -47,7 +47,7 @@ export default {
     classObject() {
       return {
         "o-laitela-run-button": true,
-        "o-laitela-run-button--large": !this.singularitiesUnlocked
+        "o-laitela-run-button--large": !this.singularitiesUnlocked,
       };
     },
     runButtonClassObject() {
@@ -55,10 +55,10 @@ export default {
         "o-laitela-run-button__icon": true,
         "o-laitela-run-button__icon--running": this.isRunning,
         "c-celestial-run-button--clickable": !this.isDoomed,
-        "o-pelle-disabled-pointer": this.isDoomed
+        "o-pelle-disabled-pointer": this.isDoomed,
       };
     },
-  }
+  },
 };
 </script>
 

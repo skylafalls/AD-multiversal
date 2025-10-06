@@ -24,8 +24,8 @@ export default {
   props: {
     layer: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -105,7 +105,7 @@ export default {
       this.resourceTitles = [names[this.selectedResources[0]], names[this.selectedResources[1]]];
 
       // Entries always have all values, but sometimes the trailing ones will be blank or zero which we want to hide
-      const lastIndex = arr => {
+      const lastIndex = (arr) => {
         let val = arr.length;
         while (val > 0) {
           const curr = arr[val - 1];
@@ -120,8 +120,8 @@ export default {
     clone(runs) {
       return runs.map(run =>
         run.map(item =>
-          (item instanceof Decimal ? Decimal.fromDecimal(item) : item)
-        )
+          (item instanceof Decimal ? Decimal.fromDecimal(item) : item),
+        ),
       );
     },
     infoArray(run, index) {
@@ -228,15 +228,15 @@ export default {
       }
       return {
         width,
-        border: "0.05rem solid #999999",
-        margin: "-0.05rem",
-        padding: "0.2rem 0",
+        "border": "0.05rem solid #999999",
+        "margin": "-0.05rem",
+        "padding": "0.2rem 0",
         "border-bottom-width": isHeader ? "0.3rem" : "0.1rem",
         "font-weight": isHeader ? "bold" : null,
-        color: "var(--color-text)",
+        "color": "var(--color-text)",
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

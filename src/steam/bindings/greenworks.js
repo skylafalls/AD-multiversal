@@ -12,13 +12,13 @@ export function isModuleLoaded() {
 export function initAPI() {
   return module.safeCall(
     x => x.initAPI(),
-    false
+    false,
   );
 }
 
 export function getSteamId() {
   return module.safeCall(
-    x => x.getSteamId()
+    x => x.getSteamId(),
   );
 }
 
@@ -27,7 +27,7 @@ export function getSteamId() {
  */
 export function getAuthSessionTicket() {
   return module.makePromise(
-    (x, resolve, reject) => x.getAuthSessionTicket(resolve, reject)
+    (x, resolve, reject) => x.getAuthSessionTicket(resolve, reject),
   );
 }
 
@@ -36,32 +36,32 @@ export function getAuthSessionTicket() {
  */
 export function activateAchievement(id) {
   return module.makePromise(
-    (x, resolve, reject) => x.activateAchievement(id, resolve, reject)
+    (x, resolve, reject) => x.activateAchievement(id, resolve, reject),
   );
 }
 
 export function getAchievementNames() {
   return module.safeCall(
     x => x.getAchievementNames(),
-    []
+    [],
   );
 }
 
 export function initDiscordAPI(clientId, steamGameId) {
   return module.safeCall(
-    x => x.initDiscordAPI(clientId, steamGameId)
+    x => x.initDiscordAPI(clientId, steamGameId),
   );
 }
 
 export function runDiscordCallbacks() {
   return module.safeCall(
-    x => x.runDiscordCallbacks()
+    x => x.runDiscordCallbacks(),
   );
 }
 
 export function on(event, callback) {
   return module.safeCall(
-    x => x.on(event, callback)
+    x => x.on(event, callback),
   );
 }
 
@@ -71,8 +71,7 @@ export function setDiscordActivity(state, details) {
       smallImage: "icon",
       largeImage: "icon",
       state,
-      details
-    })
+      details,
+    }),
   );
 }
-

@@ -3,7 +3,6 @@ import BigCrunchButton from "../BigCrunchButton";
 import GameHeader from "../GameHeader";
 import NewsTicker from "../NewsTicker";
 
-
 import ClassicSubtabBar from "./ClassicSubtabBar";
 import ClassicTabBar from "./ClassicTabBar";
 import EternityPointsHeader from "@/components/EternityPointsHeader";
@@ -18,7 +17,7 @@ export default {
     NewsTicker,
     InfinityPointsHeader,
     EternityPointsHeader,
-    BigCrunchButton
+    BigCrunchButton,
   },
   data() {
     return {
@@ -31,7 +30,7 @@ export default {
     tab: () => Tabs.current,
     news() {
       return this.$viewModel.news;
-    }
+    },
   },
   methods: {
     update() {
@@ -40,7 +39,7 @@ export default {
       // This only exists to force a key-swap after pressing the button to start a new game; the news ticker can break
       // if it isn't redrawn
       this.newGameKey = Pelle.isDoomed;
-    }
+    },
   },
 };
 </script>

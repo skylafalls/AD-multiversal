@@ -5,7 +5,7 @@ export default {
     return {
       currentResource: new Decimal(0),
       maximumResource: new Decimal(0),
-      currentEternityChallengeId: 0
+      currentEternityChallengeId: 0,
     };
   },
   computed: {
@@ -24,7 +24,7 @@ export default {
       const rgb = [
         Math.round(Math.min(c * ratio, 1) * 255),
         Math.round(Math.min(c * (1 - ratio), 1) * 255 * (darkTheme ? 1 : 0.7)),
-        0
+        0,
       ];
 
       return { color: `rgb(${rgb.join(",")})` };
@@ -36,7 +36,7 @@ export default {
       // We're always either in EC4 or EC12 when displaying this text.
       return `${TimeSpan.fromSeconds(this.currentResource).toString()} /
         ${TimeSpan.fromSeconds(this.maximumResource).toString()} time spent`;
-    }
+    },
   },
   methods: {
     update() {

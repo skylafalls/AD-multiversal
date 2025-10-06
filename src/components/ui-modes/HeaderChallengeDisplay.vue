@@ -6,7 +6,7 @@ export default {
   name: "HeaderChallengeDisplay",
   components: {
     FailableEcText,
-    PrimaryButton
+    PrimaryButton,
   },
   data() {
     return {
@@ -40,22 +40,22 @@ export default {
         {
           name: () => "Time Dilation",
           isActive: token => token,
-          activityToken: () => player.dilation.active
+          activityToken: () => player.dilation.active,
         },
         {
           name: token => `Eternity Challenge ${token}`,
           isActive: token => token > 0,
-          activityToken: () => player.challenge.eternity.current
+          activityToken: () => player.challenge.eternity.current,
         },
         {
           name: token => `Infinity Challenge ${token}`,
           isActive: token => token > 0,
-          activityToken: () => player.challenge.infinity.current
+          activityToken: () => player.challenge.infinity.current,
         },
         {
           name: token => `${NormalChallenge(token).config.name} Challenge`,
           isActive: token => token > 0,
-          activityToken: () => player.challenge.normal.current
+          activityToken: () => player.challenge.normal.current,
         },
       ];
     },
@@ -72,7 +72,7 @@ export default {
           if (Enslaved.isRunning && currEC === 1) {
             completionText = `(${formatInt(nextCompletion)}/???)`;
           } else if (nextCompletion === 6) {
-            completionText = `(already completed)`;
+            completionText = "(already completed)";
           } else {
             completionText = `(${formatInt(nextCompletion)}/${formatInt(5)})`;
           }
@@ -147,8 +147,8 @@ export default {
             challengeName: names.chall,
             normalName: names.normal,
             hasHigherLayers: this.inPelle || this.activeChallengeNames.length > 1,
-            exitFn: clickFn
-          }
+            exitFn: clickFn,
+          },
         );
       } else {
         clickFn();
@@ -187,7 +187,7 @@ export default {
         "l-challenge-display": true,
         "l-challenge-display--clickable": this.activeChallengeNames.length > 0,
       };
-    }
+    },
   },
 };
 </script>

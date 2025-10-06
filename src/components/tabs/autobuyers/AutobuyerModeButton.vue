@@ -4,12 +4,12 @@ export default {
   props: {
     autobuyer: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      mode: AUTOBUYER_MODE.BUY_SINGLE
+      mode: AUTOBUYER_MODE.BUY_SINGLE,
     };
   },
   computed: {
@@ -21,7 +21,7 @@ export default {
         }
       }
       throw new Error("Unknown Dimension Autobuyer mode");
-    }
+    },
   },
   methods: {
     update() {
@@ -30,8 +30,8 @@ export default {
     toggleMode() {
       this.autobuyer.toggleMode();
       this.update();
-    }
-  }
+    },
+  },
 };
 </script>
 

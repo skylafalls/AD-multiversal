@@ -4,19 +4,19 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "SacrificeGlyphModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   props: {
     idx: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       currentGlyphSacrifice: 0,
       gain: 0,
-      confirmedSacrifice: false
+      confirmedSacrifice: false,
     };
   },
   computed: {
@@ -27,7 +27,7 @@ export default {
       return `Do you really want to sacrifice this Glyph? Your total power of sacrificed ${this.glyph.type}
       Glyphs will increase from ${format(this.currentGlyphSacrifice, 2, 2)} to
       ${format(this.currentGlyphSacrifice + this.gain, 2, 2)}.`;
-    }
+    },
   },
   methods: {
     update() {
@@ -36,7 +36,6 @@ export default {
 
       const newGlyph = Glyphs.findByInventoryIndex(this.idx);
       if (this.glyph !== newGlyph && !this.confirmedSacrifice) {
-
         // ConfirmedSacrifice is here because when you sac a glyph with confirmation it
         // Displays this modal message even though the glyph was sacced successfully.
         // I have no idea how the eventHub thing works or if moving the UI update before

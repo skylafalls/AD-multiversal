@@ -12,7 +12,7 @@ export default {
     },
     availableModes() {
       return Object.values(this.modes);
-    }
+    },
   },
   methods: {
     optionClass(idx) {
@@ -20,7 +20,7 @@ export default {
         idx === this.mode
           ? "c-glyph-auto-pick-options__option--active"
           : "c-glyph-auto-pick-options__option--inactive",
-        "c-glyph-auto-pick-options__option"
+        "c-glyph-auto-pick-options__option",
       ];
     },
     update() {
@@ -31,8 +31,8 @@ export default {
     },
     modeDesc(id) {
       return AutoGlyphProcessor.trashModeDesc(id);
-    }
-  }
+    },
+  },
 };
 </script>
 

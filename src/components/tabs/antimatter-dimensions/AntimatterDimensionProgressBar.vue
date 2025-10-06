@@ -13,12 +13,12 @@ export default {
   computed: {
     progressBarStyle() {
       return {
-        width: `${(this.fill.times(100).toNumber()).toFixed(2)}%`
+        width: `${(this.fill.times(100).toNumber()).toFixed(2)}%`,
       };
-    }
+    },
   },
   methods: {
-    // eslint-disable-next-line complexity
+
     update() {
       this.displayPercents = formatPercents(this.fill, 2);
       const setProgress = (current, goal, tooltip) => {
@@ -34,8 +34,8 @@ export default {
       // than normal and therefore default filling won't be meaningful. Since challenges get completed or abandoned from
       // the inside outwards, we show the goals in that priority as well. It only makes sense to check cel6 and not the
       // others because pre-cel3 completion it'll default to e4000 and cel4/5 don't have meaningful single goals
-      const inSpecialRun = Player.isInAntimatterChallenge || EternityChallenge.isRunning || player.dilation.active ||
-        Laitela.isRunning;
+      const inSpecialRun = Player.isInAntimatterChallenge || EternityChallenge.isRunning || player.dilation.active
+        || Laitela.isRunning;
       if (inSpecialRun) {
         if (Player.isInAntimatterChallenge) {
           setProgress(Currency.antimatter.value, Player.antimatterChallenge.goal, "Percentage to Challenge goal");
@@ -106,8 +106,8 @@ export default {
       } else {
         setProgress(Currency.antimatter.value, new Decimal(Number.MAX_VALUE), "Percentage to Infinity");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -7,7 +7,7 @@ export default {
     bounds: {
       type: Object,
       required: true,
-    }
+    },
   },
   mounted() {
     this.fly();
@@ -91,7 +91,7 @@ export default {
           : SNOW[Math.floor(Math.random() * SNOW.length)];
       }
     },
-  }
+  },
 };
 </script>
 

@@ -4,19 +4,19 @@ import HintText from "@/components/HintText";
 export default {
   name: "SecretAchievement",
   components: {
-    HintText
+    HintText,
   },
   props: {
     achievement: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       isUnlocked: false,
       isMouseOver: false,
-      showUnlockState: false
+      showUnlockState: false,
     };
   },
   computed: {
@@ -29,7 +29,7 @@ export default {
     styleObject() {
       if (!this.isUnlocked) return;
       return {
-        "background-position": `-${(this.achievement.column - 1) * 104}px -${(this.achievement.row - 1) * 104}px`
+        "background-position": `-${(this.achievement.column - 1) * 104}px -${(this.achievement.row - 1) * 104}px`,
       };
     },
     classObject() {
@@ -37,7 +37,7 @@ export default {
         "o-achievement": true,
         "o-achievement--hidden": !this.isUnlocked,
         "o-achievement--unlocked": this.isUnlocked,
-        "o-achievement--secret": true
+        "o-achievement--secret": true,
       };
     },
     indicatorIconClass() {
@@ -46,7 +46,7 @@ export default {
     indicatorClassObject() {
       return {
         "o-achievement__indicator": true,
-        "o-achievement__indicator--locked": !this.isUnlocked
+        "o-achievement__indicator--locked": !this.isUnlocked,
       };
     },
   },
@@ -69,8 +69,8 @@ export default {
       if (this.id === 11) {
         SecretAchievement(11).unlock();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

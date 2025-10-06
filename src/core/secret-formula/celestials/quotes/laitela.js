@@ -12,7 +12,7 @@ export const laitelaQuotes = {
       "So you can play around all you want.",
       "For I am Lai'tela, the Celestial of Dimensions,",
       "And I shall watch you forever.",
-    ]
+    ],
   },
   // Note: This can be done immediately after unlocking Lai'tela
   firstDestabilize: {
@@ -26,7 +26,7 @@ export const laitelaQuotes = {
       "And this is why nothing you do will change a thing.",
       "When you tire of struggling, you too, shall be bound and forgotten.",
       "You will never find a way to overpower me.",
-    ]
+    ],
   },
   // Note: This happens about an hour or two before singularities
   secondDestabilize: {
@@ -40,7 +40,7 @@ export const laitelaQuotes = {
       "It gives me no solace to ponder and look back.",
       "As all I can do is reminisce upon every possible action I could have taken.",
       "But I digress. We should tighten those chains.",
-    ]
+    ],
   },
   firstSingularity: {
     id: 3,
@@ -54,7 +54,7 @@ export const laitelaQuotes = {
       "You have taken control of the darkness so quickly.",
       "Molded them into your own design, and now into a singular point...",
       "It... it does not matter. The end will remain the same.",
-    ]
+    ],
   },
   // Note: Shown when unlocking DMD3; requirement is auto-condensing 20 singularities and it happens around ~200 total
   thirdDMD: {
@@ -66,7 +66,7 @@ export const laitelaQuotes = {
       "How did you manage to obtain it?",
       "Fascinating... I was never aware of this.",
       "... was I?",
-    ]
+    ],
   },
   // Note: This happens around e10-e11 singularities
   annihilation: {
@@ -80,7 +80,7 @@ export const laitelaQuotes = {
       "And you?",
       "...",
       "The answer... eludes me...",
-    ]
+    ],
   },
   // Note: This happens near e18 singularities
   halfDimensions: {
@@ -95,7 +95,7 @@ export const laitelaQuotes = {
       "No, I must be missing something...",
       "Are you causing gaps within my own memory?",
       "What... ARE you?",
-    ]
+    ],
   },
   // Note: Shown when the first row 5 iM upgrade is purchased (~e26 singularities)
   finalRowIM: {
@@ -109,7 +109,7 @@ export const laitelaQuotes = {
       "Just like... when my role was almost usurped...",
       "And yet... I am unable to bring myself to do anything.",
       "Because this... was... my mistake...",
-    ]
+    ],
   },
   // Note: This is around when all infinite milestones hit increased scaling
   increasedMilestoneScaling: {
@@ -120,7 +120,7 @@ export const laitelaQuotes = {
       "You are attaining... total mastery... over the dark...",
       "While I can barely... hold onto my name...",
       "What... can I... even do?",
-    ]
+    ],
   },
   fullDestabilize: {
     id: 9,
@@ -132,6 +132,6 @@ export const laitelaQuotes = {
       "I do not even... have anything left...",
       "Something about... destruction...",
       "The end...",
-    ]
+    ],
   },
 };

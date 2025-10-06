@@ -23,7 +23,7 @@ export default {
     classObject() {
       return {
         "l-tickspeed-container": true,
-        "l-tickspeed-container--hidden": !this.isVisible
+        "l-tickspeed-container--hidden": !this.isVisible,
       };
     },
     multiplierDisplay() {
@@ -43,7 +43,7 @@ export default {
       if (!this.freeTickspeed) return quantifyInt("Purchased Upgrade", purchased);
       if (purchased.eq(0) || this.isContinuumActive) return `${formatInt(this.freeTickspeed, 3)} Free Upgrades`;
       return `${formatInt(purchased, 3)} Purchased + ${formatInt(this.freeTickspeed, 3)} Free`;
-    }
+    },
   },
   methods: {
     update() {
@@ -69,10 +69,10 @@ export default {
         "tickspeed-btn": true,
         "o-primary-btn--disabled": !this.isAffordable && !this.isContinuumActive,
         "o-non-clickable o-continuum": this.isContinuumActive,
-        "tutorial--glow": this.isAffordable && this.hasTutorial
+        "tutorial--glow": this.isAffordable && this.hasTutorial,
       };
     },
-  }
+  },
 };
 </script>
 

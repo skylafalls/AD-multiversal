@@ -4,8 +4,8 @@ import DarkMatterDimensionRow from "./DarkMatterDimensionRow";
 export default {
   name: "DarkMatterDimensionGroup",
   components: {
-    DarkMatterDimensionRow
-  }
+    DarkMatterDimensionRow,
+  },
 };
 </script>
 

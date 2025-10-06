@@ -1,9 +1,9 @@
 const formatCost = c => format(c, 2);
-// eslint-disable-next-line max-params
+
 const expWithIncreasedScale = (base1, base2, incScale, coeff, x) =>
   Decimal.pow(base1, x).times(Decimal.pow(base2, x.sub(incScale)).max(1)).times(coeff);
 
-const rebuyable = config => {
+const rebuyable = (config) => {
   const { id, description, cost, effect, formatEffect, cap } = config;
   return {
     id,
@@ -13,7 +13,7 @@ const rebuyable = config => {
     cap,
     effect: (x = player.celestials.pelle.rebuyables[id]) => effect(x),
     formatEffect,
-    rebuyable: true
+    rebuyable: true,
   };
 };
 
@@ -24,7 +24,7 @@ export const pelleUpgrades = {
     cost: [10, 1e3, 41, 100],
     effect: x => Pelle.antimatterDimensionMult(x),
     formatEffect: x => formatX(x, 2, 2),
-    cap: 44
+    cap: 44,
   }),
   timeSpeedMult: rebuyable({
     id: "timeSpeedMult",
@@ -32,7 +32,7 @@ export const pelleUpgrades = {
     cost: [20, 1e3, 30, 1e5],
     effect: x => Decimal.pow(1.3, x),
     formatEffect: x => formatX(x, 2, 2),
-    cap: 35
+    cap: 35,
   }),
   glyphLevels: rebuyable({
     id: "glyphLevels",
@@ -40,7 +40,7 @@ export const pelleUpgrades = {
     cost: [30, 1e3, 25, 1e15],
     effect: x => Decimal.floor((x.add(1).mul(3).sub(2)).pow(1.6)),
     formatEffect: x => formatInt(x),
-    cap: 26
+    cap: 26,
   }),
   infConversion: rebuyable({
     id: "infConversion",
@@ -48,7 +48,7 @@ export const pelleUpgrades = {
     cost: [40, 1e3, 20, 1e18],
     effect: x => x.mul(3.5).pow(0.37),
     formatEffect: x => `+${format(x, 2, 2)}`,
-    cap: 21
+    cap: 21,
   }),
   galaxyPower: rebuyable({
     id: "galaxyPower",
@@ -56,7 +56,7 @@ export const pelleUpgrades = {
     cost: [1000, 1e3, 10, 1e30],
     effect: x => x.div(50).add(1),
     formatEffect: x => formatX(x, 2, 2),
-    cap: 9
+    cap: 9,
   }),
   antimatterDimAutobuyers1: {
     id: 0,
@@ -128,7 +128,7 @@ export const pelleUpgrades = {
     id: 11,
     description: "Galaxies no longer reset Dimension Boosts",
     cost: 1e16,
-    formatCost
+    formatCost,
   },
   replicantiAutobuyers: {
     id: 12,
@@ -195,5 +195,5 @@ export const pelleUpgrades = {
     description: "Replicanti Galaxies no longer reset anything they normally reset",
     cost: 1e30,
     formatCost,
-  }
+  },
 };

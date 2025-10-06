@@ -24,68 +24,67 @@ import { GameKeyboard } from "./keyboard";
 // Free keys:
 // i, j, k, l, n, o, p, q, v, w, x
 
-
 export const shortcuts = [
   {
     name: "Toggle Autobuyers",
     keys: ["a"],
     type: "bindHotkey",
     function: () => keyboardToggleAutobuyers(),
-    visible: true
+    visible: true,
   }, {
     name: "Buy one Tickspeed",
     keys: ["shift", "t"],
     type: "bindRepeatableHotkey",
     function: () => buyTickSpeed(),
-    visible: true
+    visible: true,
   }, {
     name: "Buy max Tickspeed",
     keys: ["t"],
     type: "bindRepeatableHotkey",
     function: () => buyMaxTickSpeed(),
-    visible: true
+    visible: true,
   }, {
     name: "Max all",
     keys: ["m"],
     type: "bindRepeatableHotkey",
     function: () => maxAll(),
-    visible: true
+    visible: true,
   }, {
     name: "Dimensional Sacrifice",
     keys: ["s"],
     type: "bindRepeatableHotkey",
     function: () => sacrificeBtnClick(),
-    visible: true
+    visible: true,
   }, {
     name: "Dimension Boost",
     keys: ["d"],
     type: "bindRepeatableHotkey",
     function: () => manualRequestDimensionBoost(true),
-    visible: true
+    visible: true,
   }, {
     name: "Single Dimension Boost",
     keys: ["shift", "d"],
     type: "bindRepeatableHotkey",
     function: () => manualRequestDimensionBoost(false),
-    visible: false
+    visible: false,
   }, {
     name: "Antimatter Galaxy",
     keys: ["g"],
     type: "bindRepeatableHotkey",
     function: () => manualRequestGalaxyReset(true),
-    visible: true
+    visible: true,
   }, {
     name: "Single Antimatter Galaxy",
     keys: ["shift", "g"],
     type: "bindRepeatableHotkey",
     function: () => manualRequestGalaxyReset(false),
-    visible: false
+    visible: false,
   }, {
     name: "Big Crunch",
     keys: ["c"],
     type: "bindRepeatableHotkey",
     function: () => manualBigCrunchResetRequest(),
-    visible: true
+    visible: true,
   }, {
     name: "Replicanti Galaxy",
     keys: ["r"],
@@ -94,13 +93,13 @@ export const shortcuts = [
       replicantiGalaxyRequest();
       setHoldingR(true);
     },
-    visible: () => Replicanti.areUnlocked || PlayerProgress.eternityUnlocked()
+    visible: () => Replicanti.areUnlocked || PlayerProgress.eternityUnlocked(),
   }, {
     name: "Eternity",
     keys: ["e"],
     type: "bindRepeatableHotkey",
     function: () => eternityResetRequest(),
-    visible: () => PlayerProgress.eternityUnlocked() || Player.canEternity
+    visible: () => PlayerProgress.eternityUnlocked() || Player.canEternity,
   }, {
     name: "Toggle Time Study respec",
     keys: ["shift", "e"],
@@ -109,19 +108,19 @@ export const shortcuts = [
       player.respec = !player.respec;
       GameUI.notify.info(`Time Study respec is now ${player.respec ? "active" : "inactive"}`);
     },
-    visible: () => PlayerProgress.eternityUnlocked()
+    visible: () => PlayerProgress.eternityUnlocked(),
   }, {
     name: "Enter/Exit Dilation",
     keys: ["l"],
     type: "bindRepeatableHotkey",
     function: () => startDilatedEternityRequest(),
-    visible: () => PlayerProgress.realityUnlocked() || PlayerProgress.dilationUnlocked()
+    visible: () => PlayerProgress.realityUnlocked() || PlayerProgress.dilationUnlocked(),
   }, {
     name: "Reality",
     keys: ["y"],
     type: "bindRepeatableHotkey",
     function: () => requestManualReality(),
-    visible: () => PlayerProgress.realityUnlocked() || isRealityAvailable()
+    visible: () => PlayerProgress.realityUnlocked() || isRealityAvailable(),
   }, {
     name: "Toggle Glyph unequip",
     keys: ["shift", "y"],
@@ -130,49 +129,49 @@ export const shortcuts = [
       player.reality.respec = !player.reality.respec;
       GameUI.notify.info(`Glyph respec is now ${player.reality.respec ? "active" : "inactive"}`);
     },
-    visible: () => PlayerProgress.realityUnlocked()
+    visible: () => PlayerProgress.realityUnlocked(),
   }, {
     name: "Start/Pause Automator",
     keys: ["u"],
     type: "bindHotkey",
     function: () => keyboardAutomatorToggle(),
-    visible: () => Player.automatorUnlocked
+    visible: () => Player.automatorUnlocked,
   }, {
     name: "Restart Automator",
     keys: ["shift", "u"],
     type: "bindHotkey",
     function: () => keyboardAutomatorRestart(),
-    visible: () => Player.automatorUnlocked
+    visible: () => Player.automatorUnlocked,
   }, {
     name: "Undo Edit (Automator)",
     keys: ["mod", "z"],
     type: "bind",
     function: () => AutomatorData.undoScriptEdit(),
-    visible: () => Player.automatorUnlocked
+    visible: () => Player.automatorUnlocked,
   }, {
     name: "Redo Edit (Automator)",
     keys: ["mod", "y"],
     type: "bind",
     function: () => AutomatorData.redoScriptEdit(),
-    visible: () => Player.automatorUnlocked
+    visible: () => Player.automatorUnlocked,
   }, {
     name: "Toggle Black Hole",
     keys: ["b"],
     type: "bindHotkey",
     function: () => BlackHoles.togglePause(),
-    visible: () => PlayerProgress.realityUnlocked()
+    visible: () => PlayerProgress.realityUnlocked(),
   }, {
     name: "Toggle Continuum",
     keys: ["alt", "a"],
     type: "bindHotkey",
     function: () => keyboardToggleContinuum(),
-    visible: () => Laitela.continuumUnlocked
+    visible: () => Laitela.continuumUnlocked,
   }, {
     name: "Armageddon",
     keys: ["z"],
     type: "bindRepeatableHotkey",
     function: () => armageddonRequest(),
-    visible: () => Pelle.isDoomed
+    visible: () => Pelle.isDoomed,
   }, {
     name: "Toggle Glyph unequip (Pelle)",
     keys: ["shift", "z"],
@@ -182,7 +181,7 @@ export const shortcuts = [
       player.reality.respec = !player.reality.respec;
       GameUI.notify.info(`Glyph respec is now ${player.reality.respec ? "active" : "inactive"}`);
     },
-    visible: () => Pelle.isDoomed
+    visible: () => Pelle.isDoomed,
   }, {
     name: "Save game",
     keys: ["mod", "s"],
@@ -191,7 +190,7 @@ export const shortcuts = [
       GameStorage.save(false, true);
       return false;
     },
-    visible: true
+    visible: true,
   }, {
     name: "Export game",
     keys: ["mod", "e"],
@@ -200,7 +199,7 @@ export const shortcuts = [
       GameStorage.export();
       return false;
     },
-    visible: true
+    visible: true,
   }, {
     name: "Open Hotkey List Modal",
     keys: ["?"],
@@ -209,7 +208,7 @@ export const shortcuts = [
       keyboardPressQuestionMark();
       return false;
     },
-    visible: true
+    visible: true,
   }, {
     name: "Open How To Play Modal",
     keys: ["h"],
@@ -218,7 +217,7 @@ export const shortcuts = [
       keyboardH2PToggle();
       return false;
     },
-    visible: true
+    visible: true,
   }, {
     name: "Modify visible tabs",
     keys: ["tab"],
@@ -227,7 +226,7 @@ export const shortcuts = [
       keyboardVisibleTabsToggle();
       return false;
     },
-    visible: true
+    visible: true,
   }, {
     name: "Confirm Modal",
     keys: ["enter"],
@@ -236,7 +235,7 @@ export const shortcuts = [
       EventHub.dispatch(GAME_EVENT.ENTER_PRESSED);
       return true;
     },
-    visible: true
+    visible: true,
   }, {
     name: "Close Modal or open Options",
     keys: ["esc"],
@@ -245,7 +244,7 @@ export const shortcuts = [
       keyboardPressEscape();
       return false;
     },
-    visible: true
+    visible: true,
   }, {
     name: "Paying respects",
     keys: ["f"],
@@ -254,7 +253,7 @@ export const shortcuts = [
       GameUI.notify.info("Paying respects");
       SecretAchievement(13).unlock();
     },
-    visible: false
+    visible: false,
   }, {
     name: "Change Tab",
     keys: ["up"],
@@ -263,7 +262,7 @@ export const shortcuts = [
       EventHub.dispatch(GAME_EVENT.ARROW_KEY_PRESSED, "up");
       return false;
     },
-    visible: false
+    visible: false,
   }, {
     name: "Change Tab",
     keys: ["down"],
@@ -272,7 +271,7 @@ export const shortcuts = [
       EventHub.dispatch(GAME_EVENT.ARROW_KEY_PRESSED, "down");
       return false;
     },
-    visible: false
+    visible: false,
   }, {
     name: "Change Subtab",
     keys: ["left"],
@@ -281,7 +280,7 @@ export const shortcuts = [
       EventHub.dispatch(GAME_EVENT.ARROW_KEY_PRESSED, "left");
       return false;
     },
-    visible: false
+    visible: false,
   }, {
     name: "Change Subtab",
     keys: ["right"],
@@ -290,56 +289,56 @@ export const shortcuts = [
       EventHub.dispatch(GAME_EVENT.ARROW_KEY_PRESSED, "right");
       return false;
     },
-    visible: false
+    visible: false,
   }, {
     name: "Doesn't exist",
     keys: ["9"],
     type: "bind",
     function: () => SecretAchievement(41).unlock(),
-    visible: false
+    visible: false,
   },
   {
     name: "Adjust Autobuyers",
     keys: ["mod", "alt", "a"],
     type: "bind",
     function: () => keyboardEditAutobuyers(),
-    visible: () => Autobuyers.hasAutobuyersForEditModal
+    visible: () => Autobuyers.hasAutobuyersForEditModal,
   },
   {
     name: "Fullscreen",
     keys: ["F10"],
     type: "bind",
-    // eslint-disable-next-line no-empty-function
+
     function: () => {},
-    visible: () => false
+    visible: () => false,
   },
   {
     name: "Zoom In",
     keys: ["ctrl", "="],
     type: "bind",
     function: () => ElectronRuntime.increaseZoom(),
-    visible: () => false
+    visible: () => false,
   },
   {
     name: "Zoom In",
     keys: ["ctrl", "+"],
     type: "bind",
     function: () => ElectronRuntime.increaseZoom(),
-    visible: () => false
+    visible: () => false,
   },
   {
     name: "Zoom Out",
     keys: ["ctrl", "-"],
     type: "bind",
     function: () => ElectronRuntime.decreaseZoom(),
-    visible: () => false
+    visible: () => false,
   },
   {
     name: "Reset Zoom",
     keys: ["ctrl", "0"],
     type: "bind",
     function: () => ElectronRuntime.resetZoom(),
-    visible: () => false
+    visible: () => false,
   },
 ];
 
@@ -359,7 +358,6 @@ GameKeyboard.bind("ctrl+shift", () => setShiftKey(false), "keyup");
 GameKeyboard.bind("alt+shift", () => setShiftKey(true), "keydown");
 GameKeyboard.bind("alt+shift", () => setShiftKey(false), "keyup");
 
-
 GameKeyboard.bindHotkey("alt+t", () => toggleAutobuyer(Autobuyer.tickspeed));
 GameKeyboard.bindHotkey("shift+alt+t", () => toggleBuySingles(Autobuyer.tickspeed));
 GameKeyboard.bindHotkey("alt+s", () => toggleAutobuyer(Autobuyer.sacrifice));
@@ -371,7 +369,7 @@ GameKeyboard.bindHotkey("alt+c", () => toggleAutobuyer(Autobuyer.bigCrunch));
 GameKeyboard.bindHotkey("alt+e", () => toggleAutobuyer(Autobuyer.eternity));
 GameKeyboard.bindHotkey("alt+y", () => toggleAutobuyer(Autobuyer.reality));
 
-(function() {
+(function () {
   function bindDimensionHotkeys(tier) {
     GameKeyboard.bindRepeatableHotkey(`${tier}`, () => buyManyDimension(tier));
     GameKeyboard.bindRepeatableHotkey(`num${tier}`, () => buyManyDimension(tier));
@@ -388,7 +386,7 @@ GameKeyboard.bindHotkey("alt+y", () => toggleAutobuyer(Autobuyer.reality));
 // A few special GameKeyboards
 GameKeyboard.bind(
   ["mod+shift+c", "mod+shift+i", "mod+shift+j", "f12"],
-  () => SecretAchievement(23).unlock()
+  () => SecretAchievement(23).unlock(),
 );
 
 // Toggle autobuyers
@@ -517,7 +515,7 @@ function keyboardVisibleTabsToggle() {
   Modal.hiddenTabs.show();
 }
 
-EventHub.logic.on(GAME_EVENT.ARROW_KEY_PRESSED, direction => {
+EventHub.logic.on(GAME_EVENT.ARROW_KEY_PRESSED, (direction) => {
   if (Quote.isOpen || Quote.isHistoryOpen) return;
   // Current tabs. Defined here as both tab and subtab movements require knowing your current tab.
   const currentTab = Tabs.current.key;
@@ -574,7 +572,7 @@ function testKonami(character) {
 // and an individual key. To allow both the up keybind and the konami code to work, we will change how Mousetrap handles
 // all keys so the konami code functions entirely separately from the normal handling.
 const originalHandleKey = Mousetrap.prototype.handleKey;
-Mousetrap.prototype.handleKey = function(character, modifiers, e) {
+Mousetrap.prototype.handleKey = function (character, modifiers, e) {
   if (e.type === "keydown") testKonami(character);
   return originalHandleKey.apply(this, [character, modifiers, e]);
 };

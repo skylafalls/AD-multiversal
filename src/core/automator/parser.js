@@ -12,7 +12,6 @@ class AutomatorParser extends Parser {
       nodeLocationTracking: "full",
     });
 
-    // eslint-disable-next-line consistent-this
     const $ = this;
 
     $.RULE("script", () => $.SUBRULE($.block));
@@ -51,14 +50,14 @@ class AutomatorParser extends Parser {
     $.RULE("command", commandOr($, EOF));
 
     $.RULE("badCommand", () => $.AT_LEAST_ONE(() => $.SUBRULE($.badCommandToken)),
-      { resyncEnabled: false, }
+      { resyncEnabled: false },
     );
 
     $.RULE("badCommandToken", () => $.OR([
       { ALT: () => $.CONSUME(T.Identifier) },
       { ALT: () => $.CONSUME(T.NumberLiteral) },
       { ALT: () => $.CONSUME(T.ComparisonOperator) },
-    ]), { resyncEnabled: false, });
+    ]), { resyncEnabled: false });
 
     $.RULE("comparison", () => {
       $.SUBRULE($.compareValue);
@@ -82,9 +81,9 @@ class AutomatorParser extends Parser {
         ALT: () => {
           $.CONSUME(T.EC);
           $.CONSUME(T.NumberLiteral);
-        }
+        },
       },
-      { ALT: () => $.CONSUME(T.ECLiteral) }
+      { ALT: () => $.CONSUME(T.ECLiteral) },
     ]));
 
     $.RULE("studyList", () => {

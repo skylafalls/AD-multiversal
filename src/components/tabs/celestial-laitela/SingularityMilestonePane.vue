@@ -4,7 +4,7 @@ import SingularityMilestoneComponent from "./SingularityMilestoneComponent";
 export default {
   name: "SingularityMilestonePane",
   components: {
-    SingularityMilestoneComponent
+    SingularityMilestoneComponent,
   },
   data() {
     return {
@@ -16,7 +16,7 @@ export default {
   computed: {
     classObject() {
       return {
-        "o-dark-matter-dimension-button--ascend": this.hasNew && this.shouldGlow
+        "o-dark-matter-dimension-button--ascend": this.hasNew && this.shouldGlow,
       };
     },
   },
@@ -26,7 +26,7 @@ export default {
       this.hasNew = SingularityMilestones.unseenMilestones.length > 0;
       this.shouldGlow = player.celestials.laitela.milestoneGlow;
     },
-  }
+  },
 };
 </script>
 

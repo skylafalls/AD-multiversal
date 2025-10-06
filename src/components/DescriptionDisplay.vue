@@ -3,35 +3,34 @@ import wordShift from "@/core/word-shift";
 
 import { isFunction, isString } from "@/utility";
 
-/* eslint-disable no-empty-function */
 export default {
   name: "DescriptionDisplay",
   props: {
     config: {
       type: Object,
       required: false,
-      default: undefined
+      default: undefined,
     },
     name: {
       type: String,
       required: false,
-      default: undefined
+      default: undefined,
     },
     length: {
       type: Number,
       required: false,
-      default: undefined
+      default: undefined,
     },
     title: {
       type: String,
       required: false,
-      default: ""
-    }
+      default: "",
+    },
   },
   data() {
     return {
       isVisible: false,
-      description: ""
+      description: "",
     };
   },
   computed: {
@@ -46,7 +45,7 @@ export default {
         classes[`${name}--small-text`] = true;
       }
       return classes;
-    }
+    },
   },
   watch: {
     config: {
@@ -66,8 +65,8 @@ export default {
         }
 
         if (!isFunction(description)) {
-          throw new Error(`DescriptionDisplay config.description has ` +
-            ` unsupported type "${typeof description}"`);
+          throw new Error("DescriptionDisplay config.description has "
+            + ` unsupported type "${typeof description}"`);
         }
 
         const value = description();
@@ -84,14 +83,12 @@ export default {
           this.description = capitalize(value);
           this.updateFunction = () => this.description = capitalize(description());
           return;
-
-
         }
 
-        throw new Error(`DescriptionDisplay config.description is a function ` +
-          `which returns unsupported type "${typeof value}"`);
-      }
-    }
+        throw new Error("DescriptionDisplay config.description is a function "
+          + `which returns unsupported type "${typeof value}"`);
+      },
+    },
   },
   beforeCreate() {
     this.updateFunction = () => {};
@@ -99,7 +96,7 @@ export default {
   methods: {
     update() {
       this.updateFunction();
-    }
+    },
   },
 };
 </script>

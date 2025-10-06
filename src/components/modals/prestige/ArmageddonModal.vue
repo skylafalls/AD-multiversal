@@ -4,7 +4,7 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "ArmageddonModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   data() {
     return {
@@ -17,8 +17,8 @@ export default {
   },
   computed: {
     topLabel() {
-      if (!this.isDoomed) return `You are about to Doom your Reality`;
-      return `You are about to perform an Armageddon reset`;
+      if (!this.isDoomed) return "You are about to Doom your Reality";
+      return "You are about to perform an Armageddon reset";
     },
     message() {
       const isFirstReset = (Currency.remnants.eq(0))
@@ -28,7 +28,7 @@ export default {
 
       return `Armageddon will start a new Doomed Reality. You will gain
       ${quantify("Remnant", this.remnantsGain, 2, 0)} ${isFirstReset}`;
-    }
+    },
   },
   methods: {
     update() {

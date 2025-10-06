@@ -24,11 +24,11 @@ function defaultArrayMerge(target, source, options) {
 function mergeObject(target, source, options) {
   const destination = {};
   if (options.isMergeableObject(target)) {
-    Object.keys(target).forEach(key => {
+    Object.keys(target).forEach((key) => {
       destination[key] = cloneUnlessOtherwiseSpecified(target[key], options);
     });
   }
-  Object.keys(source).forEach(key => {
+  Object.keys(source).forEach((key) => {
     if (target[key] && target[key] instanceof Decimal) {
       destination[key] = new Decimal(source[key]);
     } else if (target[key] && target[key] instanceof Set) {
@@ -75,7 +75,6 @@ export function deepmergeAll(array, options) {
   }
 
   if (!options) {
-    // eslint-disable-next-line no-shadow
     const deepCloneMerge = (destinationArray, sourceArray, options) => sourceArray.map((element, index) => {
       if (destinationArray[index] && destinationArray[index] instanceof Decimal) {
         return new Decimal(element);
@@ -89,11 +88,10 @@ export function deepmergeAll(array, options) {
         return cloneUnlessOtherwiseSpecified(element, options);
       }
       return deepmerge(destinationArray[index], element, options);
-
     });
-    // eslint-disable-next-line no-param-reassign
+
     options = {
-      arrayMerge: deepCloneMerge
+      arrayMerge: deepCloneMerge,
     };
   }
 

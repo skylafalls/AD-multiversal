@@ -24,7 +24,7 @@ export default {
         "l-reality-amplify-button--clickable": !this.isDoomed && this.canAmplify,
         "o-enslaved-mechanic-button--storing-time": this.isActive,
       };
-    }
+    },
   },
   methods: {
     update() {
@@ -38,8 +38,8 @@ export default {
     toggleActive() {
       if (!this.canAmplify) return;
       Enslaved.boostReality = !Enslaved.boostReality;
-    }
-  }
+    },
+  },
 };
 </script>
 

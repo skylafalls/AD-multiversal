@@ -10,8 +10,8 @@ export const ecTimeStudies = [
       resource: "Eternities",
       current: () => Currency.eternities.value,
       required: completions => new Decimal(20000 + Math.min(completions, Enslaved.isRunning ? 999 : 4) * 20000),
-      formatValue: formatInt
-    }
+      formatValue: formatInt,
+    },
   },
   {
     id: 2,
@@ -22,8 +22,8 @@ export const ecTimeStudies = [
       resource: "Tickspeed upgrades from Time Dimensions",
       current: () => player.totalTickGained,
       required: completions => new Decimal(1300 + Math.min(completions, 4) * 150),
-      formatValue: formatInt
-    }
+      formatValue: formatInt,
+    },
   },
   {
     id: 3,
@@ -34,8 +34,8 @@ export const ecTimeStudies = [
       resource: "8th Antimatter Dimensions",
       current: () => AntimatterDimension(8).totalAmount,
       required: completions => new Decimal(17300 + Math.min(completions, 4) * 1250),
-      formatValue: value => formatInt(Math.floor(value.toNumber()))
-    }
+      formatValue: value => formatInt(Math.floor(value.toNumber())),
+    },
   },
   {
     id: 4,
@@ -46,8 +46,8 @@ export const ecTimeStudies = [
       resource: "Infinities",
       current: () => Currency.infinitiesTotal.value,
       required: completions => new Decimal(1e8 + Math.min(completions, 4) * 2.5e7),
-      formatValue: value => formatInt(Math.floor(value.toNumber()))
-    }
+      formatValue: value => formatInt(Math.floor(value.toNumber())),
+    },
   },
   {
     id: 5,
@@ -58,8 +58,8 @@ export const ecTimeStudies = [
       resource: "Antimatter Galaxies",
       current: () => player.galaxies,
       required: completions => Decimal.min(completions, 4).times(14).add(160),
-      formatValue: formatInt
-    }
+      formatValue: formatInt,
+    },
   },
   {
     id: 6,
@@ -70,8 +70,8 @@ export const ecTimeStudies = [
       resource: "Replicanti Galaxies",
       current: () => player.replicanti.galaxies,
       required: completions => Decimal.min(completions, 4).times(5).add(40),
-      formatValue: formatInt
-    }
+      formatValue: formatInt,
+    },
   },
   {
     id: 7,
@@ -82,8 +82,8 @@ export const ecTimeStudies = [
       resource: "antimatter",
       current: () => Currency.antimatter.value,
       required: completions => DC.E300000.pow(Math.min(completions, 4)).times(DC.E500000),
-      formatValue: value => format(value)
-    }
+      formatValue: value => format(value),
+    },
   },
   {
     id: 8,
@@ -94,8 +94,8 @@ export const ecTimeStudies = [
       resource: "Infinity Points",
       current: () => Currency.infinityPoints.value,
       required: completions => DC.E1000.pow(Math.min(completions, 4)).times(DC.E4000),
-      formatValue: value => format(value)
-    }
+      formatValue: value => format(value),
+    },
   },
   {
     id: 9,
@@ -106,8 +106,8 @@ export const ecTimeStudies = [
       resource: "Infinity Power",
       current: () => Currency.infinityPower.value,
       required: completions => DC.E2000.pow(Math.min(completions, 4)).times(DC.E17500),
-      formatValue: value => format(value)
-    }
+      formatValue: value => format(value),
+    },
   },
   {
     id: 10,
@@ -118,8 +118,8 @@ export const ecTimeStudies = [
       resource: "Eternity Points",
       current: () => Currency.eternityPoints.value,
       required: completions => DC.E20.pow(Math.min(completions, 4)).times(DC.E100),
-      formatValue: value => format(value)
-    }
+      formatValue: value => format(value),
+    },
   },
   {
     id: 11,
@@ -129,7 +129,7 @@ export const ecTimeStudies = [
     secondary: {
       path: "Antimatter Dimension",
       forbiddenStudies: [72, 73],
-    }
+    },
   },
   {
     id: 12,
@@ -139,6 +139,6 @@ export const ecTimeStudies = [
     secondary: {
       path: "Time Dimension",
       forbiddenStudies: [71, 72],
-    }
-  }
+    },
+  },
 ];

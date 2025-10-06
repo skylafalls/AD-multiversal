@@ -6,13 +6,13 @@ import { BACKUP_SLOT_TYPE } from "@/core/storage";
 export default {
   name: "BackupEntry",
   components: {
-    PrimaryButton
+    PrimaryButton,
   },
   props: {
     slotData: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -32,7 +32,7 @@ export default {
         this.save.reality.realityMachines,
         this.save.eternityPoints,
         this.save.infinityPoints,
-        this.save.antimatter
+        this.save.antimatter,
       ];
       const names = ["Reality Shards",
         "Imaginary Machine Cap",

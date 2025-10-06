@@ -8,13 +8,13 @@ export default {
   components: {
     ModalWrapperOptions,
     GlyphCustomizationSingleType,
-    PrimaryButton
+    PrimaryButton,
   },
   props: {
     glyphId: {
       type: Number,
       required: true,
-    }
+    },
   },
   data() {
     return {
@@ -31,7 +31,7 @@ export default {
     },
     glyph() {
       return Glyphs.findById(this.glyphId);
-    }
+    },
   },
   created() {
     // This force-closes the modal only if another glyph is dragged into the panel
@@ -56,10 +56,10 @@ export default {
     cosmeticTypeClass(type) {
       return {
         "o-primary-btn--subtab-option": true,
-        "o-active-type": type === this.glyph.cosmetic
+        "o-active-type": type === this.glyph.cosmetic,
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

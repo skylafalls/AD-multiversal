@@ -6,7 +6,7 @@ export default {
   props: {
     tab: {
       type: Object,
-      required: true
+      required: true,
     },
   },
   data() {

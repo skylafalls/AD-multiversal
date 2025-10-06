@@ -8,41 +8,41 @@ export default {
   components: {
     AutobuyerBox,
     AutobuyerIntervalButton,
-    AutobuyerInput
+    AutobuyerInput,
   },
   props: {
     isModal: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       hasMaxedInterval: false,
       limitGalaxies: false,
       isBuyMaxUnlocked: false,
-      buyMax: false
+      buyMax: false,
     };
   },
   computed: {
     autobuyer: () => Autobuyer.galaxy,
     limitGalaxiesSlot() {
       return this.hasMaxedInterval && !this.isBuyMaxUnlocked ? "intervalSlot" : "toggleSlot";
-    }
+    },
   },
   watch: {
     limitGalaxies(newValue) {
       this.autobuyer.limitGalaxies = newValue;
-    }
+    },
   },
   methods: {
     update() {
       this.hasMaxedInterval = this.autobuyer.hasMaxedInterval;
       this.isBuyMaxUnlocked = this.autobuyer.isBuyMaxUnlocked;
       this.limitGalaxies = this.autobuyer.limitGalaxies;
-    }
-  }
+    },
+  },
 };
 </script>
 

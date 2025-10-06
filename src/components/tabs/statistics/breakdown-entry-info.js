@@ -25,7 +25,7 @@ export class BreakdownEntryInfo {
       mult: new Decimal(0),
       pow: 0,
       isVisible: false,
-      lastVisibleAt: 0
+      lastVisibleAt: 0,
     });
   }
 

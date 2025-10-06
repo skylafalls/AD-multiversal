@@ -13,7 +13,7 @@ function rebuyable(config) {
     effect: () => config.effect(player.celestials.teresa.perkShop[config.id]),
     formatEffect,
     formatCost,
-    rebuyable: true
+    rebuyable: true,
   };
 }
 
@@ -27,7 +27,7 @@ export const perkShop = {
     formatEffect: value => formatX(value, 2, 2),
     formatCost: value => format(value, 2),
     costCap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 1048576 : 2048),
-    cap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? Decimal.pow(1.05, 20) : Decimal.pow(1.05, 11))
+    cap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? Decimal.pow(1.05, 20) : Decimal.pow(1.05, 11)),
   }),
   rmMult: rebuyable({
     id: 1,
@@ -38,7 +38,7 @@ export const perkShop = {
     formatEffect: value => formatX(value, 2),
     formatCost: value => format(value, 2),
     costCap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 1048576 : 2048),
-    cap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 1048576 : 2048)
+    cap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 1048576 : 2048),
   }),
   bulkDilation: rebuyable({
     id: 2,
@@ -61,7 +61,7 @@ export const perkShop = {
     formatEffect: value => formatX(value, 2),
     formatCost: value => format(value, 2),
     costCap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 64000 : 4000),
-    cap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 64 : 4)
+    cap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 64 : 4),
   }),
   musicGlyph: rebuyable({
     id: 4,
@@ -70,16 +70,16 @@ export const perkShop = {
     cost: () => 1,
     formatCost: value => formatInt(value),
     costCap: () => Number.MAX_VALUE,
-    cap: () => Number.MAX_VALUE
+    cap: () => Number.MAX_VALUE,
   }),
   // Only appears with the perk shop increase upgrade
   fillMusicGlyph: rebuyable({
     id: 5,
-    description: () => `Fill all empty slots in your inventory with Music Glyphs`,
+    description: () => "Fill all empty slots in your inventory with Music Glyphs",
     cost: () => Math.clampMin(GameCache.glyphInventorySpace.value, 1),
     otherReq: () => GameCache.glyphInventorySpace.value > 0,
     formatCost: value => formatInt(value),
     costCap: () => Number.MAX_VALUE,
-    cap: () => Number.MAX_VALUE
+    cap: () => Number.MAX_VALUE,
   }),
 };

@@ -52,6 +52,6 @@ export const enslaved = {
     "Power and Time Glyphs are particularly strong here.",
     `Effarig Glyphs are only useful with the right effects, but you can complete the Reality without one.
       A Replication Glyph is very helpful, but it's not strictly necessary or quite as strong
-      as Power and Time.`
-  ]
+      as Power and Time.`,
+  ],
 };

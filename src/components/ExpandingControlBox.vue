@@ -10,12 +10,12 @@ export default {
     containerClass: {
       type: String,
       required: false,
-      default: undefined
+      default: undefined,
     },
     label: {
       type: String,
       required: false,
-      default: undefined
+      default: undefined,
     },
     widthSource: {
       // Content sizes the width based on what's in the dropdown.
@@ -33,7 +33,7 @@ export default {
       type: Boolean,
       required: false,
       default: false,
-    }
+    },
   },
   data() {
     return {
@@ -60,7 +60,7 @@ export default {
     },
     rootClassObject() {
       return {
-        "l-expanding-control-box--controls-width": this.widthSource !== undefined
+        "l-expanding-control-box--controls-width": this.widthSource !== undefined,
       };
     },
     containerStyle() {
@@ -71,7 +71,7 @@ export default {
     },
     containerClassObject() {
       const classes = {
-        "l-expanding-control-box__container--transition": this.state?.transition
+        "l-expanding-control-box__container--transition": this.state?.transition,
       };
       classes[this.containerClass] = true;
       return classes;
@@ -81,7 +81,7 @@ export default {
         "c-indicator-arrow": true,
         "c-indicator-arrow--flipped": this.state === this.states.OPENING || this.state === this.states.OPEN,
       };
-    }
+    },
   },
   watch: {
     state(newState) {
@@ -169,8 +169,8 @@ export default {
     mouseOff() {
       this.hasMouse = false;
       this.closeTime = Date.now();
-    }
-  }
+    },
+  },
 };
 </script>
 

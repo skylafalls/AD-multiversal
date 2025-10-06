@@ -32,7 +32,7 @@ export const tickspeed = {
         Achievement(36),
         Achievement(45),
         Achievement(66),
-        Achievement(83)
+        Achievement(83),
       );
       return `${format(val, 2, 2)}/sec`;
     },
@@ -83,5 +83,5 @@ export const tickspeedUpgrades = {
     multValue: () => Decimal.pow10(player.totalTickGained),
     isActive: () => Currency.timeShards.gt(0),
     icon: MultiplierTabIcons.SPECIFIC_GLYPH("time"),
-  }
+  },
 };

@@ -4,13 +4,13 @@ export default {
   props: {
     setup: {
       type: Object,
-      required: true
+      required: true,
     },
     isEnslaved: {
       type: Boolean,
       required: false,
       default: false,
-    }
+    },
   },
   data() {
     return {
@@ -23,9 +23,9 @@ export default {
         "o-time-study-connection": true,
         "o-time-study-connection--bought": true,
         "o-time-study-connection--secret": true,
-        "o-time-study-connection--secret-unlocked": this.isVisible
+        "o-time-study-connection--secret-unlocked": this.isVisible,
       };
-    }
+    },
   },
   methods: {
     update() {
@@ -35,8 +35,8 @@ export default {
     },
     percents(value) {
       return `${value * 100}%`;
-    }
-  }
+    },
+  },
 };
 </script>
 

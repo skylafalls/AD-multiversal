@@ -21,7 +21,7 @@ export default {
     enslavedText() {
       return `${Enslaved.displayName} are helping you look for cracks in their Reality -
         they can give you some advice in ${this.enslavedTimer}`;
-    }
+    },
   },
   methods: {
     update() {

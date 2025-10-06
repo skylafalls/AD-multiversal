@@ -6,7 +6,7 @@ export default {
   name: "InformationModal",
   components: {
     ModalCloseButton,
-    InformationModalButton
+    InformationModalButton,
   },
 };
 </script>

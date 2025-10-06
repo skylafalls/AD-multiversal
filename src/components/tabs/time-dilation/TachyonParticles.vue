@@ -4,7 +4,7 @@ import TachyonParticle from "./TachyonParticle";
 export default {
   name: "TachyonParticles",
   components: {
-    TachyonParticle
+    TachyonParticle,
   },
   data() {
     return {
@@ -12,7 +12,7 @@ export default {
       initialized: false,
       bounds: {
         x: 0,
-        y: 0
+        y: 0,
       },
       isBlob: false,
     };
@@ -35,8 +35,8 @@ export default {
     updateSize() {
       this.bounds.x = this.$el.clientWidth;
       this.bounds.y = this.$el.clientHeight;
-    }
-  }
+    },
+  },
 };
 </script>
 

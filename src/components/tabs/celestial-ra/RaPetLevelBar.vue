@@ -4,8 +4,8 @@ export default {
   props: {
     petConfig: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -32,12 +32,12 @@ export default {
     barStyle() {
       return {
         width: `${100 * Decimal.min(1, this.memories.div(this.requiredMemories)).toNumber()}%`,
-        background: this.pet.color
+        background: this.pet.color,
       };
     },
     petStyle() {
       return {
-        "background-color": this.pet.color
+        "background-color": this.pet.color,
       };
     },
     prevGoal() {
@@ -57,7 +57,7 @@ export default {
       return {
         "c-ra-level-up-btn": true,
         "c-ra-pet-btn--available": available,
-        [`c-ra-pet-btn--${pet.id}`]: available
+        [`c-ra-pet-btn--${pet.id}`]: available,
       };
     },
     nextUnlock() {
@@ -106,7 +106,7 @@ export default {
     },
     reward() {
       return (typeof this.nextUnlock.reward === "function") ? this.nextUnlock.reward() : this.nextUnlock.reward;
-    }
+    },
   },
   methods: {
     update() {

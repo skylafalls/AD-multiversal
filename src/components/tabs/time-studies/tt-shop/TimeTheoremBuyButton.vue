@@ -9,12 +9,12 @@ export default {
     },
     action: {
       type: Function,
-      required: true
+      required: true,
     },
   },
   data() {
     return {
-      isLocked: false
+      isLocked: false,
     };
   },
   computed: {
@@ -26,13 +26,13 @@ export default {
       if (!this.isEnabled || this.isLocked) return "c-tt-buy-button--locked";
 
       return "c-tt-buy-button--unlocked";
-    }
+    },
   },
   methods: {
     update() {
       this.isLocked = player.eternities.eq(0);
-    }
-  }
+    },
+  },
 };
 </script>
 

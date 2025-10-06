@@ -5,13 +5,19 @@ export default {
     isModal: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
-    people() { return GameDatabase.credits.people; },
-    roles() { return GameDatabase.credits.roles; },
-    isS12EndDisplay() { return this.$viewModel.theme === "S12" && !this.isModal; },
+    people() {
+      return GameDatabase.credits.people;
+    },
+    roles() {
+      return GameDatabase.credits.roles;
+    },
+    isS12EndDisplay() {
+      return this.$viewModel.theme === "S12" && !this.isModal;
+    },
   },
   methods: {
     relevantPeople(role) {
@@ -19,7 +25,7 @@ export default {
         .filter(x => (typeof x.roles === "number" ? x.roles === role : x.roles.includes(role)))
         .toSorted((a, b) => a.name.localeCompare(b.name));
     },
-  }
+  },
 };
 </script>
 

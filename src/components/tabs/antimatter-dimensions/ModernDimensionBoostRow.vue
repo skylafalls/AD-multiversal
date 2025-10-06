@@ -5,7 +5,7 @@ export default {
     return {
       requirement: {
         tier: 1,
-        amount: new Decimal()
+        amount: new Decimal(),
       },
       isBuyable: false,
       purchasedBoosts: new Decimal(),
@@ -39,9 +39,9 @@ export default {
         "o-primary-btn o-primary-btn--new o-primary-btn--dimension-reset": true,
         "tutorial--glow": this.isBuyable && this.hasTutorial,
         "o-primary-btn--disabled": !this.isBuyable,
-        "o-pelle-disabled-pointer": this.creditsClosed
+        "o-pelle-disabled-pointer": this.creditsClosed,
       };
-    }
+    },
   },
   methods: {
     update() {
@@ -60,8 +60,8 @@ export default {
     dimensionBoost(bulk) {
       if (!DimBoost.requirement.isSatisfied || !DimBoost.canBeBought) return;
       manualRequestDimensionBoost(bulk);
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -8,7 +8,7 @@ import PrimaryButton from "@/components/PrimaryButton";
 export default {
   name: "StatisticsTab",
   components: {
-    PrimaryButton
+    PrimaryButton,
   },
   data() {
     return {
@@ -105,7 +105,7 @@ export default {
         infinity.banked.copyFrom(Currency.infinitiesBanked);
         infinity.projectedBanked = new Decimal(0).plusEffectsOf(
           Achievement(131).effects.bankedInfinitiesGain,
-          TimeStudy(191)
+          TimeStudy(191),
         );
         infinity.bankRate = infinity.projectedBanked.div(Decimal.clampMin(33, records.thisEternity.time)).times(60000);
         infinity.hasBest = !bestInfinity.time.eq(DC.BEMAX);
@@ -168,7 +168,7 @@ export default {
         "c-stats-tab-reality": !this.isDoomed,
         "c-stats-tab-doomed": this.isDoomed,
       };
-    }
+    },
   },
 };
 </script>

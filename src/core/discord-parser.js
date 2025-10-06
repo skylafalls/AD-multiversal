@@ -31,5 +31,5 @@ export const RichPresenceInfo = {
   get state() {
     const mainRes = this.challengeState ? [this.gameStage.mainResource()] : [];
     return mainRes.concat((this.gameStage.resourceList ?? []).map(res => res())).join(" | ");
-  }
+  },
 };

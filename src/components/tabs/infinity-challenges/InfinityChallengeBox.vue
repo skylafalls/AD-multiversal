@@ -8,19 +8,19 @@ export default {
   components: {
     ChallengeBox,
     DescriptionDisplay,
-    EffectDisplay
+    EffectDisplay,
   },
   props: {
     challenge: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       isUnlocked: false,
       isRunning: false,
-      isCompleted: false
+      isCompleted: false,
     };
   },
   computed: {
@@ -29,7 +29,7 @@ export default {
     },
     name() {
       return `IC${this.challenge.id}`;
-    }
+    },
   },
   methods: {
     update() {
@@ -37,8 +37,8 @@ export default {
       this.isUnlocked = challenge.isUnlocked;
       this.isRunning = challenge.isRunning;
       this.isCompleted = challenge.isCompleted;
-    }
-  }
+    },
+  },
 };
 </script>
 

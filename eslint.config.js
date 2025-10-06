@@ -28,7 +28,7 @@ const config = tseslint.config(
     },
   },
   {
-    ignores: ["public/**/*.js", "src/components/SliderComponent.vue", "src/supported-browsers.js", "src/steam/bindings/PlayFabClientApi.js", "dist"],
+    ignores: ["public/**/*.js", "src/components/SliderComponent.vue", "src/supported-browsers.js", "src/steam/bindings/PlayFabClientApi.js", "dist", "node_modules"],
   },
   ...oxlint.buildFromOxlintConfigFile("./.oxlintrc.json"),
 );

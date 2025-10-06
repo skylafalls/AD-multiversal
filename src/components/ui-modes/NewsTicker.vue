@@ -12,7 +12,7 @@ export default {
   computed: {
     lineClass() {
       return this.enableAnimation ? undefined : "c-disable-ticker-animation";
-    }
+    },
   },
   beforeCreate() {
     this.recentTickers = [];
@@ -80,7 +80,7 @@ export default {
         window.openNewsLink = openExternalLink;
         text = text.replaceAll(
           /href=['"]([^"']+)['"]/gu,
-          "href onClick='window.openNewsLink(\"$1\"); return false;'"
+          "href onClick='window.openNewsLink(\"$1\"); return false;'",
         );
       }
       line.innerHTML = text;
@@ -123,8 +123,8 @@ export default {
       if (updatedText !== undefined) {
         this.$refs.line.innerHTML = updatedText;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

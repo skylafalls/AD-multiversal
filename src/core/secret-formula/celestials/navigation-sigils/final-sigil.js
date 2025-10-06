@@ -40,7 +40,7 @@ function reflectAcrossVertical(vec) {
  *  Each particular segment will fill from 0% to 100% within the range init to init+weight, without over/underfilling.
  * @member {String} colorOverride Color to use for rendering the element, used instead of SigilAttributes.color
  */
-// eslint-disable-next-line max-params
+
 function sigilShape(type, att, fill, colorOverride) {
   let pos, path, pathStart, pathEnd;
   switch (type) {

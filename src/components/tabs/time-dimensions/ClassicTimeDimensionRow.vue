@@ -8,17 +8,17 @@ export default {
   components: {
     GenericDimensionRowText,
     PrimaryButton,
-    PrimaryToggleButton
+    PrimaryToggleButton,
   },
   props: {
     tier: {
       type: Number,
-      required: true
+      required: true,
     },
     areAutobuyersUnlocked: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -74,12 +74,12 @@ export default {
       if (!this.showTTCost || this.ttGen.eq(0)) return "";
       const time = Decimal.sub(this.ttCost, this.currTT).dividedBy(this.ttGen);
       return time.gt(0) ? `Enough TT in ${TimeSpan.fromSeconds(time).toStringShort()}` : "";
-    }
+    },
   },
   watch: {
     isAutobuyerOn(newValue) {
       Autobuyer.timeDimension(this.tier).isActive = newValue;
-    }
+    },
   },
   methods: {
     update() {
@@ -116,7 +116,7 @@ export default {
     buyMaxTimeDimension() {
       buyMaxTimeDimension(this.tier);
     },
-  }
+  },
 };
 </script>
 

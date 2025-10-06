@@ -10,7 +10,7 @@ export default {
     AutoSacrificeEffectTab,
     AutoSacrificeAdvancedTab,
     SliderComponent,
-    GlyphComponent
+    GlyphComponent,
   },
   data() {
     return {
@@ -29,32 +29,33 @@ export default {
       return AUTO_GLYPH_SCORE;
     },
     glyphTypes() {
-      return GlyphInfo.glyphTypes.filter(e => (GlyphInfo[e].generationRequirement ? GlyphInfo[e].generationRequirement()
+      return GlyphInfo.glyphTypes.filter(e => (GlyphInfo[e].generationRequirement
+        ? GlyphInfo[e].generationRequirement()
         : true && GlyphInfo[e].isGenerated));
     },
     raritySliderProps() {
       return {
-        min: 0,
-        max: 100,
-        width: "18rem",
-        valueInDot: true,
-        tooltip: "never",
+        "min": 0,
+        "max": 100,
+        "width": "18rem",
+        "valueInDot": true,
+        "tooltip": "never",
         "dot-width": "2.2rem",
         "dot-height": "1.6rem",
         "dot-class": "c-glyph-sacrifice-options__rarity-slider-handle",
         "bg-class": "c-glyph-sacrifice-options__rarity-slider-bg",
         "process-class": "c-glyph-sacrifice-options__rarity-slider-process",
-        style: {
+        "style": {
           "margin-left": "1rem",
-        }
+        },
       };
     },
     glyphIconProps() {
       return {
-        size: "3rem",
+        "size": "3rem",
         "glow-blur": "0.3rem",
         "glow-spread": "0.1rem",
-        "text-proportion": 0.66
+        "text-proportion": 0.66,
       };
     },
     questionmarkTooltip() {
@@ -68,7 +69,7 @@ export default {
     },
     unlockedModes() {
       return Object.values(this.modes).filter(idx => this.isUnlocked(idx));
-    }
+    },
   },
   methods: {
     glyphInfoFromType(type) {
@@ -95,7 +96,7 @@ export default {
         idx === this.mode
           ? "c-glyph-sacrifice-options__option--active"
           : "c-glyph-sacrifice-options__option--inactive",
-        icon
+        icon,
       ];
     },
     modeIcon(idx) {
@@ -131,10 +132,12 @@ export default {
     },
     advancedTypeSelectStyle(type) {
       const color = GlyphAppearanceHandler.getBorderColor(type.id);
-      return type.id === this.advancedType ? {
-        color,
-        "text-shadow": `0 0 0.25rem ${color}, 0 0 0.5rem ${color}, 0 0 0.75rem ${color}, 0 0 1rem ${color}`,
-      } : {};
+      return type.id === this.advancedType
+        ? {
+            color,
+            "text-shadow": `0 0 0.25rem ${color}, 0 0 0.5rem ${color}, 0 0 0.75rem ${color}, 0 0 1rem ${color}`,
+          }
+        : {};
     },
     setMode(m) {
       AutoGlyphProcessor.scoreMode = m;
@@ -174,7 +177,6 @@ export default {
     // Clicking bumps the rarity over to adjacent thresholds between rarities; normal clicks move to the higher one
     // and shift-clicks move to the lower one. There is a loop-around that makes 100 go to 0 next and vice versa
     bumpRarity(type) {
-      // eslint-disable-next-line no-param-reassign
       const rarityThresholds = GlyphInfo.rarities.map(r => strengthToRarity(r.minStrength));
       let newRarity;
       if (ui.view.shiftDown) {
@@ -210,7 +212,7 @@ export default {
     importFilterSettings() {
       Modal.importFilter.show();
     },
-  }
+  },
 };
 </script>
 

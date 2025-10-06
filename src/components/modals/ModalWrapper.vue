@@ -9,8 +9,8 @@ export default {
   methods: {
     closeModal() {
       EventHub.dispatch(GAME_EVENT.CLOSE_MODAL);
-    }
-  }
+    },
+  },
 };
 </script>
 

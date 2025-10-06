@@ -6,7 +6,7 @@ export const DeltaTimeState = {
     this.trueDeltaTime = TimeSpan.fromMilliseconds(new Decimal(trueDeltaTime));
     this.realDeltaTime = TimeSpan.fromMilliseconds(deltaTime);
     this.deltaTime = TimeSpan.fromMilliseconds(gameDeltaTime);
-  }
+  },
 };
 
 export const Time = {
@@ -160,7 +160,6 @@ export const Time = {
     this.toMilliseconds(timespan, value => player.records.thisInfinity.trueTime = value.toNumber());
   },
 
-
   /**
    * @returns {TimeSpan}
    */
@@ -226,7 +225,6 @@ export const Time = {
     this.toMilliseconds(timespan, value => player.records.thisEternity.trueTime = value.toNumber());
   },
 
-
   /**
    * @returns {TimeSpan}
    */
@@ -252,7 +250,6 @@ export const Time = {
   set bestEternityRealTime(timespan) {
     this.toMilliseconds(timespan, value => player.records.bestEternity.realTime = value);
   },
-
 
   /**
    * @returns {TimeSpan}
@@ -325,5 +322,5 @@ export const Time = {
    */
   get infinityChallengeSum() {
     return this.fromMilliseconds(() => GameCache.infinityChallengeTimeSum.value);
-  }
+  },
 };

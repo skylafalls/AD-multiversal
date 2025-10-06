@@ -7,13 +7,13 @@ export default {
   name: "SimpleAutobuyersMultiBox",
   components: {
     MultipleAutobuyersBox,
-    MultipleSingleAutobuyersGroup
+    MultipleSingleAutobuyersGroup,
   },
   computed: {
     multiple() {
       return Autobuyers.display[0];
     },
-  }
+  },
 };
 </script>
 

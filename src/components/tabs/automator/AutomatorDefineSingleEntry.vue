@@ -36,12 +36,12 @@ export default {
       if (!this.aliasString) return null;
 
       const isValidName = this.aliasString.match(/^[a-zA-Z_][a-zA-Z_0-9]*$/u);
-      const alreadyExists = Object.keys(player.reality.automator.constants).includes(this.aliasString) &&
-        this.aliasString !== this.oldAlias;
+      const alreadyExists = Object.keys(player.reality.automator.constants).includes(this.aliasString)
+        && this.aliasString !== this.oldAlias;
       // Use toLowerCase() in order to check against key words in a case-insensitive manner; all the stored regex
       // patterns in forbiddenConstantPatterns which get meaningfully checked against are a mixture of lowercase
       // letters and regex metacharacters
-      const hasCommandConflict = forbiddenConstantPatterns.some(p => {
+      const hasCommandConflict = forbiddenConstantPatterns.some((p) => {
         const matchObj = this.aliasString.toLowerCase().match(p);
         return matchObj ? matchObj[0] === this.aliasString.toLowerCase() : false;
       });
@@ -73,7 +73,7 @@ export default {
         html: true,
         trigger: "manual",
         show: true,
-        classes: ["general-tooltip"]
+        classes: ["general-tooltip"],
       };
     },
     handleFocus(focus) {
@@ -94,8 +94,8 @@ export default {
       this.oldAlias = "";
       this.aliasString = "";
       this.valueString = "";
-    }
-  }
+    },
+  },
 };
 </script>
 

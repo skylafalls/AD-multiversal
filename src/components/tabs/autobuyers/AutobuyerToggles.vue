@@ -6,7 +6,7 @@ export default {
   name: "AutobuyerToggles",
   components: {
     PrimaryButton,
-    PrimaryToggleButton
+    PrimaryToggleButton,
   },
   data() {
     return {
@@ -14,7 +14,7 @@ export default {
       autobuyersOn: false,
       showContinuum: false,
       disableContinuum: false,
-      allAutobuyersDisabled: false
+      allAutobuyersDisabled: false,
     };
   },
   watch: {
@@ -27,7 +27,7 @@ export default {
         return;
       }
       Laitela.setContinuum(!newValue);
-    }
+    },
   },
   methods: {
     update() {
@@ -41,8 +41,8 @@ export default {
       for (const autobuyer of Autobuyers.unlocked) {
         autobuyer.isActive = this.allAutobuyersDisabled;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

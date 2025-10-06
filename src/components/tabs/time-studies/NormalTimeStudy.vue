@@ -10,17 +10,17 @@ export default {
     DescriptionDisplay,
     EffectDisplay,
     HintText,
-    TimeStudyButton
+    TimeStudyButton,
   },
   props: {
     setup: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data: () => ({
     showCost: true,
-    showSTCost: false
+    showSTCost: false,
   }),
   computed: {
     study() {
@@ -34,7 +34,7 @@ export default {
     },
     isUseless() {
       return Pelle.uselessTimeStudies.includes(this.study.id) && Pelle.isDoomed;
-    }
+    },
   },
   methods: {
     update() {
@@ -43,10 +43,10 @@ export default {
       // particularly sensible way to accurately display the actual ST spent other than tracing through buy order
       // of all current studies for every study, and even then it looks odd in practice because then a few studies
       // appear more expensive simply due to buy order.
-      this.showSTCost = VUnlocks.vAchievementUnlock.isUnlocked && !TimeStudy(this.study.id).isBought &&
-        TimeStudy(this.study.id).costsST() && !Pelle.isDoomed;
+      this.showSTCost = VUnlocks.vAchievementUnlock.isUnlocked && !TimeStudy(this.study.id).isBought
+        && TimeStudy(this.study.id).costsST() && !Pelle.isDoomed;
     },
-  }
+  },
 };
 </script>
 

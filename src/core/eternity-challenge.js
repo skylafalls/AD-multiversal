@@ -232,8 +232,8 @@ export class EternityChallengeState extends GameMechanicState {
   }
 
   isWithinRestrictionAtCompletions(completions) {
-    return this.config.restriction === undefined ||
-      this.config.checkRestriction(this.config.restriction(completions));
+    return this.config.restriction === undefined
+      || this.config.checkRestriction(this.config.restriction(completions));
   }
 
   exit(isRestarting) {
@@ -250,25 +250,25 @@ export class EternityChallengeState extends GameMechanicState {
     let reason;
     if (auto) {
       if (this.id === 4) {
-        reason = restriction => `Auto Eternity Challenge completion completed ` +
-        `Eternity Challenge ${this.id} and made the next tier ` +
-        `require having less Infinities (${quantifyInt("Infinity", restriction)} ` +
-        `or less) than you had`;
+        reason = restriction => "Auto Eternity Challenge completion completed "
+          + `Eternity Challenge ${this.id} and made the next tier `
+          + `require having less Infinities (${quantifyInt("Infinity", restriction)} `
+          + "or less) than you had";
       } else if (this.id === 12) {
-        reason = restriction => `Auto Eternity Challenge completion completed ` +
-        `Eternity Challenge ${this.id} and made the next tier ` +
-        `require spending less time in it (${quantify("in-game second", restriction, 0, 1)} ` +
-        `or less) than you had spent`;
+        reason = restriction => "Auto Eternity Challenge completion completed "
+          + `Eternity Challenge ${this.id} and made the next tier `
+          + `require spending less time in it (${quantify("in-game second", restriction, 0, 1)} `
+          + "or less) than you had spent";
       }
     } else if (this.id === 4) {
-      reason = restriction => `You failed Eternity Challenge ${this.id} due to ` +
-      `having more than ${quantifyInt("Infinity", restriction)}`;
+      reason = restriction => `You failed Eternity Challenge ${this.id} due to `
+        + `having more than ${quantifyInt("Infinity", restriction)}`;
     } else if (this.id === 12) {
-      reason = restriction => `You failed Eternity Challenge ${this.id} due to ` +
-      `spending more than ${quantify("in-game second", restriction, 0, 1)} in it`;
+      reason = restriction => `You failed Eternity Challenge ${this.id} due to `
+        + `spending more than ${quantify("in-game second", restriction, 0, 1)} in it`;
     }
-    Modal.message.show(`${reason(this.config.restriction(this.completions))}, ` +
-    `which has caused you to exit it.`,
+    Modal.message.show(`${reason(this.config.restriction(this.completions))}, `
+      + "which has caused you to exit it.",
     { closeEvent: GAME_EVENT.REALITY_RESET_AFTER }, 1);
     EventHub.dispatch(GAME_EVENT.CHALLENGE_FAILED);
   }
@@ -328,9 +328,9 @@ export const EternityChallenges = {
   autoComplete: {
     tick() {
       const shouldPreventEC7 = TimeDimension(1).amount.gt(0);
-      const hasUpgradeLock = RealityUpgrade(12).isLockingMechanics ||
-        (ImaginaryUpgrade(15).isLockingMechanics && shouldPreventEC7 &&
-          !Array.range(1, 6).some(ec => !EternityChallenge(ec).isFullyCompleted));
+      const hasUpgradeLock = RealityUpgrade(12).isLockingMechanics
+        || (ImaginaryUpgrade(15).isLockingMechanics && shouldPreventEC7
+          && !Array.range(1, 6).some(ec => !EternityChallenge(ec).isFullyCompleted));
       if (!player.reality.autoEC || Pelle.isDisabled("autoec") || hasUpgradeLock) {
         player.reality.lastAutoEC = Decimal.clampMax(player.reality.lastAutoEC, this.interval);
         return;
@@ -366,10 +366,10 @@ export const EternityChallenges = {
         Number.MAX_VALUE,
         Perk.autocompleteEC1,
         Perk.autocompleteEC2,
-        Perk.autocompleteEC3
+        Perk.autocompleteEC3,
       );
       minutes = minutes.div(VUnlocks.fastAutoEC.effectOrDefault(1));
       return TimeSpan.fromMinutes(minutes).totalMilliseconds;
-    }
-  }
+    },
+  },
 };

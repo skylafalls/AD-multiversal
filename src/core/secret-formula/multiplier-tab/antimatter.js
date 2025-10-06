@@ -18,5 +18,5 @@ export const AM = {
     },
     isActive: () => getAdjustedGlyphEffect("effarigantimatter") > 1 && AntimatterDimension(1).isProducing,
     icon: MultiplierTabIcons.SPECIFIC_GLYPH("effarig"),
-  }
+  },
 };

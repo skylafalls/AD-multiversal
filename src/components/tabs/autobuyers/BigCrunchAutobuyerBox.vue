@@ -12,14 +12,14 @@ export default {
     AutobuyerIntervalButton,
     AutobuyerInput,
     ExpandingControlBox,
-    AutobuyerDropdownEntry
+    AutobuyerDropdownEntry,
   },
   props: {
     isModal: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -38,12 +38,12 @@ export default {
       AUTO_CRUNCH_MODE.TIME,
       AUTO_CRUNCH_MODE.X_HIGHEST,
     ],
-    amountMode: () => AUTO_ETERNITY_MODE.AMOUNT
+    amountMode: () => AUTO_ETERNITY_MODE.AMOUNT,
   },
   watch: {
     increaseWithMult(newValue) {
       this.autobuyer.increaseWithMult = newValue;
-    }
+    },
   },
   methods: {
     update() {
@@ -60,7 +60,7 @@ export default {
           title: "Big Crunch at X IP",
           input: {
             property: "amount",
-            type: "decimal"
+            type: "decimal",
           },
         };
         }
@@ -68,7 +68,7 @@ export default {
           title: "Seconds between Crunches",
           input: {
             property: "time",
-            type: "float"
+            type: "float",
           },
         };
         }
@@ -76,7 +76,7 @@ export default {
           title: "X times highest IP",
           input: {
             property: "xHighest",
-            type: "decimal"
+            type: "decimal",
           },
         };
         }
@@ -86,7 +86,7 @@ export default {
     modeName(mode) {
       return this.modeProps(mode).title;
     },
-  }
+  },
 };
 </script>
 

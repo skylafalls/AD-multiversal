@@ -17,28 +17,28 @@ import { v } from "./v";
 
 export const celestials = {
   effarig: {
-    unlocks: effarigUnlocks
+    unlocks: effarigUnlocks,
   },
   alchemy: {
-    resources: alchemyResources
+    resources: alchemyResources,
   },
   pelle: {
     galaxyGeneratorUpgrades: pelleGalaxyGeneratorUpgrades,
     strikes: pelleStrikes,
     upgrades: pelleUpgrades,
-    rifts: pelleRifts
+    rifts: pelleRifts,
   },
   descriptions: {},
   enslaved,
   navigation: celestialNavigation,
   navSigils: {
     ...galaxyIcon,
-    ...finalSigil
+    ...finalSigil,
   },
   perkShop,
   ra,
   singularityMilestones,
   teresa,
   quotes,
-  v
+  v,
 };

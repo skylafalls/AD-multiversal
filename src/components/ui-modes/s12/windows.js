@@ -16,5 +16,5 @@ export const S12Windows = {
       subtabTimeoutId = setTimeout(() => this.hoveringTab = undefined, 1000);
     },
     tabButtonPositions: [],
-  }
+  },
 };

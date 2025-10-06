@@ -9,7 +9,7 @@ export const EFFARIG_STAGES = {
   INFINITY: 1,
   ETERNITY: 2,
   REALITY: 3,
-  COMPLETED: 4
+  COMPLETED: 4,
 };
 
 export const Effarig = {
@@ -129,8 +129,13 @@ export const Effarig = {
 };
 
 class EffarigUnlockState extends BitUpgradeState {
-  get bits() { return player.celestials.effarig.unlockBits; }
-  set bits(value) { player.celestials.effarig.unlockBits = value; }
+  get bits() {
+    return player.celestials.effarig.unlockBits;
+  }
+
+  set bits(value) {
+    player.celestials.effarig.unlockBits = value;
+  }
 
   get cost() {
     return this.config.cost;
@@ -149,7 +154,7 @@ class EffarigUnlockState extends BitUpgradeState {
 
 export const EffarigUnlock = mapGameDataToObject(
   GameDatabase.celestials.effarig.unlocks,
-  config => new EffarigUnlockState(config)
+  config => new EffarigUnlockState(config),
 );
 
 EventHub.logic.on(GAME_EVENT.TAB_CHANGED, () => {

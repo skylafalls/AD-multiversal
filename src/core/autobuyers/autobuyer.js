@@ -9,14 +9,20 @@ export class AutobuyerState {
   /**
    * @abstract
    */
-  get data() { throw new NotImplementedError(); }
+  get data() {
+    throw new NotImplementedError();
+  }
 
   /**
    * @abstract
    */
-  get isUnlocked() { throw new NotImplementedError(); }
+  get isUnlocked() {
+    throw new NotImplementedError();
+  }
 
-  get id() { return this._id; }
+  get id() {
+    return this._id;
+  }
 
   get canTick() {
     const isDisabled = !player.auto.autobuyersOn || !this.constructor.isActive;
@@ -42,21 +48,32 @@ export class AutobuyerState {
   /**
    * @abstract
    */
-  tick() { throw new NotImplementedError(); }
+  tick() {
+    throw new NotImplementedError();
+  }
 
-  // eslint-disable-next-line no-empty-function
   reset() {}
 
-  static get entryCount() { return 1; }
+  static get entryCount() {
+    return 1;
+  }
 
   /**
    * @abstract
    * @returns {string}
    */
-  static get autobuyerGroupName() { throw new NotImplementedError(); }
-  static get isActive() { return true; }
+  static get autobuyerGroupName() {
+    throw new NotImplementedError();
+  }
+
+  static get isActive() {
+    return true;
+  }
+
   /** @abstract */
-  static set isActive(value) { throw new NotImplementedError(); }
+  static set isActive(value) {
+    throw new NotImplementedError();
+  }
 
   static createAccessor() {
     const entryCount = this.entryCount;
@@ -75,14 +92,15 @@ export class AutobuyerState {
       groupName: { get: () => this.autobuyerGroupName },
       isActive: {
         get: () => this.isActive,
-        set: value => { this.isActive = value; },
+        set: (value) => {
+          this.isActive = value;
+        },
       },
     });
     accessor.toggle = () => this.isActive = !this.isActive;
     return accessor;
   }
 }
-
 
 /**
  * @abstract
@@ -107,16 +125,16 @@ export class IntervaledAutobuyerState extends AutobuyerState {
   /**
    * @abstract
    */
-  get resetTickOn() { return; }
+  get resetTickOn() {
+    return;
+  }
 
   resetTick(prestigeEvent) {
     if (prestigeEvent >= this.resetTickOn) this.data.lastTick = 0;
   }
 
-  // eslint-disable-next-line no-empty-function
   reset() {}
 }
-
 
 /**
  * @abstract
@@ -125,7 +143,9 @@ export class UpgradeableAutobuyerState extends IntervaledAutobuyerState {
   /**
   * @abstract
   */
-  get baseInterval() { throw new NotImplementedError(); }
+  get baseInterval() {
+    throw new NotImplementedError();
+  }
 
   get cost() {
     return this.data.cost;
@@ -165,10 +185,10 @@ export class UpgradeableAutobuyerState extends IntervaledAutobuyerState {
   static createAccessor() {
     const accessor = super.createAccessor();
     Object.defineProperty(accessor, "allMaxedInterval", {
-      get: () => accessor.zeroIndexed.every(x => x.hasMaxedInterval)
+      get: () => accessor.zeroIndexed.every(x => x.hasMaxedInterval),
     });
     Object.defineProperty(accessor, "hasInstant", {
-      get: () => accessor.zeroIndexed.some(x => x.interval < player.options.updateRate)
+      get: () => accessor.zeroIndexed.some(x => x.interval < player.options.updateRate),
     });
     return accessor;
   }

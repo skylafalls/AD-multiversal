@@ -10,7 +10,7 @@ export const ReplicantiGrowth = {
     if (PelleStrikes.eternity.hasStrike && Replicanti.amount.gte(DC.E2000)) return 10;
     if (Pelle.isDoomed) return 2;
     return AlchemyResource.cardinality.effectValue;
-  }
+  },
 };
 
 // Internal function to add RGs; called both from within the fast replicanti code and from the function
@@ -164,13 +164,12 @@ export function totalReplicantiSpeedMult(overCap) {
 export function replicantiCap() {
   return EffarigUnlock.infinity.canBeApplied
     ? Currency.infinitiesTotal.value
-      .pow(TimeStudy(31).isBought ? 120 : 30)
-      .clampMin(1)
-      .times(DC.NUMMAX)
+        .pow(TimeStudy(31).isBought ? 120 : 30)
+        .clampMin(1)
+        .times(DC.NUMMAX)
     : DC.NUMMAX;
 }
 
-// eslint-disable-next-line complexity
 export function replicantiLoop(diff) {
   if (!player.replicanti.unl) return;
   const replicantiBeforeLoop = Replicanti.amount;
@@ -273,33 +272,61 @@ export function replicantiMult() {
 /** @abstract */
 class ReplicantiUpgradeState {
   /** @abstract */
-  get id() { throw new NotImplementedError(); }
-  /** @abstract */
-  get value() { throw new NotImplementedError(); }
+  get id() {
+    throw new NotImplementedError();
+  }
 
   /** @abstract */
-  set value(value) { throw new NotImplementedError(); }
+  get value() {
+    throw new NotImplementedError();
+  }
 
   /** @abstract */
-  get nextValue() { throw new NotImplementedError(); }
+  set value(value) {
+    throw new NotImplementedError();
+  }
 
   /** @abstract */
-  get cost() { throw new NotImplementedError(); }
-  /** @abstract */
-  set cost(value) { throw new Error("Use baseCost to set cost"); }
+  get nextValue() {
+    throw new NotImplementedError();
+  }
 
   /** @abstract */
-  get costIncrease() { throw new NotImplementedError(); }
-
-  get baseCost() { return this.cost; }
-  /** @abstract */
-  set baseCost(value) { throw new NotImplementedError(); }
-
-  get cap() { return; }
-  get isCapped() { return false; }
+  get cost() {
+    throw new NotImplementedError();
+  }
 
   /** @abstract */
-  get autobuyerMilestone() { throw new NotImplementedError(); }
+  set cost(value) {
+    throw new Error("Use baseCost to set cost");
+  }
+
+  /** @abstract */
+  get costIncrease() {
+    throw new NotImplementedError();
+  }
+
+  get baseCost() {
+    return this.cost;
+  }
+
+  /** @abstract */
+  set baseCost(value) {
+    throw new NotImplementedError();
+  }
+
+  get cap() {
+    return;
+  }
+
+  get isCapped() {
+    return false;
+  }
+
+  /** @abstract */
+  get autobuyerMilestone() {
+    throw new NotImplementedError();
+  }
 
   get canBeBought() {
     return !this.isCapped && Currency.infinityPoints.gte(this.cost) && player.eterc8repl !== 0;
@@ -323,10 +350,17 @@ class ReplicantiUpgradeState {
 
 export const ReplicantiUpgrade = {
   chance: new class ReplicantiChanceUpgrade extends ReplicantiUpgradeState {
-    get id() { return 1; }
+    get id() {
+      return 1;
+    }
 
-    get value() { return player.replicanti.chance; }
-    set value(value) { player.replicanti.chance = value; }
+    get value() {
+      return player.replicanti.chance;
+    }
+
+    set value(value) {
+      player.replicanti.chance = value;
+    }
 
     get nextValue() {
       return this.nearestPercent(this.value.add(0.01));
@@ -336,10 +370,17 @@ export const ReplicantiUpgrade = {
       return player.replicanti.chanceCost.dividedByEffectOf(PelleRifts.vacuum.milestones[1]);
     }
 
-    get baseCost() { return player.replicanti.chanceCost; }
-    set baseCost(value) { player.replicanti.chanceCost = value; }
+    get baseCost() {
+      return player.replicanti.chanceCost;
+    }
 
-    get costIncrease() { return 1e15; }
+    set baseCost(value) {
+      player.replicanti.chanceCost = value;
+    }
+
+    get costIncrease() {
+      return 1e15;
+    }
 
     get cap() {
       // Chance never goes over 100%.
@@ -374,10 +415,17 @@ export const ReplicantiUpgrade = {
     }
   }(),
   interval: new class ReplicantiIntervalUpgrade extends ReplicantiUpgradeState {
-    get id() { return 2; }
+    get id() {
+      return 2;
+    }
 
-    get value() { return player.replicanti.interval; }
-    set value(value) { player.replicanti.interval = value; }
+    get value() {
+      return player.replicanti.interval;
+    }
+
+    set value(value) {
+      player.replicanti.interval = value;
+    }
 
     get nextValue() {
       return Decimal.max(this.value.times(0.9), this.cap);
@@ -387,10 +435,17 @@ export const ReplicantiUpgrade = {
       return player.replicanti.intervalCost.dividedByEffectOf(PelleRifts.vacuum.milestones[1]);
     }
 
-    get baseCost() { return player.replicanti.intervalCost; }
-    set baseCost(value) { player.replicanti.intervalCost = value; }
+    get baseCost() {
+      return player.replicanti.intervalCost;
+    }
 
-    get costIncrease() { return 1e10; }
+    set baseCost(value) {
+      player.replicanti.intervalCost = value;
+    }
+
+    get costIncrease() {
+      return 1e10;
+    }
 
     get cap() {
       return Effects.min(50, TimeStudy(22));
@@ -409,10 +464,17 @@ export const ReplicantiUpgrade = {
     }
   }(),
   galaxies: new class ReplicantiGalaxiesUpgrade extends ReplicantiUpgradeState {
-    get id() { return 3; }
+    get id() {
+      return 3;
+    }
 
-    get value() { return player.replicanti.boughtGalaxyCap; }
-    set value(value) { player.replicanti.boughtGalaxyCap = value; }
+    get value() {
+      return player.replicanti.boughtGalaxyCap;
+    }
+
+    set value(value) {
+      player.replicanti.boughtGalaxyCap = value;
+    }
 
     get nextValue() {
       return this.value.add(1);
@@ -422,8 +484,13 @@ export const ReplicantiUpgrade = {
       return this.baseCost.dividedByEffectsOf(TimeStudy(233), PelleRifts.vacuum.milestones[1]);
     }
 
-    get baseCost() { return player.replicanti.galCost; }
-    set baseCost(value) { player.replicanti.galCost = value; }
+    get baseCost() {
+      return player.replicanti.galCost;
+    }
+
+    set baseCost(value) {
+      player.replicanti.galCost = value;
+    }
 
     get distantRGStart() {
       return GlyphInfo.replication.sacrificeInfo.effect().add(100);
@@ -472,16 +539,14 @@ export const ReplicantiUpgrade = {
       let b = logBaseIncrease.sub(logCostScaling.div(2));
       let c = logBase.sub(cur);
       if (decimalQuadraticSolution(a, b, c).floor().lte(distantReplicatedGalaxyStart)) {
-        // eslint-disable-next-line consistent-return
         return decimalQuadraticSolution(a, b, c).floor().add(1);
       }
       a = logCostScaling.add(logDistantScaling).div(2);
-      // eslint-disable-next-line max-len
+
       b = logBaseIncrease.sub(logCostScaling.div(2)).sub(logDistantScaling.times(distantReplicatedGalaxyStart)).add(logDistantScaling.times(4.5));
-      // eslint-disable-next-line max-len
+
       c = cur.neg().add(170).add(distantReplicatedGalaxyStart.pow(2).times(logDistantScaling).div(2)).sub(distantReplicatedGalaxyStart.times(4.5).times(logDistantScaling));
       if (decimalQuadraticSolution(a, b, c).floor().lte(remoteReplicatedGalaxyStart)) {
-        // eslint-disable-next-line consistent-return
         return decimalQuadraticSolution(a, b, c).floor().add(1);
       }
       a = logRemoteScaling.div(3);
@@ -499,7 +564,6 @@ export const ReplicantiUpgrade = {
         .add(remoteReplicatedGalaxyStart.pow(2).mul(logRemoteScaling).div(2))
         .sub(remoteReplicatedGalaxyStart.mul(logRemoteScaling).div(6));
 
-      // eslint-disable-next-line consistent-return
       return decimalCubicSolution(a, b, c, d, false).floor().add(1);
     }
 
@@ -587,7 +651,7 @@ export const Replicanti = {
     get extra() {
       return Decimal.floor((Effarig.bonusRG).add(Effects.sum(
         TimeStudy(225),
-        TimeStudy(226)
+        TimeStudy(226),
       )).times(TimeStudy(303).effectOrDefault(1)));
     },
     get total() {
@@ -604,8 +668,8 @@ export const Replicanti = {
       const buyer = Autobuyer.replicantiGalaxy;
       if (!this.canBuyMore) return false;
       // If the confirmation is enabled, we presume the player wants to confirm each Replicanti Galaxy purchase
-      return (buyer.canTick && buyer.isEnabled) ||
-        (!player.options.confirmations.replicantiGalaxy && this.isPlayerHoldingR);
+      return (buyer.canTick && buyer.isEnabled)
+        || (!player.options.confirmations.replicantiGalaxy && this.isPlayerHoldingR);
     },
     get gain() {
       if (!this.canBuyMore) return DC.D0;
@@ -619,5 +683,5 @@ export const Replicanti = {
   },
   get isUncapped() {
     return TimeStudy(192).isBought || PelleRifts.vacuum.milestones[1].canBeApplied;
-  }
+  },
 };

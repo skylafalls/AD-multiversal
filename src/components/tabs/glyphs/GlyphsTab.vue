@@ -26,7 +26,7 @@ export default {
     GlyphLevelsAndWeights,
     ResetRealityButton,
     RealityReminder,
-    SingleGlyphCustomzationPanel
+    SingleGlyphCustomzationPanel,
   },
   data() {
     return {
@@ -85,7 +85,7 @@ export default {
         "l-glyph-info-button": true,
         "c-glyph-info-button": true,
         "c-glyph-info-button--active": isSacrificeOption,
-        "c-glyph-info-button--inactive": !isSacrificeOption
+        "c-glyph-info-button--inactive": !isSacrificeOption,
       };
     },
     setInfoState(state) {
@@ -96,15 +96,15 @@ export default {
     },
     glyphInfoBorderClass() {
       return {
-        "c-current-glyph-effects-with-top-border": !this.sacrificeUnlocked
+        "c-current-glyph-effects-with-top-border": !this.sacrificeUnlocked,
       };
     },
     buttonGroupClass() {
       return {
-        "l-half-width": this.canAmplify
+        "l-half-width": this.canAmplify,
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

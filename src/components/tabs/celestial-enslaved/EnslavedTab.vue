@@ -10,7 +10,7 @@ export default {
     CelestialQuoteHistory,
     PrimaryButton,
     PrimaryToggleButton,
-    BlackHoleChargingSliders
+    BlackHoleChargingSliders,
   },
   data: () => ({
     isStoringBlackHole: false,
@@ -61,7 +61,7 @@ export default {
         "c-enslaved-run-button__icon": true,
         "c-enslaved-run-button__icon--running": this.isRunning,
         "c-celestial-run-button--clickable": !this.isDoomed,
-        "o-pelle-disabled-pointer": this.isDoomed
+        "o-pelle-disabled-pointer": this.isDoomed,
       };
     },
     runDescription() {
@@ -81,7 +81,7 @@ export default {
         "o-enslaved-mechanic-button--clickable": this.canModifyGameTimeStorage,
         "o-enslaved-mechanic-button--storing-time": this.isStoringBlackHole,
         "l-fixed-setting": !this.canModifyGameTimeStorage,
-        "o-pelle-disabled": this.isDoomed
+        "o-pelle-disabled": this.isDoomed,
       };
     },
     storeRealTimeClass() {
@@ -90,7 +90,7 @@ export default {
         "o-enslaved-mechanic-button--clickable": !this.isDoomed,
         "o-enslaved-mechanic-button--storing-time": this.isStoringReal,
         "l-fixed-setting": !this.canChangeStoreRealTime,
-        "o-pelle-disabled": this.isDoomed
+        "o-pelle-disabled": this.isDoomed,
       };
     },
     dischargeClass() {
@@ -98,7 +98,7 @@ export default {
         "o-enslaved-mechanic-button": true,
         "o-enslaved-mechanic-button--clickable": !this.isDoomed,
         "l-fixed-setting": !this.canDischarge || this.hasNoCharge,
-        "o-pelle-disabled": this.isDoomed
+        "o-pelle-disabled": this.isDoomed,
       };
     },
     doomedDisabledClass() {
@@ -107,14 +107,14 @@ export default {
     mechanicButtonClass() {
       return {
         "o-enslaved-mechanic-button": true,
-        "o-enslaved-mechanic-button--clickable": !this.isDoomed
+        "o-enslaved-mechanic-button--clickable": !this.isDoomed,
       };
-    }
+    },
   },
   watch: {
     autoRelease(newValue) {
       player.celestials.enslaved.isAutoReleasing = newValue;
-    }
+    },
   },
   methods: {
     update() {
@@ -182,7 +182,7 @@ export default {
     unlockClassObject(info) {
       return {
         "o-enslaved-shop-button--bought": this.hasUnlock(info),
-        "o-enslaved-shop-button--available": this.canBuyUnlock(info)
+        "o-enslaved-shop-button--available": this.canBuyUnlock(info),
       };
     },
     glitchStyle(x) {
@@ -195,7 +195,7 @@ export default {
         transform: `translate(${dx}rem, ${dy}rem)`,
         height: `${height}rem`,
       };
-    }
+    },
   },
 };
 </script>

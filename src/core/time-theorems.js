@@ -8,31 +8,45 @@ export class TimeTheoremPurchaseType {
   /**
   * @abstract
   */
-  get amount() { throw new NotImplementedError(); }
+  get amount() {
+    throw new NotImplementedError();
+  }
 
   /**
   * @abstract
   */
-  set amount(value) { throw new NotImplementedError(); }
+  set amount(value) {
+    throw new NotImplementedError();
+  }
 
-  add(amount) { this.amount = this.amount.add(amount); }
+  add(amount) {
+    this.amount = this.amount.add(amount);
+  }
 
   /**
   * @abstract
   */
-  get currency() { throw new NotImplementedError(); }
+  get currency() {
+    throw new NotImplementedError();
+  }
 
-  get cost() { return this.costBase.times(this.costIncrement.pow(this.amount)); }
+  get cost() {
+    return this.costBase.times(this.costIncrement.pow(this.amount));
+  }
 
   /**
    * @abstract
    */
-  get costBase() { throw new NotImplementedError(); }
+  get costBase() {
+    throw new NotImplementedError();
+  }
 
   /**
    * @abstract
    */
-  get costIncrement() { throw new NotImplementedError(); }
+  get costIncrement() {
+    throw new NotImplementedError();
+  }
 
   get bulkPossible() {
     if (Perk.ttFree.canBeApplied) {
@@ -87,30 +101,69 @@ export class TimeTheoremPurchaseType {
 }
 
 TimeTheoremPurchaseType.am = new class extends TimeTheoremPurchaseType {
-  get amount() { return player.timestudy.amBought; }
-  set amount(value) { player.timestudy.amBought = value; }
+  get amount() {
+    return player.timestudy.amBought;
+  }
 
-  get currency() { return Currency.antimatter; }
-  get costBase() { return DC.E20000; }
-  get costIncrement() { return DC.E20000; }
+  set amount(value) {
+    player.timestudy.amBought = value;
+  }
+
+  get currency() {
+    return Currency.antimatter;
+  }
+
+  get costBase() {
+    return DC.E20000;
+  }
+
+  get costIncrement() {
+    return DC.E20000;
+  }
 }();
 
 TimeTheoremPurchaseType.ip = new class extends TimeTheoremPurchaseType {
-  get amount() { return player.timestudy.ipBought; }
-  set amount(value) { player.timestudy.ipBought = value; }
+  get amount() {
+    return player.timestudy.ipBought;
+  }
 
-  get currency() { return Currency.infinityPoints; }
-  get costBase() { return DC.D1; }
-  get costIncrement() { return DC.E100; }
+  set amount(value) {
+    player.timestudy.ipBought = value;
+  }
+
+  get currency() {
+    return Currency.infinityPoints;
+  }
+
+  get costBase() {
+    return DC.D1;
+  }
+
+  get costIncrement() {
+    return DC.E100;
+  }
 }();
 
 TimeTheoremPurchaseType.ep = new class extends TimeTheoremPurchaseType {
-  get amount() { return player.timestudy.epBought; }
-  set amount(value) { player.timestudy.epBought = value; }
+  get amount() {
+    return player.timestudy.epBought;
+  }
 
-  get currency() { return Currency.eternityPoints; }
-  get costBase() { return DC.D1; }
-  get costIncrement() { return DC.D2; }
+  set amount(value) {
+    player.timestudy.epBought = value;
+  }
+
+  get currency() {
+    return Currency.eternityPoints;
+  }
+
+  get costBase() {
+    return DC.D1;
+  }
+
+  get costIncrement() {
+    return DC.D2;
+  }
 
   bulkCost(amount) {
     if (Perk.ttFree.canBeApplied || this.currency.layer > 1) return this.cost.times(this.costIncrement.pow(amount));
@@ -163,5 +216,5 @@ export const TimeTheorems = {
     }
     if (Enslaved.isRunning && player.celestials.enslaved.hasSecretStudy) totalCost = totalCost.sub(100);
     return totalCost;
-  }
+  },
 };

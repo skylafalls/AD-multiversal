@@ -4,8 +4,8 @@ export default {
   props: {
     setup: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -16,7 +16,7 @@ export default {
     styleObject() {
       return {
         top: `${this.setup.top}rem`,
-        left: `${this.setup.left}rem`
+        left: `${this.setup.left}rem`,
       };
     },
     classObject() {
@@ -29,7 +29,7 @@ export default {
         "o-time-study--secret": !this.isVisible,
         "o-time-study--secret-unlocked": this.isVisible,
       };
-    }
+    },
   },
   methods: {
     update() {
@@ -57,7 +57,7 @@ export default {
         }
       }
     },
-  }
+  },
 };
 </script>
 

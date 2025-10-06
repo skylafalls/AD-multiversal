@@ -86,8 +86,8 @@ export default {
         "l-active-script": id === this.runningScriptID && highlightRunning,
         "l-selected-script": id === this.currentScriptID && (id !== this.runningScriptID || !highlightRunning),
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -41,8 +41,8 @@ export default {
     },
     themeCss() {
       return `stylesheets/theme-${this.view.theme}.css`;
-    }
-  }
+    },
+  },
 };
 </script>
 

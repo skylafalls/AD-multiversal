@@ -4,13 +4,13 @@ import CelestialQuoteLineBasicInteractable from "./templates/CelestialQuoteLineB
 export default {
   name: "CelestialQuoteModal",
   components: {
-    CelestialQuoteLineBasicInteractable
+    CelestialQuoteLineBasicInteractable,
   },
   props: {
     quote: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
 };
 </script>

@@ -4,7 +4,7 @@ import ImaginaryUpgradeButton from "./ImaginaryUpgradeButton";
 export default {
   name: "ImaginaryUpgradesTab",
   components: {
-    ImaginaryUpgradeButton
+    ImaginaryUpgradeButton,
   },
   data() {
     return {
@@ -28,8 +28,8 @@ export default {
     },
     id(row, column) {
       return (row - 1) * 5 + column - 1;
-    }
-  }
+    },
+  },
 };
 </script>
 

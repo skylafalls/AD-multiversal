@@ -6,7 +6,7 @@ export default {
   name: "EternityUpgradesTab",
   components: {
     EternityUpgradeButton,
-    EPMultiplierButton
+    EPMultiplierButton,
   },
   computed: {
     grid() {
@@ -14,20 +14,20 @@ export default {
         [
           EternityUpgrade.idMultEP,
           EternityUpgrade.idMultEternities,
-          EternityUpgrade.idMultICRecords
+          EternityUpgrade.idMultICRecords,
         ],
         [
           EternityUpgrade.tdMultAchs,
           EternityUpgrade.tdMultTheorems,
           EternityUpgrade.tdMultRealTime,
-        ]
+        ],
       ];
     },
-    costIncreases: () => EternityUpgrade.epMult.costIncreaseThresholds.map(x => new Decimal(x))
+    costIncreases: () => EternityUpgrade.epMult.costIncreaseThresholds.map(x => new Decimal(x)),
   },
   methods: {
-    formatPostBreak
-  }
+    formatPostBreak,
+  },
 };
 </script>
 

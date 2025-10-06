@@ -6,12 +6,12 @@ export default {
   name: "TickspeedAutobuyerBox",
   components: {
     AutobuyerBox,
-    AutobuyerIntervalButton
+    AutobuyerIntervalButton,
   },
   data() {
     return {
       mode: AUTOBUYER_MODE.BUY_SINGLE,
-      isUnlocked: false
+      isUnlocked: false,
     };
   },
   computed: {
@@ -24,7 +24,7 @@ export default {
         }
       }
       throw new Error("Unknown tickspeed autobuyer mode");
-    }
+    },
   },
   methods: {
     update() {
@@ -34,8 +34,8 @@ export default {
     toggleMode() {
       this.autobuyer.toggleMode();
       this.update();
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -44,5 +44,5 @@ export const BreakInfinityUpgrade = mapGameDataToObject(
   GameDatabase.infinity.breakUpgrades,
   config => (config.rebuyable
     ? new RebuyableBreakInfinityUpgradeState(config)
-    : new BreakInfinityUpgradeState(config))
+    : new BreakInfinityUpgradeState(config)),
 );

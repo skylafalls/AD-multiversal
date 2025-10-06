@@ -69,12 +69,12 @@ function getGlyphTypes() {
 
 const functionalGlyphs = mapGameDataToObject(
   getGlyphTypes(),
-  config => new CosmeticGlyphType(config, false)
+  config => new CosmeticGlyphType(config, false),
 );
 
 const cosmeticGlyphs = mapGameDataToObject(
   GameDatabase.reality.cosmeticGlyphs,
-  config => new CosmeticGlyphType(config, true)
+  config => new CosmeticGlyphType(config, true),
 );
 
 export const CosmeticGlyphTypes = {
@@ -111,13 +111,13 @@ export const GlyphAppearanceHandler = {
       .filter(s => this.unlockedSets.includes(s.id))
       .flatMap(s => s.color)
       .toSorted((a, b) => {
-        const getHue = hex => {
+        const getHue = (hex) => {
           const parts = hex.split("#");
           const color = parts[1];
           const rgb = [
             Number.parseInt(color.slice(0, 2), 16) / 255,
             Number.parseInt(color.slice(2, 4), 16) / 255,
-            Number.parseInt(color.slice(4), 16) / 255
+            Number.parseInt(color.slice(4), 16) / 255,
           ];
           const min = Math.min(...rgb), max = Math.max(...rgb);
           if (max - min < 0.3) return max;
@@ -285,5 +285,5 @@ export const GlyphAppearanceHandler = {
       const selectedColor = cosmetics.symbolMap[key];
       if (!allColors.includes(selectedColor)) cosmetics.colorMap[key] = undefined;
     }
-  }
+  },
 };

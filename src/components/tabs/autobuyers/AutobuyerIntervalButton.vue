@@ -4,8 +4,8 @@ export default {
   props: {
     autobuyer: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -13,7 +13,7 @@ export default {
       isMaxed: false,
       isUpgradeable: false,
       isAffordable: false,
-      prob: new Decimal(0.4)
+      prob: new Decimal(0.4),
     };
   },
   computed: {
@@ -21,9 +21,9 @@ export default {
       return {
         "o-autobuyer-btn": true,
         "l-autobuyer-box__button": true,
-        "o-autobuyer-btn--unavailable": !this.isAffordable
+        "o-autobuyer-btn--unavailable": !this.isAffordable,
       };
-    }
+    },
   },
   methods: {
     update() {
@@ -34,8 +34,8 @@ export default {
     },
     upgradeInterval() {
       this.autobuyer.upgradeInterval();
-    }
-  }
+    },
+  },
 };
 </script>
 

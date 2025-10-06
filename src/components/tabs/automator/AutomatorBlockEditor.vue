@@ -8,7 +8,7 @@ export default {
   name: "AutomatorBlockEditor",
   components: {
     AutomatorBlockSingleRow,
-    draggable
+    draggable,
   },
   computed: {
     lines: {
@@ -17,7 +17,7 @@ export default {
       },
       set(value) {
         this.$viewModel.tabs.reality.automator.lines = value;
-      }
+      },
     },
     numberOfLines() {
       return this.lines.reduce((a, l) => a + BlockAutomator.numberOfLinesInBlock(l), 0);
@@ -55,7 +55,7 @@ export default {
       this.lines.splice(idx, 1);
       this.parseRequest();
     },
-  }
+  },
 };
 
 export const BlockAutomator = {
@@ -127,7 +127,7 @@ export const BlockAutomator = {
     if (block.canWait && block.nowait) {
       parsed = parsed.replace(/(\S+)/u, "$1 NOWAIT");
     }
-    if (block.respec) parsed += ` RESPEC`;
+    if (block.respec) parsed += " RESPEC";
 
     const propsToCheck = ["genericInput1", "compOperator", "genericInput2", "singleSelectionInput", "singleTextInput"];
     for (const prop of propsToCheck) {

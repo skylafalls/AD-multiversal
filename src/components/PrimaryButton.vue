@@ -5,16 +5,16 @@ export default {
     enabled: {
       type: Boolean,
       required: false,
-      default: true
-    }
+      default: true,
+    },
   },
   computed: {
     classObject() {
       return {
         "o-primary-btn--disabled": !this.enabled,
       };
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -27,4 +27,3 @@ export default {
     <slot />
   </button>
 </template>
-

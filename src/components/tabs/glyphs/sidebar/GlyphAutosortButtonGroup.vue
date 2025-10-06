@@ -6,7 +6,7 @@ export default {
   name: "GlyphAutosortButtonGroup",
   components: {
     ToggleButton,
-    ButtonCycle
+    ButtonCycle,
   },
   data() {
     return {
@@ -26,11 +26,11 @@ export default {
       return availableSortModes;
     },
     questionMarkTooltip() {
-      return `The automatic settings below will apply after every Reality`;
+      return "The automatic settings below will apply after every Reality";
     },
     keepTooltip() {
       return "If set to ON, Glyphs which your filter accepts will never be auto-purged even if they are worse";
-    }
+    },
   },
   watch: {
     autoSort(newValue) {
@@ -55,7 +55,7 @@ export default {
       this.autoAutoClean = player.reality.autoAutoClean;
       this.applyFilterToPurge = player.reality.applyFilterToPurge;
     },
-  }
+  },
 };
 </script>
 

@@ -4,7 +4,7 @@ export const TUTORIAL_STATE = {
   TICKSPEED: 2,
   DIMBOOST: 3,
   GALAXY: 4,
-  AUTOMATOR: 5
+  AUTOMATOR: 5,
 };
 
 // Tutorial has two ways of moving on, either by Tutorial.moveOn() or by having it's condition be true. This
@@ -13,29 +13,29 @@ const tutorialStates = [
   {
     // Highlight the 1st dim button
     id: TUTORIAL_STATE.DIM1,
-    condition: () => true
+    condition: () => true,
   },
   {
     // Highlight the 2nd dim button
     id: TUTORIAL_STATE.DIM2,
-    condition: () => Currency.antimatter.gte(100)
+    condition: () => Currency.antimatter.gte(100),
   },
   {
     id: TUTORIAL_STATE.TICKSPEED,
-    condition: () => AntimatterDimension(2).bought.gt(0)
+    condition: () => AntimatterDimension(2).bought.gt(0),
   },
   {
     id: TUTORIAL_STATE.DIMBOOST,
-    condition: () => AntimatterDimension(4).amount.gte(20)
+    condition: () => AntimatterDimension(4).amount.gte(20),
   },
   {
     id: TUTORIAL_STATE.GALAXY,
-    condition: () => AntimatterDimension(8).amount.gte(80)
+    condition: () => AntimatterDimension(8).amount.gte(80),
   },
   {
     id: TUTORIAL_STATE.AUTOMATOR,
-    condition: () => Player.automatorUnlocked
-  }
+    condition: () => Player.automatorUnlocked,
+  },
 ];
 
 export const Tutorial = {
@@ -75,5 +75,5 @@ export const Tutorial = {
   tutorialLoop() {
     const nextState = tutorialStates.find(o => o.id === player.tutorialState + 1);
     if (nextState && nextState.condition()) this.moveOn(player.tutorialState);
-  }
+  },
 };

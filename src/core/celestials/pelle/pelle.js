@@ -9,7 +9,6 @@ import wordShift from "../../word-shift";
 
 import zalgo from "./zalgo";
 
-
 const disabledMechanicUnlocks = {
   achievements: () => ({}),
   IPMults: () => ({}),
@@ -50,7 +49,7 @@ const disabledMechanicUnlocks = {
   dtMults: () => ({}),
   chargedInfinityUpgrades: () => ({}),
   alteration: () => ({}),
-  timeTheorems: () => ({})
+  timeTheorems: () => ({}),
 };
 
 export const Pelle = {
@@ -134,7 +133,6 @@ export const Pelle = {
 
     if (!mechanic) return true;
     if (!disabledMechanicUnlocks[mechanic]) {
-      // eslint-disable-next-line
       console.error(`Mechanic ${mechanic} isn't present in the disabledMechanicUnlocks!`);
       return true;
     }
@@ -391,29 +389,29 @@ export const Pelle = {
         vacuum: {
           fill: DC.D0,
           active: false,
-          reducedTo: 1
+          reducedTo: 1,
         },
         decay: {
           fill: DC.D0,
           active: false,
           percentageSpent: 0,
-          reducedTo: 1
+          reducedTo: 1,
         },
         chaos: {
           fill: 0,
           active: false,
-          reducedTo: 1
+          reducedTo: 1,
         },
         recursion: {
           fill: DC.D0,
           active: false,
-          reducedTo: 1
+          reducedTo: 1,
         },
         paradox: {
           fill: DC.D0,
           active: false,
-          reducedTo: 1
-        }
+          reducedTo: 1,
+        },
       },
       progressBits: 0,
       galaxyGenerator: {
@@ -421,13 +419,13 @@ export const Pelle = {
         spentGalaxies: DC.D0,
         generatedGalaxies: DC.D0,
         phase: 0,
-        sacrificeActive: false
+        sacrificeActive: false,
       },
       quoteBits: 0,
       collapsed: {
         upgrades: false,
         rifts: false,
-        galaxies: false
+        galaxies: false,
       },
       showBought: false,
     };
@@ -474,7 +472,9 @@ export class RebuyablePelleUpgradeState extends RebuyableMechanicState {
     return this.boughtAmount.gte(this.config.cap);
   }
 
-  get isCustomEffect() { return true; }
+  get isCustomEffect() {
+    return true;
+  }
 
   get effectValue() {
     return this.config.effect(this.boughtAmount);
@@ -486,7 +486,6 @@ export class RebuyablePelleUpgradeState extends RebuyableMechanicState {
 }
 
 export class PelleUpgradeState extends SetPurchasableMechanicState {
-
   get set() {
     return player.celestials.pelle.upgrades;
   }
@@ -506,7 +505,6 @@ export class PelleUpgradeState extends SetPurchasableMechanicState {
   get isAvailableForPurchase() {
     return Pelle.isDoomed;
   }
-
 }
 
 export const PelleUpgrade = mapGameDataToObject(
@@ -514,7 +512,7 @@ export const PelleUpgrade = mapGameDataToObject(
   config => (config.rebuyable
     ? new RebuyablePelleUpgradeState(config)
     : new PelleUpgradeState(config)
-  )
+  ),
 );
 
 PelleUpgrade.rebuyables = PelleUpgrade.all.filter(u => u.isRebuyable);

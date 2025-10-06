@@ -6,7 +6,7 @@ export const eternityUpgrades = {
     cost: 5,
     description: () => `Infinity Dimension multiplier based on unspent Eternity Points (x+${formatInt(1)})`,
     effect: () => Currency.eternityPoints.value.plus(1),
-    formatEffect: value => formatX(value, 2, 1)
+    formatEffect: value => formatX(value, 2, 1),
   },
   idMultEternities: {
     id: 2,
@@ -25,7 +25,7 @@ export const eternityUpgrades = {
       const multPostCap = mult1.times(mult2).clampMin(1);
       return multPostCap.times(multPreCap);
     },
-    formatEffect: value => formatX(value, 2, 1)
+    formatEffect: value => formatX(value, 2, 1),
   },
   idMultICRecords: {
     id: 3,
@@ -35,21 +35,21 @@ export const eternityUpgrades = {
     // allowed EC12 to make all the challenge records sum to zero (causing a division by zero here)
     effect: () => DC.D2.pow(DC.E1.mul(3).div(Decimal.clampMin(Time.infinityChallengeSum.totalSeconds, 0.1))),
     cap: DC.D2P30D0_61,
-    formatEffect: value => formatX(value, 2, 1)
+    formatEffect: value => formatX(value, 2, 1),
   },
   tdMultAchs: {
     id: 4,
     cost: 1e16,
     description: "Your Achievement bonus affects Time Dimensions",
     effect: () => Achievements.power,
-    formatEffect: value => formatX(value, 2, 1)
+    formatEffect: value => formatX(value, 2, 1),
   },
   tdMultTheorems: {
     id: 5,
     cost: 1e40,
     description: "Time Dimensions are multiplied by your unspent Time Theorems",
     effect: () => Decimal.max(Currency.timeTheorems.value, 1),
-    formatEffect: value => formatX(value, 2, 1)
+    formatEffect: value => formatX(value, 2, 1),
   },
   tdMultRealTime: {
     id: 6,
@@ -59,6 +59,6 @@ export const eternityUpgrades = {
       : "Time Dimensions are multiplied by days played"
     ),
     effect: () => (Pelle.isDoomed ? Time.thisReality.totalDays.add(1) : Decimal.max(Time.totalTimePlayed.totalDays, 1)),
-    formatEffect: value => formatX(value, 2, 1)
-  }
+    formatEffect: value => formatX(value, 2, 1),
+  },
 };

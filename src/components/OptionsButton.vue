@@ -4,8 +4,8 @@ import PrimaryButton from "@/components/PrimaryButton";
 export default {
   name: "OptionsButton",
   components: {
-    PrimaryButton
-  }
+    PrimaryButton,
+  },
 };
 </script>
 

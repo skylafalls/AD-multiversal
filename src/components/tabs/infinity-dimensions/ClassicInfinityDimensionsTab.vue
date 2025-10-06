@@ -6,7 +6,7 @@ export default {
   name: "ClassicInfinityDimensionsTab",
   components: {
     PrimaryButton,
-    InfinityDimensionRow
+    InfinityDimensionRow,
   },
   data() {
     return {
@@ -73,8 +73,8 @@ export default {
     },
     buyTesseract() {
       Tesseracts.buyTesseract();
-    }
-  }
+    },
+  },
 };
 </script>
 

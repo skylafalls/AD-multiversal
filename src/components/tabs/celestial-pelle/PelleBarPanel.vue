@@ -4,7 +4,7 @@ import PelleRift from "./PelleRift";
 export default {
   name: "PelleBarPanel",
   components: {
-    PelleRift
+    PelleRift,
   },
   data() {
     return {
@@ -20,7 +20,7 @@ export default {
     },
     strikes() {
       return PelleStrikes.all;
-    }
+    },
   },
   methods: {
     update() {
@@ -30,7 +30,7 @@ export default {
     toggleCollapse() {
       player.celestials.pelle.collapsed.rifts = !this.isCollapsed;
     },
-  }
+  },
 };
 </script>
 

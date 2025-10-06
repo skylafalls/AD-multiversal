@@ -34,7 +34,7 @@ export const MultiplierTabHelper = {
       Achievement(178),
       InfinityChallenge(5).reward,
       PelleUpgrade.galaxyPower,
-      PelleRifts.decay.milestones[1]
+      PelleRifts.decay.milestones[1],
     ).mul(Pelle.specialGlyphEffect.power);
   },
 
@@ -88,7 +88,7 @@ export const MultiplierTabHelper = {
       Achievement(36),
       Achievement(45),
       Achievement(66),
-      Achievement(83)
+      Achievement(83),
     );
     let baseFrac = base.log10().div(Tickspeed.perSecond.log10());
 
@@ -219,12 +219,12 @@ export const MultiplierTabHelper = {
     // Calculate an average black hole speedup factor
     const bh1 = BlackHole(1);
     const bh2 = BlackHole(2);
-    const avgBH = 1 + (bh1.isUnlocked ? bh1.dutyCycle * (bh1.power - 1) : 0) +
-        (bh2.isUnlocked ? bh1.dutyCycle * bh2.dutyCycle * bh1.power * (bh2.power - 1) : 0);
+    const avgBH = 1 + (bh1.isUnlocked ? bh1.dutyCycle * (bh1.power - 1) : 0)
+      + (bh2.isUnlocked ? bh1.dutyCycle * bh2.dutyCycle * bh1.power * (bh2.power - 1) : 0);
 
     return {
       current: currBH,
-      average: avgBH
+      average: avgBH,
     };
   },
 
@@ -266,5 +266,5 @@ export const MultiplierTabHelper = {
 
   isNC12ProducingEven() {
     return this.evenDimNC12Production().gt(this.oddDimNC12Production());
-  }
+  },
 };

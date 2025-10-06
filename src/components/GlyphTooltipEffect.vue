@@ -4,20 +4,20 @@ export default {
   props: {
     effect: {
       type: String,
-      required: true
+      required: true,
     },
     value: {
       type: [Number, Object],
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     effectConfig() {
       return GlyphEffects[this.effect];
     },
     boostColor() {
-      return (this.effectConfig.alterationType !== undefined &&
-        this.effectConfig.alterationType !== ALTERATION_TYPE.ADDITION)
+      return (this.effectConfig.alterationType !== undefined
+        && this.effectConfig.alterationType !== ALTERATION_TYPE.ADDITION)
         ? this.effectConfig.alteredColor()
         : undefined;
     },
@@ -59,12 +59,14 @@ export default {
       return parts;
     },
     valueStyle() {
-      return this.boostColor ? {
-        color: this.boostColor,
-        "text-shadow": `0 0 0.4rem ${this.boostColor}`
-      } : {
-        color: "#76EE76",
-      };
+      return this.boostColor
+        ? {
+            "color": this.boostColor,
+            "text-shadow": `0 0 0.4rem ${this.boostColor}`,
+          }
+        : {
+            color: "#76EE76",
+          };
     },
     textShadowColor() {
       return GlyphAppearanceHandler.getBaseColor(true);
@@ -79,10 +81,10 @@ export default {
           "[", `<span style="${GlyphAppearanceHandler.isLightBG
             ? ""
             : "text-shadow: white 0 0 0.6rem;"}
-            font-weight: bold;">`
+            font-weight: bold;">`,
         );
-    }
-  }
+    },
+  },
 };
 </script>
 

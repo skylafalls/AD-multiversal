@@ -15,7 +15,7 @@ export default {
       },
       set(value) {
         this.$viewModel.tabs.reality.automator.editorScriptID = value;
-      }
+      },
     },
     currentScriptContent() {
       return player.reality.automator.scripts[this.currentScriptID].content;
@@ -32,7 +32,7 @@ export default {
     },
     tutorialClass() {
       return {
-        "tutorial--glow": ui.view.tutorialState === TUTORIAL_STATE.AUTOMATOR && ui.view.tutorialActive
+        "tutorial--glow": ui.view.tutorialState === TUTORIAL_STATE.AUTOMATOR && ui.view.tutorialActive,
       };
     },
   },
@@ -57,17 +57,17 @@ export default {
         player.reality.automator.state.editorScript = this.currentScriptID;
         AutomatorData.clearUndoData();
       }
-      if (BlockAutomator.hasUnparsableCommands(this.currentScript) &&
-        player.reality.automator.type === AUTOMATOR_TYPE.BLOCK) {
-        Modal.message.show(`Some script commands were unrecognizable - defaulting to text editor.`);
+      if (BlockAutomator.hasUnparsableCommands(this.currentScript)
+        && player.reality.automator.type === AUTOMATOR_TYPE.BLOCK) {
+        Modal.message.show("Some script commands were unrecognizable - defaulting to text editor.");
         AutomatorBackend.changeModes(this.currentScriptID);
       }
       this.$nextTick(() => BlockAutomator.updateEditor(this.currentScript));
     },
     toggleAutomatorMode() {
       const currScript = player.reality.automator.scripts[this.currentScriptID].content;
-      const hasTextErrors = this.automatorType === AUTOMATOR_TYPE.TEXT &&
-        (BlockAutomator.hasUnparsableCommands(currScript) || AutomatorData.currentErrors().length > 0);
+      const hasTextErrors = this.automatorType === AUTOMATOR_TYPE.TEXT
+        && (BlockAutomator.hasUnparsableCommands(currScript) || AutomatorData.currentErrors().length > 0);
 
       if (player.options.confirmations.switchAutomatorMode && (hasTextErrors || AutomatorBackend.isRunning)) {
         const blockified = blockifyTextAutomator(currScript);
@@ -85,8 +85,8 @@ export default {
         AutomatorBackend.changeModes(this.currentScriptID);
       }
       AutomatorData.clearUndoData();
-    }
-  }
+    },
+  },
 };
 </script>
 

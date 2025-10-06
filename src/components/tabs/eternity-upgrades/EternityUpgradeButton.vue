@@ -8,18 +8,18 @@ export default {
   components: {
     DescriptionDisplay,
     EffectDisplay,
-    CostDisplay
+    CostDisplay,
   },
   props: {
     upgrade: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       isBought: false,
-      isAffordable: false
+      isAffordable: false,
     };
   },
   computed: {
@@ -28,20 +28,20 @@ export default {
         "o-eternity-upgrade": true,
         "o-eternity-upgrade--bought": this.isBought,
         "o-eternity-upgrade--available": !this.isBought && this.isAffordable,
-        "o-eternity-upgrade--unavailable": !this.isBought && !this.isAffordable
+        "o-eternity-upgrade--unavailable": !this.isBought && !this.isAffordable,
       };
     },
     hasEU2() {
       return Perk.autounlockEU2.canBeApplied;
-    }
+    },
   },
   methods: {
     update() {
       const upgrade = this.upgrade;
       this.isBought = upgrade.isBought;
       this.isAffordable = upgrade.isAffordable;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -17,7 +17,7 @@ export default {
   computed: {
     annihilationInputStyle() {
       return { "background-color": this.isEnabled ? "" : "var(--color-bad)" };
-    }
+    },
   },
   methods: {
     update() {
@@ -40,8 +40,8 @@ export default {
       } else {
         player.auto.annihilation.multiplier = float;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

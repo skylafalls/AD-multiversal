@@ -6,17 +6,17 @@ export default {
   name: "GlyphSetSaveDeleteModal",
   components: {
     ModalWrapperChoice,
-    GlyphSetPreview
+    GlyphSetPreview,
   },
   props: {
     glyphSetId: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      glyphSet: []
+      glyphSet: [],
     };
   },
   methods: {

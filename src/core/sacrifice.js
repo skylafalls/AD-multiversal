@@ -8,9 +8,9 @@ export class Sacrifice {
   }
 
   static get canSacrifice() {
-    return DimBoost.purchasedBoosts.gt(4) && !EternityChallenge(3).isRunning && this.nextBoost.gt(1) &&
-      AntimatterDimension(8).totalAmount.gt(0) && Currency.antimatter.lt(Player.infinityLimit) &&
-      !Enslaved.isRunning;
+    return DimBoost.purchasedBoosts.gt(4) && !EternityChallenge(3).isRunning && this.nextBoost.gt(1)
+      && AntimatterDimension(8).totalAmount.gt(0) && Currency.antimatter.lt(Player.infinityLimit)
+      && !Enslaved.isRunning;
   }
 
   static get disabledCondition() {
@@ -37,12 +37,12 @@ export class Sacrifice {
       base = "AD1";
     }
 
-    const exponent = (1 +
-      (f("Achievement32", Achievement(32).isEffectActive) ? Achievement(32).config.effect : 0) +
-      (f("Achievement57", Achievement(57).isEffectActive) ? Achievement(57).config.effect : 0)
-    ) * (1 +
-      (f("Achievement88", Achievement(88).isEffectActive) ? Achievement(88).config.effect : 0) +
-      (f("TimeStudy228", TimeStudy(228).isEffectActive) ? TimeStudy(228).config.effect : 0)
+    const exponent = (1
+      + (f("Achievement32", Achievement(32).isEffectActive) ? Achievement(32).config.effect : 0)
+      + (f("Achievement57", Achievement(57).isEffectActive) ? Achievement(57).config.effect : 0)
+    ) * (1
+      + (f("Achievement88", Achievement(88).isEffectActive) ? Achievement(88).config.effect : 0)
+      + (f("TimeStudy228", TimeStudy(228).isEffectActive) ? TimeStudy(228).config.effect : 0)
     ) * factor;
     return base + (exponent === 1 ? "" : formatPow(exponent, places, places));
   }
@@ -112,11 +112,11 @@ export class Sacrifice {
 
 export function sacrificeReset() {
   if (!Sacrifice.canSacrifice) return false;
-  if ((!player.break || (!InfinityChallenge.isRunning && NormalChallenge.isRunning)) &&
-    Currency.antimatter.gt(DC.NUMMAX)) return false;
+  if ((!player.break || (!InfinityChallenge.isRunning && NormalChallenge.isRunning))
+    && Currency.antimatter.gt(DC.NUMMAX)) return false;
   if (
-    NormalChallenge(8).isRunning &&
-    (Sacrifice.totalBoost.gte(DC.NUMMAX))
+    NormalChallenge(8).isRunning
+    && (Sacrifice.totalBoost.gte(DC.NUMMAX))
   ) {
     return false;
   }

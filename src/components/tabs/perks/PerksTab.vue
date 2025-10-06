@@ -7,18 +7,18 @@ import PerkPointLabel from "./PerkPointLabel";
 export default {
   name: "PerksTab",
   components: {
-    PerkPointLabel
+    PerkPointLabel,
   },
   computed: {
     showHintText() {
       return ui.view.shiftDown || player.options.showHintText.perks;
-    }
+    },
   },
   watch: {
     showHintText(newValue) {
       if (ui.view.theme === "S9") PerkNetwork.setLabelVisibility(false);
       else PerkNetwork.setLabelVisibility(newValue);
-    }
+    },
   },
   created() {
     EventHub.ui.on(GAME_EVENT.PERK_BOUGHT, () => PerkNetwork.updatePerkColor());
@@ -33,7 +33,7 @@ export default {
     PerkNetwork.updatePerkSize();
     this.$refs.tab.append(PerkNetwork.container);
     PerkNetwork.moveToDefaultLayoutPositions(player.options.perkLayout);
-  }
+  },
 };
 
 // Primary is lifted from the study tree (mostly),
@@ -41,31 +41,31 @@ export default {
 const perkColors = () => ({
   [PERK_FAMILY.ANTIMATTER]: {
     primary: "#22aa48",
-    secondary: "#156a2d"
+    secondary: "#156a2d",
   },
   [PERK_FAMILY.INFINITY]: {
     primary: "#b67f33",
-    secondary: "#7b5623"
+    secondary: "#7b5623",
   },
   [PERK_FAMILY.ETERNITY]: {
     primary: "#b241e3",
-    secondary: "#8b1cba"
+    secondary: "#8b1cba",
   },
   [PERK_FAMILY.DILATION]: {
     primary: "#64dd17",
-    secondary: "#449810"
+    secondary: "#449810",
   },
   [PERK_FAMILY.REALITY]: {
     primary: "#0b600e",
-    secondary: "#063207"
+    secondary: "#063207",
   },
   [PERK_FAMILY.AUTOMATION]: {
     primary: "#ff0000",
-    secondary: "#b30000"
+    secondary: "#b30000",
   },
   [PERK_FAMILY.ACHIEVEMENT]: {
     primary: "#fdd835",
-    secondary: "#e3ba02"
+    secondary: "#e3ba02",
   },
 });
 
@@ -128,7 +128,7 @@ export const PerkLayouts = [
     forcePhysics: false,
     straightEdges: true,
     isUnlocked: () => Themes.available().map(t => t.name).includes("S11"),
-  }
+  },
 ];
 
 export const PerkNetwork = {
@@ -148,7 +148,7 @@ export const PerkNetwork = {
 
     this.makeNetwork();
 
-    this.network.on("click", params => {
+    this.network.on("click", (params) => {
       const id = params.nodes[0];
       if (!isFinite(id)) return;
       Perks.find(id).purchase();
@@ -208,8 +208,8 @@ export const PerkNetwork = {
       // description to be visible instead of being hidden by disable/lock text
       title: (isDisabled(perk)
         ? htmlTitle(
-          `<span style='text-decoration: line-through;'>${perk.config.description}</span>`
-        )
+            `<span style='text-decoration: line-through;'>${perk.config.description}</span>`,
+          )
         : `${perk.config.description} ${perk.config.automatorPoints && !isDisabled(perk)
           ? `(+${formatInt(perk.config.automatorPoints)} AP)`
           : ""}`
@@ -230,7 +230,7 @@ export const PerkNetwork = {
 
     const nodeData = {
       nodes: this.nodes,
-      edges
+      edges,
     };
 
     const nodeOptions = {
@@ -244,10 +244,10 @@ export const PerkNetwork = {
         shape: "dot",
         size: 18,
         font: {
-          size: 0
+          size: 0,
         },
         borderWidth: 2,
-        shadow: true
+        shadow: true,
       },
       edges: {
         width: 4,
@@ -255,9 +255,9 @@ export const PerkNetwork = {
         hoverWidth: width => width,
         selectionWidth: width => width,
         color: {
-          inherit: "both"
+          inherit: "both",
         },
-        hidden: ui.view.theme === "S9"
+        hidden: ui.view.theme === "S9",
       },
     };
 
@@ -314,8 +314,8 @@ export const PerkNetwork = {
         font: {
           size: areVisible ? 20 : 0,
           color: Theme.current().isDark() ? "#DDDDDD" : "#222222",
-        }
-      }
+        },
+      },
     };
     this.network.setOptions(options);
   },
@@ -338,12 +338,12 @@ export const PerkNetwork = {
           border: borderColor,
           hover: {
             background: hoverColor,
-            border: borderColor
+            border: borderColor,
           },
           highlight: {
             background: backgroundColor,
-            border: borderColor
-          }
+            border: borderColor,
+          },
         };
       }
       const canBeBought = perk.canBeBought;
@@ -365,12 +365,12 @@ export const PerkNetwork = {
         border: borderColor,
         hover: {
           background: hoverColor,
-          border: borderColor
+          border: borderColor,
         },
         highlight: {
           background: backgroundColor,
-          border: borderColor
-        }
+          border: borderColor,
+        },
       };
     }
 
@@ -394,7 +394,7 @@ export const PerkNetwork = {
     const data = Perks.all
       .map(perk => ({ id: perk.id, size: nodeSize(perk) }));
     this.nodes.update(data);
-  }
+  },
 };
 </script>
 

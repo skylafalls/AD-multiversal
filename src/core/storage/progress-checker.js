@@ -35,7 +35,7 @@ class CatchupResource extends GameMechanicState {
 
 export const CatchupResources = mapGameDataToObject(
   GameDatabase.catchupResources,
-  config => new CatchupResource(config)
+  config => new CatchupResource(config),
 );
 
 export const ProgressChecker = {
@@ -68,5 +68,5 @@ export const ProgressChecker = {
     const timeDifference = first.records?.realTimePlayed - second.records?.realTimePlayed;
     if (timeDifference >= 0) return -1;
     return 1;
-  }
+  },
 };

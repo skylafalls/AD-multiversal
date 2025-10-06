@@ -4,32 +4,32 @@ import SecretAchievement from "./SecretAchievement";
 export default {
   name: "SecretAchievementRow",
   components: {
-    SecretAchievement
+    SecretAchievement,
   },
   props: {
     row: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      isCompleted: false
+      isCompleted: false,
     };
   },
   computed: {
     classObject() {
       return {
         "l-achievement-grid__row": true,
-        "c-achievement-grid__row--completed": this.isCompleted
+        "c-achievement-grid__row--completed": this.isCompleted,
       };
-    }
+    },
   },
   methods: {
     update() {
       this.isCompleted = this.row.every(a => a.isUnlocked);
-    }
-  }
+    },
+  },
 };
 </script>
 

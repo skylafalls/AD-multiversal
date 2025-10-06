@@ -4,7 +4,7 @@ export default {
   components: {},
   data() {
     return {
-      saveFileName: ""
+      saveFileName: "",
     };
   },
   methods: {
@@ -18,8 +18,8 @@ export default {
       const newName = this.removeNotAvailableCharacters(event.target.value.trim());
       player.options.saveFileName = newName;
       event.target.value = newName;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -7,17 +7,23 @@ export class BitPurchasableMechanicState extends PurchasableMechanicState {
   /**
    * @abstract
    */
-  get bits() { throw new NotImplementedError(); }
+  get bits() {
+    throw new NotImplementedError();
+  }
 
   /**
    * @abstract
    */
-  set bits(value) { throw new NotImplementedError(); }
+  set bits(value) {
+    throw new NotImplementedError();
+  }
 
   /**
    * @abstract
    */
-  get bitIndex() { throw new NotImplementedError(); }
+  get bitIndex() {
+    throw new NotImplementedError();
+  }
 
   get isBought() {
     return (this.bits & (1 << this.bitIndex)) !== 0;

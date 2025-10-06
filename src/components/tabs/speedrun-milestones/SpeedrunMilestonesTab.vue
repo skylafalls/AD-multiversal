@@ -23,12 +23,12 @@ export default {
       return this.isSpectating
         ? "Times here are unaffected by END so that you can see your final records"
         : null;
-    }
+    },
   },
   watch: {
     displayAll(newValue) {
       player.speedrun.displayAllMilestones = newValue;
-    }
+    },
   },
   methods: {
     update() {

@@ -4,28 +4,28 @@ import CostDisplay from "@/components/CostDisplay";
 export default {
   name: "TimeStudyButton",
   components: {
-    CostDisplay
+    CostDisplay,
   },
   props: {
     setup: {
       type: Object,
-      required: true
+      required: true,
     },
     showCost: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     showStCost: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     specialClick: {
       type: Function,
       required: false,
       default: null,
-    }
+    },
   },
   data() {
     return {
@@ -44,7 +44,7 @@ export default {
     styleObject() {
       return {
         top: `${this.setup.top}rem`,
-        left: `${this.setup.left}rem`
+        left: `${this.setup.left}rem`,
       };
     },
     classObject() {
@@ -141,21 +141,21 @@ export default {
     },
     doomedRealityStudy() {
       return this.study.type === TIME_STUDY_TYPE.DILATION && this.study.id === 6 && Pelle.isDoomed;
-    }
+    },
   },
   methods: {
     update() {
       const study = this.study;
       this.isUseless = Pelle.uselessTimeStudies.includes(this.study.id) && Pelle.isDoomed;
       this.isBought = study.isBought;
-      this.eternityChallengeRunning = study.type === TIME_STUDY_TYPE.ETERNITY_CHALLENGE &&
-        EternityChallenge.current?.id === study.id;
+      this.eternityChallengeRunning = study.type === TIME_STUDY_TYPE.ETERNITY_CHALLENGE
+        && EternityChallenge.current?.id === study.id;
       if (!this.isBought) {
         this.isAvailableForPurchase = study.canBeBought && study.isAffordable;
       }
       this.STCost = this.study.STCost;
-      this.isCompleteEC = this.study.type === TIME_STUDY_TYPE.ETERNITY_CHALLENGE &&
-        EternityChallenge(this.study.id).remainingCompletions === 0;
+      this.isCompleteEC = this.study.type === TIME_STUDY_TYPE.ETERNITY_CHALLENGE
+        && EternityChallenge(this.study.id).remainingCompletions === 0;
     },
     handleClick() {
       if (this.specialClick === null || !this.study.isBought) this.study.purchase();
@@ -163,8 +163,8 @@ export default {
     },
     shiftClick() {
       if (this.study.purchaseUntil) this.study.purchaseUntil();
-    }
-  }
+    },
+  },
 };
 
 export class TimeStudySetup {

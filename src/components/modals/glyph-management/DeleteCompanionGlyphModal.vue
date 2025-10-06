@@ -4,7 +4,7 @@ import PrimaryButton from "@/components/PrimaryButton";
 export default {
   name: "DeleteCompanionGlyphModal",
   components: {
-    PrimaryButton
+    PrimaryButton,
   },
   data() {
     return {
@@ -26,7 +26,7 @@ export default {
         default: { return "Invalid message index";
         }
       }
-    }
+    },
   },
   methods: {
     handleLeftButtonClick() {
@@ -56,7 +56,7 @@ export default {
       // Passing information into modals seems to require a bunch of refactoring that's not worth it for this one case.
       const toDelete = player.reality.glyphs.inventory.filter(g => g.type === "companion")[0];
       Glyphs.removeFromInventory(toDelete);
-    }
+    },
   },
 };
 </script>

@@ -12,6 +12,6 @@ const firebaseConfig = process.env.FIREBASE_CONFIG;
 if (firebaseConfig) {
   fs.writeFileSync(
     path.resolve(__dirname, "../src/core/storage/firebase-config.js"),
-    `export const firebaseConfig = ${firebaseConfig};`
+    `export const firebaseConfig = ${firebaseConfig};`,
   );
 }

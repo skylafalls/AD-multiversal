@@ -69,7 +69,7 @@ export default {
     },
     dropDownIconClass() {
       return this.isExpanded ? "far fa-minus-square" : "far fa-plus-square";
-    }
+    },
   },
   created() {
     // Collapsing it after every reality resets the height to its fixed minimum value, stopping screen jitter
@@ -88,7 +88,8 @@ export default {
       this.cheapestLog10TD = Decimal.min(...TimeDimensions.all.map(x => x.cost.max(1).log10()));
       this.multEPLog10Cost = EternityUpgrade.epMult.cost.max(1).log10();
       this.purchasableTS = NormalTimeStudyState.studies.countWhere(s => s && s.canBeBought && !s.isBought);
-      this.hasDilated = Perk.startTP.canBeApplied ? player.dilation.lastEP.gt(0)
+      this.hasDilated = Perk.startTP.canBeApplied
+        ? player.dilation.lastEP.gt(0)
         : player.dilation.tachyonParticles.gt(0);
       this.availableCharges = Ra.chargesLeft;
     },
@@ -96,7 +97,7 @@ export default {
       if (!this.canBeExpanded) return;
       this.isExpanded = !this.isExpanded;
     },
-  }
+  },
 };
 </script>
 

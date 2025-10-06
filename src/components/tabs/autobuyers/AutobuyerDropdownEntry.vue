@@ -4,16 +4,16 @@ export default {
   props: {
     autobuyer: {
       type: Object,
-      required: true
+      required: true,
     },
     modes: {
       type: Array,
-      required: true
+      required: true,
     },
     modeNameFn: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -29,8 +29,8 @@ export default {
       this.autobuyer.mode = mode;
       this.mode = mode;
       this.$parent.openRequest = false;
-    }
-  }
+    },
+  },
 };
 </script>
 

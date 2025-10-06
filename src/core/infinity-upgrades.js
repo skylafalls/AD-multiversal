@@ -64,11 +64,11 @@ export class InfinityUpgradeState extends SetPurchasableMechanicState {
   }
 
   get canCharge() {
-    return this.isBought &&
-      this.hasChargeEffect &&
-      !this.isCharged &&
-      Ra.chargesLeft !== 0 &&
-      !Pelle.isDisabled("chargedInfinityUpgrades");
+    return this.isBought
+      && this.hasChargeEffect
+      && !this.isCharged
+      && Ra.chargesLeft !== 0
+      && !Pelle.isDisabled("chargedInfinityUpgrades");
   }
 
   charge() {
@@ -98,7 +98,7 @@ export function totalIPMult() {
       Achievement(141).effects.ipGain,
       InfinityUpgrade.ipMult,
       DilationUpgrade.ipMultDT,
-      GlyphEffect.ipMult
+      GlyphEffect.ipMult,
     );
   ipMult = ipMult.times(Replicanti.amount.powEffectOf(AlchemyResource.exponential));
   return ipMult;
@@ -117,7 +117,7 @@ export function disChargeAll() {
     InfinityUpgrade.thisInfinityTimeMult,
     InfinityUpgrade.unspentIPMult,
     InfinityUpgrade.dimboostMult,
-    InfinityUpgrade.ipGen
+    InfinityUpgrade.ipGen,
   ];
   for (const upgrade of upgrades) {
     if (upgrade.isCharged) {
@@ -210,5 +210,5 @@ export const InfinityUpgrade = mapGameDataToObject(
   GameDatabase.infinity.upgrades,
   config => (config.id === "ipMult"
     ? new InfinityIPMultUpgrade(config)
-    : new InfinityUpgradeState(config))
+    : new InfinityUpgradeState(config)),
 );

@@ -6,24 +6,24 @@ import GlyphTooltipEffect from "@/components/GlyphTooltipEffect";
 export default {
   name: "GlyphTooltip",
   components: {
-    GlyphTooltipEffect
+    GlyphTooltipEffect,
   },
   props: {
     type: {
       type: String,
-      required: true
+      required: true,
     },
     strength: {
       type: Decimal,
-      required: true
+      required: true,
     },
     level: {
       type: Decimal,
-      required: true
+      required: true,
     },
     effects: {
       type: Array,
-      required: true
+      required: true,
     },
     id: {
       type: Number,
@@ -47,11 +47,11 @@ export default {
     },
     currentAction: {
       type: String,
-      required: true
+      required: true,
     },
     scoreMode: {
       type: Number,
-      required: true
+      required: true,
     },
     showDeletionText: {
       type: Boolean,
@@ -65,13 +65,13 @@ export default {
     },
     changeWatcher: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       showChaosText: false,
-      chaosDescription: ""
+      chaosDescription: "",
     };
   },
   computed: {
@@ -102,7 +102,7 @@ export default {
       const cursedColor = GlyphAppearanceHandler.isLightBG ? "white" : "black";
       return {
         color: this.type === "cursed" ? cursedColor : color,
-        animation: this.type === "reality" ? "a-reality-glyph-name-cycle 10s infinite" : undefined
+        animation: this.type === "reality" ? "a-reality-glyph-name-cycle 10s infinite" : undefined,
       };
     },
     description() {
@@ -136,11 +136,11 @@ export default {
     },
     levelText() {
       if (this.type === "companion") return "";
-      // eslint-disable-next-line no-nested-ternary
+
       const arrow = this.isLevelCapped
         ? "<i class='fas fa-sort-down'></i>"
         : (this.isLevelBoosted ? "<i class='fas fa-sort-up'></i>" : "");
-      // eslint-disable-next-line no-nested-ternary
+
       const color = this.isLevelCapped
         ? "#ff4444"
         : (this.isLevelBoosted ? "#44FF44" : undefined);
@@ -149,11 +149,13 @@ export default {
               </span>`;
     },
     eventHandlers() {
-      return GameUI.touchDevice ? {
-        touchstart: this.touchStart,
-        dragstart: this.dragStart,
-        dragEnd: this.dragEnd,
-      } : {};
+      return GameUI.touchDevice
+        ? {
+            touchstart: this.touchStart,
+            dragstart: this.dragStart,
+            dragEnd: this.dragEnd,
+          }
+        : {};
     },
     glyphTooltipStyle() {
       // With computer mice, it's nice to just totally disable mouse events on the tooltip,
@@ -163,9 +165,9 @@ export default {
         "pointer-events": this.onTouchDevice ? undefined : "none",
         "border-color": borderColor,
         "box-shadow": `0 0 0.5rem ${borderColor}, 0 0 0.5rem ${borderColor} inset`,
-        animation: this.type === "reality" ? "a-reality-glyph-tooltip-cycle 10s infinite" : undefined,
-        color: this.textColor,
-        background: this.baseColor
+        "animation": this.type === "reality" ? "a-reality-glyph-tooltip-cycle 10s infinite" : undefined,
+        "color": this.textColor,
+        "background": this.baseColor,
       };
     },
     glyphHeaderStyle() {
@@ -178,16 +180,16 @@ export default {
       return {
         "border-color": color,
         "box-shadow": `0 0 0.5rem 0.1rem ${color}, 0 0 0.8rem ${color} inset`,
-        animation: isReality ? "a-reality-glyph-tooltip-header-cycle 10s infinite" : undefined,
-        color: this.textColor,
-        background: this.baseColor
+        "animation": isReality ? "a-reality-glyph-tooltip-header-cycle 10s infinite" : undefined,
+        "color": this.textColor,
+        "background": this.baseColor,
       };
-    }
+    },
   },
   watch: {
     changeWatcher() {
       this.$recompute("sortedEffects");
-    }
+    },
   },
   mounted() {
     // By attaching the tooltip to the body element, we make sure it ends up on top of anything
@@ -243,7 +245,6 @@ export default {
       if (!AlchemyResource[this.type].isUnlocked) return "";
       let refinementText = `${format(this.uncappedRefineReward, 2, 2)} ${GlyphInfo[this.type].regularGlyphSymbol}`;
       if (this.uncappedRefineReward.neq(this.refineReward)) {
-        // eslint-disable-next-line max-len
         refinementText += ` (Actual value due to cap: ${format(this.refineReward, 2, 2)} ${GlyphInfo[this.type].regularGlyphSymbol})`;
       }
       const isCurrentAction = this.currentAction === "refine";
@@ -256,8 +257,8 @@ export default {
       const showFilterScoreModes = [AUTO_GLYPH_SCORE.SPECIFIED_EFFECT, AUTO_GLYPH_SCORE.EFFECT_SCORE];
       if (!showFilterScoreModes.includes(this.scoreMode)) return "";
       return `Score: ${format(AutoGlyphProcessor.filterValue(this.$parent.glyph), 1, 1)}`;
-    }
-  }
+    },
+  },
 };
 </script>
 

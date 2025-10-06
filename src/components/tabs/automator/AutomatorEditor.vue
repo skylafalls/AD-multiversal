@@ -22,7 +22,7 @@ export default {
       },
       set(value) {
         this.$viewModel.tabs.reality.automator.editorScriptID = value;
-      }
+      },
     },
     currentScriptContent() {
       return player.reality.automator.scripts[this.currentScriptID].content;
@@ -59,9 +59,9 @@ export default {
         AutomatorData.clearUndoData();
       }
       // This may happen if the player has errored textmato scripts and switches to them while in blockmato mode
-      if (BlockAutomator.hasUnparsableCommands(this.currentScript) &&
-        player.reality.automator.type === AUTOMATOR_TYPE.BLOCK) {
-        Modal.message.show(`Some incomplete blocks were unrecognizable - defaulting to text editor.`);
+      if (BlockAutomator.hasUnparsableCommands(this.currentScript)
+        && player.reality.automator.type === AUTOMATOR_TYPE.BLOCK) {
+        Modal.message.show("Some incomplete blocks were unrecognizable - defaulting to text editor.");
 
         // AutomatorBackend.changeModes initializes the new editor and savefile state from BlockAutomator.lines, which
         // will be empty if this is running upon game load - this ends up wiping the entire script. So we instead set
@@ -73,7 +73,7 @@ export default {
       }
       this.$nextTick(() => BlockAutomator.updateEditor(this.currentScript));
     },
-  }
+  },
 };
 </script>
 

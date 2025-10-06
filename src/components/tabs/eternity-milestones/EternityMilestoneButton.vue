@@ -4,8 +4,8 @@ export default {
   props: {
     getMilestone: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -32,7 +32,7 @@ export default {
         "o-eternity-milestone__reward": true,
         "o-eternity-milestone__reward--locked": !this.isReached,
         "o-eternity-milestone__reward--reached": this.isReached,
-        "o-eternity-milestone__reward--small-font": this.reward.length > 80
+        "o-eternity-milestone__reward--small-font": this.reward.length > 80,
       };
     },
     activeCondition() {
@@ -41,14 +41,14 @@ export default {
     isDoomed: () => Pelle.isDoomed,
     isUseless() {
       return this.isDoomed && this.config.pelleUseless;
-    }
+    },
   },
   methods: {
     update() {
       this.isLocked = this.isDoomed && this.config.givenByPelle !== undefined;
       this.isReached = this.milestone.isReached;
-    }
-  }
+    },
+  },
 };
 </script>
 

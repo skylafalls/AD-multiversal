@@ -4,7 +4,7 @@ import PastPrestigeRunsContainer from "./PastPrestigeRunsContainer";
 export default {
   name: "PastPrestigeRunsTab",
   components: {
-    PastPrestigeRunsContainer
+    PastPrestigeRunsContainer,
   },
   data() {
     return {
@@ -62,7 +62,7 @@ export default {
           throw new Error("Unrecognized Statistics tab resource type");
         }
       }
-    }
+    },
   },
   methods: {
     update() {
@@ -72,7 +72,7 @@ export default {
       const stateCount = Object.keys(RECENT_PRESTIGE_RESOURCE).length;
       player.options.statTabResources = (player.options.statTabResources + 1) % stateCount;
     },
-  }
+  },
 };
 </script>
 

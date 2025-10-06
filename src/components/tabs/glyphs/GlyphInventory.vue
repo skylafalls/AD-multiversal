@@ -4,7 +4,7 @@ import GlyphComponent from "@/components/GlyphComponent";
 export default {
   name: "GlyphInventory",
   components: {
-    GlyphComponent
+    GlyphComponent,
   },
   data() {
     return {
@@ -81,8 +81,8 @@ export default {
     },
     isUnequipped(index) {
       return player.options.showUnequippedGlyphIcon && this.unequippedGlyphs.includes(this.inventory[index].id);
-    }
-  }
+    },
+  },
 };
 </script>
 

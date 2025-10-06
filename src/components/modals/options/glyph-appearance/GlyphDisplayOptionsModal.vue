@@ -47,7 +47,7 @@ export default {
           throw new Error("Unrecognized Glyph BG setting");
         }
       }
-    }
+    },
   },
   watch: {
     newGlyphs(newValue) {

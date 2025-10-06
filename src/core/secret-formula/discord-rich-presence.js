@@ -168,8 +168,8 @@ export const discordRichPresence = {
       mainResource: () => `${format(player.eternityPoints, 2)} EP`,
       resourceList: [
         () => quantify("EC completion", Object.values(player.eternityChalls)
-          .reduce((sum, c) => sum + c, 0), 0, 0, formatInt)
-      ]
+          .reduce((sum, c) => sum + c, 0), 0, 0, formatInt),
+      ],
     },
     {
       name: "Time Dilation",
@@ -183,8 +183,8 @@ export const discordRichPresence = {
       mainResource: () => `${format(player.reality.realityMachines, 2)} RM`,
       resourceList: [
         () => quantify("Reality", player.realities, 0, 0, formatInt),
-        () => `Best Glyph Level: ${formatInt(player.records.bestReality.glyphLevel)}`
-      ]
+        () => `Best Glyph Level: ${formatInt(player.records.bestReality.glyphLevel)}`,
+      ],
     },
     {
       name: () => Teresa.displayName,
@@ -193,8 +193,8 @@ export const discordRichPresence = {
       resourceList: [
         () => quantify("Reality", player.realities, 0, 0, formatInt),
         () => `Best GL: ${formatInt(player.records.bestReality.glyphLevel)}`,
-        () => `Poured: ${format(player.celestials.teresa.pouredAmount, 2)} RM`
-      ]
+        () => `Poured: ${format(player.celestials.teresa.pouredAmount, 2)} RM`,
+      ],
     },
     {
       name: () => Effarig.displayName,
@@ -202,8 +202,8 @@ export const discordRichPresence = {
       mainResource: () => `${format(player.reality.realityMachines, 2)} RM`,
       resourceList: [
         () => `Best GL: ${formatInt(player.records.bestReality.glyphLevel)}`,
-        () => quantify("Relic Shard", player.celestials.effarig.relicShards, 2, 0, format)
-      ]
+        () => quantify("Relic Shard", player.celestials.effarig.relicShards, 2, 0, format),
+      ],
     },
     {
       name: () => Enslaved.displayName,
@@ -211,7 +211,7 @@ export const discordRichPresence = {
       mainResource: () => `${format(player.reality.realityMachines, 2)} RM`,
       resourceList: [
         () => `Best GL: ${formatInt(player.records.bestReality.glyphLevel)}`,
-        () => `Charged: ${format(TimeSpan.fromMilliseconds(player.celestials.enslaved.stored).totalYears, 2)} years`
+        () => `Charged: ${format(TimeSpan.fromMilliseconds(player.celestials.enslaved.stored).totalYears, 2)} years`,
       ],
     },
     {
@@ -237,7 +237,7 @@ export const discordRichPresence = {
       mainResource: () => `${formatMachines(player.reality.realityMachines, player.reality.imaginaryMachines)} RM`,
       resourceList: [
         () => `Best GL: ${formatInt(player.records.bestReality.glyphLevel)}`,
-        () => `Ra Levels: ${Ra.pets.all.map(p => formatInt(p.level)).join("/")}`
+        () => `Ra Levels: ${Ra.pets.all.map(p => formatInt(p.level)).join("/")}`,
       ],
     },
     {
@@ -261,5 +261,5 @@ export const discordRichPresence = {
       mainResource: () => "END Antimatter",
       resourceList: [() => "Nothing remains."],
     },
-  ]
+  ],
 };

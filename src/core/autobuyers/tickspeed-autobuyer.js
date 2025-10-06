@@ -8,7 +8,7 @@ export class TickspeedAutobuyerState extends UpgradeableAutobuyerState {
   }
 
   get name() {
-    return `Tickspeed`;
+    return "Tickspeed";
   }
 
   get isUnlocked() {
@@ -59,7 +59,7 @@ export class TickspeedAutobuyerState extends UpgradeableAutobuyerState {
   toggleMode() {
     this.mode = [
       AUTOBUYER_MODE.BUY_SINGLE,
-      AUTOBUYER_MODE.BUY_MAX
+      AUTOBUYER_MODE.BUY_MAX,
     ]
       .nextSibling(this.mode);
   }

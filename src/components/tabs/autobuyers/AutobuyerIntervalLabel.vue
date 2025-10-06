@@ -7,18 +7,18 @@ export default {
     autobuyer: {
       type: Object,
       required: false,
-      default: null
+      default: null,
     },
     intervalIn: {
       type: Number,
       required: false,
-      default: null
+      default: null,
     },
     bulkIn: {
       type: Number,
       required: false,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
@@ -44,8 +44,8 @@ export default {
       this.interval = (this.intervalIn || buyer?.interval) ?? 0;
       this.bulk = this.bulkIn ?? (buyer.hasUnlimitedBulk ? Infinity : buyer.bulk);
       this.isShowingBulk = this.bulk !== 0 && Number.isFinite(this.bulk);
-    }
-  }
+    },
+  },
 };
 </script>
 

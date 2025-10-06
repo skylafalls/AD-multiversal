@@ -3,9 +3,9 @@ import * as ADNotations from "adnot-beport-small";
 
 import { DC } from "./constants";
 
-export const Notation = (function() {
+export const Notation = (function () {
   const N = ADNotations;
-  const notation = type => {
+  const notation = (type) => {
     const n = new type();
     n.setAsCurrent = () => {
       player.options.notation = n.name;
@@ -13,7 +13,7 @@ export const Notation = (function() {
     };
     return n;
   };
-  const painful = n => {
+  const painful = (n) => {
     n.isPainful = true;
     return n;
   };
@@ -39,13 +39,13 @@ export const Notation = (function() {
     shi: painful(notation(N.ShiNotation)),
     blind: painful(notation(N.BlindNotation)),
     blobs: painful(notation(N.BlobsNotation)),
-    all: painful(notation(N.AllNotation))
+    all: painful(notation(N.AllNotation)),
   };
 }());
 
-export const LNotation = (function() {
+export const LNotation = (function () {
   const N = ADLNotations;
-  const notation = type => {
+  const notation = (type) => {
     const n = new type();
     n.setAsCurrent = () => {
       player.options.lnotation = n.name;
@@ -78,15 +78,15 @@ export const LNotations = {
     LNotation.semiStackedScientific,
     LNotation.entendedLogarithm,
     LNotation.tetrational,
-    LNotation.trueTetrational
+    LNotation.trueTetrational,
   ],
-  find: name => {
+  find: (name) => {
     const notation = LNotations.all.find(n => n.name === name);
     return notation === undefined ? LNotation.extendedScientific : notation;
   },
   get current() {
     return GameUI.initialized ? ui.lnotation : LNotation.extendedScientific;
-  }
+  },
 };
 
 // Pre e9e15
@@ -116,13 +116,13 @@ export const Notations = {
     Notation.blobs,
     Notation.all,
   ],
-  find: name => {
+  find: (name) => {
     const notation = Notations.all.find(n => n.name === name);
     return notation === undefined ? Notation.mixedScientific : notation;
   },
   get current() {
     return GameUI.initialized ? ui.notation : Notation.mixedScientific;
-  }
+  },
 };
 
 ADNotations.Settings.isInfinite = decimal => ui.formatPreBreak && decimal.gte(DC.NUMMAX);

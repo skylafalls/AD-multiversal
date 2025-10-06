@@ -27,7 +27,7 @@ export default {
     },
     hasConstants() {
       return this.constants.length > 1 || this.constants[0] !== "";
-    }
+    },
   },
   created() {
     // This key-swaps the container for all the constants in order to force a re-render when externally changed
@@ -48,7 +48,7 @@ export default {
     importPresets() {
       Modal.importTSConstants.show();
     },
-  }
+  },
 };
 </script>
 

@@ -10,14 +10,14 @@ export default {
     AutobuyerBox,
     AutobuyerInput,
     ExpandingControlBox,
-    AutobuyerDropdownEntry
+    AutobuyerDropdownEntry,
   },
   props: {
     isModal: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -36,7 +36,7 @@ export default {
         AUTO_REALITY_MODE.GLYPH,
         AUTO_REALITY_MODE.EITHER,
         AUTO_REALITY_MODE.BOTH,
-        AUTO_REALITY_MODE.TIME
+        AUTO_REALITY_MODE.TIME,
       ];
       if (this.hasRelicMode) availableModes.push(AUTO_REALITY_MODE.RELIC_SHARD);
       return availableModes;
@@ -67,7 +67,7 @@ export default {
       }
       throw new Error("Unknown Auto Reality mode");
     },
-  }
+  },
 };
 </script>
 

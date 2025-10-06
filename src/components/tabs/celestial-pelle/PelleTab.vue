@@ -10,7 +10,7 @@ export default {
     PelleBarPanel,
     PelleUpgradePanel,
     GalaxyGeneratorPanel,
-    CelestialQuoteHistory
+    CelestialQuoteHistory,
   },
   data() {
     return {
@@ -19,7 +19,7 @@ export default {
       completedRows: 0,
       cappedResources: 0,
       hasStrike: false,
-      hasGalaxyGenerator: false
+      hasGalaxyGenerator: false,
     };
   },
   computed: {
@@ -31,7 +31,7 @@ export default {
     },
     totalAlchemyResources() {
       return AlchemyResources.all.length;
-    }
+    },
   },
   methods: {
     update() {
@@ -39,8 +39,8 @@ export default {
       if (!this.isDoomed) {
         this.completedRows = Achievements.prePelleRows.countWhere(r => r.every(a => a.isUnlocked));
         this.cappedResources = AlchemyResources.all.countWhere(r => r.capped);
-        this.canEnterPelle = this.completedRows === this.totalRows &&
-          this.cappedResources === this.totalAlchemyResources;
+        this.canEnterPelle = this.completedRows === this.totalRows
+          && this.cappedResources === this.totalAlchemyResources;
       }
       this.hasStrike = PelleStrikes.all.some(s => s.hasStrike);
       this.hasGalaxyGenerator = PelleRifts.recursion.milestones[2].canBeApplied || GalaxyGenerator.spentGalaxies.gt(0);
@@ -54,8 +54,8 @@ export default {
     },
     enterDoomModal() {
       Modal.armageddon.show();
-    }
-  }
+    },
+  },
 };
 </script>
 

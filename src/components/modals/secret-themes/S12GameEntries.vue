@@ -6,7 +6,7 @@ export default {
   name: "S12Games",
   data() {
     return {
-      S12Games
+      S12Games,
     };
   },
   mounted() {
@@ -23,7 +23,7 @@ export default {
     },
     handleClick(idx) {
       // This makes what everything is doing clearer
-      // eslint-disable-next-line no-negated-condition
+
       if (S12Games.selected !== idx) {
         S12Games.selected = idx;
         isSelectingGame = true;
@@ -31,8 +31,8 @@ export default {
       } else {
         window.open(S12Games.entries[idx].link);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

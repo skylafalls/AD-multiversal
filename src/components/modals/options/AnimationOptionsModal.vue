@@ -8,7 +8,7 @@ export default {
   components: {
     ModalOptionsToggleButton,
     ModalWrapperOptions,
-    SliderComponent
+    SliderComponent,
   },
   data() {
     return {
@@ -28,7 +28,7 @@ export default {
       isS11Active: false,
       isBlackHoleUnlocked: false,
       blobHole: false,
-      isS11Unlocked: false
+      isS11Unlocked: false,
     };
   },
   computed: {
@@ -38,12 +38,12 @@ export default {
         max: 500,
         interval: 1,
         width: "100%",
-        tooltip: false
+        tooltip: false,
       };
     },
     fullCompletion() {
       return player.records.fullGameCompletions > 0;
-    }
+    },
   },
   watch: {
     bigCrunch(newValue) {
@@ -69,7 +69,7 @@ export default {
     },
     blobHole(newValue) {
       player.options.animations.blobHole = newValue;
-    }
+    },
   },
   methods: {
     update() {
@@ -98,8 +98,8 @@ export default {
     adjustSliderValue(value) {
       this.blobSnowflakes = value;
       player.options.blobSnowflakes = this.blobSnowflakes;
-    }
-  }
+    },
+  },
 };
 </script>
 

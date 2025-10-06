@@ -6,7 +6,7 @@ export default {
   name: "RealityGlyphCreationModal",
   components: {
     ModalWrapper,
-    PrimaryButton
+    PrimaryButton,
   },
   data() {
     return {
@@ -44,7 +44,7 @@ export default {
       const value = config.effect(this.realityGlyphLevel, rarityToStrength(100));
       const effectTemplate = config.singleDesc;
       return effectTemplate.replace("{value}", config.formatEffect(value));
-    }
+    },
   },
 };
 </script>

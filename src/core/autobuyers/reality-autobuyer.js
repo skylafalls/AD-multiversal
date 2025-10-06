@@ -6,7 +6,7 @@ export class RealityAutobuyerState extends AutobuyerState {
   }
 
   get name() {
-    return `Reality`;
+    return "Reality";
   }
 
   get isUnlocked() {
@@ -66,7 +66,7 @@ export class RealityAutobuyerState extends AutobuyerState {
       AUTO_REALITY_MODE.EITHER,
       AUTO_REALITY_MODE.BOTH,
       AUTO_REALITY_MODE.TIME,
-      AUTO_REALITY_MODE.RELIC_SHARD
+      AUTO_REALITY_MODE.RELIC_SHARD,
     ]
       .nextSibling(this.mode);
   }
@@ -84,8 +84,8 @@ export class RealityAutobuyerState extends AutobuyerState {
     // settings are changed (which causes it to check again); otherwise, glyph choices would be generated every tick
     const dontCheckModes = [AUTO_GLYPH_SCORE.LOWEST_SACRIFICE, AUTO_GLYPH_SCORE.LOWEST_ALCHEMY,
       AUTO_GLYPH_SCORE.ALCHEMY_VALUE];
-    const shouldCheckFilter = EffarigUnlock.glyphFilter.isUnlocked && !player.reality.hasCheckedFilter &&
-      !dontCheckModes.includes(AutoGlyphProcessor.scoreMode);
+    const shouldCheckFilter = EffarigUnlock.glyphFilter.isUnlocked && !player.reality.hasCheckedFilter
+      && !dontCheckModes.includes(AutoGlyphProcessor.scoreMode);
     if (isRealityAvailable() && player.options.autoRealityForFilter && shouldCheckFilter) {
       const gainedLevel = gainedGlyphLevel();
       const checkModes = [AUTO_REALITY_MODE.GLYPH, AUTO_REALITY_MODE.EITHER, AUTO_REALITY_MODE.BOTH];

@@ -5,7 +5,7 @@ export default {
     return {
       isModern: false,
       smallCrunch: false,
-      shouldDisplay: false
+      shouldDisplay: false,
     };
   },
   methods: {
@@ -18,8 +18,8 @@ export default {
     handleClick() {
       if (PlayerProgress.infinityUnlocked()) bigCrunchResetRequest();
       else Modal.bigCrunch.show();
-    }
-  }
+    },
+  },
 };
 </script>
 

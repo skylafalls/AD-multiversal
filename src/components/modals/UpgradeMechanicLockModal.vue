@@ -4,12 +4,12 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "UpgradeMechanicLockModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   props: {
     upgrade: {
       type: Object,
-      required: true
+      required: true,
     },
     isImaginary: {
       type: Boolean,
@@ -19,7 +19,7 @@ export default {
       type: String,
       required: false,
       default: null,
-    }
+    },
   },
   computed: {
     upgradeStr() {
@@ -27,13 +27,13 @@ export default {
     },
     lockEvent() {
       return this.specialLockText ?? this.upgrade.lockEvent;
-    }
+    },
   },
   methods: {
     disableLock() {
       this.upgrade.setMechanicLock(false);
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -15,8 +15,8 @@ export default {
     },
     name: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -71,10 +71,10 @@ export default {
         }
         case 6: { return "";
         }
-        default: { throw new Error(`Attempted to start an Unknown Celestial in Celestial Modal Confirmation.`);
+        default: { throw new Error("Attempted to start an Unknown Celestial in Celestial Modal Confirmation.");
         }
       }
-    }
+    },
   },
   methods: {
     update() {
@@ -102,9 +102,9 @@ export default {
         }
         case 5: { return Laitela.initializeRun();
         }
-        case 6: { throw new Error(`Attempted to start Pelle through EnterCelestialsModal instead of ArmageddonModal`);
+        case 6: { throw new Error("Attempted to start Pelle through EnterCelestialsModal instead of ArmageddonModal");
         }
-        default: { throw new Error(`Attempted to start an Unknown Celestial in Celestial Modal Confirmation.`);
+        default: { throw new Error("Attempted to start an Unknown Celestial in Celestial Modal Confirmation.");
         }
       }
     },

@@ -128,9 +128,9 @@ function executeKey(action) {
 }
 
 function executeHotkey(action) {
-  if (!player.options.hotkeys ||
-    document.activeElement.type === "text" ||
-    document.activeElement.type === "textarea") {
+  if (!player.options.hotkeys
+    || document.activeElement.type === "text"
+    || document.activeElement.type === "textarea") {
     return;
   }
   return executeKey(action);

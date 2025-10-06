@@ -6,15 +6,15 @@ export default {
   name: "InfinityDimensionsTab",
   components: {
     ClassicInfinityDimensionsTab,
-    ModernInfinityDimensionsTab
+    ModernInfinityDimensionsTab,
   },
   computed: {
     activeComponent() {
       return this.$viewModel.newUI
         ? "ModernInfinityDimensionsTab"
         : "ClassicInfinityDimensionsTab";
-    }
-  }
+    },
+  },
 };
 </script>
 

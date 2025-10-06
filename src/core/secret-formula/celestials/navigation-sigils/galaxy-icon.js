@@ -22,7 +22,7 @@ const SigilAttributes = {
  * @member {Object} draw  Object whose props (thickness, layer) determine the thickness and z-index of this element
  * @member {String} colorOverride Color to use for rendering the element, used instead of SigilAttributes.color
  */
-// eslint-disable-next-line max-params
+
 function sigilShape(type, att, draw, colorOverride) {
   let pos, path, pathStart, pathEnd;
   switch (type) {
@@ -64,7 +64,7 @@ function sigilShape(type, att, draw, colorOverride) {
       path,
       fill: colorOverride ?? SigilAttributes.color,
       completeWidth: SigilAttributes.size * draw.thickness,
-      noBG: true
+      noBG: true,
     },
   };
 }

@@ -142,7 +142,7 @@ export const AutoGlyphProcessor = {
     // We want to make sure to account for when glyphs are compared to different thresholds based on their type, or
     // else we end up always picking the rarest glyph despite all filter settings. However, we need to special-case
     // modes which never keep glyphs, or else they all become the same value and it ends up picking pseudo-randomly
-    const glyphScore = glyph => {
+    const glyphScore = (glyph) => {
       const filter = this.filterValue(glyph);
       const threshold = this.thresholdValue(glyph);
       return Decimal.gte(threshold, Number.MAX_VALUE) ? filter : Decimal.sub(filter, threshold);
@@ -182,8 +182,8 @@ export const AutoGlyphProcessor = {
   // Generally only used for UI in order to notify the player that they might end up retroactively getting rid of
   // some glyphs they otherwise want to keep
   hasNegativeEffectScore() {
-    return this.scoreMode === AUTO_GLYPH_SCORE.EFFECT_SCORE &&
-      Object.values(this.types).map(t => t.effectScores.min()).min() < 0;
+    return this.scoreMode === AUTO_GLYPH_SCORE.EFFECT_SCORE
+      && Object.values(this.types).map(t => t.effectScores.min()).min() < 0;
   },
 
   // These are here because they're used in multiple UI components
@@ -230,7 +230,7 @@ export const AutoGlyphProcessor = {
         return "Invalid Glyph trash mode";
       }
     }
-  }
+  },
 };
 
 export function autoAdjustGlyphWeights() {
@@ -248,7 +248,7 @@ export function autoAdjustGlyphWeights() {
   for (const key of weightKeys) {
     weights.push({
       key,
-      percent: scaledWeight(key)
+      percent: scaledWeight(key),
     });
   }
   const fracPart = x => x - Math.floor(x);
@@ -303,7 +303,7 @@ function getGlyphLevelSources() {
       // These are copied from Reality Upgrade 18's gameDB entry
       coeff: new Decimal(0.45),
       exp: new Decimal(0.5),
-    }
+    },
   };
 }
 
@@ -406,6 +406,6 @@ export function staticGlyphWeights() {
     instability,
     hyperInstability,
     realityUpgrades,
-    achievements
+    achievements,
   };
 }

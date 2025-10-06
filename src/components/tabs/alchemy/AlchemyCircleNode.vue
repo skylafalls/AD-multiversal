@@ -6,25 +6,25 @@ export default {
   name: "AlchemyCircleNode",
   components: {
     HintText,
-    AlchemyResourceArc
+    AlchemyResourceArc,
   },
   props: {
     node: {
       type: Object,
-      required: true
+      required: true,
     },
     isFocused: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       isReactionActive: false,
       amount: new Decimal(),
       flow: new Decimal(),
-      isUnlocked: false
+      isUnlocked: false,
     };
   },
   computed: {
@@ -37,10 +37,10 @@ export default {
     layoutStyle() {
       const scaledFlow = Decimal.clamp(Decimal.sqrt(Decimal.abs(this.flow)).mul(0.7), 0, 1).toNumber();
       return {
-        left: `${this.node.x}%`,
-        top: `${this.node.y}%`,
+        "left": `${this.node.x}%`,
+        "top": `${this.node.y}%`,
         "box-shadow": `0 0 0.3rem 0.3rem
-          rgba(${this.flow.gt(0) ? "156, 204, 101" : "204, 102, 102"}, ${scaledFlow})`
+          rgba(${this.flow.gt(0) ? "156, 204, 101" : "204, 102, 102"}, ${scaledFlow})`,
       };
     },
     classObject() {
@@ -53,7 +53,7 @@ export default {
     },
     hintClassObject() {
       return this.isFocused ? undefined : "o-hint-text--alchemy-node--unfocused";
-    }
+    },
   },
   methods: {
     update() {
@@ -61,8 +61,8 @@ export default {
       this.amount.copyFrom(this.resource.amount);
       this.flow.copyFrom(new Decimal(this.resource.flow));
       this.isUnlocked = this.resource.isUnlocked;
-    }
-  }
+    },
+  },
 };
 </script>
 

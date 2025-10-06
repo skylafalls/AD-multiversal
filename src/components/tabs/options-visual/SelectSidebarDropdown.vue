@@ -5,13 +5,13 @@ export default {
     resourceDB: () => GameDatabase.sidebarResources,
     resources() {
       return this.resourceDB.filter(e => e.isAvailable());
-    }
+    },
   },
   methods: {
     setResource(id) {
       player.options.sidebarResourceID = id;
-    }
-  }
+    },
+  },
 };
 </script>
 

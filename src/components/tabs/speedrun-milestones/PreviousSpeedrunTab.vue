@@ -60,7 +60,7 @@ export default {
       return this.isSpectating
         ? "Numbers here are unaffected by END so that you can see your final records."
         : null;
-    }
+    },
   },
   methods: {
     update() {
@@ -75,7 +75,7 @@ export default {
     },
     changePage(dir) {
       this.runPage = Math.clamp(this.runPage + dir, 0, Math.floor(this.highestIndex / 10));
-    }
+    },
   },
 };
 </script>

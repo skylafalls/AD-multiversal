@@ -4,7 +4,7 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "ClearConstantsModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   data() {
     return {
@@ -19,8 +19,8 @@ export default {
     deleteConstants() {
       player.reality.automator.constants = {};
       player.reality.automator.constantSortOrder = [];
-    }
-  }
+    },
+  },
 };
 </script>
 

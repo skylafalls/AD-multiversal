@@ -1,5 +1,4 @@
 import { DC } from "../../constants";
-/* eslint-disable max-len */
 
 // To help adding new glyphs to the game, we can concentrate a ton of information to this file.
 // The name of each object should be the same as it is in glyph types, so that we can easily check all glyphs
@@ -56,7 +55,7 @@ export const GlyphInfo = {
     "infinity",
     "replication",
     "time",
-    "dilation"
+    "dilation",
   ],
 
   alchemyGlyphTypes: [
@@ -65,7 +64,7 @@ export const GlyphInfo = {
     "replication",
     "time",
     "dilation",
-    "effarig"
+    "effarig",
   ],
 
   sacrificeGlyphTypes: [
@@ -75,7 +74,7 @@ export const GlyphInfo = {
     "time",
     "dilation",
     "effarig",
-    "reality"
+    "reality",
   ],
 
   generatedGlyphTypes: [
@@ -84,7 +83,7 @@ export const GlyphInfo = {
     "replication",
     "time",
     "dilation",
-    "effarig"
+    "effarig",
   ],
 
   rarities: [
@@ -94,57 +93,57 @@ export const GlyphInfo = {
       darkColor: "#3d3dec",
       lightColor: "#9696ff",
       darkHighContrast: "#ffff00",
-      lightHighContrast: "#c0c000"
+      lightHighContrast: "#c0c000",
     }, {
       minStrength: 3.25,
       name: "Transcendent",
       darkColor: "#03ffec",
       lightColor: "#00c3c3",
       darkHighContrast: "#00ffff",
-      lightHighContrast: "#00c0c0"
+      lightHighContrast: "#00c0c0",
     }, {
       minStrength: 3,
       name: "Mythical",
       darkColor: "#d50000",
       lightColor: "#d50000",
       darkHighContrast: "#c00000",
-      lightHighContrast: "#ff0000"
+      lightHighContrast: "#ff0000",
     }, {
       minStrength: 2.75,
       name: "Legendary",
       darkColor: "#ff9800",
       lightColor: "#d68100",
       darkHighContrast: "#ff8000",
-      lightHighContrast: "#ff8000"
+      lightHighContrast: "#ff8000",
     }, {
       minStrength: 2.5,
       name: "Epic",
       darkColor: "#9c27b0",
       lightColor: "#9c27b0",
       darkHighContrast: "#ff00ff",
-      lightHighContrast: "#ff00ff"
+      lightHighContrast: "#ff00ff",
     }, {
       minStrength: 2,
       name: "Rare",
       darkColor: "#5096f3",
       lightColor: "#0d40ff",
       darkHighContrast: "#6060ff",
-      lightHighContrast: "#0000ff"
+      lightHighContrast: "#0000ff",
     }, {
       minStrength: 1.5,
       name: "Uncommon",
       darkColor: "#43a047",
       lightColor: "#1e8622",
       darkHighContrast: "#00ff00",
-      lightHighContrast: "#00b000"
+      lightHighContrast: "#00b000",
     }, {
       minStrength: 1,
       name: "Common",
       darkColor: "#ffffff",
       lightColor: "#000000",
       darkHighContrast: "#ffffff",
-      lightHighContrast: "#000000"
-    }
+      lightHighContrast: "#000000",
+    },
   ],
 
   cursed: {
@@ -178,14 +177,14 @@ export const GlyphInfo = {
     hasSacrifice: true,
     sacrificeInfo: {
       id: "reality",
-      effect: added => {
+      effect: (added) => {
         if (Pelle.isDisabled("glyphsac")) return DC.D0;
         const sac = player.reality.glyphs.sac.reality.add(added ?? 0);
         // This cap is only feasibly reached with the imaginary upgrade, but we still want to cap it at a nice number
         return Decimal.min(Decimal.sqrt(sac).div(15).add(1), 100);
       },
       description: amount => `Multiply Memory Chunk gain by ${formatX(amount, 2, 3)}`,
-      cap: () => GlyphSacrificeHandler.maxSacrificeForEffects
+      cap: () => GlyphSacrificeHandler.maxSacrificeForEffects,
     },
     hasAlchemyResource: true,
     pelleUniqueEffect: false,
@@ -208,7 +207,7 @@ export const GlyphInfo = {
     cancerGlyphSymbol: "🦒",
     hasSacrifice: true,
     sacrificeInfo: {
-      effect: added => {
+      effect: (added) => {
         if (Pelle.isDisabled("glyphsac")) return 0;
         const sac = player.reality.glyphs.sac.effarig.add(added ?? 0);
         // This doesn't use the GlyphSacrificeHandler cap because it hits its cap (+100%) earlier
@@ -216,7 +215,7 @@ export const GlyphInfo = {
         return Decimal.log10(capped.div(1e20).add(1)).times(2);
       },
       description: amount => `+${formatPercents(amount.div(100), 2)} additional Glyph rarity`,
-      cap: () => 1e70
+      cap: () => 1e70,
     },
     hasAlchemyResource: true,
     pelleUniqueEffect: false,
@@ -261,14 +260,14 @@ export const GlyphInfo = {
     hasSacrifice: true,
     sacrificeInfo: {
       id: "power",
-      effect: added => {
+      effect: (added) => {
         if (Pelle.isDisabled("glyphsac")) return DC.D0;
         const sac = player.reality.glyphs.sac.power.add(added ?? 0);
         const capped = Decimal.min(sac, GlyphSacrificeHandler.maxSacrificeForEffects);
         const base = Decimal.log10(capped.add(1)).div(Decimal.log10(GlyphSacrificeHandler.maxSacrificeForEffects));
         return Decimal.floor(Decimal.pow(base, 1.2).times(750));
       },
-      description: amount => {
+      description: (amount) => {
         const sacCap = GlyphSacrificeHandler.maxSacrificeForEffects;
         const nextDistantGalaxy = Decimal.pow10(Decimal.root(amount.add(1).div(750), 1.2)
           .times(Decimal.log10(sacCap))).sub(1);
@@ -277,7 +276,7 @@ export const GlyphInfo = {
           : "";
         return `Distant Galaxy scaling starts ${formatInt(amount)} later${nextGalaxyText}`;
       },
-      cap: () => GlyphSacrificeHandler.maxSacrificeForEffects
+      cap: () => GlyphSacrificeHandler.maxSacrificeForEffects,
     },
     hasAlchemyResource: true,
     pelleUniqueEffect: true,
@@ -286,7 +285,7 @@ export const GlyphInfo = {
     color: "#22aa48",
     primaryEffect: "powerpow",
     alchemyResource: ALCHEMY_RESOURCE.POWER,
-    hasRarity: true
+    hasRarity: true,
   },
 
   infinity: {
@@ -301,14 +300,14 @@ export const GlyphInfo = {
     hasSacrifice: true,
     sacrificeInfo: {
       id: "infinity",
-      effect: added => {
+      effect: (added) => {
         if (Pelle.isDisabled("glyphsac")) return DC.D1;
         const sac = player.reality.glyphs.sac.infinity.add(added ?? 0);
         const capped = Decimal.min(sac, GlyphSacrificeHandler.maxSacrificeForEffects);
         return Decimal.log10(Decimal.pow(capped, 0.2).div(100).add(1)).add(1);
       },
       description: amount => `${formatX(amount, 2, 2)} bigger multiplier when buying 8th Infinity Dimension`,
-      cap: () => GlyphSacrificeHandler.maxSacrificeForEffects
+      cap: () => GlyphSacrificeHandler.maxSacrificeForEffects,
     },
     hasAlchemyResource: true,
     pelleUniqueEffect: true,
@@ -317,7 +316,7 @@ export const GlyphInfo = {
     color: "#b67f33",
     primaryEffect: "infinitypow",
     alchemyResource: ALCHEMY_RESOURCE.INFINITY,
-    hasRarity: true
+    hasRarity: true,
   },
 
   replication: {
@@ -332,14 +331,14 @@ export const GlyphInfo = {
     hasSacrifice: true,
     sacrificeInfo: {
       id: "replication",
-      effect: added => {
+      effect: (added) => {
         if (Pelle.isDisabled("glyphsac")) return DC.D0;
         const sac = player.reality.glyphs.sac.replication.add(added ?? 0);
         const capped = Decimal.min(sac, GlyphSacrificeHandler.maxSacrificeForEffects);
         const base = Decimal.log10(capped.add(1)).div(Decimal.log10(GlyphSacrificeHandler.maxSacrificeForEffects));
         return Decimal.floor(Decimal.pow(base, 1.2).times(1500));
       },
-      description: amount => {
+      description: (amount) => {
         const sacCap = GlyphSacrificeHandler.maxSacrificeForEffects;
         const nextDistantGalaxy = Decimal.pow10(Decimal.root((amount.add(1)).div(1500), 1.2)
           .times(Decimal.log10(sacCap))).sub(1);
@@ -348,7 +347,7 @@ export const GlyphInfo = {
           : "";
         return `Replicanti Galaxy scaling starts ${formatInt(amount)} later${nextGalaxyText}`;
       },
-      cap: () => GlyphSacrificeHandler.maxSacrificeForEffects
+      cap: () => GlyphSacrificeHandler.maxSacrificeForEffects,
     },
     hasAlchemyResource: true,
     pelleUniqueEffect: true,
@@ -356,7 +355,7 @@ export const GlyphInfo = {
     adjNounImportance: 1,
     color: "#03a9f4",
     alchemyResource: ALCHEMY_RESOURCE.REPLICATION,
-    hasRarity: true
+    hasRarity: true,
   },
 
   time: {
@@ -371,14 +370,14 @@ export const GlyphInfo = {
     hasSacrifice: true,
     sacrificeInfo: {
       id: "time",
-      effect: added => {
+      effect: (added) => {
         if (Pelle.isDisabled("glyphsac")) return DC.D1;
         const sac = player.reality.glyphs.sac.time.add(added ?? 0);
         const capped = Decimal.min(sac, GlyphSacrificeHandler.maxSacrificeForEffects);
         return Decimal.pow(Decimal.pow(capped, 0.2).div(100).add(1), 2);
       },
       description: amount => `${formatX(amount, 2, 2)} bigger multiplier when buying 8th Time Dimension`,
-      cap: () => GlyphSacrificeHandler.maxSacrificeForEffects
+      cap: () => GlyphSacrificeHandler.maxSacrificeForEffects,
     },
     hasAlchemyResource: true,
     pelleUniqueEffect: true,
@@ -387,7 +386,7 @@ export const GlyphInfo = {
     color: "#b241e3",
     primaryEffect: "timepow",
     alchemyResource: ALCHEMY_RESOURCE.TIME,
-    hasRarity: true
+    hasRarity: true,
   },
 
   dilation: {
@@ -401,7 +400,7 @@ export const GlyphInfo = {
     cancerGlyphSymbol: "☎",
     hasSacrifice: true,
     sacrificeInfo: {
-      effect: added => {
+      effect: (added) => {
         if (Pelle.isDisabled("glyphsac")) return DC.D1;
         const sac = player.reality.glyphs.sac.dilation.add(added ?? 0);
         const capped = Decimal.clampMax(sac, GlyphSacrificeHandler.maxSacrificeForEffects);
@@ -410,7 +409,7 @@ export const GlyphInfo = {
         return Decimal.pow(Decimal.max(capped, 1), exponent);
       },
       description: amount => `Multiply Tachyon Particle gain by ${formatX(amount, 2, 2)}`,
-      cap: () => GlyphSacrificeHandler.maxSacrificeForEffects
+      cap: () => GlyphSacrificeHandler.maxSacrificeForEffects,
     },
     hasAlchemyResource: true,
     pelleUniqueEffect: true,
@@ -418,8 +417,8 @@ export const GlyphInfo = {
     adjNounImportance: 1,
     color: "#64dd17",
     alchemyResource: ALCHEMY_RESOURCE.DILATION,
-    hasRarity: true
-  }
+    hasRarity: true,
+  },
 };
 
 // No point having a seperate file for this, so we'll extract it and place it here since these are purely cosmetic

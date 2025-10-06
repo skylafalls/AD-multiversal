@@ -26,8 +26,8 @@ export const progressStages = [
     hasReached: () => true,
     suggestedResource: "Antimatter",
     // Galaxies are worth 1/3 each, boosts break ties within galaxies, and antimatter breaks ties within boosts
-    subProgressValue: save => 0.33 * save.galaxies + 0.02 * save.dimensionBoosts +
-      new Decimal(save.antimatter).log10() / 16000,
+    subProgressValue: save => 0.33 * save.galaxies + 0.02 * save.dimensionBoosts
+      + new Decimal(save.antimatter).log10() / 16000,
   },
   {
     id: PROGRESS_STAGE.EARLY_INFINITY,
@@ -35,8 +35,8 @@ export const progressStages = [
     hasReached: save => new Decimal(save.infinities).gt(0),
     suggestedResource: "Infinity Points",
     // Half from infinity count, half from crunch autobuyer state
-    subProgressValue: save => Math.clampMax(new Decimal(save.infinities).toNumber(), 500) / 1000 +
-      Math.log10(150000 / player.auto.bigCrunch.interval) / 6.35,
+    subProgressValue: save => Math.clampMax(new Decimal(save.infinities).toNumber(), 500) / 1000
+      + Math.log10(150000 / player.auto.bigCrunch.interval) / 6.35,
   },
   {
     id: PROGRESS_STAGE.BREAK_INFINITY,
@@ -65,8 +65,8 @@ export const progressStages = [
     hasReached: save => save.eternityChalls.eterc1 > 0,
     suggestedResource: "Eternity Challenge Completions and Eternity Points",
     // Half from ECs, half from EP (up to e1300)
-    subProgressValue: save => 0.008 * Object.values(save.eternityChalls).reduce((sum, c) => sum + c, 0) +
-      new Decimal(save.eternityPoints).log10() / 2500,
+    subProgressValue: save => 0.008 * Object.values(save.eternityChalls).reduce((sum, c) => sum + c, 0)
+      + new Decimal(save.eternityPoints).log10() / 2500,
   },
   {
     id: PROGRESS_STAGE.EARLY_DILATION,

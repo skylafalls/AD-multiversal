@@ -20,7 +20,7 @@ const MULT_TAB_OPTIONS = [
 export default {
   name: "MultiplierBreakdownTab",
   components: {
-    MultiplierBreakdownEntry
+    MultiplierBreakdownEntry,
   },
   data() {
     return {
@@ -37,13 +37,13 @@ export default {
     },
     resourceSymbols() {
       return GameDatabase.multiplierTabValues[this.currentKey].total.overlay;
-    }
+    },
   },
   methods: {
     update() {
       this.availableOptions = MULT_TAB_OPTIONS.map(opt => ({
         ...opt,
-        isActive: this.checkActiveKey(opt.key)
+        isActive: this.checkActiveKey(opt.key),
       })).filter(opt => opt.isActive);
     },
     checkActiveKey(key) {
@@ -62,8 +62,8 @@ export default {
     clickSubtab(index) {
       this.currentID = this.availableOptions[index].id;
       player.options.multiplierTab.currTab = MULT_TAB_OPTIONS.find(opt => opt.key === this.currentKey).id;
-    }
-  }
+    },
+  },
 };
 </script>
 
