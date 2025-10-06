@@ -21,12 +21,12 @@ export default {
     },
     tooltip() {
       if (this.isEnslaved) return "...eons stacked on eons stacked on eons stacked on eons stacked on ...";
-      return undefined;
+      return;
     },
     text() {
       if (this.isEnslaved) return "FEEL ETERNITY";
       return this.isBroken ? "INFINITY IS BROKEN" : "BREAK INFINITY";
-    }
+    },
   },
   methods: {
     update() {
@@ -37,8 +37,8 @@ export default {
     clicked() {
       if (this.isEnslaved) Enslaved.feelEternity();
       else if (!this.isBroken && this.isUnlocked) Modal.breakInfinity.show();
-    }
-  }
+    },
+  },
 };
 </script>
 

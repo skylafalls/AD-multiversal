@@ -4,11 +4,11 @@ import SecretAchievementRow from "./SecretAchievementRow";
 export default {
   name: "SecretAchievementTab",
   components: {
-    SecretAchievementRow
+    SecretAchievementRow,
   },
   computed: {
     rows: () => SecretAchievements.allRows,
-  }
+  },
 };
 </script>
 

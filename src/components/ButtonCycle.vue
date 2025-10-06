@@ -4,27 +4,27 @@ export default {
   props: {
     text: {
       type: String,
-      required: true
+      required: true,
     },
     labels: {
       type: Array,
-      required: true
+      required: true,
     },
     value: {
       type: Number,
-      required: true
+      required: true,
     },
   },
   computed: {
     displayText() {
       return `${this.text} ${this.labels[this.value]}`.trim();
-    }
+    },
   },
   methods: {
     handleClick() {
       this.emitInput((this.value + 1) % this.labels.length);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -36,4 +36,3 @@ export default {
     {{ displayText }}
   </button>
 </template>
-

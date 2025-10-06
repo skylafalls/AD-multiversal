@@ -7,41 +7,41 @@ export default {
     constant: {
       type: String,
       required: false,
-      default: ""
+      default: "",
     },
     block: {
       type: Object,
-      required: true
+      required: true,
     },
     blockTarget: {
       type: String,
       required: false,
-      default: ""
+      default: "",
     },
     updateFunction: {
       type: Function,
-      required: true
+      required: true,
     },
     initialSelection: {
       type: String,
       required: false,
-      default: ""
+      default: "",
     },
     patterns: {
       type: Array,
       required: false,
-      default: () => []
+      default: () => [],
     },
     recursive: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     currentPath: {
       type: String,
       required: false,
-      default: ""
-    }
+      default: "",
+    },
   },
   data() {
     return {
@@ -90,7 +90,7 @@ export default {
     // phrases in String format, so we want to give some extra room
     hasLongTextInput() {
       return this.block.cmd === "NOTIFY" || this.block.cmd === "COMMENT";
-    }
+    },
   },
   created() {
     this.scriptID = player.reality.automator.state.editorScript;
@@ -151,8 +151,8 @@ export default {
   //   but we still need to verify error count and parse the script again since we avoid doing that within
   //   changeBlock() for performance reasons
   destroyed() {
-    if (player.reality.automator.type === AUTOMATOR_TYPE.TEXT || Tabs.current._currentSubtab.key !== "automator" ||
-      this.scriptID !== player.reality.automator.state.editorScript) {
+    if (player.reality.automator.type === AUTOMATOR_TYPE.TEXT || Tabs.current._currentSubtab.key !== "automator"
+      || this.scriptID !== player.reality.automator.state.editorScript) {
       return;
     }
 
@@ -193,7 +193,7 @@ export default {
     validateInput() {
       let validator, lines;
       if (this.b.nest) {
-        const clone = Object.assign({}, this.b);
+        const clone = { ...this.b };
         clone.nest = [];
         lines = BlockAutomator.parseLines([clone]);
         validator = validateLine(lines.join("\n"));
@@ -264,7 +264,7 @@ export default {
       }
     },
     errorTooltip() {
-      if (!this.hasError || this.suppressTooltip) return undefined;
+      if (!this.hasError || this.suppressTooltip) return;
 
       // We want to keep the verbose error info for the error panel, but we need to shorten it for the tooltips here
       // The problematic errors all seem to have the same format, which we can explicitly modify
@@ -280,7 +280,7 @@ export default {
         html: true,
         trigger: "manual",
         show: true,
-        classes: ["c-block-automator-error-container", "general-tooltip"]
+        classes: ["c-block-automator-error-container", "general-tooltip"],
       };
     },
     textInputClassObject() {
@@ -303,8 +303,8 @@ export default {
       this.isTextInput = false;
       this.dropdownSelection = "";
       this.textContents = "";
-    }
-  }
+    },
+  },
 };
 </script>
 

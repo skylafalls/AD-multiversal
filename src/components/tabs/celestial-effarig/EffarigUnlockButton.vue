@@ -6,18 +6,18 @@ export default {
   name: "EffarigUnlockButton",
   components: {
     DescriptionDisplay,
-    CostDisplay
+    CostDisplay,
   },
   props: {
     unlock: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       isBought: false,
-      isAvailable: false
+      isAvailable: false,
     };
   },
   computed: {
@@ -28,9 +28,9 @@ export default {
       return {
         "c-effarig-shop-button": true,
         "c-effarig-shop-button--bought": this.isBought,
-        "c-effarig-shop-button--available": this.isAvailable && !this.isBought
+        "c-effarig-shop-button--available": this.isAvailable && !this.isBought,
       };
-    }
+    },
   },
   methods: {
     update() {
@@ -39,8 +39,8 @@ export default {
     },
     purchase() {
       this.unlock.purchase();
-    }
-  }
+    },
+  },
 };
 </script>
 

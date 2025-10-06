@@ -16,7 +16,7 @@ function rebuyable(config) {
     purchaseCap: config.purchaseCap,
     reachedCap: () => player.dilation.rebuyables[config.id].gte(config.purchaseCap),
     pelleOnly: Boolean(config.pelleOnly),
-    rebuyable: true
+    rebuyable: true,
   };
 }
 
@@ -29,23 +29,23 @@ export const dilationUpgrades = {
       ((SingularityMilestone.dilatedTimeFromSingularities.canBeApplied || Achievement(187).canBeApplied)
         ? `${formatX(Effects.product(
           SingularityMilestone.dilatedTimeFromSingularities,
-          Achievement(187)
+          Achievement(187),
         ).mul(2), 2, 2)} Dilated Time gain`
         : "Double Dilated Time gain"),
-    effect: bought => {
+    effect: (bought) => {
       const base = Effects.product(
         SingularityMilestone.dilatedTimeFromSingularities,
-        Achievement(187)
+        Achievement(187),
       ).mul(2);
       return Decimal.pow(base, bought);
     },
-    formatEffect: value => {
-      const nonInteger = SingularityMilestone.dilatedTimeFromSingularities.canBeApplied ||
-        Achievement(187).canBeApplied;
+    formatEffect: (value) => {
+      const nonInteger = SingularityMilestone.dilatedTimeFromSingularities.canBeApplied
+        || Achievement(187).canBeApplied;
       return formatX(value, 2, nonInteger ? 2 : 0);
     },
     formatCost: value => format(value, 2),
-    purchaseCap: DC.BEMAX
+    purchaseCap: DC.BEMAX,
   }),
   galaxyThreshold: rebuyable({
     id: 2,
@@ -57,14 +57,14 @@ export const dilationUpgrades = {
         : "Reset Dilated Time and Tachyon Galaxies, but lower their threshold"),
     // The 38th purchase is at 1e80, and is the last purchase.
     effect: bought => (bought.lt(38) ? Decimal.pow(0.8, bought) : new Decimal()),
-    formatEffect: effect => {
+    formatEffect: (effect) => {
       if (effect === 0) return `${formatX(getTachyonGalaxyMult(effect), 4, 4)}`;
       const nextEffect = effect === Decimal.pow(0.8, 37) ? new Decimal() : effect.mul(0.8);
       return `${formatX(getTachyonGalaxyMult(effect), 4, 4)} ➜
         Next: ${formatX(getTachyonGalaxyMult(nextEffect), 4, 4)}`;
     },
     formatCost: value => format(value, 2),
-    purchaseCap: new Decimal(38)
+    purchaseCap: new Decimal(38),
   }),
   tachyonGain: rebuyable({
     id: 3,
@@ -76,19 +76,19 @@ export const dilationUpgrades = {
       by ${Math.pow(3, Enslaved.tachyonNerf).toFixed(2)}`;
       return "Triple the amount of Tachyon Particles gained";
     },
-    effect: bought => {
+    effect: (bought) => {
       if (Pelle.isDoomed) return DC.D1.pow(bought);
       return DC.D3.pow(bought);
     },
     formatEffect: value => formatX(value, 2),
     formatCost: value => format(value, 2),
-    purchaseCap: DC.BEMAX
+    purchaseCap: DC.BEMAX,
   }),
   doubleGalaxies: {
     id: 4,
     cost: 5e6,
     description: () => `Gain twice as many Tachyon Galaxies, up to ${formatInt(500)} base Galaxies`,
-    effect: 2
+    effect: 2,
   },
   tdMultReplicanti: {
     id: 5,
@@ -110,14 +110,14 @@ export const dilationUpgrades = {
       rep10 = rep10.gt(9000) ? new Decimal(9000).add((rep10.sub(9e3)).div(2)) : rep10;
       return Decimal.pow10(rep10);
     },
-    formatEffect: value => formatX(value, 2, 1)
+    formatEffect: value => formatX(value, 2, 1),
   },
   ndMultDT: {
     id: 6,
     cost: 5e7,
     description: "Antimatter Dimension multiplier based on Dilated Time, unaffected by Time Dilation",
     effect: () => Currency.dilatedTime.value.pow(308).clampMin(1),
-    formatEffect: value => formatX(value, 2, 1)
+    formatEffect: value => formatX(value, 2, 1),
   },
   ipMultDT: {
     id: 7,
@@ -125,12 +125,12 @@ export const dilationUpgrades = {
     description: "Gain a multiplier to Infinity Points based on Dilated Time",
     effect: () => Currency.dilatedTime.value.pow(1000).clampMin(1),
     formatEffect: value => formatX(value, 2, 1),
-    cap: () => Effarig.eternityCap
+    cap: () => Effarig.eternityCap,
   },
   timeStudySplit: {
     id: 8,
     cost: 1e10,
-    description: "You can buy all three Time Study paths from the Dimension Split"
+    description: "You can buy all three Time Study paths from the Dimension Split",
   },
   dilationPenalty: {
     id: 9,
@@ -143,7 +143,7 @@ export const dilationUpgrades = {
     cost: 1e15,
     description: "Generate Time Theorems based on Tachyon Particles",
     effect: () => Currency.tachyonParticles.value.div(20000),
-    formatEffect: value => `${format(value, 2, 1)}/sec`
+    formatEffect: value => `${format(value, 2, 1)}/sec`,
   },
   dtGainPelle: rebuyable({
     id: 11,
@@ -154,7 +154,7 @@ export const dilationUpgrades = {
     effect: bought => Decimal.pow(5, bought),
     formatEffect: value => formatX(value, 2),
     formatCost: value => format(value, 2),
-    purchaseCap: DC.BEMAX
+    purchaseCap: DC.BEMAX,
   }),
   galaxyMultiplier: rebuyable({
     id: 12,
@@ -165,7 +165,7 @@ export const dilationUpgrades = {
     effect: bought => bought.add(1),
     formatEffect: value => `${formatX(value, 2)} ➜ ${formatX(value.add(1), 2)}`,
     formatCost: value => format(value, 2),
-    purchaseCap: DC.BEMAX
+    purchaseCap: DC.BEMAX,
   }),
   tickspeedPower: rebuyable({
     id: 13,
@@ -176,21 +176,21 @@ export const dilationUpgrades = {
     effect: bought => bought.mul(0.03).add(1),
     formatEffect: value => `${formatPow(value, 2, 2)} ➜ ${formatPow(value.add(0.03), 2, 2)}`,
     formatCost: value => format(value, 2),
-    purchaseCap: DC.BEMAX
+    purchaseCap: DC.BEMAX,
   }),
   galaxyThresholdPelle: {
     id: 14,
     cost: 1e45,
     pelleOnly: true,
     description: "Apply a cube root to the Tachyon Galaxy threshold",
-    effect: 1 / 3
+    effect: 1 / 3,
   },
   flatDilationMult: {
     id: 15,
     cost: 1e55,
     pelleOnly: true,
-    description: () => `Gain more Dilated Time based on current EP`,
+    description: () => "Gain more Dilated Time based on current EP",
     effect: () => DC.E9.pow((Decimal.max(player.eternityPoints.max(1).log10().sub(1500), 0).div(2500)).pow(1.2).clampMax(1)),
-    formatEffect: value => formatX(value, 2, 2)
+    formatEffect: value => formatX(value, 2, 2),
   },
 };

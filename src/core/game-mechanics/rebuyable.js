@@ -9,7 +9,9 @@ export class RebuyableMechanicState extends GameMechanicState {
   /**
    * @abstract
    */
-  get currency() { throw new NotImplementedError(); }
+  get currency() {
+    throw new NotImplementedError();
+  }
 
   get isAffordable() {
     return this.currency.gte(this.cost);
@@ -34,12 +36,16 @@ export class RebuyableMechanicState extends GameMechanicState {
   /**
    * @abstract
    */
-  get boughtAmount() { throw new NotImplementedError(); }
+  get boughtAmount() {
+    throw new NotImplementedError();
+  }
 
   /**
    * @abstract
    */
-  set boughtAmount(value) { throw new NotImplementedError(); }
+  set boughtAmount(value) {
+    throw new NotImplementedError();
+  }
 
   get isEffectActive() {
     return isNumber(this.boughtAmount) ? this.boughtAmount > 0 : this.boughtAmount.gt(0);
@@ -59,6 +65,5 @@ export class RebuyableMechanicState extends GameMechanicState {
     return true;
   }
 
-  // eslint-disable-next-line no-empty-function
-  onPurchased() { }
+  onPurchased() {}
 }

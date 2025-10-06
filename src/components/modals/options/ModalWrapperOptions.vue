@@ -4,8 +4,8 @@ import ModalWrapper from "@/components/modals/ModalWrapper";
 export default {
   name: "ModalWrapperOptions",
   components: {
-    ModalWrapper
-  }
+    ModalWrapper,
+  },
 };
 </script>
 

@@ -4,7 +4,7 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "ReplicantiGalaxyModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   data() {
     return {
@@ -26,7 +26,7 @@ export default {
       return `A Replicanti Galaxy boosts Tickspeed the same way an Antimatter Galaxy does. However, it does not
         increase the cost of Antimatter Galaxies, nor is it affected by multipliers to Antimatter Galaxies specifically.
         It will ${reductionString}.`;
-    }
+    },
   },
   methods: {
     update() {

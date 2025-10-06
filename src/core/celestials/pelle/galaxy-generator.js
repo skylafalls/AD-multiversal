@@ -12,7 +12,7 @@ export const GalaxyGenerator = {
   get generationCaps() {
     return PelleRifts.all
       .map(x => ({ rift: x.config.key, cap: x.config.galaxyGeneratorThreshold }))
-      .sort((a, b) => Decimal.compare(a.cap, b.cap));
+      .toSorted((a, b) => Decimal.compare(a.cap, b.cap));
   },
 
   get spentGalaxies() {
@@ -88,17 +88,16 @@ export const GalaxyGenerator = {
       // Force-unequip glyphs when the player loses the respective milestone. We call the respec option as normally
       // except for one particular case - when we want to respec into protected slots but have no room to do so. In
       // that case, we force-respec into the inventory instead
-      if (!PelleRifts.vacuum.milestones[0].canBeApplied && Glyphs.active.filter(g => g).length > 0) {
+      if (!PelleRifts.vacuum.milestones[0].canBeApplied && Glyphs.active.some(g => g).length > 0) {
         Glyphs.unequipAll(player.options.respecIntoProtected && Glyphs.findFreeIndex(true) === -1);
         Glyphs.refreshActive();
       }
-
     }
-    player.celestials.pelle.galaxyGenerator.generatedGalaxies =
-      player.celestials.pelle.galaxyGenerator.generatedGalaxies.add(this.gainPerSecond.times(diff.div(1000)));
+    player.celestials.pelle.galaxyGenerator.generatedGalaxies
+      = player.celestials.pelle.galaxyGenerator.generatedGalaxies.add(this.gainPerSecond.times(diff.div(1000)));
     player.celestials.pelle.galaxyGenerator.generatedGalaxies = Decimal.min(
       player.celestials.pelle.galaxyGenerator.generatedGalaxies,
-      this.generationCap
+      this.generationCap,
     );
 
     if (!this.capRift) {
@@ -109,7 +108,7 @@ export const GalaxyGenerator = {
         this.hasReturnedGlyphSlot = true;
       }
     }
-  }
+  },
 };
 
 export class GalaxyGeneratorUpgrade extends RebuyableMechanicState {
@@ -125,7 +124,9 @@ export class GalaxyGeneratorUpgrade extends RebuyableMechanicState {
     player.celestials.pelle.rebuyables[this.id] = value;
   }
 
-  get isCustomEffect() { return true; }
+  get isCustomEffect() {
+    return true;
+  }
 
   get effectValue() {
     return this.config.effect(this.boughtAmount);
@@ -134,5 +135,5 @@ export class GalaxyGeneratorUpgrade extends RebuyableMechanicState {
 
 export const GalaxyGeneratorUpgrades = mapGameDataToObject(
   GameDatabase.celestials.pelle.galaxyGeneratorUpgrades,
-  config => new GalaxyGeneratorUpgrade(config)
+  config => new GalaxyGeneratorUpgrade(config),
 );

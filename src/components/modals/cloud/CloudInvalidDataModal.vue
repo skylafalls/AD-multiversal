@@ -10,7 +10,7 @@ export default {
     isSaving: {
       type: Boolean,
       required: true,
-    }
+    },
   },
   computed: {
     conflict() {
@@ -20,7 +20,7 @@ export default {
       return this.isSaving
         ? "Overwrite Cloud Save"
         : "Load save from Cloud";
-    }
+    },
   },
   methods: {
     ignore() {
@@ -29,7 +29,7 @@ export default {
     overwrite() {
       this.conflict.onAccept?.();
       EventHub.dispatch(GAME_EVENT.CLOSE_MODAL);
-    }
+    },
   },
 };
 </script>

@@ -4,13 +4,13 @@ import GenericDimensionRowText from "@/components/GenericDimensionRowText";
 export default {
   name: "ModernAntimatterDimensionRow",
   components: {
-    GenericDimensionRowText
+    GenericDimensionRowText,
   },
   props: {
     tier: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -95,12 +95,12 @@ export default {
       this.buyUntil10 = buyUntil10;
       this.isContinuumActive = Laitela.continuumActive;
       if (this.isContinuumActive) this.continuumValue.copyFrom(dimension.continuumValue);
-      this.isShown =
-        (DimBoost.totalBoosts.gt(0) && DimBoost.totalBoosts.add(3).gte(tier)) || PlayerProgress.infinityUnlocked();
+      this.isShown
+        = (DimBoost.totalBoosts.gt(0) && DimBoost.totalBoosts.add(3).gte(tier)) || PlayerProgress.infinityUnlocked();
       this.isCostsAD = NormalChallenge(6).isRunning && tier > 2 && !this.isContinuumActive;
       this.amountDisplay = this.tier < 8 ? format(this.amount, 2) : formatInt(this.amount);
-      this.hasTutorial = (tier === 1 && Tutorial.isActive(TUTORIAL_STATE.DIM1)) ||
-        (tier === 2 && Tutorial.isActive(TUTORIAL_STATE.DIM2));
+      this.hasTutorial = (tier === 1 && Tutorial.isActive(TUTORIAL_STATE.DIM1))
+        || (tier === 2 && Tutorial.isActive(TUTORIAL_STATE.DIM2));
     },
     buy() {
       if (this.isContinuumActive) return;
@@ -117,16 +117,16 @@ export default {
       return {
         "o-primary-btn o-primary-btn--new": true,
         "o-primary-btn--disabled": (!this.isAffordable && !this.isContinuumActive) || !this.isUnlocked || this.isCapped,
-        "o-non-clickable o-continuum": this.isContinuumActive
+        "o-non-clickable o-continuum": this.isContinuumActive,
       };
     },
     buttonTextClass() {
       return {
         "button-content l-modern-buy-ad-text": true,
-        "tutorial--glow": this.isAffordable && this.hasTutorial
+        "tutorial--glow": this.isAffordable && this.hasTutorial,
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

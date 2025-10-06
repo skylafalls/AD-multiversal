@@ -11,7 +11,7 @@ export default {
   computed: {
     all() {
       return AwayProgressTypes.showOption;
-    }
+    },
   },
 };
 </script>

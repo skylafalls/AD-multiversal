@@ -181,7 +181,7 @@ export const Achievements = {
     for (const achievement of Achievements.all.filter(x => x.isUnlocked)) {
       SteamRuntime.activateAchievement(achievement.id);
     }
-  }
+  },
 };
 
 EventHub.logic.on(GAME_EVENT.PERK_BOUGHT, () => {

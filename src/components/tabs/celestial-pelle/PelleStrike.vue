@@ -4,24 +4,24 @@ import ExpandingControlBox from "@/components/ExpandingControlBox";
 export default {
   name: "PelleStrike",
   components: {
-    ExpandingControlBox
+    ExpandingControlBox,
   },
   props: {
     strike: {
       type: Object,
-      required: true
+      required: true,
     },
   },
   data() {
     return {
-      strikeReward: ""
+      strikeReward: "",
     };
   },
   methods: {
     update() {
       this.strikeReward = this.strike.reward();
-    }
-  }
+    },
+  },
 };
 </script>
 

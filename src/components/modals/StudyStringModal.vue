@@ -17,7 +17,7 @@ export default {
     StudyStringLine,
     PrimaryButton,
     StudyStringPreview,
-    StudyTreeInfo
+    StudyTreeInfo,
   },
   props: {
     id: {
@@ -28,14 +28,14 @@ export default {
       type: Boolean,
       required: false,
       default: false,
-    }
+    },
   },
   data() {
     return {
       input: "",
       name: "",
       respecAndLoad: false,
-      canEternity: false
+      canEternity: false,
     };
   },
   computed: {
@@ -111,16 +111,18 @@ export default {
 
       for (const study of this.importedTree.invalidStudies) {
         const id = `${study}`.match(/(EC)?(\d+)/u);
-        const num = parseInt(id[2], 10);
+        const num = Number.parseInt(id[2], 10);
         switch (id[1]) {
-          case "EC":
+          case "EC": {
             coloredString = coloredString.replaceAll(new RegExp(`\\|(${num})`, "gu"),
-              `|<span style="color: var(--color-bad);">$1</span>`);
+              "|<span style=\"color: var(--color-bad);\">$1</span>");
             break;
-          default:
+          }
+          default: {
             coloredString = coloredString.replaceAll(new RegExp(`(\\D)(${num})(\\D)`, "gu"),
-              `$1<span style="color: var(--color-bad);">$2</span>$3`);
+              "$1<span style=\"color: var(--color-bad);\">$2</span>$3");
             break;
+          }
         }
       }
       return `Your import string has invalid study IDs: ${coloredString.replaceAll("#", "").replaceAll(",", ", ")}
@@ -143,19 +145,19 @@ export default {
       // we should allow either to unlock the secret achievement
       const secretStrings = [
         "08b819f253b684773e876df530f95dcb85d2fb052046fa16ec321c65f3330608",
-        "bb450c2a3869bae412ed0b4304dc229521fc69f0fdcc95b3b61460aaf5658fc4"
+        "bb450c2a3869bae412ed0b4304dc229521fc69f0fdcc95b3b61460aaf5658fc4",
       ];
       return secretStrings.includes(sha512_256(this.input.toLowerCase()));
     },
     confirmText() {
       if (this.deleting) return "Delete";
       return this.isImporting ? "Import" : "Save";
-    }
+    },
   },
   watch: {
     input(newInput) {
       savedImportString = newInput;
-    }
+    },
   },
   // Needs to be assigned in created() or else they will end up being undefined when importing
   created() {
@@ -213,7 +215,7 @@ export default {
     },
     studyString(study) {
       return study instanceof ECTimeStudyState ? `EC${study.id}` : `${study.id}`;
-    }
+    },
   },
 };
 </script>

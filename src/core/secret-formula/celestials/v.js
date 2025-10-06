@@ -9,7 +9,7 @@ function emphasizeEnd(valueA, valueB) {
 
 export const V_REDUCTION_MODE = {
   SUBTRACTION: 1,
-  DIVISION: 2
+  DIVISION: 2,
 };
 
 export const v = {
@@ -76,7 +76,7 @@ export const v = {
       formatRecord: x => (x >= -5 ? formatInt(-x) : "Not reached"),
       shardReduction: () => 0,
       maxShardReduction: () => 0,
-      mode: V_REDUCTION_MODE.SUBTRACTION
+      mode: V_REDUCTION_MODE.SUBTRACTION,
     },
     {
       id: 1,
@@ -89,7 +89,7 @@ export const v = {
       shardReduction: tiers => Decimal.floor(300 * tiers),
       maxShardReduction: goal => goal - 4000,
       perReductionStep: 3,
-      mode: V_REDUCTION_MODE.SUBTRACTION
+      mode: V_REDUCTION_MODE.SUBTRACTION,
     },
     {
       id: 2,
@@ -102,7 +102,7 @@ export const v = {
       shardReduction: tiers => 1.2e5 * tiers,
       maxShardReduction: goal => goal - 6e5,
       perReductionStep: DC.E1200,
-      mode: V_REDUCTION_MODE.DIVISION
+      mode: V_REDUCTION_MODE.DIVISION,
     },
     {
       id: 3,
@@ -116,7 +116,7 @@ export const v = {
       shardReduction: tiers => 50e6 * tiers,
       maxShardReduction: goal => goal - 400e6,
       perReductionStep: DC.E500000,
-      mode: V_REDUCTION_MODE.DIVISION
+      mode: V_REDUCTION_MODE.DIVISION,
     },
     {
       id: 4,
@@ -129,7 +129,7 @@ export const v = {
       shardReduction: tiers => 600 * tiers,
       maxShardReduction: goal => goal - 7000,
       perReductionStep: 1e6,
-      mode: V_REDUCTION_MODE.DIVISION
+      mode: V_REDUCTION_MODE.DIVISION,
     },
     {
       id: 5,
@@ -143,7 +143,7 @@ export const v = {
       maxShardReduction: () => 5,
       reductionStepSize: 100,
       perReductionStep: 1,
-      mode: V_REDUCTION_MODE.SUBTRACTION
+      mode: V_REDUCTION_MODE.SUBTRACTION,
     },
     {
       id: 6,
@@ -157,7 +157,7 @@ export const v = {
       shardReduction: () => 0,
       maxShardReduction: () => 0,
       mode: V_REDUCTION_MODE.SUBTRACTION,
-      isHard: true
+      isHard: true,
     },
     {
       id: 7,
@@ -177,7 +177,7 @@ export const v = {
       reductionStepSize: 2,
       perReductionStep: 10,
       mode: V_REDUCTION_MODE.DIVISION,
-      isHard: true
+      isHard: true,
     },
     {
       id: 8,
@@ -191,21 +191,21 @@ export const v = {
       maxShardReduction: () => 500,
       perReductionStep: 5,
       mode: V_REDUCTION_MODE.SUBTRACTION,
-      isHard: true
-    }
+      isHard: true,
+    },
   ],
   unlocks: {
     vAchievementUnlock: {
       id: 0,
       reward: "Unlock V, The Celestial Of Achievements",
       description: "Meet all the above requirements simultaneously",
-      requirement: () => Object.values(GameDatabase.celestials.v.mainUnlock).every(e => e.progress() >= 1)
+      requirement: () => Object.values(GameDatabase.celestials.v.mainUnlock).every(e => e.progress() >= 1),
     },
     shardReduction: {
       id: 1,
-      reward: `You can spend Perk Points to reduce the goal requirement of all tiers of each V-Achievement.`,
+      reward: "You can spend Perk Points to reduce the goal requirement of all tiers of each V-Achievement.",
       description: () => `Have ${formatInt(2)} V-Achievements`,
-      requirement: () => V.spaceTheorems >= 2
+      requirement: () => V.spaceTheorems >= 2,
     },
     adPow: {
       id: 2,
@@ -213,7 +213,7 @@ export const v = {
       description: () => `Have ${formatInt(5)} V-Achievements`,
       effect: () => 1 + Math.sqrt(V.spaceTheorems) / 100,
       format: x => formatPow(x, 3, 3),
-      requirement: () => V.spaceTheorems >= 5
+      requirement: () => V.spaceTheorems >= 5,
     },
     fastAutoEC: {
       id: 3,
@@ -224,13 +224,13 @@ export const v = {
       format: x => (Ra.unlocks.instantECAndRealityUpgradeAutobuyers.canBeApplied
         ? "Instant (Ra upgrade)"
         : `${TimeSpan.fromMinutes(new Decimal(1200).div(x)).toStringShort()} for full completion`),
-      requirement: () => V.spaceTheorems >= 10
+      requirement: () => V.spaceTheorems >= 10,
     },
     autoAutoClean: {
       id: 4,
       reward: "Unlock the ability to Automatically Purge Glyphs on Reality.",
       description: () => `Have ${formatInt(16)} V-Achievements`,
-      requirement: () => V.spaceTheorems >= 16
+      requirement: () => V.spaceTheorems >= 16,
     },
     achievementBH: {
       id: 5,
@@ -238,7 +238,7 @@ export const v = {
       description: () => `Have ${formatInt(30)} V-Achievements`,
       effect: () => Achievements.power,
       format: x => formatX(x, 2, 0),
-      requirement: () => V.spaceTheorems >= 30
+      requirement: () => V.spaceTheorems >= 30,
     },
     raUnlock: {
       id: 6,
@@ -248,7 +248,7 @@ export const v = {
       },
       description: () => `Have ${formatInt(36)} V-Achievements`,
       effect: 2,
-      requirement: () => V.spaceTheorems >= 36
-    }
-  }
+      requirement: () => V.spaceTheorems >= 36,
+    },
+  },
 };

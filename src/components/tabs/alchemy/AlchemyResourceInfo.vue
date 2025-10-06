@@ -4,13 +4,13 @@ import EffectDisplay from "@/components/EffectDisplay";
 export default {
   name: "AlchemyResourceInfo",
   components: {
-    EffectDisplay
+    EffectDisplay,
   },
   props: {
     resource: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -21,14 +21,14 @@ export default {
       isReactionActive: false,
       reactionProduction: new Decimal(),
       isUnlocked: false,
-      unlockRequirement: ""
+      unlockRequirement: "",
     };
   },
   computed: {
     classObject() {
       return {
         "c-alchemy-resource-info": true,
-        "c-alchemy-resource-info--locked": !this.isUnlocked
+        "c-alchemy-resource-info--locked": !this.isUnlocked,
       };
     },
     reaction() {
@@ -54,7 +54,7 @@ export default {
       const resource = this.resource;
       return {
         effect: () => resource.effectValue,
-        formatEffect: resource.config.formatEffect
+        formatEffect: resource.config.formatEffect,
       };
     },
     resourceAmount() {
@@ -85,8 +85,8 @@ export default {
         this.isReactionActive = !this.isDoomed && this.reaction.isActive;
         this.reactionProduction.copyFrom(this.reaction.reactionProduction);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -3,7 +3,7 @@ export default {
   name: "SelectNotationDropdown",
   computed: {
     notations: () => Notations.all,
-  }
+  },
 };
 </script>
 

@@ -137,10 +137,10 @@ class GlyphEffectConfig {
 
   /** @private */
   static checkInputs(setup) {
-    const KNOWN_KEYS = ["id", "intID", "glyphTypes", "singleDesc", "totalDesc", "genericDesc", "effect",
+    const KNOWN_KEYS = new Set(["id", "intID", "glyphTypes", "singleDesc", "totalDesc", "genericDesc", "effect",
       "formatEffect", "formatSingleEffect", "combine", "softcap", "conversion", "formatSecondaryEffect",
-      "formatSingleSecondaryEffect", "alteredColor", "alterationType", "isGenerated", "shortDesc", "enabledInDoomed"];
-    const unknownField = Object.keys(setup).find(k => !KNOWN_KEYS.includes(k));
+      "formatSingleSecondaryEffect", "alteredColor", "alterationType", "isGenerated", "shortDesc", "enabledInDoomed"]);
+    const unknownField = Object.keys(setup).find(k => !KNOWN_KEYS.has(k));
     if (unknownField !== undefined) {
       throw new Error(`Glyph effect "${setup.id}" includes unrecognized field "${unknownField}"`);
     }
@@ -156,8 +156,8 @@ class GlyphEffectConfig {
         throw new Error(`The combine function for Glyph effect "${setup.id}" has invalid return type`);
       }
       if (setup.softcap) {
-        throw new Error(`The combine function for Glyph effect "${setup.id}" gives capped information, ` +
-          `but there's also a softcap method`);
+        throw new Error(`The combine function for Glyph effect "${setup.id}" gives capped information, `
+          + "but there's also a softcap method");
       }
     }
   }
@@ -170,7 +170,7 @@ class GlyphEffectConfig {
     // No supplied capped indicator
     if (typeof (emptyCombine) === "number") {
       if (softcap === undefined) return effects => ({ value: combine(effects), capped: false });
-      return effects => {
+      return (effects) => {
         const rawValue = combine(effects);
         const cappedValue = softcap(rawValue);
         return { value: cappedValue, capped: rawValue !== cappedValue };
@@ -179,7 +179,7 @@ class GlyphEffectConfig {
     if (emptyCombine instanceof Decimal) {
       if (softcap === undefined) return effects => ({ value: combine(effects), capped: false });
       const neqTest = emptyCombine.value instanceof Decimal ? (a, b) => a.neq(b) : (a, b) => a !== b;
-      return combine = effects => {
+      return combine = (effects) => {
         const rawValue = combine(effects);
         const cappedValue = softcap(rawValue.value);
         return { value: cappedValue, capped: rawValue.capped || neqTest(rawValue.value, cappedValue) };
@@ -194,7 +194,7 @@ export const realityGlyphEffectLevelThresholds = [0, 9000, 15000, 25000];
 
 export const GlyphEffects = mapGameDataToObject(
   GameDatabase.reality.glyphEffects,
-  config => new GlyphEffectConfig(config)
+  config => new GlyphEffectConfig(config),
 );
 
 export function makeGlyphEffectBitmask(effectList) {

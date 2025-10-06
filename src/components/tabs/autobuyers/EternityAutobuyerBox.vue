@@ -10,14 +10,14 @@ export default {
     AutobuyerBox,
     AutobuyerInput,
     ExpandingControlBox,
-    AutobuyerDropdownEntry
+    AutobuyerDropdownEntry,
   },
   props: {
     isModal: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -34,12 +34,12 @@ export default {
       AUTO_ETERNITY_MODE.TIME,
       AUTO_ETERNITY_MODE.X_HIGHEST,
     ],
-    amountMode: () => AUTO_ETERNITY_MODE.AMOUNT
+    amountMode: () => AUTO_ETERNITY_MODE.AMOUNT,
   },
   watch: {
     increaseWithMult(newValue) {
       this.autobuyer.increaseWithMult = newValue;
-    }
+    },
   },
   methods: {
     update() {
@@ -50,34 +50,37 @@ export default {
     },
     modeProps(mode) {
       switch (mode) {
-        case AUTO_ETERNITY_MODE.AMOUNT: return {
+        case AUTO_ETERNITY_MODE.AMOUNT: { return {
           title: "Eternity at X EP",
           input: {
             property: "amount",
-            type: "decimal"
+            type: "decimal",
           },
         };
-        case AUTO_ETERNITY_MODE.TIME: return {
+        }
+        case AUTO_ETERNITY_MODE.TIME: { return {
           title: "Seconds between Eternities",
           input: {
             property: "time",
-            type: "float"
+            type: "float",
           },
         };
-        case AUTO_ETERNITY_MODE.X_HIGHEST: return {
+        }
+        case AUTO_ETERNITY_MODE.X_HIGHEST: { return {
           title: "X times highest EP",
           input: {
             property: "xHighest",
-            type: "decimal"
+            type: "decimal",
           },
         };
+        }
       }
       throw new Error("Unknown Auto Eternity mode");
     },
     modeName(mode) {
       return this.modeProps(mode).title;
     },
-  }
+  },
 };
 </script>
 

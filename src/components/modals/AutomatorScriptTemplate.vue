@@ -23,7 +23,7 @@ export default {
     inputs: {
       type: Array,
       required: true,
-    }
+    },
   },
   data() {
     return {
@@ -46,7 +46,7 @@ export default {
     templateScript() {
       if (this.invalidInputCount !== 0) return null;
       return new ScriptTemplate(this.templateProps, this.name);
-    }
+    },
   },
   // Many props in this component are generated dynamically from a GameDB entry, but Vue can only give reactive
   // behavior to props that exist on declaration. We need all the dynamically generated inputs to be reactive, so we
@@ -125,7 +125,7 @@ export default {
       if (this.isBlock) {
         const newTemplateBlock = {
           name: `Template: ${this.name}`,
-          blocks: blockifyTextAutomator(this.templateScript.script).blocks
+          blocks: blockifyTextAutomator(this.templateScript.script).blocks,
         };
         AutomatorData.blockTemplates.push(newTemplateBlock);
         GameUI.notify.info("Custom template block created");
@@ -134,8 +134,8 @@ export default {
         GameUI.notify.info("Template copied to clipboard");
       }
       this.emitClose();
-    }
-  }
+    },
+  },
 };
 </script>
 

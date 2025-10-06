@@ -6,13 +6,13 @@ export default {
   name: "ClassicAntimatterDimensionRow",
   components: {
     GenericDimensionRowText,
-    PrimaryButton
+    PrimaryButton,
   },
   props: {
     tier: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -85,9 +85,9 @@ export default {
         "o-primary-btn--buy-ad o-primary-btn--buy-dim c-dim-tooltip-container": true,
         "o-primary-btn--buy-10-ad": !this.isContinuumActive,
         "o-primary-btn--continuum-ad o-continuum": this.isContinuumActive,
-        "l-dim-row-small-text": this.isLongText(this.until10Text) && !this.isContinuumActive
+        "l-dim-row-small-text": this.isLongText(this.until10Text) && !this.isContinuumActive,
       };
-    }
+    },
   },
   methods: {
     update() {
@@ -110,11 +110,11 @@ export default {
       this.isAffordableUntil10 = dimension.isAffordableUntil10;
       this.isContinuumActive = Laitela.continuumActive;
       if (this.isContinuumActive) this.continuumValue = dimension.continuumValue;
-      this.isShown =
-        (DimBoost.totalBoosts.gt(0) && DimBoost.totalBoosts.add(3).gte(tier)) || PlayerProgress.infinityUnlocked();
+      this.isShown
+        = (DimBoost.totalBoosts.gt(0) && DimBoost.totalBoosts.add(3).gte(tier)) || PlayerProgress.infinityUnlocked();
       this.isCostsAD = NormalChallenge(6).isRunning && tier > 2 && !this.isContinuumActive;
-      this.hasTutorial = (tier === 1 && Tutorial.isActive(TUTORIAL_STATE.DIM1)) ||
-        (tier === 2 && Tutorial.isActive(TUTORIAL_STATE.DIM2));
+      this.hasTutorial = (tier === 1 && Tutorial.isActive(TUTORIAL_STATE.DIM1))
+        || (tier === 2 && Tutorial.isActive(TUTORIAL_STATE.DIM2));
     },
     buySingle() {
       if (this.isContinuumActive) return;
@@ -133,10 +133,10 @@ export default {
     tutorialClass() {
       return {
         "l-glow-container": true,
-        "tutorial--glow": this.isAffordable && this.hasTutorial
+        "tutorial--glow": this.isAffordable && this.hasTutorial,
       };
     },
-  }
+  },
 };
 </script>
 

@@ -8,7 +8,7 @@ export default {
   components: {
     ChallengeTabHeader,
     ChallengeGrid,
-    EternityChallengeBox
+    EternityChallengeBox,
   },
   data() {
     return {
@@ -41,7 +41,7 @@ export default {
       return this.untilAllEC.totalMilliseconds === 0 && !this.autoEC
         ? "Immediately upon unpausing"
         : `After ${this.untilAllEC} (real time)`;
-    }
+    },
   },
   methods: {
     update() {
@@ -52,9 +52,9 @@ export default {
       this.isAutoECVisible = Perk.autocompleteEC1.canBeApplied;
       this.autoEC = player.reality.autoEC;
       const shouldPreventEC7 = TimeDimension(1).amount.gt(0);
-      this.hasUpgradeLock = RealityUpgrade(12).isLockingMechanics ||
-        (ImaginaryUpgrade(15).isLockingMechanics && shouldPreventEC7 &&
-          !Array.range(1, 6).some(ec => !EternityChallenge(ec).isFullyCompleted));
+      this.hasUpgradeLock = RealityUpgrade(12).isLockingMechanics
+        || (ImaginaryUpgrade(15).isLockingMechanics && shouldPreventEC7
+          && !Array.range(1, 6).some(ec => !EternityChallenge(ec).isFullyCompleted));
       const remainingCompletions = EternityChallenges.remainingCompletions;
       this.remainingECTiers = remainingCompletions;
       if (remainingCompletions !== 0) {
@@ -66,10 +66,10 @@ export default {
       this.hasECR = Perk.studyECRequirement.isBought;
     },
     isChallengeVisible(challenge) {
-      return challenge.completions > 0 || challenge.isUnlocked || challenge.hasUnlocked ||
-        (this.showAllChallenges && PlayerProgress.realityUnlocked());
-    }
-  }
+      return challenge.completions > 0 || challenge.isUnlocked || challenge.hasUnlocked
+        || (this.showAllChallenges && PlayerProgress.realityUnlocked());
+    },
+  },
 };
 </script>
 

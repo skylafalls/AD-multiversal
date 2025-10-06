@@ -76,7 +76,7 @@ export default {
         if (this.isRunning) labels.push("running");
         else if (this.isPaused) labels.push("paused");
       }
-      const status = labels.length ? `(${labels.join(", ").capitalize()})` : "";
+      const status = labels.length > 0 ? `(${labels.join(", ").capitalize()})` : "";
       return `${script.name} ${status}`;
     },
     labelClassObject(id) {
@@ -86,8 +86,8 @@ export default {
         "l-active-script": id === this.runningScriptID && highlightRunning,
         "l-selected-script": id === this.currentScriptID && (id !== this.runningScriptID || !highlightRunning),
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

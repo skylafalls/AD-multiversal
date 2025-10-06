@@ -6,23 +6,25 @@ export default {
   name: "TickspeedAutobuyerBox",
   components: {
     AutobuyerBox,
-    AutobuyerIntervalButton
+    AutobuyerIntervalButton,
   },
   data() {
     return {
       mode: AUTOBUYER_MODE.BUY_SINGLE,
-      isUnlocked: false
+      isUnlocked: false,
     };
   },
   computed: {
     autobuyer: () => Autobuyer.tickspeed,
     modeDisplay() {
       switch (this.mode) {
-        case AUTOBUYER_MODE.BUY_SINGLE: return "Buys singles";
-        case AUTOBUYER_MODE.BUY_MAX: return "Buys max";
+        case AUTOBUYER_MODE.BUY_SINGLE: { return "Buys singles";
+        }
+        case AUTOBUYER_MODE.BUY_MAX: { return "Buys max";
+        }
       }
-      throw "Unknown tickspeed autobuyer mode";
-    }
+      throw new Error("Unknown tickspeed autobuyer mode");
+    },
   },
   methods: {
     update() {
@@ -32,8 +34,8 @@ export default {
     toggleMode() {
       this.autobuyer.toggleMode();
       this.update();
-    }
-  }
+    },
+  },
 };
 </script>
 

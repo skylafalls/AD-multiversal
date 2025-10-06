@@ -22,7 +22,7 @@ export default {
     TriadTimeStudy,
     SecretTimeStudy,
     TimeStudyConnection,
-    HiddenTimeStudyConnection
+    HiddenTimeStudyConnection,
   },
   data() {
     return {
@@ -54,15 +54,15 @@ export default {
     treeStyleObject() {
       return {
         width: `${this.layout.width}rem`,
-        height: `${this.layout.height}rem`
+        height: `${this.layout.height}rem`,
       };
     },
     respecClassObject() {
       return {
         "o-primary-btn--subtab-option": true,
-        "o-primary-btn--respec-active": this.respec
+        "o-primary-btn--respec-active": this.respec,
       };
-    }
+    },
   },
   watch: {
     respec(newValue) {
@@ -71,7 +71,7 @@ export default {
     vLevel() {
       // When vLevel changes, we recompute the study tree because of triad studies
       this.$recompute("layout");
-    }
+    },
   },
   created() {
     const incrementRenderedCount = () => {
@@ -115,12 +115,16 @@ export default {
     },
     studyComponent(study) {
       switch (study.type) {
-        case TIME_STUDY_TYPE.NORMAL: return NormalTimeStudy;
-        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: return ECTimeStudy;
-        case TIME_STUDY_TYPE.DILATION: return DilationTimeStudy;
-        case TIME_STUDY_TYPE.TRIAD: return TriadTimeStudy;
+        case TIME_STUDY_TYPE.NORMAL: { return NormalTimeStudy;
+        }
+        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: { return ECTimeStudy;
+        }
+        case TIME_STUDY_TYPE.DILATION: { return DilationTimeStudy;
+        }
+        case TIME_STUDY_TYPE.TRIAD: { return TriadTimeStudy;
+        }
       }
-      throw "Unknown Time Study type";
+      throw new Error("Unknown Time Study type");
     },
     exportStudyTree() {
       if (player.timestudy.studies.length === 0) {
@@ -129,8 +133,8 @@ export default {
         copyToClipboard(GameCache.currentStudyTree.value.exportString);
         GameUI.notify.info("Exported current Time Studies to your clipboard");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

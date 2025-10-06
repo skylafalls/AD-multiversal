@@ -314,16 +314,16 @@ const Guard = {
   isDefined(value, message) {
     if (value !== undefined) return;
     if (message) throw message;
-    throw "Value is defined";
+    throw new Error("Value is defined");
   },
   isDecimal(value, message) {
     if (value instanceof Decimal) return;
     if (message) throw message;
-    throw "Value is not a decimal";
+    throw new Error("Value is not a decimal");
   },
   isTimeSpan(value, message) {
     if (value instanceof TimeSpan) return;
     if (message) throw message;
-    throw "Value is not a TimeSpan";
-  }
+    throw new Error("Value is not a TimeSpan");
+  },
 };

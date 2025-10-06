@@ -4,7 +4,7 @@ import PrimaryToggleButton from "@/components/PrimaryToggleButton";
 export default {
   name: "ModalOptionsToggleButton",
   components: {
-    PrimaryToggleButton
+    PrimaryToggleButton,
   },
   props: {
     value: {
@@ -14,8 +14,8 @@ export default {
     },
     text: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     styleObject() {
@@ -23,7 +23,7 @@ export default {
         "background-color": this.value ? "var(--color-good)" : "var(--color-gh-purple)",
       };
     },
-  }
+  },
 };
 </script>
 

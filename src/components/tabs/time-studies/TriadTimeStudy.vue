@@ -10,13 +10,13 @@ export default {
     DescriptionDisplay,
     EffectDisplay,
     HintText,
-    TimeStudyButton
+    TimeStudyButton,
   },
   props: {
     setup: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     study() {
@@ -28,7 +28,7 @@ export default {
     config() {
       return this.study.config;
     },
-  }
+  },
 };
 </script>
 

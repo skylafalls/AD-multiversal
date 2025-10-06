@@ -28,11 +28,11 @@ export default {
     FadeAway,
     CreditsContainer,
     SpectateGame,
-    NewGame
+    NewGame,
   },
   data() {
     return {
-      ending: false
+      ending: false,
     };
   },
   computed: {
@@ -41,18 +41,17 @@ export default {
     },
     hideIfMatoFullscreen() {
       return {
-        visibility: ui.view.tabs.reality.automator.fullScreen ? "hidden" : "visible"
+        visibility: ui.view.tabs.reality.automator.fullScreen ? "hidden" : "visible",
       };
-    }
+    },
   },
   methods: {
     update() {
       this.ending = GameEnd.endState >= END_STATE_MARKERS.FADE_AWAY && !GameEnd.creditsClosed;
-    }
-  }
+    },
+  },
 };
 </script>
-
 
 <template>
   <!-- Hide the button if the automator is in fullscreen mode: Nothing here needs to be visible during fullscreen -->

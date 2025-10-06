@@ -71,35 +71,40 @@ export default {
       const settings = player.celestials.laitela.singularitySorting;
       let stateCount;
       switch (id) {
-        case 0:
+        case 0: {
           stateCount = Object.keys(SINGULARITY_MILESTONE_RESOURCE).length;
           settings.displayResource = (settings.displayResource + 1) % stateCount;
           break;
-        case 1:
+        }
+        case 1: {
           stateCount = Object.keys(SINGULARITY_MILESTONE_SORT).length;
           settings.sortResource = (settings.sortResource + 1) % stateCount;
           break;
-        case 2:
+        }
+        case 2: {
           stateCount = Object.keys(COMPLETED_MILESTONES).length;
           settings.showCompleted = (settings.showCompleted + 1) % stateCount;
           break;
-        case 3:
+        }
+        case 3: {
           stateCount = Object.keys(SORT_ORDER).length;
           settings.sortOrder = (settings.sortOrder + 1) % stateCount;
           break;
-        default:
+        }
+        default: {
           throw new Error("Unrecognized Singularity milestone sorting button");
+        }
       }
     },
     glowOptionClass() {
       return {
         "c-modal__confirmation-toggle__checkbox": true,
-        "c-modal__confirmation-toggle__checkbox--active": this.milestoneGlow
+        "c-modal__confirmation-toggle__checkbox--active": this.milestoneGlow,
       };
     },
     toggleGlow() {
       this.milestoneGlow = !this.milestoneGlow;
-    }
+    },
   },
 };
 </script>

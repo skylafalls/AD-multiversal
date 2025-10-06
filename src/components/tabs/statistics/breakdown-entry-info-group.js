@@ -11,8 +11,8 @@ export class BreakdownEntryInfoGroup {
   // it when there is exactly one child, so that the player can see exactly which ach/TS/etc is giving the effect.
   get hasVisibleEntries() {
     const activeChildren = this.entries.filter(e => e.isActive && (e.mult.neq(1) || e.pow !== 1));
-    return activeChildren.length > 1 ||
-      (activeChildren.length === 1 && activeChildren[0].key.startsWith("general"));
+    return activeChildren.length > 1
+      || (activeChildren.length === 1 && activeChildren[0].key.startsWith("general"));
   }
 }
 

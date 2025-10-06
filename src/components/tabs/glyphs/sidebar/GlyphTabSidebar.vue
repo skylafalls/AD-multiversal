@@ -26,7 +26,7 @@ export default {
   computed: {
     isDoomed() {
       return Pelle.isDoomed;
-    }
+    },
   },
   methods: {
     update() {
@@ -47,11 +47,11 @@ export default {
         "l-glyph-sidebar-button": true,
         "c-glyph-sidebar-button": true,
         "c-glyph-sidebar-button--active": index === player.reality.showSidebarPanel,
-        "l-glyph-sidebar-button--attention": index === this.sidebarEnum.SACRIFICE_TYPE &&
-          !this.hasRefined && !this.isDoomed
+        "l-glyph-sidebar-button--attention": index === this.sidebarEnum.SACRIFICE_TYPE
+          && !this.hasRefined && !this.isDoomed,
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

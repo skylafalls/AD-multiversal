@@ -80,7 +80,7 @@ export class AntimatterDimensionAutobuyerState extends UpgradeableAutobuyerState
   toggleMode() {
     this.mode = [
       AUTOBUYER_MODE.BUY_SINGLE,
-      AUTOBUYER_MODE.BUY_10
+      AUTOBUYER_MODE.BUY_10,
     ]
       .nextSibling(this.mode);
   }
@@ -114,12 +114,14 @@ export class AntimatterDimensionAutobuyerState extends UpgradeableAutobuyerState
     super.tick();
     const tier = this.tier;
     switch (this.mode) {
-      case AUTOBUYER_MODE.BUY_SINGLE:
+      case AUTOBUYER_MODE.BUY_SINGLE: {
         buyOneDimension(tier);
         break;
-      case AUTOBUYER_MODE.BUY_10:
+      }
+      case AUTOBUYER_MODE.BUY_10: {
         buyMaxDimension(tier, this.bulk);
         break;
+      }
     }
   }
 
@@ -150,12 +152,22 @@ export class AntimatterDimensionAutobuyerState extends UpgradeableAutobuyerState
     TabNotification.newAutobuyer.clearTrigger();
   }
 
-  static get entryCount() { return 8; }
-  static get autobuyerGroupName() { return "Antimatter Dimension"; }
+  static get entryCount() {
+    return 8;
+  }
+
+  static get autobuyerGroupName() {
+    return "Antimatter Dimension";
+  }
 
   // These are toggled on and off from the group autobuyer checkbox
-  static get isActive() { return player.auto.antimatterDims.isActive; }
-  static set isActive(value) { player.auto.antimatterDims.isActive = value; }
+  static get isActive() {
+    return player.auto.antimatterDims.isActive;
+  }
+
+  static set isActive(value) {
+    player.auto.antimatterDims.isActive = value;
+  }
 
   static createAccessor() {
     const accessor = super.createAccessor();
@@ -164,7 +176,7 @@ export class AntimatterDimensionAutobuyerState extends UpgradeableAutobuyerState
       // We can get away with this since allUnlimitedBulk is the same for all AD autos
       allUnlimitedBulk: { get: () => accessor.zeroIndexed[0].hasUnlimitedBulk },
       bulkCap: { get: () => accessor.zeroIndexed[0].bulkCap },
-      collapseDisplay: { get: () => accessor.allMaxedInterval && accessor.allUnlocked && accessor.allUnlimitedBulk }
+      collapseDisplay: { get: () => accessor.allMaxedInterval && accessor.allUnlocked && accessor.allUnlimitedBulk },
     });
     return accessor;
   }

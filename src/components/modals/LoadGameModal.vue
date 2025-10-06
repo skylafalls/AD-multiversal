@@ -6,8 +6,8 @@ export default {
   name: "LoadGameModal",
   components: {
     ModalWrapperOptions,
-    LoadGameEntry
-  }
+    LoadGameEntry,
+  },
 };
 </script>
 

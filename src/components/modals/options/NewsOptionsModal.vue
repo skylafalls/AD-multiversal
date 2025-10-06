@@ -10,7 +10,7 @@ export default {
     ModalOptionsToggleButton,
     ModalWrapperOptions,
     PrimaryButton,
-    SliderComponent
+    SliderComponent,
   },
   data() {
     return {
@@ -31,7 +31,7 @@ export default {
         max: 80,
         interval: 1,
         width: "98%",
-        tooltip: false
+        tooltip: false,
       };
     },
     sliderPropsAIChance() {
@@ -40,7 +40,7 @@ export default {
         max: 1,
         interval: 0.01,
         width: "98%",
-        tooltip: false
+        tooltip: false,
       };
     },
     sliderPropsSpeed() {
@@ -49,7 +49,7 @@ export default {
         max: 2,
         interval: 0.01,
         width: "98%",
-        tooltip: false
+        tooltip: false,
       };
     },
   },
@@ -58,13 +58,13 @@ export default {
       player.options.news.type = newValue;
     },
     repeatBuffer(newValue) {
-      player.options.news.repeatBuffer = parseInt(newValue, 10);
+      player.options.news.repeatBuffer = Number.parseInt(newValue, 10);
     },
     AIChance(newValue) {
-      player.options.news.AIChance = parseFloat(newValue, 10);
+      player.options.news.AIChance = Number.parseFloat(newValue, 10);
     },
     speed(newValue) {
-      player.options.news.speed = parseFloat(newValue, 10);
+      player.options.news.speed = Number.parseFloat(newValue, 10);
     },
     includeAnimated(newValue) {
       player.options.news.includeAnimated = newValue;
@@ -90,8 +90,8 @@ export default {
     adjustSliderValueSpeed(value) {
       this.speed = value;
       player.options.speed = this.speed;
-    }
-  }
+    },
+  },
 };
 </script>
 

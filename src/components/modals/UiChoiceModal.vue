@@ -4,7 +4,7 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "UiChoiceModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   computed: {
     listEntries() {
@@ -13,9 +13,9 @@ export default {
         disabled in the Visual Options tab.`,
         `New confirmation windows have replaced the default Javascript alert windows. These can be disabled in the
         Gameplay Options tab.`,
-        "The game now also has a new sleek layout which was designed with more Modern design practices in mind."
+        "The game now also has a new sleek layout which was designed with more Modern design practices in mind.",
       ];
-    }
+    },
   },
   methods: {
     handleYesClick() {

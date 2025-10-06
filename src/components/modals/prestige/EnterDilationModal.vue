@@ -6,7 +6,7 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "EnterDilationModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   computed: {
     message() {
@@ -16,7 +16,7 @@ export default {
         multipliers you have.`;
     },
     entranceLabel() {
-      return `You are about to enter Dilation`;
+      return "You are about to enter Dilation";
     },
     EPSinceLabel() {
       if (player.dilation.lastEP.eq(-1)) {
@@ -27,7 +27,7 @@ export default {
           Teresa's Level ${formatInt(25)} reward.`;
       }
       return `You last completed Dilation at ${format(player.dilation.lastEP, 2, 2)} Eternity Points.`;
-    }
+    },
   },
   methods: {
     handleYesClick() {

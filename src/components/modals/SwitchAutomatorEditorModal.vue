@@ -4,24 +4,24 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "SwitchAutomatorEditorModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   props: {
     callback: {
       type: Function,
       required: false,
-      default: () => ({})
+      default: () => ({}),
     },
     lostBlocks: {
       type: Number,
       required: false,
       default: 0,
-    }
+    },
   },
   data() {
     return {
       errorCount: 0,
-      isCurrentlyBlocks: false
+      isCurrentlyBlocks: false,
     };
   },
   computed: {
@@ -31,11 +31,11 @@ export default {
       },
       set(value) {
         this.$viewModel.tabs.reality.automator.editorScriptID = value;
-      }
+      },
     },
     otherMode() {
       return this.isCurrentlyBlocks ? "Text" : "Block";
-    }
+    },
   },
   methods: {
     update() {
@@ -45,8 +45,8 @@ export default {
     toggleAutomatorMode() {
       AutomatorBackend.changeModes(this.currentScriptID);
       this.callback?.();
-    }
-  }
+    },
+  },
 };
 </script>
 

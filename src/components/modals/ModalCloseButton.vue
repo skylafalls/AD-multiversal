@@ -4,8 +4,8 @@ import PrimaryButton from "@/components/PrimaryButton";
 export default {
   name: "ModalCloseButton",
   components: {
-    PrimaryButton
-  }
+    PrimaryButton,
+  },
 };
 </script>
 

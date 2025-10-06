@@ -7,7 +7,7 @@ import { MultiplierTabIcons } from "./icons";
 // See index.js for documentation
 export const ID = {
   total: {
-    name: dim => {
+    name: (dim) => {
       if (dim) return `ID ${dim} Multiplier`;
       if (EternityChallenge(7).isRunning) return "AD7 Production";
       return "Infinity Power Production";
@@ -19,9 +19,9 @@ export const ID = {
     multValue: dim => (dim
       ? InfinityDimension(dim).multiplier
       : InfinityDimensions.all
-        .filter(id => id.isProducing)
-        .map(id => id.multiplier)
-        .reduce((x, y) => x.times(y), DC.D1)),
+          .filter(id => id.isProducing)
+          .map(id => id.multiplier)
+          .reduce((x, y) => x.times(y), DC.D1)),
     isActive: dim => (dim
       ? InfinityDimension(dim).isProducing
       : (PlayerProgress.eternityUnlocked() || InfinityDimension(1).isProducing)),
@@ -37,7 +37,7 @@ export const ID = {
   },
   purchase: {
     name: dim => (dim ? `Purchased ID ${dim}` : "Purchases"),
-    multValue: dim => {
+    multValue: (dim) => {
       const getMult = id => Decimal.pow(InfinityDimension(id).powerMultiplier,
         Math.floor(InfinityDimension(id).baseAmount / 10));
       if (dim) return getMult(dim);
@@ -50,7 +50,7 @@ export const ID = {
     icon: dim => MultiplierTabIcons.PURCHASE("ID", dim),
   },
   highestDim: {
-    name: () => `Amount of highest Dimension`,
+    name: () => "Amount of highest Dimension",
     displayOverride: () => {
       const dim = MultiplierTabHelper.activeDimCount("ID");
       return `ID ${dim}, ${format(InfinityDimension(dim).amount, 2)}`;
@@ -62,8 +62,8 @@ export const ID = {
 
   basePurchase: {
     name: "Base purchases",
-    multValue: dim => {
-      const getMult = id => {
+    multValue: (dim) => {
+      const getMult = (id) => {
         const purchases = id === 8
           ? Math.floor(InfinityDimension(id).baseAmount / 10)
           : Math.min(InfinityDimensions.HARDCAP_PURCHASES, Math.floor(InfinityDimension(id).baseAmount / 10));
@@ -81,8 +81,8 @@ export const ID = {
   },
   tesseractPurchase: {
     name: "Tesseracts",
-    multValue: dim => {
-      const getMult = id => {
+    multValue: (dim) => {
+      const getMult = (id) => {
         if (id === 8) return DC.D1;
         const purchases = Math.floor(InfinityDimension(id).baseAmount / 10);
         return Decimal.pow(InfinityDimension(id)._powerMultiplier,
@@ -133,11 +133,11 @@ export const ID = {
   },
   timeStudy: {
     name: dim => (dim ? `Time Studies (ID ${dim})` : "Time Studies"),
-    multValue: dim => {
+    multValue: (dim) => {
       const allMult = DC.D1.timesEffectsOf(
         TimeStudy(82),
         TimeStudy(92),
-        TimeStudy(162)
+        TimeStudy(162),
       );
       if (dim) return dim === 4 ? allMult.times(TimeStudy(72).effectOrDefault(1)) : allMult;
       const maxActiveDim = MultiplierTabHelper.activeDimCount("ID");
@@ -148,7 +148,7 @@ export const ID = {
   },
   eternityUpgrade: {
     name: "Eternity Upgrades",
-    multValue: dim => {
+    multValue: (dim) => {
       const allMult = DC.D1.timesEffectsOf(
         EternityUpgrade.idMultEP,
         EternityUpgrade.idMultEternities,
@@ -184,7 +184,7 @@ export const ID = {
 
   infinityChallenge: {
     name: "Infinity Challenges",
-    multValue: dim => {
+    multValue: (dim) => {
       const allMult = DC.D1.timesEffectsOf(
         InfinityChallenge(1).reward,
         InfinityChallenge(6).reward,
@@ -196,7 +196,7 @@ export const ID = {
   },
   eternityChallenge: {
     name: dim => (dim ? `Eternity Challenges (ID ${dim})` : " Eternity Challenges"),
-    multValue: dim => {
+    multValue: (dim) => {
       const allMult = DC.D1.timesEffectsOf(
         EternityChallenge(4).reward,
         EternityChallenge(9).reward,
@@ -249,7 +249,7 @@ export const ID = {
   },
   pelle: {
     name: "Pelle Rift Effects",
-    multValue: dim => {
+    multValue: (dim) => {
       const mult = DC.D1.timesEffectsOf(PelleRifts.recursion.milestones[1]);
       const maxActiveDim = MultiplierTabHelper.activeDimCount("ID");
       // This only affects ID1
@@ -287,5 +287,5 @@ export const ID = {
     powValue: 0.5,
     isActive: () => PelleStrikes.powerGalaxies.hasStrike,
     icon: MultiplierTabIcons.PELLE,
-  }
+  },
 };

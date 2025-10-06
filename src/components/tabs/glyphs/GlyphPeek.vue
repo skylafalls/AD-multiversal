@@ -4,7 +4,7 @@ import GlyphSetPreview from "@/components/GlyphSetPreview";
 export default {
   name: "GlyphPeek",
   components: {
-    GlyphSetPreview
+    GlyphSetPreview,
   },
   data() {
     return {
@@ -44,8 +44,8 @@ export default {
         isGlyphSelection: true,
         showSetName: false,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

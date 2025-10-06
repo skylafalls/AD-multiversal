@@ -10,12 +10,12 @@ export default {
     GlyphSetPreview,
     PerkShopUpgradeButton,
     CelestialQuoteHistory,
-    CustomizeableTooltip
+    CustomizeableTooltip,
   },
   data() {
     return {
       pour: false,
-      time: new Date().getTime(),
+      time: Date.now(),
       pouredAmount: 0,
       isPouredAmountCapped: false,
       rm: new Decimal(0),
@@ -58,7 +58,7 @@ export default {
         "c-teresa-run-button__icon": true,
         "c-teresa-run-button__icon--running": this.isRunning,
         "c-celestial-run-button--clickable": !this.isDoomed,
-        "o-pelle-disabled-pointer": this.isDoomed
+        "o-pelle-disabled-pointer": this.isDoomed,
       };
     },
     pourButtonClassObject() {
@@ -68,7 +68,7 @@ export default {
         "o-teresa-shop-button--available": !this.isPouredAmountCapped,
         "o-teresa-shop-button--capped": this.isPouredAmountCapped,
         "c-teresa-pour--unlock-available": this.canUnlockNextPour,
-        "c-disabled-pour": this.isPouredAmountCapped
+        "c-disabled-pour": this.isPouredAmountCapped,
       };
     },
     pourText() {
@@ -84,14 +84,14 @@ export default {
     },
     unlockInfoTooltipArrowStyle() {
       return {
-        borderRight: "0.5rem solid var(--color-teresa--base)"
+        borderRight: "0.5rem solid var(--color-teresa--base)",
       };
     },
     isDoomed: () => Pelle.isDoomed,
   },
   methods: {
     update() {
-      const now = new Date().getTime();
+      const now = Date.now();
       if (this.pour) {
         const diff = (now - this.time) / 1000;
         Teresa.pourRM(diff);
@@ -109,7 +109,7 @@ export default {
       this.hasPerkShop = TeresaUnlocks.shop.isUnlocked;
       this.raisedPerkShop = Ra.unlocks.perkShopIncrease.canBeApplied;
       this.bestAM.copyFrom(player.celestials.teresa.bestRunAM);
-      this.bestAMSet = cloneDeep(Glyphs.copyForRecords(player.celestials.teresa.bestAMSet));
+      this.bestAMSet = structuredClone(Glyphs.copyForRecords(player.celestials.teresa.bestAMSet));
       this.lastMachines.copyFrom(player.celestials.teresa.lastRepeatedMachines);
       this.lastiM.copyFrom(player.celestials.teresa.lastRepeatediM);
       this.runReward.copyFrom(Teresa.runRewardMultiplier);
@@ -117,7 +117,7 @@ export default {
       this.rm.copyFrom(Currency.realityMachines);
       this.isRunning = Teresa.isRunning;
       this.canUnlockNextPour = TeresaUnlocks.all
-        .filter(unlock => this.rm.plus(this.pouredAmount).gte(unlock.price) && !unlock.isUnlocked).length > 0;
+        .some(unlock => this.rm.plus(this.pouredAmount).gte(unlock.price) && !unlock.isUnlocked).length > 0;
     },
     startRun() {
       if (this.isDoomed) return;
@@ -134,10 +134,10 @@ export default {
     unlockInfoTooltipClass(unlockInfo) {
       return {
         "c-teresa-unlock-description": true,
-        "c-teresa-unlock-description--unlocked": this.hasUnlock(unlockInfo)
+        "c-teresa-unlock-description--unlocked": this.hasUnlock(unlockInfo),
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

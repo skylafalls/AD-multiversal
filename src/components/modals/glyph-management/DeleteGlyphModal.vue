@@ -4,17 +4,17 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "DeleteGlyphModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   props: {
     idx: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      confirmedDelete: false
+      confirmedDelete: false,
     };
   },
   computed: {
@@ -26,7 +26,6 @@ export default {
     update() {
       const newGlyph = Glyphs.findByInventoryIndex(this.idx);
       if (this.glyph !== newGlyph && !this.confirmedDelete) {
-
         // Why is confirmedDelete here: refer to SacrificeGlyphModal.vue
 
         this.emitClose();

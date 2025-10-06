@@ -8,12 +8,12 @@ export default {
   name: "PelleRift",
   components: {
     PelleStrike,
-    PelleRiftBar
+    PelleRiftBar,
   },
   props: {
     strike: {
       type: Object,
-      required: true
+      required: true,
     },
   },
   data() {
@@ -24,7 +24,7 @@ export default {
       totalFill: new Decimal(),
       resource: new Decimal(),
       hasEffectiveFill: false,
-      effects: []
+      effects: [],
     };
   },
   computed: {
@@ -39,7 +39,7 @@ export default {
     infoTooltip() {
       return `The Replicanti requirement for the 2nd Rift is based on the total amount you have ever filled, including
         any amount drained to fill this Rift.`;
-    }
+    },
   },
   methods: {
     update() {
@@ -69,7 +69,7 @@ export default {
       return this.specialRift
         ? wordShift.wordCycle(this.rift.drainResource)
         : this.rift.drainResource;
-    }
+    },
   },
 };
 </script>

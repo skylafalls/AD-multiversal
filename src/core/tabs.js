@@ -22,8 +22,8 @@ class SubtabState {
 
   get isHidden() {
     if (Enslaved.isRunning || Pelle.hasGalaxyGenerator) return false;
-    return ((player.options.hiddenSubtabBits[this._parent.id] & (1 << this.id)) !== 0) &&
-      this.hidable;
+    return ((player.options.hiddenSubtabBits[this._parent.id] & (1 << this.id)) !== 0)
+      && this.hidable;
   }
 
   get isUnlocked() {
@@ -137,7 +137,7 @@ class TabState {
     return this.subtabs.some(tab => tab.hasNotification);
   }
 
-  show(manual, subtab = undefined) {
+  show(manual, subtab) {
     if (!manual && !player.options.automaticTabSwitching || Quote.isOpen) return;
     if (subtab !== undefined) {
       if (!Enslaved.isRunning) subtab.unhideTab();
@@ -186,10 +186,10 @@ class TabState {
 
 export const Tab = GameDatabase.tabs.mapToObject(
   config => config.key,
-  config => new TabState(config)
+  config => new TabState(config),
 );
 
-export const Tabs = (function() {
+export const Tabs = (function () {
   return {
     all: Object.values(Tab),
     get current() {

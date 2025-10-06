@@ -4,17 +4,17 @@ import CelestialQuoteLine from "@/components/modals/celestial-quotes/CelestialQu
 export default {
   name: "CelestialQuoteBasicInteractable",
   components: {
-    CelestialQuoteLine
+    CelestialQuoteLine,
   },
   props: {
     quote: {
       type: Object,
-      required: true
+      required: true,
     },
     isFocused: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     primary: {
       type: Boolean,
@@ -24,17 +24,17 @@ export default {
     leftVisible: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     rightVisible: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     closeVisible: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
   },
   data() {
@@ -52,7 +52,7 @@ export default {
       },
       set(x) {
         this.index = Math.clamp(x, 0, this.totalLines - 1);
-      }
+      },
     },
     isQuoteStart() {
       return this.currentLine === 0;
@@ -73,9 +73,12 @@ export default {
     progressIn(direction) {
       if (!this.isFocused) return false;
       switch (direction) {
-        case "left": return this.currentLine--;
-        case "right": return this.currentLine++;
-        default: return false;
+        case "left": { return this.currentLine--;
+        }
+        case "right": { return this.currentLine++;
+        }
+        default: { return false;
+        }
       }
     },
     close() {

@@ -27,7 +27,7 @@ export default {
         name: script.name,
       }));
     },
-  }
+  },
 };
 </script>
 

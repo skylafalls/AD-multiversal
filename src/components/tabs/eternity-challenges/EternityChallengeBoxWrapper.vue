@@ -4,32 +4,32 @@ import HintText from "@/components/HintText";
 export default {
   name: "EternityChallengeBoxWrapper",
   components: {
-    HintText
+    HintText,
   },
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     isUnlocked: {
       type: Boolean,
-      required: true
+      required: true,
     },
     isRunning: {
       type: Boolean,
-      required: true
+      required: true,
     },
     isCompleted: {
       type: Boolean,
-      required: true
+      required: true,
     },
     canBeUnlocked: {
       type: Boolean,
-      required: true
+      required: true,
     },
     completionCount: {
       type: Number,
-      required: true
+      required: true,
     },
     overrideLabel: {
       type: String,
@@ -65,18 +65,18 @@ export default {
     // Width and height attributes are copied from o-challenge-btn
     completionOverlay() {
       return {
-        position: "absolute",
-        width: `${15 * Math.clampMax(this.completionCount / 5, 1)}rem`,
-        height: "3rem",
-        background: "var(--color-good)",
-        opacity: this.completionCount >= 5 ? 0 : 0.3,
+        "position": "absolute",
+        "width": `${15 * Math.clampMax(this.completionCount / 5, 1)}rem`,
+        "height": "3rem",
+        "background": "var(--color-good)",
+        "opacity": this.completionCount >= 5 ? 0 : 0.3,
         "border-top-left-radius": "var(--var-border-radius, 1rem)",
         "border-bottom-left-radius": "var(--var-border-radius, 1rem)",
         "pointer-events": "none",
       };
     },
     buttonText() {
-      if (this.overrideLabel.length) return this.overrideLabel;
+      if (this.overrideLabel.length > 0) return this.overrideLabel;
       if (this.isRunning) return "Running";
       if (this.isCompleted) {
         if (this.isUnlocked) return "Redo";
@@ -85,8 +85,8 @@ export default {
       if (this.isUnlocked) return "Start";
       if (this.canBeUnlocked) return "Unlock";
       return "Locked";
-    }
-  }
+    },
+  },
 };
 </script>
 

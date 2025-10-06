@@ -4,13 +4,13 @@ import PrimaryButton from "@/components/PrimaryButton";
 export default {
   name: "ClassicDimensionBoostRow",
   components: {
-    PrimaryButton
+    PrimaryButton,
   },
   data() {
     return {
       requirement: {
         tier: 1,
-        amount: new Decimal()
+        amount: new Decimal(),
       },
       isBuyable: false,
       purchasedBoosts: new Decimal(),
@@ -43,9 +43,9 @@ export default {
       return {
         "o-primary-btn--dimboost l-dim-row__prestige-button": true,
         "tutorial--glow": this.isBuyable && this.hasTutorial,
-        "o-pelle-disabled-pointer": this.creditsClosed
+        "o-pelle-disabled-pointer": this.creditsClosed,
       };
-    }
+    },
   },
   methods: {
     update() {
@@ -64,8 +64,8 @@ export default {
     dimensionBoost(bulk) {
       if (!DimBoost.requirement.isSatisfied || !DimBoost.canBeBought) return;
       manualRequestDimensionBoost(bulk);
-    }
-  }
+    },
+  },
 };
 </script>
 

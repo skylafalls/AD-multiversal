@@ -4,11 +4,11 @@ import SliderComponent from "@/components/SliderComponent";
 export default {
   name: "UpdateRateSlider",
   components: {
-    SliderComponent
+    SliderComponent,
   },
   data() {
     return {
-      updateRate: 0
+      updateRate: 0,
     };
   },
   computed: {
@@ -18,9 +18,9 @@ export default {
         max: 200,
         interval: 1,
         width: "100%",
-        tooltip: false
+        tooltip: false,
       };
-    }
+    },
   },
   methods: {
     update() {
@@ -30,8 +30,8 @@ export default {
       this.updateRate = value;
       player.options.updateRate = this.updateRate;
       GameOptions.refreshUpdateRate();
-    }
-  }
+    },
+  },
 };
 </script>
 

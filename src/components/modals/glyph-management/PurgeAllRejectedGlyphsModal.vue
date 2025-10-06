@@ -4,7 +4,7 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "PurgeAllRejectedGlyphsModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   data() {
     return {
@@ -13,8 +13,8 @@ export default {
   },
   computed: {
     refiningOrSacrificing() {
-      if (this.isRefining) return `Refine`;
-      return `Sacrifice`;
+      if (this.isRefining) return "Refine";
+      return "Sacrifice";
     },
     topLabel() {
       return `You are about to ${this.refiningOrSacrificing} all rejected Glyphs`;
@@ -28,8 +28,8 @@ export default {
         all Glyphs that would be rejected by your current Glyph Filter settings.${negativeWarning}`;
     },
     extraMessage() {
-      if (this.glyphsDeleted === 0) return `This will remove no Glyphs.`;
-      if (this.glyphsDeleted === this.glyphsTotal) return `This will remove all your Glyphs.`;
+      if (this.glyphsDeleted === 0) return "This will remove no Glyphs.";
+      if (this.glyphsDeleted === this.glyphsTotal) return "This will remove all your Glyphs.";
       return `This process will remove ${this.glyphsDeleted}/${this.glyphsTotal} Glyphs.`;
     },
 

@@ -6,7 +6,7 @@ export const raQuotes = {
       "I am here! I am the one you are looking for... I think...",
       "What even was I again?",
       "Oh right, the Celestial of Memories.",
-    ]
+    ],
   },
   realityEnter: {
     id: 1,
@@ -14,7 +14,7 @@ export const raQuotes = {
       "I have not seen the others in so long...",
       "Can you help me remember them?",
       "I could give you powers in exchange.",
-    ]
+    ],
   },
   teresaStart: {
     id: 2,
@@ -22,7 +22,7 @@ export const raQuotes = {
     lines: [
       "Te... re... sa...",
       "I think I remember.",
-    ]
+    ],
   },
   teresaLate: {
     id: 3,
@@ -31,7 +31,7 @@ export const raQuotes = {
       "Teresa dealt with machines, I believe.",
       "I remember visiting Teresa’s shop a few times.",
       "Wait, someone else had a shop too, right?",
-    ]
+    ],
   },
   effarigStart: {
     id: 4,
@@ -39,7 +39,7 @@ export const raQuotes = {
     lines: [
       "Eff... a... rig",
       "I remember Effarig being friendly.",
-    ]
+    ],
   },
   effarigLate: {
     id: 5,
@@ -48,14 +48,14 @@ export const raQuotes = {
       "Effarig was very particular?",
       "And I also remember a frightening Reality...",
       "It was about... suffering?",
-    ]
+    ],
   },
   enslavedStart: {
     id: 6,
     requirement: () => Ra.pets.enslaved.level >= 2,
     lines: [
       "I cannot remember this one completely...",
-    ]
+    ],
   },
   enslavedLate: {
     id: 7,
@@ -65,7 +65,7 @@ export const raQuotes = {
       "Why I am here...",
       "Why I am alone...",
       "Help me.",
-    ]
+    ],
   },
   vStart: {
     id: 8,
@@ -73,7 +73,7 @@ export const raQuotes = {
     lines: [
       "Had I met this one?",
       "So lonely, yet willingly so...",
-    ]
+    ],
   },
   vLate: {
     id: 9,
@@ -81,7 +81,7 @@ export const raQuotes = {
     lines: [
       "I think I met V once...",
       "I can remember the achievements.",
-    ]
+    ],
   },
   remembrance: {
     id: 10,
@@ -91,7 +91,7 @@ export const raQuotes = {
       "Watch this!",
       "Remembrance!",
       "I can focus even harder on remembering them now!",
-    ]
+    ],
   },
   midMemories: {
     id: 11,
@@ -101,7 +101,7 @@ export const raQuotes = {
       "I can only copy the ones of my friends.",
       "But... why am I hearing voices?",
       "Are they asking for help?",
-    ]
+    ],
   },
   lateMemories: {
     id: 12,
@@ -111,7 +111,7 @@ export const raQuotes = {
       "You... whatever you are?",
       "What is happening?",
       "Am I doing something wrong?",
-    ]
+    ],
   },
   maxLevels: {
     id: 13,
@@ -125,6 +125,6 @@ export const raQuotes = {
       "They steal, they corrupt.",
       "Please leave.",
       "I do not want to hurt you too.",
-    ]
+    ],
   },
 };

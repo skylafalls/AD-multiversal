@@ -6,7 +6,7 @@ export default {
     isDisabled: Boolean,
     name: {
       type: String,
-      required: true
+      required: true,
     },
   },
   computed: {
@@ -22,13 +22,13 @@ export default {
           "o-autobuyer-toggle-checkbox__label": true,
           "o-autobuyer-toggle-checkbox__label--active-paused": this.isActive,
           "o-autobuyer-toggle-checkbox__label--deactive-paused": !this.isActive,
-          "o-autobuyer-toggle-checkbox__label--disabled": this.isDisabled
+          "o-autobuyer-toggle-checkbox__label--disabled": this.isDisabled,
         };
       }
       return {
         "o-autobuyer-toggle-checkbox__label": true,
         "o-autobuyer-toggle-checkbox__label--active": this.isActive,
-        "o-autobuyer-toggle-checkbox__label--disabled": this.isDisabled
+        "o-autobuyer-toggle-checkbox__label--disabled": this.isDisabled,
       };
     },
   },

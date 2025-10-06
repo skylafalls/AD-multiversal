@@ -25,10 +25,10 @@ export default {
     resourceClass() {
       return {
         "c-reality-tab__reality-machines": true,
-        "c-shard-color": this.isDoomed
+        "c-shard-color": this.isDoomed,
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

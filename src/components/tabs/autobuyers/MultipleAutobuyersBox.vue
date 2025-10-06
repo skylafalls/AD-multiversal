@@ -65,8 +65,8 @@ export default {
     },
     toggleGroup() {
       this.type.toggle();
-    }
-  }
+    },
+  },
 };
 </script>
 

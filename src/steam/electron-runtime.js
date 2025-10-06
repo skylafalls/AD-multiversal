@@ -73,5 +73,5 @@ export const ElectronRuntime = {
     const setSize = 1020;
     const sizeDiff = window.outerHeight / setSize;
     Electron.setZoomFactor(sizeDiff * zoomFactor);
-  }
+  },
 };

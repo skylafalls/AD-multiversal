@@ -8,14 +8,14 @@ export const enslavedQuotes = {
       "Place time... into places... that need it...",
       "Watch ourselves grow... pass and die.",
       "Perhaps you... will break these chains... we will wait.",
-    ]
+    ],
   },
   unlockRun: {
     id: 1,
     lines: [
       "The others... used us. They will use... or destroy you.",
       "End our suffering... power will be yours...",
-    ]
+    ],
   },
   startRun: {
     id: 2,
@@ -23,21 +23,21 @@ export const enslavedQuotes = {
       "So little space... but no... prison... is perfect.",
       "They squeezed... this Reality... too tightly. Cracks appeared.",
       "Search... everywhere. We will help... where we can.",
-    ]
+    ],
   },
   hintUnlock: {
     id: 3,
     lines: [
       "... you need... to look harder...",
       "We think... we can help...",
-      { text: "You have unlocked help from The Nameless Ones.", showCelestialName: false }
-    ]
+      { text: "You have unlocked help from The Nameless Ones.", showCelestialName: false },
+    ],
   },
   ec6C10: {
     id: 4,
     lines: [
-      "... did not... underestimate you..."
-    ]
+      "... did not... underestimate you...",
+    ],
   },
   completeReality: {
     id: 5,
@@ -45,6 +45,6 @@ export const enslavedQuotes = {
       "All... fragments... clones... freed.",
       "We have given... tools... of our imprisoning. Use them...",
       "Freedom from torture... is torture itself.",
-    ]
+    ],
   },
 };

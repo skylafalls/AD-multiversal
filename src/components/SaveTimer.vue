@@ -31,8 +31,8 @@ export default {
     },
     save() {
       GameStorage.save(false, true);
-    }
-  }
+    },
+  },
 };
 </script>
 

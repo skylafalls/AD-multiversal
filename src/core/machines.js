@@ -1,7 +1,9 @@
 import { DC } from "./constants";
 
 export const MachineHandler = {
-  get baseRMCap() { return DC.E1000; },
+  get baseRMCap() {
+    return DC.E1000;
+  },
 
   get hardcapRM() {
     return this.baseRMCap.times(ImaginaryUpgrade(6).effectOrDefault(1));
@@ -80,5 +82,5 @@ export const MachineHandler = {
     // fixed interval the difference between current iM to max iM should decrease by a factor of 1/2.
     return Decimal.max(0, Decimal.log(imCap.div(imCap.sub(cost)), 2).sub(Decimal.log(
       imCap.div(imCap.sub(currentIM)), 2))).times(this.scaleTimeForIM);
-  }
+  },
 };

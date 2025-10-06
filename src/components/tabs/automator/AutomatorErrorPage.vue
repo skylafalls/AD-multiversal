@@ -13,8 +13,8 @@ export default {
     scrollToLine(line) {
       AutomatorScroller.scrollToLine(line);
       AutomatorHighlighter.updateHighlightedLine(line, LineEnum.Error);
-    }
-  }
+    },
+  },
 };
 </script>
 

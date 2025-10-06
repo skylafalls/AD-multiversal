@@ -8,17 +8,17 @@ export default {
   components: {
     DimensionBulkButton,
     AutobuyerBox,
-    AutobuyerIntervalButton
+    AutobuyerIntervalButton,
   },
   props: {
     tier: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      mode: AUTOBUYER_MODE.BUY_SINGLE
+      mode: AUTOBUYER_MODE.BUY_SINGLE,
     };
   },
   computed: {
@@ -30,11 +30,13 @@ export default {
     },
     modeDisplay() {
       switch (this.mode) {
-        case AUTOBUYER_MODE.BUY_SINGLE: return "Buys singles";
-        case AUTOBUYER_MODE.BUY_10: return "Buys max";
+        case AUTOBUYER_MODE.BUY_SINGLE: { return "Buys singles";
+        }
+        case AUTOBUYER_MODE.BUY_10: { return "Buys max";
+        }
       }
-      throw "Unknown Dimension Autobuyer mode";
-    }
+      throw new Error("Unknown Dimension Autobuyer mode");
+    },
   },
   methods: {
     update() {
@@ -43,8 +45,8 @@ export default {
     toggleMode() {
       this.autobuyer.toggleMode();
       this.update();
-    }
-  }
+    },
+  },
 };
 </script>
 

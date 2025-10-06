@@ -22,8 +22,19 @@ export class BlackHolePowerAutobuyerState extends AutobuyerState {
     while (Currency.realityMachines.gte(bh.powerUpgrade.cost)) bh.powerUpgrade.purchase();
   }
 
-  static get entryCount() { return 2; }
-  static get autobuyerGroupName() { return "Black Hole Power"; }
-  static get isActive() { return player.auto.blackHolePower.isActive; }
-  static set isActive(value) { player.auto.blackHolePower.isActive = value; }
+  static get entryCount() {
+    return 2;
+  }
+
+  static get autobuyerGroupName() {
+    return "Black Hole Power";
+  }
+
+  static get isActive() {
+    return player.auto.blackHolePower.isActive;
+  }
+
+  static set isActive(value) {
+    player.auto.blackHolePower.isActive = value;
+  }
 }

@@ -1,12 +1,9 @@
-/* eslint-disable no-console */
-
 import { STEAM } from "@/env";
 
 /**
  * @template TModule
  */
 export class NodeModule {
-
   /**
    * @param {string} name
    */
@@ -30,7 +27,7 @@ export class NodeModule {
    */
   makePromise(executor) {
     if (!this.isLoaded) {
-      throw Error(`Node module "${this.name}" is not loaded.`);
+      throw new Error(`Node module "${this.name}" is not loaded.`);
     }
 
     return new Promise((resolve, reject) => {
@@ -46,7 +43,7 @@ export class NodeModule {
    */
   safeCall(call, defaultValue) {
     if (!this.isLoaded) {
-      throw Error(`Node module "${this.name}" is not loaded.`);
+      throw new Error(`Node module "${this.name}" is not loaded.`);
     }
 
     try {

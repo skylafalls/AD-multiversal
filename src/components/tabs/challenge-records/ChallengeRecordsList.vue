@@ -4,16 +4,16 @@ export default {
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     start: {
       type: Number,
-      required: true
+      required: true,
     },
     times: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     timeSum() {
@@ -21,7 +21,7 @@ export default {
     },
     completedAllChallenges() {
       return this.timeSum.lt(new Decimal("10^^8900000000000000"));
-    }
+    },
   },
   methods: {
     timeDisplayShort,
@@ -29,8 +29,8 @@ export default {
       return time.lt(new Decimal("10^^8900000000000000"))
         ? `record time: ${timeDisplayShort(time)}`
         : "has not yet been completed";
-    }
-  }
+    },
+  },
 };
 </script>
 

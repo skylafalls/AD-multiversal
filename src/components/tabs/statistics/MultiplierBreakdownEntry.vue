@@ -6,7 +6,7 @@ import PrimaryToggleButton from "@/components/PrimaryToggleButton";
 
 // A few props are special-cased because they're base values which can be less than 1, but we don't want to
 // show them as nerfs
-const nerfBlacklist = ["IP_base", "EP_base", "TP_base"];
+const nerfBlacklist = new Set(["IP_base", "EP_base", "TP_base"]);
 
 function padPercents(percents) {
   // Add some padding to percents to prevent text flicker
@@ -17,7 +17,7 @@ function padPercents(percents) {
 export default {
   name: "MultiplierBreakdownEntry",
   components: {
-    PrimaryToggleButton
+    PrimaryToggleButton,
   },
   props: {
     resource: {
@@ -28,7 +28,7 @@ export default {
       type: Boolean,
       required: false,
       default: false,
-    }
+    },
   },
   data() {
     return {
@@ -76,7 +76,7 @@ export default {
     disabledText() {
       if (!this.resource.isBase) return `Total effect inactive, disabled, or reduced to ${formatX(1)}`;
       return Decimal.eq(this.resource.mult, 0)
-        ? `You cannot gain this resource (prestige requirement not reached)`
+        ? "You cannot gain this resource (prestige requirement not reached)"
         : `You have no multipliers for this resource (will gain ${format(1)} on prestige)`;
     },
     // IC4 is the first time the player sees a power-based effect, not counting how infinity power is handled.
@@ -157,7 +157,7 @@ export default {
 
         // This is clamped to a minimum of something that's still nonzero in order to show it at <0.1% instead of 0%
         percentList.push(
-          [entry.ignoresNerfPowers, nerfBlacklist.includes(entry.key) ? Decimal.clampMin(perc, 0.0001) : perc]
+          [entry.ignoresNerfPowers, nerfBlacklist.has(entry.key) ? Decimal.clampMin(perc, 0.0001) : perc],
         );
       }
 
@@ -171,7 +171,7 @@ export default {
       const totalPerc = percentList.filter(p => p[1] > 0).map(p => p[1]).sum();
       const nerfedPerc = percentList.filter(p => p[1] > 0)
         .reduce((x, y) => x + (y[0] ? y[1] : y[1] * totalNegPow), 0);
-      percentList = percentList.map(p => {
+      percentList = percentList.map((p) => {
         if (p[1] > 0) {
           return (p[0] ? p[1] : p[1] * totalNegPow) / nerfedPerc;
         }
@@ -190,14 +190,14 @@ export default {
       const percents = this.averagedPercentList[index];
       const barSize = perc => (perc > 0 ? perc * netPerc : -perc);
       return {
-        position: "absolute",
-        top: `${100 * this.averagedPercentList.slice(0, index).map(p => barSize(p)).sum()}%`,
-        height: `${100 * barSize(percents)}%`,
-        width: "100%",
+        "position": "absolute",
+        "top": `${100 * this.averagedPercentList.slice(0, index).map(p => barSize(p)).sum()}%`,
+        "height": `${100 * barSize(percents)}%`,
+        "width": "100%",
         "transition-duration": this.isRecent(this.lastLayoutChange) ? undefined : "0.2s",
-        border: percents === 0 ? "" : "0.1rem solid var(--color-text)",
-        color: iconObj?.textColor ?? "black",
-        background: isNerf
+        "border": percents === 0 ? "" : "0.1rem solid var(--color-text)",
+        "color": iconObj?.textColor ?? "black",
+        "background": isNerf
           ? `repeating-linear-gradient(-45deg, var(--color-bad), ${iconObj?.color} 0.8rem)`
           : iconObj?.color,
       };
@@ -222,12 +222,12 @@ export default {
     },
     expandIconStyle(index) {
       return {
-        opacity: this.hasChildEntries(index) ? 1 : 0
+        opacity: this.hasChildEntries(index) ? 1 : 0,
       };
     },
     entryString(index) {
       const percents = this.percentList[index];
-      if (percents < 0 && !nerfBlacklist.includes(this.entries[index].key)) {
+      if (percents < 0 && !nerfBlacklist.has(this.entries[index].key)) {
         return this.nerfString(index);
       }
 
@@ -251,7 +251,7 @@ export default {
       if (overrideStr) valueStr = `(${overrideStr})`;
       else {
         const values = [];
-        const formatFn = x => {
+        const formatFn = (x) => {
           const isDilated = entry.isDilated;
           if (isDilated && this.dilationExponent !== 1) {
             const undilated = this.applyDilationExp(x, 1 / this.dilationExponent);
@@ -350,7 +350,7 @@ export default {
     },
     isRecent(date) {
       return (this.now - date) < 200;
-    }
+    },
   },
 };
 </script>

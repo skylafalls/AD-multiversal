@@ -3,7 +3,7 @@ export default {
   name: "SelectLargeNotationDropdown",
   computed: {
     notations: () => LNotations.all,
-  }
+  },
 };
 </script>
 

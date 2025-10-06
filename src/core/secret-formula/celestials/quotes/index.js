@@ -13,5 +13,5 @@ export const quotes = {
   v: vQuotes,
   ra: raQuotes,
   laitela: laitelaQuotes,
-  pelle: pelleQuotes
+  pelle: pelleQuotes,
 };

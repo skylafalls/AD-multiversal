@@ -4,7 +4,7 @@ import SliderComponent from "@/components/SliderComponent";
 export default {
   name: "AutosaveIntervalSlider",
   components: {
-    SliderComponent
+    SliderComponent,
   },
   props: {
     min: {
@@ -18,11 +18,11 @@ export default {
     interval: {
       type: Number,
       required: true,
-    }
+    },
   },
   data() {
     return {
-      sliderInterval: 10
+      sliderInterval: 10,
     };
   },
   computed: {
@@ -32,7 +32,7 @@ export default {
         max: this.max,
         interval: this.interval,
         width: "100%",
-        tooltip: false
+        tooltip: false,
       };
     },
   },
@@ -44,8 +44,8 @@ export default {
       this.sliderInterval = value;
       player.options.autosaveInterval = this.sliderInterval * 1000;
       GameOptions.refreshAutosaveInterval();
-    }
-  }
+    },
+  },
 };
 </script>
 

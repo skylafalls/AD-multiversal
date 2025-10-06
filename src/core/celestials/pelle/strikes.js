@@ -1,8 +1,13 @@
 import { BitUpgradeState } from "../../utils";
 
 class PelleStrikeState extends BitUpgradeState {
-  get bits() { return player.celestials.pelle.progressBits; }
-  set bits(value) { player.celestials.pelle.progressBits = value; }
+  get bits() {
+    return player.celestials.pelle.progressBits;
+  }
+
+  set bits(value) {
+    player.celestials.pelle.progressBits = value;
+  }
 
   get hasStrike() {
     return this.isUnlocked;
@@ -47,5 +52,5 @@ class PelleStrikeState extends BitUpgradeState {
 
 export const PelleStrikes = mapGameDataToObject(
   GameDatabase.celestials.pelle.strikes,
-  config => new PelleStrikeState(config)
+  config => new PelleStrikeState(config),
 );

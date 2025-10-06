@@ -9,7 +9,7 @@ export default {
   computed: {
     classObject() {
       return {
-        "c-reality-upgrade-btn--unavailable": !this.canBeUnlocked
+        "c-reality-upgrade-btn--unavailable": !this.canBeUnlocked,
       };
     },
   },
@@ -20,8 +20,8 @@ export default {
     unlock() {
       BlackHoles.unlock();
       this.$emit("blackholeunlock");
-    }
-  }
+    },
+  },
 };
 </script>
 

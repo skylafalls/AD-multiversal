@@ -11,7 +11,7 @@ export const NewsHandler = {
 
     const groups = id.match(/([a-z]+)(\d+)/u);
     const type = groups[1];
-    const number = parseInt(groups[2], 10);
+    const number = Number.parseInt(groups[2], 10);
 
     // This check is needed for migration purposes because we attempt to add news tickers before the relevant
     // properties are created in both normal and dev migrations. There's some odd behavior which results in changes
@@ -29,7 +29,7 @@ export const NewsHandler = {
   hasSeenNews(id) {
     const groups = id.match(/([a-z]+)(\d+)/u);
     const type = groups[1];
-    const number = parseInt(groups[2], 10);
+    const number = Number.parseInt(groups[2], 10);
     const bitArray = player.news.seen[type];
 
     if (!bitArray || this.BITS_PER_MASK * bitArray.length < number) return false;
@@ -44,5 +44,5 @@ export const NewsHandler = {
       }
     }
     return totalSeen;
-  }
+  },
 };

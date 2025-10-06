@@ -9,7 +9,7 @@ export const effarigUnlocks = {
       Effarig.quotes.unlockWeights.show();
       ui.view.tabs.reality.openGlyphWeights = true;
       Tab.reality.glyphs.show();
-    }
+    },
   },
   glyphFilter: {
     id: 1,
@@ -18,7 +18,7 @@ export const effarigUnlocks = {
     onPurchased: () => {
       Effarig.quotes.unlockGlyphFilter.show();
       player.reality.showSidebarPanel = GLYPH_SIDEBAR_MODE.FILTER_SETTINGS;
-    }
+    },
   },
   setSaves: {
     id: 2,
@@ -27,7 +27,7 @@ export const effarigUnlocks = {
     onPurchased: () => {
       Effarig.quotes.unlockSetSaves.show();
       player.reality.showSidebarPanel = GLYPH_SIDEBAR_MODE.SAVED_SETS;
-    }
+    },
   },
   run: {
     id: 3,
@@ -35,7 +35,7 @@ export const effarigUnlocks = {
     cost: 5e11,
     onPurchased: () => {
       Effarig.quotes.unlockRun.show();
-    }
+    },
   },
   infinity: {
     id: 4,
@@ -62,5 +62,5 @@ export const effarigUnlocks = {
     get description() {
       return " You have unlocked Effarig Glyphs (You may equip at most one and some effects are mutually exclusive)";
     },
-  }
+  },
 };

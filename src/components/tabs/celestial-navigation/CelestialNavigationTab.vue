@@ -14,7 +14,7 @@ export default {
     NodeRing,
     NodeBackground,
     NodeOverlay,
-    ProgressConnector
+    ProgressConnector,
   },
   data: () => ({
     nodeState: null,
@@ -23,7 +23,7 @@ export default {
     db() {
       return {
         ...GameDatabase.celestials.navigation,
-        ...GameDatabase.celestials.navSigils
+        ...GameDatabase.celestials.navSigils,
       };
     },
     drawOrder() {
@@ -31,7 +31,7 @@ export default {
       const order = [];
       for (const nodeId of Object.keys(db)) {
         const node = db[nodeId];
-        if (node.connector instanceof Array) {
+        if (Array.isArray(node.connector)) {
           for (const config of node.connector) {
             order.push({
               nodeId,
@@ -71,7 +71,7 @@ export default {
         order.sort((a, b) => a.drawOrder - b.drawOrder);
       }
       return order;
-    }
+    },
   },
   created() {
     this.nodeState = Object.keys(this.db).mapToObject(
@@ -79,14 +79,13 @@ export default {
       () => ({
         visible: false,
         complete: 0,
-      })
+      }),
     );
   },
   mounted() {
-    // eslint-disable-next-line no-unused-vars
-    const panLimiter = function(oldPan, newPan) {
+    const panLimiter = function (oldPan, newPan) {
       // In the callback context, "this" is the svgPanZoom object.
-      // eslint-disable-next-line no-invalid-this
+
       const sizes = this.getSizes();
       const leftLimit = sizes.width - ((sizes.viewBox.x + sizes.viewBox.width) * sizes.realZoom);
       const rightLimit = -sizes.viewBox.x * sizes.realZoom;
@@ -94,7 +93,7 @@ export default {
       const bottomLimit = -sizes.viewBox.y * sizes.realZoom;
       return {
         x: Math.max(leftLimit, Math.min(rightLimit, newPan.x)),
-        y: Math.max(topLimit, Math.min(bottomLimit, newPan.y))
+        y: Math.max(topLimit, Math.min(bottomLimit, newPan.y)),
       };
     };
     this.panZoom = svgPanZoom(this.$refs.celestialNavigationSVG, {
@@ -134,7 +133,7 @@ export default {
     nodeVisibility(obj) {
       return this.nodeState[obj.nodeId].visible ? "visible" : "hidden";
     },
-  }
+  },
 };
 export function cubicBezierArrayToPath(a, initialCommand = "M") {
   const prefix = `${initialCommand} ${a[0].p0.x} ${a[0].p0.y}\n`;

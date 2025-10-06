@@ -1,4 +1,4 @@
-export const BlackHoleAnimation = (function() {
+export const BlackHoleAnimation = (function () {
   const PLANET_SIZE = 1.5;
   const PARTICLE_SIZE = 0.5;
   const PARTICLE_COUNT = 120;
@@ -33,13 +33,13 @@ export const BlackHoleAnimation = (function() {
     /**
      * @abstract
      */
-    // eslint-disable-next-line no-empty-function, no-unused-vars
-    performDraw(context) { }
+
+    performDraw(context) {}
 
     static calculatePosition(distance, angle) {
       return {
         x: distance * Math.sin(2 * Math.PI * angle),
-        y: distance * Math.cos(2 * Math.PI * angle)
+        y: distance * Math.cos(2 * Math.PI * angle),
       };
     }
   }
@@ -274,7 +274,6 @@ export const BlackHoleAnimation = (function() {
       }
 
       if (BlackHoles.arePaused && !BlackHoles.areNegative) return;
-
 
       // Time dilation factor (Realistic formula, but only actually used for particle speed)
       const dilationFactor = 1 / Math.sqrt(1 - holeSize / this.planet.distance);

@@ -9,13 +9,13 @@ PlayFab.settings.titleId = "59813";
 export function LoginWithSteam(ticket) {
   return makePromise(clientApi.LoginWithSteam, {
     SteamTicket: ticket,
-    CreateAccount: true
+    CreateAccount: true,
   });
 }
 
 export function UpdateUserTitleDisplayName(displayName) {
   makeAuthorizedPromise(clientApi.UpdateUserTitleDisplayName, {
-    DisplayName: displayName
+    DisplayName: displayName,
   });
 }
 
@@ -25,7 +25,7 @@ export function GetUserData() {
 
 export function UpdateUserData(data) {
   return makeAuthorizedPromise(clientApi.UpdateUserData, {
-    Data: data
+    Data: data,
   });
 }
 
@@ -37,7 +37,7 @@ export function PurchaseItem(id, price, currency) {
   return makeAuthorizedPromise(clientApi.PurchaseItem, {
     ItemId: id,
     Price: price,
-    VirtualCurrency: currency
+    VirtualCurrency: currency,
   });
 }
 
@@ -46,8 +46,8 @@ export function StartPurchase(itemId, quantity, annotation) {
     Items: [{
       ItemId: itemId,
       Quantity: quantity,
-      Annotation: annotation
-    }]
+      Annotation: annotation,
+    }],
   });
 }
 
@@ -55,27 +55,27 @@ export function PayForPurchase(orderId, currency, providerName) {
   return makeAuthorizedPromise(clientApi.PayForPurchase, {
     OrderId: orderId,
     Currency: currency,
-    ProviderName: providerName
+    ProviderName: providerName,
   });
 }
 
 export function ConfirmPurchase(orderId) {
   return makeAuthorizedPromise(clientApi.ConfirmPurchase, {
-    OrderId: orderId
+    OrderId: orderId,
   });
 }
 
 export function ConsumeItem(itemInstanceId, consumeCount) {
   return makeAuthorizedPromise(clientApi.ConsumeItem, {
     ItemInstanceId: itemInstanceId,
-    ConsumeCount: consumeCount
+    ConsumeCount: consumeCount,
   });
 }
 
 export function AddUserVirtualCurrency(amount, virtualCurrency) {
   return makeAuthorizedPromise(clientApi.AddUserVirtualCurrency, {
     Amount: amount,
-    VirtualCurrency: virtualCurrency
+    VirtualCurrency: virtualCurrency,
   });
 }
 

@@ -4,13 +4,13 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "NormalChallengeStartModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   props: {
     id: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     challenge() {
@@ -38,7 +38,7 @@ export default {
         conditionOfChallenge = conditionOfChallenge();
       }
       return `Inside this Challenge, ${conditionOfChallenge}`;
-    }
+    },
   },
   created() {
     this.on$(GAME_EVENT.ETERNITY_RESET_AFTER, this.emitClose);

@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 // Copyright (c) 2011, Daniel Guerrero
 // All rights reserved.
 //
@@ -48,7 +46,7 @@ export function decodeArrayBuffer(input) {
 function removePaddingChars(input) {
   const lkey = keyStr.indexOf(input.charAt(input.length - 1));
   if (lkey === 64) {
-    return input.substring(0, input.length - 1);
+    return input.slice(0, input.length - 1);
   }
   return input;
 }
@@ -58,7 +56,7 @@ export function decodeBase64Binary(input, arrayBuffer) {
   input = removePaddingChars(input);
   input = removePaddingChars(input);
 
-  const bytes = parseInt((input.length / 4) * 3, 10);
+  const bytes = Number.parseInt((input.length / 4) * 3, 10);
 
   let array;
   let chr1, chr2, chr3;
@@ -71,7 +69,7 @@ export function decodeBase64Binary(input, arrayBuffer) {
   else
     array = new Uint8Array(bytes);
 
-  input = input.replace(/[^A-Za-z0-9+/=]/gu, "");
+  input = input.replaceAll(/[^A-Za-z0-9+/=]/gu, "");
 
   for (i = 0; i < bytes; i += 3) {
     // Get the 3 octects in 4 ascii chars

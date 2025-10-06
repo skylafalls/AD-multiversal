@@ -81,7 +81,7 @@ export default {
     },
     constantButtonText() {
       return this.ignoreConstants ? "Will Ignore Constants" : "Will Import Constants";
-    }
+    },
   },
   mounted() {
     this.$refs.input.select();
@@ -116,7 +116,7 @@ export default {
       if (this.hasExtraData) {
         AutomatorBackend.importFullScriptData(this.input, {
           presets: this.ignorePresets,
-          constants: this.ignoreConstants
+          constants: this.ignoreConstants,
         });
       } else {
         AutomatorBackend.importScriptContents(this.input);

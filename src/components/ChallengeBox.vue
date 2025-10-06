@@ -4,29 +4,29 @@ import HintText from "@/components/HintText";
 export default {
   name: "ChallengeBox",
   components: {
-    HintText
+    HintText,
   },
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     isUnlocked: {
       type: Boolean,
-      required: true
+      required: true,
     },
     isRunning: {
       type: Boolean,
-      required: true
+      required: true,
     },
     isCompleted: {
       type: Boolean,
-      required: true
+      required: true,
     },
     lockedAt: {
       type: Decimal,
       required: false,
-      default: undefined
+      default: undefined,
     },
     overrideLabel: {
       type: String,
@@ -66,14 +66,14 @@ export default {
         ? ""
         : ` (${format(this.infinities)}/${formatInt(this.lockedAt)})`;
       return `Locked${lockedText}`;
-    }
+    },
   },
   methods: {
     update() {
       this.inC1 = this.name === "C1" && !this.isCompleted && !Player.isInAntimatterChallenge;
       this.infinities.copyFrom(Currency.infinities);
     },
-  }
+  },
 };
 </script>
 

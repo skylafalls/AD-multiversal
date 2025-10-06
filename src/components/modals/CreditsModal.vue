@@ -6,7 +6,7 @@ export default {
   name: "CreditsModal",
   components: {
     CreditsDisplay,
-    ModalWrapper
+    ModalWrapper,
   },
 };
 </script>

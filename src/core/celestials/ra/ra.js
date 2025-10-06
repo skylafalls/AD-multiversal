@@ -3,8 +3,13 @@ import { GameMechanicState } from "../../game-mechanics";
 import { Quotes } from "../quotes";
 
 class RaUnlockState extends GameMechanicState {
-  get bits() { return player.celestials.ra.unlockBits; }
-  set bits(value) { player.celestials.ra.unlockBits = value; }
+  get bits() {
+    return player.celestials.ra.unlockBits;
+  }
+
+  set bits(value) {
+    player.celestials.ra.unlockBits = value;
+  }
 
   get isUnlocked() {
     return player.celestials.ra.unlocks.includes(this.id);
@@ -32,7 +37,7 @@ class RaUnlockState extends GameMechanicState {
   }
 
   get displayIcon() {
-    return this.disabledByPelle ? `<span class="fas fa-ban"></span>` : this.config.displayIcon;
+    return this.disabledByPelle ? "<span class=\"fas fa-ban\"></span>" : this.config.displayIcon;
   }
 
   get pet() {
@@ -59,7 +64,7 @@ class RaUnlockState extends GameMechanicState {
 
 const unlocks = mapGameDataToObject(
   GameDatabase.celestials.ra.unlocks,
-  config => new RaUnlockState(config)
+  config => new RaUnlockState(config),
 );
 
 class RaPetState extends GameMechanicState {
@@ -206,7 +211,7 @@ class RaPetState extends GameMechanicState {
   get unlocks() {
     return Ra.unlocks.all
       .filter(x => x.pet === this)
-      .sort((a, b) => a.level - b.level);
+      .toSorted((a, b) => a.level - b.level);
   }
 
   tick(realDiff, generateChunks) {
@@ -233,7 +238,7 @@ class RaPetState extends GameMechanicState {
 
 const pets = mapGameDataToObject(
   GameDatabase.celestials.ra.pets,
-  config => new RaPetState(config)
+  config => new RaPetState(config),
 );
 
 export const Ra = {
@@ -247,7 +252,7 @@ export const Ra = {
     requiredLevels: 20,
     get isUnlocked() {
       return Ra.totalPetLevel >= this.requiredLevels;
-    }
+    },
   },
   // Dev/debug function for easier testing
   reset() {
@@ -377,7 +382,7 @@ export const Ra = {
     if (!Ra.unlocks.effarigUnlock.canBeApplied) return;
     const sortedReactions = AlchemyReactions.all
       .compact()
-      .sort((r1, r2) => Decimal.compare(r2.priority, r1.priority));
+      .toSorted((r1, r2) => Decimal.compare(r2.priority, r1.priority));
     for (const reaction of sortedReactions) {
       reaction.combineReagents();
     }
@@ -391,7 +396,7 @@ export const Ra = {
     return Decimal.min(hoursFromUnlock.times(0.005).add(1), AlchemyResource.momentum.effectValue);
   },
   quotes: Quotes.ra,
-  symbol: "<i class='fas fa-sun'></i>"
+  symbol: "<i class='fas fa-sun'></i>",
 };
 
 export const GlyphAlteration = {
@@ -452,7 +457,7 @@ export const GlyphAlteration = {
   getBoostColor(type) {
     const isDark = CosmeticGlyphTypes[type].currentColor.bg === "black";
     return this.isBoosted(type) ? this.baseBoostColor(isDark) : undefined;
-  }
+  },
 };
 
 EventHub.logic.on(GAME_EVENT.TAB_CHANGED, () => {

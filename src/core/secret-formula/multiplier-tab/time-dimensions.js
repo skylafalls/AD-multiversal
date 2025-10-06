@@ -7,7 +7,7 @@ import { MultiplierTabIcons } from "./icons";
 // See index.js for documentation
 export const TD = {
   total: {
-    name: dim => {
+    name: (dim) => {
       if (dim) return `TD ${dim} Multiplier`;
       if (EternityChallenge(7).isRunning) return "ID8 Production";
       return "Time Shard Production";
@@ -19,9 +19,9 @@ export const TD = {
     multValue: dim => (dim
       ? TimeDimension(dim).multiplier
       : TimeDimensions.all
-        .filter(td => td.isProducing)
-        .map(td => td.multiplier)
-        .reduce((x, y) => x.times(y), DC.D1)),
+          .filter(td => td.isProducing)
+          .map(td => td.multiplier)
+          .reduce((x, y) => x.times(y), DC.D1)),
     isActive: dim => (dim
       ? TimeDimension(dim).isProducing
       : (PlayerProgress.realityUnlocked() || TimeDimension(1).isProducing)),
@@ -37,8 +37,8 @@ export const TD = {
   },
   purchase: {
     name: dim => (dim ? `Purchased TD ${dim}` : "Purchases"),
-    multValue: dim => {
-      const getMult = td => {
+    multValue: (dim) => {
+      const getMult = (td) => {
         const d = TimeDimension(td);
         const bought = td === 8 ? Math.clampMax(d.bought, 1e8) : d.bought;
         return Decimal.pow(d.powerMultiplier, bought);
@@ -53,7 +53,7 @@ export const TD = {
     icon: dim => MultiplierTabIcons.PURCHASE("TD", dim),
   },
   highestDim: {
-    name: () => `Amount of highest Dimension`,
+    name: () => "Amount of highest Dimension",
     displayOverride: () => {
       const dim = MultiplierTabHelper.activeDimCount("TD");
       return `TD ${dim}, ${formatInt(TimeDimension(dim).amount)}`;
@@ -65,7 +65,7 @@ export const TD = {
 
   basePurchase: {
     name: "Base purchases",
-    multValue: dim => {
+    multValue: (dim) => {
       const getMult = td => Decimal.pow(4,
         td === 8 ? Math.clampMax(TimeDimension(td).bought, 1e8) : TimeDimension(td).bought);
       if (dim) return getMult(dim);
@@ -103,7 +103,7 @@ export const TD = {
   },
   achievement: {
     name: "Achievement Rewards",
-    multValue: dim => {
+    multValue: (dim) => {
       const baseMult = DC.D1.timesEffectsOf(Achievement(105), Achievement(128));
       return Decimal.pow(baseMult, dim ? 1 : MultiplierTabHelper.activeDimCount("TD"));
     },
@@ -112,7 +112,7 @@ export const TD = {
   },
   timeStudy: {
     name: dim => (dim ? `Time Studies (TD ${dim})` : "Time Studies"),
-    multValue: dim => {
+    multValue: (dim) => {
       const allMult = DC.D1.timesEffectsOf(
         TimeStudy(93),
         TimeStudy(103),
@@ -126,7 +126,7 @@ export const TD = {
         dimMults[tier] = dimMults[tier].timesEffectsOf(
           tier === 1 ? TimeStudy(11) : null,
           tier === 3 ? TimeStudy(73) : null,
-          tier === 4 ? TimeStudy(227) : null
+          tier === 4 ? TimeStudy(227) : null,
         );
       }
 
@@ -138,11 +138,11 @@ export const TD = {
       return totalMult;
     },
     isActive: () => TimeDimension(1).isProducing,
-    icon: MultiplierTabIcons.TIME_STUDY
+    icon: MultiplierTabIcons.TIME_STUDY,
   },
   eternityUpgrade: {
     name: dim => (dim ? `Other Eternity Upgrades (TD ${dim})` : "Other Eternity Upgrades"),
-    multValue: dim => {
+    multValue: (dim) => {
       const allMult = DC.D1.timesEffectsOf(
         EternityUpgrade.tdMultTheorems,
         EternityUpgrade.tdMultRealTime,
@@ -170,7 +170,7 @@ export const TD = {
 
   eternityChallenge: {
     name: dim => (dim ? `Eternity Challenges (TD ${dim})` : "Eternity Challenges"),
-    multValue: dim => {
+    multValue: (dim) => {
       let allMult = DC.D1.timesEffectsOf(
         EternityChallenge(1).reward,
         EternityChallenge(10).reward,
@@ -183,7 +183,7 @@ export const TD = {
       return Decimal.pow(allMult, dim ? 1 : MultiplierTabHelper.activeDimCount("TD"));
     },
     isActive: () => EternityChallenge(1).completions > 0,
-    icon: MultiplierTabIcons.CHALLENGE("eternity")
+    icon: MultiplierTabIcons.CHALLENGE("eternity"),
   },
   tickspeed: {
     name: () => "Tickspeed (EC7)",
@@ -200,7 +200,7 @@ export const TD = {
   },
   dilationUpgrade: {
     name: "Dilation Upgrade - Replicanti Multiplier",
-    multValue: dim => {
+    multValue: (dim) => {
       const mult = Replicanti.areUnlocked && Replicanti.amount.gt(1)
         ? DilationUpgrade.tdMultReplicanti.effectValue
         : DC.D1;
@@ -220,7 +220,7 @@ export const TD = {
     name: "Glyph Effects",
     powValue: () => getAdjustedGlyphEffect("timepow") * getAdjustedGlyphEffect("effarigdimensions"),
     isActive: () => PlayerProgress.realityUnlocked(),
-    icon: MultiplierTabIcons.GENERIC_GLYPH
+    icon: MultiplierTabIcons.GENERIC_GLYPH,
   },
   alchemy: {
     name: "Glyph Alchemy",

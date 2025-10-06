@@ -6,13 +6,13 @@ export default {
   name: "ReplicantiUpgradeButton",
   components: {
     PrimaryButton,
-    PrimaryToggleButton
+    PrimaryToggleButton,
   },
   props: {
     setup: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -22,18 +22,18 @@ export default {
       isCapped: false,
       isAutoUnlocked: false,
       isAutobuyerOn: false,
-      isEC8Running: false
+      isEC8Running: false,
     };
   },
   computed: {
     upgrade() {
       return this.setup.upgrade;
-    }
+    },
   },
   watch: {
     isAutobuyerOn(newValue) {
       Autobuyer.replicantiUpgrade(this.upgrade.id).isActive = newValue;
-    }
+    },
   },
   methods: {
     update() {
@@ -49,8 +49,8 @@ export default {
       this.isAutoUnlocked = autobuyer.isUnlocked;
       this.isAutobuyerOn = autobuyer.isActive;
       this.isEC8Running = EternityChallenge(8).isRunning;
-    }
-  }
+    },
+  },
 };
 
 export class ReplicantiUpgradeButtonSetup {

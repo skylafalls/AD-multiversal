@@ -40,11 +40,11 @@ export default {
     rateThreshold: () => 1e40,
     amountStyle() {
       if (!this.headerTextColored || this.currentEP.lt(this.rateThreshold)) return {
-        "transition-duration": "0s"
+        "transition-duration": "0s",
       };
       if (this.hover) return {
-        color: "black",
-        "transition-duration": "0.2s"
+        "color": "black",
+        "transition-duration": "0.2s",
       };
 
       // Dynamically generate red-text-green based on the CSS entry for text color, returning a raw 6-digit hex color
@@ -54,14 +54,14 @@ export default {
       const stepRGB = [
         [255, 0, 0],
         [
-          parseInt(textHexCode.substring(0, 2), 16),
-          parseInt(textHexCode.substring(2, 4), 16),
-          parseInt(textHexCode.substring(4), 16)
+          Number.parseInt(textHexCode.slice(0, 2), 16),
+          Number.parseInt(textHexCode.slice(2, 4), 16),
+          Number.parseInt(textHexCode.slice(4), 16),
         ],
-        [0, 255, 0]
+        [0, 255, 0],
       ];
       const ratio = this.gainedEP.max(1).log10().div(this.currentEP.max(1).log10());
-      const interFn = index => {
+      const interFn = (index) => {
         if (ratio.lt(0.9)) return stepRGB[0][index];
         if (ratio.lt(1)) {
           const r = ratio.sub(0.9).mul(10);
@@ -75,15 +75,15 @@ export default {
       };
       const rgb = [interFn(0), interFn(1), interFn(2)];
       return {
-        color: `rgb(${rgb.join(",")})`,
-        "transition-duration": "0.2s"
+        "color": `rgb(${rgb.join(",")})`,
+        "transition-duration": "0.2s",
       };
     },
     tachyonAmountStyle() {
       // Hovering over the button makes all the text on the button black; this text inherits that
       // without us needing to specify a color.
       if (!this.headerTextColored || this.hover) return {
-        "transition-duration": "0s"
+        "transition-duration": "0s",
       };
       // Note that Infinity and 0 can show up here. We have a special case for
       // this.currentTachyons being 0 because dividing a Decimal by 0 returns 0.
@@ -102,12 +102,12 @@ export default {
         Math.round(Math.clampMax(ratio, 1 / ratio) * 255),
       ];
       return { color: `rgb(${rgb.join(",")})` };
-    }
+    },
   },
   methods: {
     update() {
-      this.isVisible = Player.canEternity ||
-        EternityMilestone.autoUnlockID.isReached || InfinityDimension(8).isUnlocked;
+      this.isVisible = Player.canEternity
+        || EternityMilestone.autoUnlockID.isReached || InfinityDimension(8).isUnlocked;
       this.isDilation = player.dilation.active;
       if (!this.isVisible) return;
       this.canEternity = Player.canEternity;
@@ -137,9 +137,9 @@ export default {
       const gainedEP = gainedEternityPoints();
       this.currentEP.copyFrom(Currency.eternityPoints);
       this.gainedEP.copyFrom(gainedEP);
-      const hasNewContent = !PlayerProgress.realityUnlocked() &&
-        Currency.eternityPoints.value.max(1).log10().gte(4000) &&
-        !TimeStudy.reality.isBought;
+      const hasNewContent = !PlayerProgress.realityUnlocked()
+        && Currency.eternityPoints.value.max(1).log10().gte(4000)
+        && !TimeStudy.reality.isBought;
       if (this.isDilation) {
         this.type = hasNewContent
           ? EP_BUTTON_DISPLAY_TYPE.DILATION_EXPLORE_NEW_CONTENT
@@ -168,7 +168,7 @@ export default {
       this.failedRestriction = status.failedRestriction;
       this.hasMoreCompletions = status.hasMoreCompletions;
       this.nextGoalAt.copyFrom(status.nextGoalAt);
-    }
+    },
   },
 };
 
@@ -180,7 +180,7 @@ const EP_BUTTON_DISPLAY_TYPE = {
   DILATION: 3,
   NORMAL_EXPLORE_NEW_CONTENT: 4,
   DILATION_EXPLORE_NEW_CONTENT: 5,
-  CHALLENGE_RUPG: 6
+  CHALLENGE_RUPG: 6,
 };
 </script>
 

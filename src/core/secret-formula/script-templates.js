@@ -15,20 +15,22 @@ export const automatorTemplates = {
   paramTypes: [
     {
       name: "tree",
-      isValidString: str => {
+      isValidString: (str) => {
         const validImport = TimeStudyTree.isValidImportString(str);
         const preset = str.match(/^(NAME (.{1,4})|ID (\d))$/u);
-        const validPreset = preset ? (
-          player.timestudy.presets.some(p => p.name === preset[2]) ||
-          (Number(preset[3]) > 0 && Number(preset[3]) < 7)
-        ) : false;
+        const validPreset = preset
+          ? (
+              player.timestudy.presets.some(p => p.name === preset[2])
+              || (Number(preset[3]) > 0 && Number(preset[3]) < 7)
+            )
+          : false;
         return validImport || validPreset;
       },
     },
     {
       name: "integer",
       isValidString: str => AutobuyerInputFunctions.int.tryParse(str),
-      map: x => Math.round(parseInt(x, 10)),
+      map: x => Math.round(Number.parseInt(x, 10)),
     },
     {
       name: "decimal",
@@ -195,5 +197,5 @@ export const automatorTemplates = {
         return list;
       },
     },
-  ]
+  ],
 };

@@ -26,7 +26,7 @@ export default {
       buy10Mult: new Decimal(0),
       currentSacrifice: new Decimal(0),
       hasRealityButton: false,
-      multiplierText: ""
+      multiplierText: "",
     };
   },
   methods: {
@@ -44,8 +44,8 @@ export default {
     },
     quickReset() {
       softReset(-1, true, true);
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -12,14 +12,14 @@ export default {
       tachyonGain: new Decimal(),
       remnantRequirement: 0,
       showRequirement: false,
-      creditsClosed: false
+      creditsClosed: false,
     };
   },
   computed: {
     disableText() {
       // Doesn't need to be reactive or check strike status; it's always permanent once entered in Doomed
       return Pelle.isDoomed ? "Dilation is permanent." : "Disable Dilation.";
-    }
+    },
   },
   methods: {
     update() {
@@ -43,8 +43,8 @@ export default {
     dilate() {
       if (this.creditsClosed) return;
       startDilatedEternityRequest();
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -10,7 +10,7 @@ export default {
   },
   data() {
     return {
-      message: ""
+      message: "",
     };
   },
   computed: {
@@ -19,7 +19,7 @@ export default {
     },
     isThemeS12() {
       return this.$viewModel.theme === "S12";
-    }
+    },
   },
   created() {
     this.on$(GAME_EVENT.ENTER_PRESSED, this.handleClick);
@@ -35,7 +35,7 @@ export default {
       this.modal.callback?.();
       this.emitClose();
       EventHub.ui.offAll(this);
-    }
+    },
   },
 };
 </script>

@@ -4,7 +4,7 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "ImportTimeStudyConstants",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   data() {
     return {
@@ -19,7 +19,7 @@ export default {
       // so we replace all of those with underscores. This alone can however result in duplicate names due
       // to multiple different characters being mapped to underscores, so we also include the preset index
       return this.presets.map((p, index) => `TSPreset${index + 1}__${p.name.replaceAll(/[^a-zA-Z_0-9]/gu, "_")}`);
-    }
+    },
   },
   methods: {
     update() {
@@ -53,9 +53,9 @@ export default {
     // beginning and end are both potentially useful to see
     shortenString(str) {
       if (str.length < 55) return str;
-      return `${str.substring(0, 12)}...${str.substring(str.length - 40, str.length)}`;
-    }
-  }
+      return `${str.slice(0, 12)}...${str.slice(str.length - 40, str.length)}`;
+    },
+  },
 };
 </script>
 

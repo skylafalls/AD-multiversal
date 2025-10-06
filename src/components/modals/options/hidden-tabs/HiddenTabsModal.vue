@@ -30,7 +30,7 @@ export default {
         for (const subtab of tab.subtabs)
           subtab.unhideTab();
       }
-    }
+    },
   },
 };
 </script>

@@ -4,7 +4,7 @@ import GlyphComponent from "@/components/GlyphComponent";
 export default {
   name: "GlyphInventory",
   components: {
-    GlyphComponent
+    GlyphComponent,
   },
   data() {
     return {
@@ -40,7 +40,7 @@ export default {
       if (event.dataTransfer.types.includes(GLYPH_MIME_TYPE)) event.preventDefault();
     },
     drop(idx, event) {
-      const id = parseInt(event.dataTransfer.getData(GLYPH_MIME_TYPE), 10);
+      const id = Number.parseInt(event.dataTransfer.getData(GLYPH_MIME_TYPE), 10);
       if (isNaN(id)) return;
       const glyph = Glyphs.findById(id);
       if (!glyph) return;
@@ -81,8 +81,8 @@ export default {
     },
     isUnequipped(index) {
       return player.options.showUnequippedGlyphIcon && this.unequippedGlyphs.includes(this.inventory[index].id);
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -3,14 +3,14 @@ export default {
   name: "EternityPointsHeader",
   data() {
     return {
-      eternityPoints: new Decimal()
+      eternityPoints: new Decimal(),
     };
   },
   methods: {
     update() {
       this.eternityPoints.copyFrom(Currency.eternityPoints.value.floor());
-    }
-  }
+    },
+  },
 };
 </script>
 

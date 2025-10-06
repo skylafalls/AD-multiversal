@@ -128,8 +128,13 @@ class PerkShopUpgradeState extends RebuyableMechanicState {
 }
 
 class TeresaUnlockState extends BitUpgradeState {
-  get bits() { return player.celestials.teresa.unlockBits; }
-  set bits(value) { player.celestials.teresa.unlockBits = value; }
+  get bits() {
+    return player.celestials.teresa.unlockBits;
+  }
+
+  set bits(value) {
+    player.celestials.teresa.unlockBits = value;
+  }
 
   get price() {
     return this.config.price;
@@ -158,12 +163,12 @@ class TeresaUnlockState extends BitUpgradeState {
 
 export const TeresaUnlocks = mapGameDataToObject(
   GameDatabase.celestials.teresa.unlocks,
-  config => new TeresaUnlockState(config)
+  config => new TeresaUnlockState(config),
 );
 
 export const PerkShopUpgrade = mapGameDataToObject(
   GameDatabase.celestials.perkShop,
-  config => new PerkShopUpgradeState(config)
+  config => new PerkShopUpgradeState(config),
 );
 
 EventHub.logic.on(GAME_EVENT.TAB_CHANGED, () => {

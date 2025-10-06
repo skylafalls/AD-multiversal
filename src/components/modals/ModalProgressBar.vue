@@ -22,7 +22,7 @@ export default {
     },
     buttons() {
       return this.progress.buttons || [];
-    }
+    },
   },
 };
 </script>

@@ -4,15 +4,15 @@ export default {
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     playerBefore: {
       type: Object,
-      required: true
+      required: true,
     },
     playerAfter: {
       type: Object,
-      required: true
+      required: true,
     },
   },
   data() {
@@ -75,7 +75,7 @@ export default {
       return this.isBlackHole
         ? false
         : Decimal.gt(this.before, Decimal.pow10(1e9));
-    }
+    },
   },
   methods: {
     // We want different formatting above and below 1e9 to improve readability
@@ -96,8 +96,8 @@ export default {
     hideEntry() {
       this.removed = !this.removed;
       this.item.option = !this.item.option;
-    }
-  }
+    },
+  },
 };
 </script>
 

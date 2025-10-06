@@ -5,16 +5,16 @@ export default {
     celestialSymbols: {
       // Array elements are String
       type: Array,
-      required: true
+      required: true,
     },
     celestials: {
       // Array elements are [String, Number]
       type: Array,
-      required: true
+      required: true,
     },
     primary: {
       type: Boolean,
-      required: true
+      required: true,
     },
   },
   computed: {
@@ -31,12 +31,12 @@ export default {
         return {
           color: `var(--color-${celEntry[0]}--accent)`,
           background: isText ? undefined : baseCol,
-          opacity: opac * celEntry[1]
+          opacity: opac * celEntry[1],
         };
       }
       return {
         color: baseCol,
-        opacity: opac * celEntry[1]
+        opacity: opac * celEntry[1],
       };
     },
   },

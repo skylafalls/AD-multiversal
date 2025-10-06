@@ -62,7 +62,7 @@ class PerkState extends SetPurchasableMechanicState {
 
 export const Perk = mapGameDataToObject(
   GameDatabase.reality.perks,
-  config => new PerkState(config)
+  config => new PerkState(config),
 );
 
 export const Perks = {
@@ -73,7 +73,7 @@ export const Perks = {
    */
   find(id) {
     return Perks.all.find(p => p.id === id);
-  }
+  },
 };
 
 for (const perk of Perks.all) {
@@ -81,7 +81,7 @@ for (const perk of Perks.all) {
 }
 
 export function checkPerkValidity() {
-  if (player.reality.perks.every(id => Perks.find(id) !== undefined)) return;
+  if (player.reality.perks.every(id => Perks.some(id) !== undefined)) return;
   dev.respecPerks();
   if (Currency.perkPoints.gte(Perks.all.length)) {
     dev.buyAllPerks();

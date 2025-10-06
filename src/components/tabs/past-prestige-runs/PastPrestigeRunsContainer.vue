@@ -24,8 +24,8 @@ export default {
   props: {
     layer: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -82,25 +82,30 @@ export default {
       // We have 4 different "useful" stat pairings we could display, but this ends up being pretty boilerplatey
       const names = [this.points, `${this.points} Rate`, this.plural, `${this.singular} Rate`];
       switch (this.resourceType) {
-        case RECENT_PRESTIGE_RESOURCE.ABSOLUTE_GAIN:
+        case RECENT_PRESTIGE_RESOURCE.ABSOLUTE_GAIN: {
           this.selectedResources = [0, 2];
           break;
-        case RECENT_PRESTIGE_RESOURCE.RATE:
+        }
+        case RECENT_PRESTIGE_RESOURCE.RATE: {
           this.selectedResources = [1, 3];
           break;
-        case RECENT_PRESTIGE_RESOURCE.CURRENCY:
+        }
+        case RECENT_PRESTIGE_RESOURCE.CURRENCY: {
           this.selectedResources = [0, 1];
           break;
-        case RECENT_PRESTIGE_RESOURCE.PRESTIGE_COUNT:
+        }
+        case RECENT_PRESTIGE_RESOURCE.PRESTIGE_COUNT: {
           this.selectedResources = [2, 3];
           break;
-        default:
+        }
+        default: {
           throw new Error("Unrecognized Statistics tab resource type");
+        }
       }
       this.resourceTitles = [names[this.selectedResources[0]], names[this.selectedResources[1]]];
 
       // Entries always have all values, but sometimes the trailing ones will be blank or zero which we want to hide
-      const lastIndex = arr => {
+      const lastIndex = (arr) => {
         let val = arr.length;
         while (val > 0) {
           const curr = arr[val - 1];
@@ -115,8 +120,8 @@ export default {
     clone(runs) {
       return runs.map(run =>
         run.map(item =>
-          (item instanceof Decimal ? Decimal.fromDecimal(item) : item)
-        )
+          (item instanceof Decimal ? Decimal.fromDecimal(item) : item),
+        ),
       );
     },
     infoArray(run, index) {
@@ -201,33 +206,37 @@ export default {
     cellStyle(col, isHeader) {
       let width;
       switch (col) {
-        case 0:
+        case 0: {
           // "X ago" is really short
           width = "7rem";
           break;
+        }
         case 4:
-        case 5:
+        case 5: {
           // Prestige currency is long, but the reality table can be shorter due to smaller numbers
           width = this.layer.name === "Reality" ? "15rem" : "20rem";
           break;
-        case 6:
+        }
+        case 6: {
           // Challenges can potentially be very long, but this is glyph level in the reality table
           width = this.layer.name === "Reality" ? "10rem" : "20rem";
           break;
-        default:
+        }
+        default: {
           width = "13rem";
+        }
       }
       return {
         width,
-        border: "0.05rem solid #999999",
-        margin: "-0.05rem",
-        padding: "0.2rem 0",
+        "border": "0.05rem solid #999999",
+        "margin": "-0.05rem",
+        "padding": "0.2rem 0",
         "border-bottom-width": isHeader ? "0.3rem" : "0.1rem",
         "font-weight": isHeader ? "bold" : null,
-        color: "var(--color-text)",
+        "color": "var(--color-text)",
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

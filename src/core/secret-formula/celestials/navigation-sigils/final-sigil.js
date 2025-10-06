@@ -40,25 +40,28 @@ function reflectAcrossVertical(vec) {
  *  Each particular segment will fill from 0% to 100% within the range init to init+weight, without over/underfilling.
  * @member {String} colorOverride Color to use for rendering the element, used instead of SigilAttributes.color
  */
-// eslint-disable-next-line max-params
+
 function sigilShape(type, att, fill, colorOverride) {
   let pos, path, pathStart, pathEnd;
   switch (type) {
-    case "edge":
+    case "edge": {
       pos = att.start;
       path = new LinearPath(att.start, att.end);
       pathStart = 0;
       pathEnd = 1;
       break;
-    case "circle":
+    }
+    case "circle": {
       pos = att.center;
       path = LogarithmicSpiral.fromPolarEndpoints(att.center, 0, att.radius * SigilAttributes.size,
         1, att.radius * SigilAttributes.size);
       pathStart = att.initAngle;
       pathEnd = att.finalAngle;
       break;
-    default:
+    }
+    default: {
       throw Error("Unrecognized shape in sigil specification");
+    }
   }
 
   return {

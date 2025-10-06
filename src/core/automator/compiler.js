@@ -1,4 +1,4 @@
-import { lexer, tokenMap as T } from "./lexer";
+import { tokenMap as T, lexer } from "./lexer";
 import { AutomatorCommands } from "./automator-commands";
 import { parser } from "./parser";
 
@@ -13,7 +13,7 @@ class Validator extends BaseVisitor {
     for (const cmd of AutomatorCommands) {
       if (!cmd.validate) continue;
       const ownMethod = this[cmd.id];
-      this[cmd.id] = ctx => {
+      this[cmd.id] = (ctx) => {
         if (!cmd.validate(ctx, this)) return;
         if (ownMethod) ownMethod.call(this, ctx);
       };
@@ -36,8 +36,8 @@ class Validator extends BaseVisitor {
         startLine: err.line,
         startOffset: err.offset,
         endOffset: err.offset + err.length,
-        info: `Unexpected characters: ${this.rawText.substr(err.offset, err.length)}`,
-        tip: `${this.rawText.substr(err.offset, err.length)} cannot be part of a command, remove them`
+        info: `Unexpected characters: ${this.rawText.slice(err.offset, err.length)}`,
+        tip: `${this.rawText.slice(err.offset, err.length)} cannot be part of a command, remove them`,
       });
     }
   }
@@ -97,7 +97,7 @@ class Validator extends BaseVisitor {
       return ctx.reduce((prev, el) => Validator.combinePositionRanges(prev, Validator.getPositionRange(el)), pos);
     }
     for (const k in ctx) {
-      if (!Object.prototype.hasOwnProperty.call(ctx, k) || !Array.isArray(ctx[k])) continue;
+      if (!Object.hasOwn(ctx, k) || !Array.isArray(ctx[k])) continue;
       pos = Validator.combinePositionRanges(pos, Validator.getPositionRange(ctx[k]));
     }
     return pos;
@@ -123,7 +123,7 @@ class Validator extends BaseVisitor {
 
     const modifiedErrors = [];
     let lastLine = 0;
-    for (const err of this.errors.sort((a, b) => a.startLine - b.startLine)) {
+    for (const err of this.errors.toSorted((a, b) => a.startLine - b.startLine)) {
       // For some reason chevrotain occasionally gives NaN for error location but it seems like this only ever
       // happens on the last line of the script, so we can fill in that value to fix it
       if (isNaN(err.startLine)) {
@@ -145,18 +145,18 @@ class Validator extends BaseVisitor {
         continue;
       }
 
-      if (err.info.match(/EOF but found.*\}/gu)) {
+      if (/EOF but found.*\}/gu.test(err.info)) {
         err.info = err.info.replaceAll("--> ", "[").replaceAll(" <--", "]");
         err.tip = "Remove }. Parser halted at this line and may miss errors farther down the script.";
-      } else if (err.info.match(/found.*\}/gu)) {
+      } else if (/found.*\}/gu.test(err.info)) {
         err.info = err.info.replaceAll("--> ", "[").replaceAll(" <--", "]");
         err.tip = "Remove }";
-      } else if (err.info.match(/Expecting/gu)) {
+      } else if (/Expecting/gu.test(err.info)) {
         err.info = err.info.replaceAll("--> ", "[").replaceAll(" <--", "]");
         err.tip = "Use the appropriate type of data in the command as specified in the command help";
-      } else if (err.info.match(/End of line/gu)) {
+      } else if (/End of line/gu.test(err.info)) {
         err.tip = "Provide the remaining arguments to complete the incomplete command";
-      } else if (err.info.match(/EOF but found:/gu)) {
+      } else if (/EOF but found:/gu.test(err.info)) {
         err.tip = "Remove extra command argument";
       } else {
         err.tip = "This error's cause is unclear";
@@ -179,10 +179,10 @@ class Validator extends BaseVisitor {
   }
 
   checkTimeStudyNumber(token) {
-    const tsNumber = parseFloat(token.image);
+    const tsNumber = Number.parseFloat(token.image);
     if (!TimeStudy(tsNumber) || (TimeStudy(tsNumber).isTriad && !Ra.canBuyTriad)) {
       this.addError(token, `Invalid Time Study identifier ${tsNumber}`,
-        `Make sure you copied or typed in your time study IDs correctly`);
+        "Make sure you copied or typed in your time study IDs correctly");
       return 0;
     }
     return tsNumber;
@@ -195,16 +195,17 @@ class Validator extends BaseVisitor {
     if (!Object.keys(constants).includes(varName)) {
       this.addError(identifier, `Variable ${varName} has not been defined`,
         `Use the definition panel to define ${varName} in order to reference it, or check for typos`);
-      return undefined;
+      return;
     }
     const value = constants[varName];
 
     let tree;
     switch (type) {
-      case AUTOMATOR_VAR_TYPES.NUMBER:
+      case AUTOMATOR_VAR_TYPES.NUMBER: {
         varInfo.value = new Decimal(value);
         break;
-      case AUTOMATOR_VAR_TYPES.STUDIES:
+      }
+      case AUTOMATOR_VAR_TYPES.STUDIES: {
         tree = new TimeStudyTree(value);
         varInfo.value = {
           normal: tree.selectedStudies.map(ts => ts.id),
@@ -212,11 +213,14 @@ class Validator extends BaseVisitor {
           startEC: tree.startEC,
         };
         break;
-      case AUTOMATOR_VAR_TYPES.DURATION:
+      }
+      case AUTOMATOR_VAR_TYPES.DURATION: {
         varInfo.value = parseInt(1000 * value, 10);
         break;
-      default:
+      }
+      default: {
         throw new Error("Unrecognized variable format in automator constant lookup");
+      }
     }
 
     return varInfo;
@@ -229,17 +233,21 @@ class Validator extends BaseVisitor {
     const value = constants[varName];
 
     switch (type) {
-      case AUTOMATOR_VAR_TYPES.NUMBER:
+      case AUTOMATOR_VAR_TYPES.NUMBER: {
         // We can't rely on native Decimal parsing here because it largely just discards input past invalid
         // characters and constructs something based on the start of the input string. Notably, this makes
         // things like new Decimal("11,21,31") return 11 instead of something indicating an error.
         return value.match(/^-?(0|[1-9]\d*)(\.\d+)?([eE][+-]?\d+)?$/u);
-      case AUTOMATOR_VAR_TYPES.STUDIES:
+      }
+      case AUTOMATOR_VAR_TYPES.STUDIES: {
         return TimeStudyTree.isValidImportString(value);
-      case AUTOMATOR_VAR_TYPES.DURATION:
+      }
+      case AUTOMATOR_VAR_TYPES.DURATION: {
         return !Number.isNaN(parseInt(1000 * value, 10));
-      default:
+      }
+      default: {
         throw new Error("Unrecognized variable format in automator constant lookup");
+      }
     }
   }
 
@@ -247,12 +255,12 @@ class Validator extends BaseVisitor {
     if (ctx.$value) return ctx.$value;
     if (!ctx.TimeUnit || ctx.TimeUnit[0].isInsertedInRecovery) {
       this.addError(ctx, "Missing time unit", "Provide a unit of time (eg. seconds or minutes)");
-      return undefined;
+      return;
     }
-    const value = parseFloat(ctx.NumberLiteral[0].image) * ctx.TimeUnit[0].tokenType.$scale;
+    const value = Number.parseFloat(ctx.NumberLiteral[0].image) * ctx.TimeUnit[0].tokenType.$scale;
     if (isNaN(value)) {
       this.addError(ctx, "Error parsing duration", "Provide a properly-formatted number for time");
-      return undefined;
+      return;
     }
     ctx.$value = value;
     return ctx.$value;
@@ -262,7 +270,7 @@ class Validator extends BaseVisitor {
     if (ctx.$value) return ctx.$value;
     if (!ctx.NumberLiteral || ctx.NumberLiteral[0].isInsertedInRecovery) {
       this.addError(ctx, "Missing multiplier", "Provide a multiplier to set the autobuyer to");
-      return undefined;
+      return;
     }
     ctx.$value = new Decimal(ctx.NumberLiteral[0].image);
     return ctx.$value;
@@ -272,15 +280,15 @@ class Validator extends BaseVisitor {
     if (ctx.$value) return ctx.$value;
     if (!ctx.NumberLiteral || ctx.NumberLiteral[0].isInsertedInRecovery) {
       this.addError(ctx, "Missing amount", "Provide a threshold to set the autobuyer to");
-      return undefined;
+      return;
     }
     ctx.$value = new Decimal(ctx.NumberLiteral[0].image);
     return ctx.$value;
   }
 
   studyRange(ctx, studiesOut) {
-    if (!ctx.firstStudy || ctx.firstStudy[0].isInsertedInRecovery ||
-      !ctx.lastStudy || ctx.lastStudy[0].isInsertedInRecovery) {
+    if (!ctx.firstStudy || ctx.firstStudy[0].isInsertedInRecovery
+      || !ctx.lastStudy || ctx.lastStudy[0].isInsertedInRecovery) {
       this.addError(ctx, "Missing Time Study number in range",
         "Provide starting and ending IDs for Time Study number ranges");
       return;
@@ -321,7 +329,7 @@ class Validator extends BaseVisitor {
     const positionRange = Validator.getPositionRange(ctx);
     ctx.$cached = {
       normal: studiesOut,
-      image: this.rawText.substr(positionRange.startOffset, positionRange.endOffset - positionRange.startOffset + 1),
+      image: this.rawText.slice(positionRange.startOffset, positionRange.endOffset - positionRange.startOffset + 1),
       ec: 0,
       startEC: false,
     };
@@ -330,7 +338,7 @@ class Validator extends BaseVisitor {
         this.addError(ctx.Pipe[0], "Missing Eternity Challenge number",
           "Specify which Eternity Challenge is being referred to");
       }
-      const ecNumber = parseFloat(ctx.ECNumber[0].image);
+      const ecNumber = Number.parseFloat(ctx.ECNumber[0].image);
       if (!Number.isInteger(ecNumber) || ecNumber < 0 || ecNumber > 12) {
         this.addError(ctx.ECNumber, `Invalid Eternity Challenge ID ${ecNumber}`,
           `Eternity Challenge ${ecNumber} does not exist, use an integer between ${format(1)} and ${format(12)}`);
@@ -356,8 +364,8 @@ class Validator extends BaseVisitor {
 
   comparison(ctx) {
     super.comparison(ctx);
-    if (!ctx.compareValue || ctx.compareValue[0].recoveredNode ||
-      ctx.compareValue.length !== 2 || ctx.compareValue[1].recoveredNode) {
+    if (!ctx.compareValue || ctx.compareValue[0].recoveredNode
+      || ctx.compareValue.length !== 2 || ctx.compareValue[1].recoveredNode) {
       this.addError(ctx, "Missing value for comparison", "Ensure that the comparison has two values");
     }
     if (!ctx.ComparisonOperator || ctx.ComparisonOperator[0].isInsertedInRecovery) {
@@ -380,10 +388,10 @@ class Validator extends BaseVisitor {
   eternityChallenge(ctx) {
     let errToken, ecNumber;
     if (ctx.ECLiteral) {
-      ecNumber = parseFloat(ctx.ECLiteral[0].image.substr(2));
+      ecNumber = Number.parseFloat(ctx.ECLiteral[0].image.slice(2));
       errToken = ctx.ECLiteral[0];
     } else if (ctx.NumberLiteral) {
-      ecNumber = parseFloat(ctx.NumberLiteral[0].image);
+      ecNumber = Number.parseFloat(ctx.NumberLiteral[0].image);
       errToken = ctx.NumberLiteral[0];
     } else {
       this.addError(ctx, "Missing Eternity Challenge number",
@@ -425,7 +433,7 @@ class Compiler extends BaseVisitor {
     for (const cmd of AutomatorCommands) {
       if (!cmd.compile) continue;
       const ownMethod = this[cmd.id];
-      // eslint-disable-next-line no-loop-func
+
       this[cmd.id] = (ctx, output) => {
         // For the compiler, we don't bother doing the default recursive visitation behavior
         if (ownMethod && ownMethod !== super[cmd.id]) ownMethod.call(this, ctx, output);
@@ -439,14 +447,14 @@ class Compiler extends BaseVisitor {
   }
 
   comparison(ctx) {
-    const getters = ctx.compareValue.map(cv => {
+    const getters = ctx.compareValue.map((cv) => {
       if (cv.children.AutomatorCurrency) return cv.children.AutomatorCurrency[0].tokenType.$getter;
       const val = cv.children.$value;
       if (typeof val === "string") return () => player.reality.automator.constants[val];
       return () => val;
     });
     // Some currencies are locked and should always evaluate to false if they're attempted to be used
-    const canUseInComp = ctx.compareValue.map(cv => {
+    const canUseInComp = ctx.compareValue.map((cv) => {
       if (cv.children.AutomatorCurrency) {
         const unlockedFn = cv.children.AutomatorCurrency[0].tokenType.$unlocked;
         return unlockedFn ? unlockedFn() : true;
@@ -481,14 +489,14 @@ class Blockifier extends BaseVisitor {
       const blockify = cmd.blockify;
       if (!blockify) continue;
       const ownMethod = this[cmd.id];
-      // eslint-disable-next-line no-loop-func
+
       this[cmd.id] = (ctx, output) => {
         if (ownMethod && ownMethod !== super[cmd.id]) ownMethod.call(this, ctx, output);
         try {
           const block = blockify(ctx, this);
           output.push({
             ...block,
-            id: UIID.next()
+            id: UIID.next(),
           });
         } catch {
           // If a command is invalid, it will throw an exception in blockify and fail to assign a value to block
@@ -501,7 +509,7 @@ class Blockifier extends BaseVisitor {
   }
 
   comparison(ctx) {
-    const parseInput = index => {
+    const parseInput = (index) => {
       const comp = ctx.compareValue[index];
       const isCurrency = Boolean(comp.children.AutomatorCurrency);
       if (isCurrency) return comp.children.AutomatorCurrency[0].image;
@@ -545,7 +553,7 @@ export function compile(input, validateOnly = false) {
 }
 
 export function hasCompilationErrors(input) {
-  return compile(input, true).errors.length !== 0;
+  return compile(input, true).errors.length > 0;
 }
 
 export function blockifyTextAutomator(input) {
@@ -557,7 +565,7 @@ export function blockifyTextAutomator(input) {
   // associated with unparsable commands. This results in a discrepancy in line count whenever a line can't be
   // parsed as a specific command, and in general this is a problem we can't try to guess a fix for, so we just
   // don't convert it at all. In both cases nested commands are stored recursively, but with different structure.
-  const validatedCount = entry => {
+  const validatedCount = (entry) => {
     if (!entry) return 0;
     const commandDepth = entry.children;
     let foundChildren = 0;
@@ -576,7 +584,7 @@ export function blockifyTextAutomator(input) {
     }
     return foundChildren;
   };
-  const visitedCount = block => {
+  const visitedCount = (block) => {
     if (!block.nest) return 1;
     return 1 + block.nest.map(b => visitedCount(b)).reduce((sum, val) => sum + val, 0);
   };

@@ -2,7 +2,7 @@ import { DC } from "../../constants";
 
 export const alchemyResources = {
   // T1 resources (Non-Effarig "base" resources)
-  "power": {
+  power: {
     id: ALCHEMY_RESOURCE.POWER,
     name: "Power",
     symbol: "Ω",
@@ -12,9 +12,9 @@ export const alchemyResources = {
     uiOrder: 1,
     unlockedAt: 2,
     description: "provides a power to Antimatter Dimensions",
-    formatEffect: value => `Antimatter Dimension multipliers ${formatPow(value, 4, 4)}`
+    formatEffect: value => `Antimatter Dimension multipliers ${formatPow(value, 4, 4)}`,
   },
-  "infinity": {
+  infinity: {
     id: ALCHEMY_RESOURCE.INFINITY,
     name: "Infinity",
     symbol: "∞",
@@ -24,9 +24,9 @@ export const alchemyResources = {
     uiOrder: 2,
     unlockedAt: 3,
     description: "provides a power to Infinity Dimensions",
-    formatEffect: value => `Infinity Dimension multipliers ${formatPow(value, 4, 4)}`
+    formatEffect: value => `Infinity Dimension multipliers ${formatPow(value, 4, 4)}`,
   },
-  "time": {
+  time: {
     id: ALCHEMY_RESOURCE.TIME,
     name: "Time",
     symbol: "Δ",
@@ -36,9 +36,9 @@ export const alchemyResources = {
     uiOrder: 3,
     unlockedAt: 4,
     description: "provides a power to Time Dimensions",
-    formatEffect: value => `Time Dimension multipliers ${formatPow(value, 4, 4)}`
+    formatEffect: value => `Time Dimension multipliers ${formatPow(value, 4, 4)}`,
   },
-  "replication": {
+  replication: {
     id: ALCHEMY_RESOURCE.REPLICATION,
     name: "Replication",
     symbol: "Ξ",
@@ -47,10 +47,10 @@ export const alchemyResources = {
     tier: 1,
     uiOrder: 4,
     unlockedAt: 5,
-    description: `increases Replication speed`,
-    formatEffect: value => `Replication speed is increased by ${formatX(value, 2, 2)}`
+    description: "increases Replication speed",
+    formatEffect: value => `Replication speed is increased by ${formatX(value, 2, 2)}`,
   },
-  "dilation": {
+  dilation: {
     id: ALCHEMY_RESOURCE.DILATION,
     name: "Dilation",
     symbol: "Ψ",
@@ -60,11 +60,11 @@ export const alchemyResources = {
     uiOrder: 5,
     unlockedAt: 6,
     description: "increases Dilated Time production",
-    formatEffect: value => `Dilated Time production is increased by ${formatX(value, 2, 2)}`
+    formatEffect: value => `Dilated Time production is increased by ${formatX(value, 2, 2)}`,
   },
 
   // T2 resources (combinations of pairs of T1 resources)
-  "cardinality": {
+  cardinality: {
     id: ALCHEMY_RESOURCE.CARDINALITY,
     name: "Cardinality",
     symbol: "α",
@@ -79,15 +79,15 @@ export const alchemyResources = {
     reagents: [
       {
         resource: ALCHEMY_RESOURCE.TIME,
-        amount: DC.D8
+        amount: DC.D8,
       },
       {
         resource: ALCHEMY_RESOURCE.REPLICATION,
-        amount: DC.D7
-      }
-    ]
+        amount: DC.D7,
+      },
+    ],
   },
-  "eternity": {
+  eternity: {
     id: ALCHEMY_RESOURCE.ETERNITY,
     name: "Eternity",
     symbol: "τ",
@@ -101,15 +101,15 @@ export const alchemyResources = {
     reagents: [
       {
         resource: ALCHEMY_RESOURCE.TIME,
-        amount: DC.D11
+        amount: DC.D11,
       },
       {
         resource: ALCHEMY_RESOURCE.INFINITY,
-        amount: DC.D4
-      }
-    ]
+        amount: DC.D4,
+      },
+    ],
   },
-  "dimensionality": {
+  dimensionality: {
     id: ALCHEMY_RESOURCE.DIMENSIONALITY,
     name: "Dimensionality",
     symbol: "ρ",
@@ -123,15 +123,15 @@ export const alchemyResources = {
     reagents: [
       {
         resource: ALCHEMY_RESOURCE.POWER,
-        amount: DC.D10
+        amount: DC.D10,
       },
       {
         resource: ALCHEMY_RESOURCE.INFINITY,
-        amount: DC.D5
-      }
-    ]
+        amount: DC.D5,
+      },
+    ],
   },
-  "inflation": {
+  inflation: {
     id: ALCHEMY_RESOURCE.INFLATION,
     name: "Inflation",
     symbol: "λ",
@@ -146,15 +146,15 @@ export const alchemyResources = {
     reagents: [
       {
         resource: ALCHEMY_RESOURCE.POWER,
-        amount: DC.D9
+        amount: DC.D9,
       },
       {
         resource: ALCHEMY_RESOURCE.DILATION,
-        amount: DC.D6
-      }
-    ]
+        amount: DC.D6,
+      },
+    ],
   },
-  "alternation": {
+  alternation: {
     id: ALCHEMY_RESOURCE.ALTERNATION,
     name: "Alternation",
     symbol: "ω",
@@ -169,17 +169,17 @@ export const alchemyResources = {
     reagents: [
       {
         resource: ALCHEMY_RESOURCE.REPLICATION,
-        amount: DC.D5
+        amount: DC.D5,
       },
       {
         resource: ALCHEMY_RESOURCE.DILATION,
-        amount: DC.D10
-      }
-    ]
+        amount: DC.D10,
+      },
+    ],
   },
 
   // T3 resources (Effarig and conbinations of T1/T2 with Effarig)
-  "effarig": {
+  effarig: {
     id: ALCHEMY_RESOURCE.EFFARIG,
     name: "Effarig",
     symbol: "Ϙ",
@@ -189,14 +189,14 @@ export const alchemyResources = {
     uiOrder: 1.5,
     unlockedAt: 7,
     description: "increases Relic Shard gain",
-    formatEffect: value => `Relic Shard gain is multiplied ${formatX(value, 2, 2)}`
+    formatEffect: value => `Relic Shard gain is multiplied ${formatX(value, 2, 2)}`,
   },
-  "synergism": {
+  synergism: {
     id: ALCHEMY_RESOURCE.SYNERGISM,
     name: "Synergism",
     symbol: "π",
     isBaseResource: false,
-    effect: amount => {
+    effect: (amount) => {
       const rawValue = Decimal.sqrt(amount.div(25000)).mul(1.3).add(0.3);
       return Achievement(175).isUnlocked ? rawValue : Decimal.min(rawValue, 1);
     },
@@ -211,19 +211,19 @@ export const alchemyResources = {
     reagents: [
       {
         resource: ALCHEMY_RESOURCE.EFFARIG,
-        amount: DC.D3
+        amount: DC.D3,
       },
       {
         resource: ALCHEMY_RESOURCE.REPLICATION,
-        amount: DC.D16
+        amount: DC.D16,
       },
       {
         resource: ALCHEMY_RESOURCE.INFINITY,
-        amount: DC.D14
-      }
-    ]
+        amount: DC.D14,
+      },
+    ],
   },
-  "momentum": {
+  momentum: {
     id: ALCHEMY_RESOURCE.MOMENTUM,
     name: "Momentum",
     symbol: "μ",
@@ -239,19 +239,19 @@ export const alchemyResources = {
     reagents: [
       {
         resource: ALCHEMY_RESOURCE.EFFARIG,
-        amount: DC.D11
+        amount: DC.D11,
       },
       {
         resource: ALCHEMY_RESOURCE.POWER,
-        amount: DC.D4
+        amount: DC.D4,
       },
       {
         resource: ALCHEMY_RESOURCE.TIME,
-        amount: DC.D20
-      }
-    ]
+        amount: DC.D20,
+      },
+    ],
   },
-  "decoherence": {
+  decoherence: {
     id: ALCHEMY_RESOURCE.DECOHERENCE,
     name: "Decoherence",
     symbol: "ξ",
@@ -261,22 +261,22 @@ export const alchemyResources = {
     uiOrder: 4,
     unlockedAt: 14,
     description: "gives all basic Alchemy Resources upon refinement",
-    formatEffect: value => `Refined Glyphs also give ${formatPercents(value, 2)} of their value ` +
-      "to all other base resources",
+    formatEffect: value => `Refined Glyphs also give ${formatPercents(value, 2)} of their value `
+      + "to all other base resources",
     reagents: [
       {
         resource: ALCHEMY_RESOURCE.EFFARIG,
-        amount: DC.D13
+        amount: DC.D13,
       },
       {
         resource: ALCHEMY_RESOURCE.ALTERNATION,
-        amount: DC.D8
-      }
-    ]
+        amount: DC.D8,
+      },
+    ],
   },
 
   // T4 resources (resources which feed directly into the final resource)
-  "exponential": {
+  exponential: {
     id: ALCHEMY_RESOURCE.EXPONENTIAL,
     name: "Exponential",
     symbol: "Γ",
@@ -290,15 +290,15 @@ export const alchemyResources = {
     reagents: [
       {
         resource: ALCHEMY_RESOURCE.INFLATION,
-        amount: DC.D18
+        amount: DC.D18,
       },
       {
         resource: ALCHEMY_RESOURCE.SYNERGISM,
-        amount: DC.D3
-      }
-    ]
+        amount: DC.D3,
+      },
+    ],
   },
-  "force": {
+  force: {
     id: ALCHEMY_RESOURCE.FORCE,
     name: "Force",
     symbol: "Φ",
@@ -312,15 +312,15 @@ export const alchemyResources = {
     reagents: [
       {
         resource: ALCHEMY_RESOURCE.DIMENSIONALITY,
-        amount: DC.D7
+        amount: DC.D7,
       },
       {
         resource: ALCHEMY_RESOURCE.MOMENTUM,
-        amount: DC.D8
-      }
-    ]
+        amount: DC.D8,
+      },
+    ],
   },
-  "uncountability": {
+  uncountability: {
     id: ALCHEMY_RESOURCE.UNCOUNTABILITY,
     name: "Uncountability",
     symbol: "Θ",
@@ -334,19 +334,19 @@ export const alchemyResources = {
     reagents: [
       {
         resource: ALCHEMY_RESOURCE.INFINITY,
-        amount: DC.D20
+        amount: DC.D20,
       },
       {
         resource: ALCHEMY_RESOURCE.EFFARIG,
-        amount: DC.D6
+        amount: DC.D6,
       },
       {
         resource: ALCHEMY_RESOURCE.CARDINALITY,
-        amount: DC.D16
-      }
-    ]
+        amount: DC.D16,
+      },
+    ],
   },
-  "boundless": {
+  boundless: {
     id: ALCHEMY_RESOURCE.BOUNDLESS,
     name: "Boundless",
     symbol: "Π",
@@ -360,15 +360,15 @@ export const alchemyResources = {
     reagents: [
       {
         resource: ALCHEMY_RESOURCE.ETERNITY,
-        amount: DC.D13
+        amount: DC.D13,
       },
       {
         resource: ALCHEMY_RESOURCE.INFLATION,
-        amount: DC.D18
-      }
-    ]
+        amount: DC.D18,
+      },
+    ],
   },
-  "multiversal": {
+  multiversal: {
     id: ALCHEMY_RESOURCE.MULTIVERSAL,
     name: "Multiversal",
     symbol: "Σ",
@@ -383,15 +383,15 @@ export const alchemyResources = {
     reagents: [
       {
         resource: ALCHEMY_RESOURCE.ALTERNATION,
-        amount: DC.D16
+        amount: DC.D16,
       },
       {
         resource: ALCHEMY_RESOURCE.DECOHERENCE,
-        amount: DC.D3
-      }
-    ]
+        amount: DC.D3,
+      },
+    ],
   },
-  "unpredictability": {
+  unpredictability: {
     id: ALCHEMY_RESOURCE.UNPREDICTABILITY,
     name: "Unpredictability",
     symbol: "Λ",
@@ -407,21 +407,21 @@ export const alchemyResources = {
     reagents: [
       {
         resource: ALCHEMY_RESOURCE.EFFARIG,
-        amount: DC.D15
+        amount: DC.D15,
       },
       {
         resource: ALCHEMY_RESOURCE.DECOHERENCE,
-        amount: DC.D3
+        amount: DC.D3,
       },
       {
         resource: ALCHEMY_RESOURCE.SYNERGISM,
-        amount: DC.D10
-      }
-    ]
+        amount: DC.D10,
+      },
+    ],
   },
 
   // T5 (Reality)
-  "reality": {
+  reality: {
     id: ALCHEMY_RESOURCE.REALITY,
     name: "Reality",
     symbol: "Ϟ",
@@ -434,28 +434,28 @@ export const alchemyResources = {
     reagents: [
       {
         resource: ALCHEMY_RESOURCE.EXPONENTIAL,
-        amount: DC.D1
+        amount: DC.D1,
       },
       {
         resource: ALCHEMY_RESOURCE.FORCE,
-        amount: DC.D1
+        amount: DC.D1,
       },
       {
         resource: ALCHEMY_RESOURCE.UNCOUNTABILITY,
-        amount: DC.D1
+        amount: DC.D1,
       },
       {
         resource: ALCHEMY_RESOURCE.BOUNDLESS,
-        amount: DC.D1
+        amount: DC.D1,
       },
       {
         resource: ALCHEMY_RESOURCE.MULTIVERSAL,
-        amount: DC.D1
+        amount: DC.D1,
       },
       {
         resource: ALCHEMY_RESOURCE.UNPREDICTABILITY,
-        amount: DC.D1
-      }
-    ]
+        amount: DC.D1,
+      },
+    ],
   },
 };

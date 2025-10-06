@@ -10,7 +10,7 @@ export default {
     AutoSacrificeEffectTab,
     AutoSacrificeAdvancedTab,
     SliderComponent,
-    GlyphComponent
+    GlyphComponent,
   },
   data() {
     return {
@@ -29,32 +29,33 @@ export default {
       return AUTO_GLYPH_SCORE;
     },
     glyphTypes() {
-      return GlyphInfo.glyphTypes.filter(e => (GlyphInfo[e].generationRequirement ? GlyphInfo[e].generationRequirement()
+      return GlyphInfo.glyphTypes.filter(e => (GlyphInfo[e].generationRequirement
+        ? GlyphInfo[e].generationRequirement()
         : true && GlyphInfo[e].isGenerated));
     },
     raritySliderProps() {
       return {
-        min: 0,
-        max: 100,
-        width: "18rem",
-        valueInDot: true,
-        tooltip: "never",
+        "min": 0,
+        "max": 100,
+        "width": "18rem",
+        "valueInDot": true,
+        "tooltip": "never",
         "dot-width": "2.2rem",
         "dot-height": "1.6rem",
         "dot-class": "c-glyph-sacrifice-options__rarity-slider-handle",
         "bg-class": "c-glyph-sacrifice-options__rarity-slider-bg",
         "process-class": "c-glyph-sacrifice-options__rarity-slider-process",
-        style: {
+        "style": {
           "margin-left": "1rem",
-        }
+        },
       };
     },
     glyphIconProps() {
       return {
-        size: "3rem",
+        "size": "3rem",
         "glow-blur": "0.3rem",
         "glow-spread": "0.1rem",
-        "text-proportion": 0.66
+        "text-proportion": 0.66,
       };
     },
     questionmarkTooltip() {
@@ -68,7 +69,7 @@ export default {
     },
     unlockedModes() {
       return Object.values(this.modes).filter(idx => this.isUnlocked(idx));
-    }
+    },
   },
   methods: {
     glyphInfoFromType(type) {
@@ -95,27 +96,35 @@ export default {
         idx === this.mode
           ? "c-glyph-sacrifice-options__option--active"
           : "c-glyph-sacrifice-options__option--inactive",
-        icon
+        icon,
       ];
     },
     modeIcon(idx) {
       switch (idx) {
-        case this.modes.LOWEST_SACRIFICE:
+        case this.modes.LOWEST_SACRIFICE: {
           return "fas fa-burn";
-        case this.modes.EFFECT_COUNT:
+        }
+        case this.modes.EFFECT_COUNT: {
           return "fas fa-list-ul";
-        case this.modes.RARITY_THRESHOLD:
+        }
+        case this.modes.RARITY_THRESHOLD: {
           return "fas fa-gem";
-        case this.modes.SPECIFIED_EFFECT:
+        }
+        case this.modes.SPECIFIED_EFFECT: {
           return "fas fa-tasks";
-        case this.modes.EFFECT_SCORE:
+        }
+        case this.modes.EFFECT_SCORE: {
           return "fas fa-list-ol";
-        case this.modes.LOWEST_ALCHEMY:
+        }
+        case this.modes.LOWEST_ALCHEMY: {
           return "fas fa-atom";
-        case this.modes.ALCHEMY_VALUE:
+        }
+        case this.modes.ALCHEMY_VALUE: {
           return "fas fa-flask";
-        default:
+        }
+        default: {
           throw Error("Unrecognized glyph filter mode");
+        }
       }
     },
     strengthThreshold(type) {
@@ -123,10 +132,12 @@ export default {
     },
     advancedTypeSelectStyle(type) {
       const color = GlyphAppearanceHandler.getBorderColor(type.id);
-      return type.id === this.advancedType ? {
-        color,
-        "text-shadow": `0 0 0.25rem ${color}, 0 0 0.5rem ${color}, 0 0 0.75rem ${color}, 0 0 1rem ${color}`,
-      } : {};
+      return type.id === this.advancedType
+        ? {
+            color,
+            "text-shadow": `0 0 0.25rem ${color}, 0 0 0.5rem ${color}, 0 0 0.75rem ${color}, 0 0 1rem ${color}`,
+          }
+        : {};
     },
     setMode(m) {
       AutoGlyphProcessor.scoreMode = m;
@@ -151,19 +162,21 @@ export default {
         case this.modes.EFFECT_COUNT:
         case this.modes.RARITY_THRESHOLD:
         case this.modes.SPECIFIED_EFFECT:
-        case this.modes.EFFECT_SCORE:
+        case this.modes.EFFECT_SCORE: {
           return true;
+        }
         case this.modes.LOWEST_ALCHEMY:
-        case this.modes.ALCHEMY_VALUE:
+        case this.modes.ALCHEMY_VALUE: {
           return this.alchemyUnlocked;
-        default:
+        }
+        default: {
           throw Error("Unrecognized glyph filter mode");
+        }
       }
     },
     // Clicking bumps the rarity over to adjacent thresholds between rarities; normal clicks move to the higher one
     // and shift-clicks move to the lower one. There is a loop-around that makes 100 go to 0 next and vice versa
     bumpRarity(type) {
-      // eslint-disable-next-line no-param-reassign
       const rarityThresholds = GlyphInfo.rarities.map(r => strengthToRarity(r.minStrength));
       let newRarity;
       if (ui.view.shiftDown) {
@@ -199,7 +212,7 @@ export default {
     importFilterSettings() {
       Modal.importFilter.show();
     },
-  }
+  },
 };
 </script>
 

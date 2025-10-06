@@ -9,7 +9,7 @@ export default {
   components: {
     ModalWrapperChoice,
     PrimaryButton,
-    ImportFilterSingleType
+    ImportFilterSingleType,
   },
   data() {
     return {
@@ -67,20 +67,19 @@ export default {
     },
     // Hide effarig if it hasn't been unlocked yet
     availableTypes() {
-      // eslint-disable-next-line max-len
       return GlyphInfo.alchemyGlyphTypes.filter(t => GlyphInfo[t.type].isGenerated && GlyphInfo[t.type].generationRequirement);
     },
     settingTooltipText() {
       return `Mouseover each box for more details. ✔ and ✘ symbols denote an effect
         selected/unselected for Specified Effect mode.`;
-    }
+    },
   },
   mounted() {
     this.$refs.input.select();
   },
   methods: {
     update() {
-      this.currentSettings = JSON.parse(JSON.stringify(player.reality.glyphs.filter));
+      this.currentSettings = structuredClone(player.reality.glyphs.filter);
     },
     changedValue(oldVal, newVal, applyFn) {
       if (oldVal === newVal) return "(No change)";

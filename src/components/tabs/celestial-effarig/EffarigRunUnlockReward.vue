@@ -4,12 +4,12 @@ export default {
   props: {
     unlock: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      isUnlocked: false
+      isUnlocked: false,
     };
   },
   computed: {
@@ -22,8 +22,8 @@ export default {
   methods: {
     update() {
       this.isUnlocked = this.unlock.isUnlocked;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -14,20 +14,19 @@ export default {
   },
   computed: {
     events() {
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties, no-nested-ternary
-      const sorted = this.unsortedEvents.sort((a, b) => (a.timestamp === b.timestamp
+      const sorted = this.unsortedEvents.toSorted((a, b) => (a.timestamp === b.timestamp
         ? (a.thisReality === b.thisReality
-          ? a.line - b.line
-          : a.thisReality - b.thisReality)
+            ? a.line - b.line
+            : a.thisReality - b.thisReality)
         : a.timestamp - b.timestamp));
-      return this.newestFirst ? sorted.reverse() : sorted;
+      return this.newestFirst ? sorted.toReversed() : sorted;
     },
     clearTooltip() {
       return `Clear all entries (Max. ${this.maxEntries})`;
     },
     buttonClassObject() {
       return "c-automator-docs--button fas";
-    }
+    },
   },
   watch: {
     newestFirst(newValue) {
@@ -41,7 +40,7 @@ export default {
     },
     clearOnRestart(newValue) {
       player.options.automatorEvents.clearOnRestart = newValue;
-    }
+    },
   },
   methods: {
     update() {
@@ -60,22 +59,22 @@ export default {
     },
     sortStyle(selected) {
       return {
-        "background-color": selected ? "var(--color-reality)" : ""
+        "background-color": selected ? "var(--color-reality)" : "",
       };
     },
     timestampStyle(key) {
       return {
-        "background-color": this.timestampMode === AUTOMATOR_EVENT_TIMESTAMP_MODE[key] ? "var(--color-reality)" : ""
+        "background-color": this.timestampMode === AUTOMATOR_EVENT_TIMESTAMP_MODE[key] ? "var(--color-reality)" : "",
       };
     },
     clearRealityStyle() {
       return {
-        "background-color": this.clearOnReality ? "var(--color-reality)" : ""
+        "background-color": this.clearOnReality ? "var(--color-reality)" : "",
       };
     },
     clearRestartStyle() {
       return {
-        "background-color": this.clearOnRestart ? "var(--color-reality)" : ""
+        "background-color": this.clearOnRestart ? "var(--color-reality)" : "",
       };
     },
     setTimestampMode(key) {
@@ -83,26 +82,32 @@ export default {
     },
     timestamp(entry) {
       switch (this.timestampMode) {
-        case AUTOMATOR_EVENT_TIMESTAMP_MODE.DISABLED:
+        case AUTOMATOR_EVENT_TIMESTAMP_MODE.DISABLED: {
           return "";
-        case AUTOMATOR_EVENT_TIMESTAMP_MODE.THIS_REALITY:
+        }
+        case AUTOMATOR_EVENT_TIMESTAMP_MODE.THIS_REALITY: {
           return `, ${TimeSpan.fromSeconds(new Decimal(entry.thisReality)).toStringShort()} (real-time) in Reality`;
-        case AUTOMATOR_EVENT_TIMESTAMP_MODE.RELATIVE_NOW:
+        }
+        case AUTOMATOR_EVENT_TIMESTAMP_MODE.RELATIVE_NOW: {
           return `, ${TimeSpan.fromMilliseconds(new Decimal(this.currentTime - entry.timestamp)).toStringShort()} ago`;
-        case AUTOMATOR_EVENT_TIMESTAMP_MODE.RELATIVE_PREV:
-          if (entry.timegap === entry.timestamp) return `, first logged event`;
+        }
+        case AUTOMATOR_EVENT_TIMESTAMP_MODE.RELATIVE_PREV: {
+          if (entry.timegap === entry.timestamp) return ", first logged event";
           return `, ${TimeSpan.fromMilliseconds(new Decimal(entry.timegap)).toStringShort()} after previous event`;
-        case AUTOMATOR_EVENT_TIMESTAMP_MODE.DATE_TIME:
+        }
+        case AUTOMATOR_EVENT_TIMESTAMP_MODE.DATE_TIME: {
           return `, ${Time.toDateTimeString(entry.timestamp)}`;
-        default:
+        }
+        default: {
           throw Error("Unrecognized timestamp mode in Automator event log");
+        }
       }
     },
     scrollToLine(line) {
       AutomatorScroller.scrollToLine(line);
       AutomatorHighlighter.updateHighlightedLine(line, LineEnum.Event);
-    }
-  }
+    },
+  },
 };
 
 const AUTOMATOR_EVENT_TIMESTAMP_MODE = {

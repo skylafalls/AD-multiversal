@@ -13,7 +13,7 @@ export default {
     newSettings: {
       type: Object,
       required: true,
-    }
+    },
   },
   computed: {
     settingsChanged() {
@@ -23,7 +23,7 @@ export default {
       return GlyphInfo[this.type].regularGlyphSymbol;
     },
     capitalized() {
-      return `${this.type.charAt(0).toUpperCase()}${this.type.substring(1)}`;
+      return `${this.type.charAt(0).toUpperCase()}${this.type.slice(1)}`;
     },
     rarityStr() {
       return this.changedValue(this.currSettings.rarity, this.newSettings.rarity, x => formatPercents(x / 100));
@@ -47,7 +47,7 @@ export default {
         });
       }
       return changes;
-    }
+    },
   },
   methods: {
     changedValue(oldVal, newVal, applyFn) {
@@ -79,7 +79,7 @@ export default {
     },
     getEffectDesc(effectEntry) {
       return GlyphEffects.all.find(e => e.bitmaskIndex === effectEntry.bitmaskIndex && e.isGenerated).genericDesc;
-    }
+    },
   },
 };
 </script>

@@ -8,7 +8,7 @@ export default {
   components: {
     PrimaryButton,
     PrimaryToggleButton,
-    HeaderBlackHoleStatusText
+    HeaderBlackHoleStatusText,
   },
   data() {
     return {
@@ -38,7 +38,7 @@ export default {
   watch: {
     isAutoReleasing(newValue) {
       player.celestials.enslaved.isAutoReleasing = newValue;
-    }
+    },
   },
   methods: {
     update() {
@@ -68,10 +68,10 @@ export default {
     chargingClassObject() {
       return {
         "o-primary-btn--buy-max c-primary-btn--black-hole-header": true,
-        "o-bh-charge-disabled": this.isAutoReleasing
+        "o-bh-charge-disabled": this.isAutoReleasing,
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

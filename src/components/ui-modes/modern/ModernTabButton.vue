@@ -4,12 +4,12 @@ export default {
   props: {
     tab: {
       type: Object,
-      required: true
+      required: true,
     },
     tabPosition: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -18,7 +18,7 @@ export default {
       subtabVisibilities: [],
       showSubtabs: false,
       hasNotification: false,
-      tabName: ""
+      tabName: "",
     };
   },
   computed: {
@@ -27,25 +27,25 @@ export default {
         "o-tab-btn": true,
         "o-tab-btn--modern-tabs": true,
         "o-tab-btn--subtabs": this.showSubtabs,
-        "o-tab-btn--active": this.isCurrentTab && Theme.currentName() !== "S9"
+        "o-tab-btn--active": this.isCurrentTab && Theme.currentName() !== "S9",
       };
     },
     isCurrentTab() {
       return this.tab.isOpen;
-    }
+    },
   },
   methods: {
     update() {
       this.isAvailable = this.tab.isAvailable;
       this.isHidden = this.tab.isHidden;
       this.subtabVisibilities = this.tab.subtabs.map(x => x.isAvailable);
-      this.showSubtabs = this.isAvailable && this.subtabVisibilities.length >= 1;
+      this.showSubtabs = this.isAvailable && this.subtabVisibilities.length > 0;
       this.hasNotification = this.tab.hasNotification;
       if (this.tabPosition < Pelle.endTabNames.length) {
         this.tabName = Pelle.transitionText(
           this.tab.name,
           Pelle.endTabNames[this.tabPosition],
-          Math.clamp(GameEnd.endState - (this.tab.id % 4) / 10, 0, 1)
+          Math.clamp(GameEnd.endState - (this.tab.id % 4) / 10, 0, 1),
         );
       } else {
         this.tabName = this.tab.name;
@@ -53,7 +53,7 @@ export default {
     },
     isCurrentSubtab(id) {
       return player.options.lastOpenSubtab[this.tab.id] === id && Theme.currentName() !== "S9";
-    }
+    },
   },
 };
 </script>

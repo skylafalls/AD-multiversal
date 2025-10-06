@@ -1,11 +1,9 @@
-/* eslint-disable line-comment-position */
-/* eslint-disable no-inline-comments */
 import { DC } from "./constants";
 
 export const GALAXY_TYPE = {
   NORMAL: 0,
   DISTANT: 1,
-  REMOTE: 2
+  REMOTE: 2,
 };
 
 class GalaxyRequirement {
@@ -40,7 +38,7 @@ export class Galaxy {
     const scale = Galaxy.costMult;
     let base = Galaxy.baseCost.sub(Effects.sum(InfinityUpgrade.resetBoost));
     if (InfinityChallenge(5).isCompleted) base = base.sub(1);
-    // eslint-disable-next-line max-len
+
     // Plz no ask how exponential math work i dont know i just code, see https://discord.com/channels/351476683016241162/439241762603663370/1210707188964659230m
     const minV = Galaxy.costScalingStart.min(Galaxy.remoteStart); // Take the smallest of the two values
     if (currency.lt(Galaxy.requirementAt(minV).amount /* Pre exponential/quadratic? */)) {
@@ -55,7 +53,7 @@ export class Galaxy {
       const quad = decimalQuadraticSolution(a, b, c).floor();
       return Decimal.max(quad, minVal);
     }
-    // eslint-disable-next-line multiline-comment-style
+
     /*
     // Might not be perfect but at this point who gives a shit
       - If we can buy more we will loop a bit at the end to go through till we cant
@@ -154,8 +152,8 @@ export class Galaxy {
   static get canBeBought() {
     if (EternityChallenge(6).isRunning && !Enslaved.isRunning) return false;
     if (NormalChallenge(8).isRunning || InfinityChallenge(7).isRunning) return false;
-    if (player.records.thisInfinity.maxAM.gt(Player.infinityGoal) &&
-       (!player.break || Player.isInAntimatterChallenge)) return false;
+    if (player.records.thisInfinity.maxAM.gt(Player.infinityGoal)
+      && (!player.break || Player.isInAntimatterChallenge)) return false;
     return true;
   }
 
@@ -174,7 +172,7 @@ export class Galaxy {
       TimeStudy(223),
       TimeStudy(224),
       TimeStudy(302),
-      EternityChallenge(5).reward
+      EternityChallenge(5).reward,
     ).add(GlyphInfo.power.sacrificeInfo.effect());
   }
 
@@ -200,8 +198,8 @@ export function galaxyReset() {
     player.dimensionBoosts = DC.D0;
   }
   softReset(0);
-  if (Notations.current === Notation.emoji) player.requirementChecks.permanent.emojiGalaxies =
-  player.requirementChecks.permanent.emojiGalaxies.add(1);
+  if (Notations.current === Notation.emoji) player.requirementChecks.permanent.emojiGalaxies
+    = player.requirementChecks.permanent.emojiGalaxies.add(1);
   // This is specifically reset here because the check is actually per-galaxy and not per-infinity
   player.requirementChecks.infinity.noSacrifice = true;
   EventHub.dispatch(GAME_EVENT.GALAXY_RESET_AFTER);

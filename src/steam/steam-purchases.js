@@ -51,7 +51,6 @@ export function hasPendingPurchaseConfirmations() {
   return MAC && pendingValidations.length > 0;
 }
 
-
 export async function purchaseShopItem(key, cost, cosmeticId) {
   await PlayFab.PurchaseItem(key, cost, "ST");
   if (cosmeticId !== undefined) {
@@ -65,7 +64,7 @@ async function storeCosmetic(id) {
   cosmetics.add(id);
   const updatedCosmetics = [...cosmetics];
   await PlayFab.UpdateUserData({
-    Cosmetics: updatedCosmetics.join(",")
+    Cosmetics: updatedCosmetics.join(","),
   });
   GameUI.update();
 }

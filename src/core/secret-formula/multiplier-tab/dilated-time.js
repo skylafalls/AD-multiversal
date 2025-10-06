@@ -13,8 +13,8 @@ export const DT = {
     name: "Dilated Time gain",
     displayOverride: () => `${format(getDilationGainPerSecond().times(getGameSpeedupForDisplay()), 2, 2)}/sec`,
     multValue: () => getDilationGainPerSecond().times(getGameSpeedupForDisplay()),
-    isActive: () => PlayerProgress.realityUnlocked() ||
-      (PlayerProgress.dilationUnlocked() && getDilationGainPerSecond().gt(0)),
+    isActive: () => PlayerProgress.realityUnlocked()
+      || (PlayerProgress.dilationUnlocked() && getDilationGainPerSecond().gt(0)),
     dilationEffect: () => (Enslaved.isRunning ? 0.85 : 1),
     isDilated: true,
     overlay: ["Ψ"],
@@ -22,8 +22,8 @@ export const DT = {
   achievement: {
     name: "Achievements",
     multValue: () => Achievement(132).effectOrDefault(1) * Achievement(137).effectOrDefault(1),
-    isActive: () => (Achievement(132).canBeApplied || Achievement(137).canBeApplied) &&
-      getDilationGainPerSecond().neq(0),
+    isActive: () => (Achievement(132).canBeApplied || Achievement(137).canBeApplied)
+      && getDilationGainPerSecond().neq(0),
     icon: MultiplierTabIcons.ACHIEVEMENT,
   },
   dilation: {
@@ -31,12 +31,12 @@ export const DT = {
     multValue: () => DC.D1.timesEffectsOf(
       DilationUpgrade.dtGain,
       DilationUpgrade.dtGainPelle,
-      DilationUpgrade.flatDilationMult
+      DilationUpgrade.flatDilationMult,
     ),
     isActive: () => DC.D1.timesEffectsOf(
       DilationUpgrade.dtGain,
       DilationUpgrade.dtGainPelle,
-      DilationUpgrade.flatDilationMult
+      DilationUpgrade.flatDilationMult,
     ).gt(1),
     icon: MultiplierTabIcons.UPGRADE("dilation"),
   },
@@ -56,7 +56,7 @@ export const DT = {
       return dtMult.times(repliDT);
     },
     isActive: () => PlayerProgress.realityUnlocked() && getDilationGainPerSecond().neq(0),
-    icon: MultiplierTabIcons.GENERIC_GLYPH
+    icon: MultiplierTabIcons.GENERIC_GLYPH,
   },
   ra1: {
     name: "Ra Upgrade - Multiplier based on TT",

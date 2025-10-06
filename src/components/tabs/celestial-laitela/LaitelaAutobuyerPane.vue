@@ -4,7 +4,7 @@ import PrimaryToggleButton from "@/components/PrimaryToggleButton";
 export default {
   name: "LaitelaAutobuyerPane",
   components: {
-    PrimaryToggleButton
+    PrimaryToggleButton,
   },
   data() {
     return {
@@ -69,7 +69,7 @@ export default {
       this.maxAutoAscend = SingularityMilestone.ascensionAutobuyers.effectValue;
       this.autoSingularityFactor = SingularityMilestone.autoCondense.effectValue;
     },
-  }
+  },
 };
 </script>
 

@@ -4,7 +4,7 @@ export default {
   props: {
     milestone: {
       type: Object,
-      required: true
+      required: true,
     },
     display: {
       type: Boolean,
@@ -15,7 +15,7 @@ export default {
       type: Number,
       required: false,
       default: 0,
-    }
+    },
   },
   computed: {
     displayName() {
@@ -35,10 +35,10 @@ export default {
     classObject() {
       return {
         "l-speedrun-milestone-entry": true,
-        "l-speedrun-milestone-entry--completed": this.time
+        "l-speedrun-milestone-entry--completed": this.time,
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -32,5 +32,5 @@ export const AutomatorPoints = {
 
   get pointsForAutomator() {
     return 100;
-  }
+  },
 };

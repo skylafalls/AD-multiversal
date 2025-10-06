@@ -8,13 +8,13 @@ export default {
   components: {
     ChallengeGrid,
     ChallengeTabHeader,
-    NormalChallengeBox
+    NormalChallengeBox,
   },
   computed: {
     challenges() {
       return NormalChallenges.all;
-    }
-  }
+    },
+  },
 };
 </script>
 

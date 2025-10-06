@@ -23,12 +23,14 @@ export const GlyphSacrificeHandler = {
   },
   handleSpecialGlyphTypes(glyph) {
     switch (glyph.type) {
-      case "companion":
+      case "companion": {
         Modal.deleteCompanion.show();
         return true;
-      case "cursed":
+      }
+      case "cursed": {
         Glyphs.removeFromInventory(glyph);
         return true;
+      }
     }
     return false;
   },
@@ -111,9 +113,9 @@ export const GlyphSacrificeHandler = {
       return;
     }
     const decoherence = AlchemyResource.decoherence.isUnlocked;
-    if (!Ra.unlocks.unlockGlyphAlchemy.canBeApplied ||
-        (this.glyphRefinementGain(glyph).eq(DC.D0) && !decoherence) ||
-        (decoherence && AlchemyResources.base.every(x => x.data.amount.gte(Ra.alchemyResourceCap)))) {
+    if (!Ra.unlocks.unlockGlyphAlchemy.canBeApplied
+      || (this.glyphRefinementGain(glyph).eq(DC.D0) && !decoherence)
+      || (decoherence && AlchemyResources.base.every(x => x.data.amount.gte(Ra.alchemyResourceCap)))) {
       this.sacrificeGlyph(glyph, force);
       return;
     }
@@ -126,7 +128,6 @@ export const GlyphSacrificeHandler = {
     Modal.glyphRefine.show({
       idx: glyph.idx,
     });
-
   },
   refineGlyph(glyph) {
     if (Pelle.isDoomed) return;
@@ -155,5 +156,5 @@ export const GlyphSacrificeHandler = {
       resource.highestRefinementValue = this.highestRefinementValue(glyph);
     }
     Glyphs.removeFromInventory(glyph);
-  }
+  },
 };

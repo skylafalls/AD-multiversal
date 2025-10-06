@@ -8,25 +8,25 @@ export default {
   components: {
     AutobuyerBox,
     AutobuyerIntervalButton,
-    AutobuyerInput
+    AutobuyerInput,
   },
   props: {
     isModal: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       hasMaxedInterval: false,
       limitDimBoosts: false,
       limitUntilGalaxies: false,
-      isBuyMaxUnlocked: false
+      isBuyMaxUnlocked: false,
     };
   },
   computed: {
-    autobuyer: () => Autobuyer.dimboost
+    autobuyer: () => Autobuyer.dimboost,
   },
   watch: {
     limitDimBoosts(newValue) {
@@ -34,7 +34,7 @@ export default {
     },
     limitUntilGalaxies(newValue) {
       this.autobuyer.limitUntilGalaxies = newValue;
-    }
+    },
   },
   methods: {
     update() {
@@ -43,8 +43,8 @@ export default {
       this.isBuyMaxUnlocked = autobuyer.isBuyMaxUnlocked;
       this.limitDimBoosts = autobuyer.limitDimBoosts;
       this.limitUntilGalaxies = autobuyer.limitUntilGalaxies;
-    }
-  }
+    },
+  },
 };
 </script>
 

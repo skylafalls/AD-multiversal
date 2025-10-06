@@ -4,7 +4,7 @@ import ModalWrapper from "@/components/modals/ModalWrapper";
 export default {
   name: "HotkeysModal",
   components: {
-    ModalWrapper
+    ModalWrapper,
   },
   data() {
     return {
@@ -12,7 +12,7 @@ export default {
       visible: [],
       timeStudyUnlocked: false,
       glyphSacUnlocked: false,
-      isElectron: false
+      isElectron: false,
     };
   },
   computed: {
@@ -38,7 +38,7 @@ export default {
     },
     shortcutKeys() {
       return shortcuts.map(x => x.keys.map(key => this.format(key)));
-    }
+    },
   },
   created() {
     for (let i = 0; i < this.hotkeyCount; i++) {
@@ -68,12 +68,14 @@ export default {
     },
     format(x) {
       switch (x) {
-        case "mod":
+        case "mod": {
           return "CTRL/⌘";
-        default:
+        }
+        default: {
           return x.toUpperCase();
+        }
       }
-    }
+    },
   },
 };
 </script>

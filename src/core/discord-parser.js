@@ -6,7 +6,7 @@ export const RichPresenceInfo = {
     for (let stage = stageDB.length - 1; stage >= 0; stage--) {
       if (stageDB[stage].hasReached()) return stageDB[stage];
     }
-    throw Error("No valid progress stage found");
+    throw new Error("No valid progress stage found");
   },
   get challengeState() {
     const challDB = discordRichPresence.challenges;
@@ -31,5 +31,5 @@ export const RichPresenceInfo = {
   get state() {
     const mainRes = this.challengeState ? [this.gameStage.mainResource()] : [];
     return mainRes.concat((this.gameStage.resourceList ?? []).map(res => res())).join(" | ");
-  }
+  },
 };

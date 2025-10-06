@@ -17,7 +17,6 @@ export const AUTOMATOR_MODE = Object.freeze({
   SINGLE_STEP: 3,
 });
 
-
 export const AUTOMATOR_VAR_TYPES = {
   NUMBER: { id: 0, name: "number" },
   STUDIES: { id: 1, name: "studies" },
@@ -27,7 +26,7 @@ export const AUTOMATOR_VAR_TYPES = {
 
 export const AUTOMATOR_TYPE = Object.freeze({
   TEXT: 0,
-  BLOCK: 1
+  BLOCK: 1,
 });
 
 /**
@@ -216,7 +215,7 @@ export const AutomatorData = {
       line: AutomatorBackend.translateLineNumber(line),
       thisReality: Time.thisRealityRealTime.totalSeconds,
       timestamp: currTime,
-      timegap: currTime - this.lastEvent
+      timegap: currTime - this.lastEvent,
     });
     this.lastEvent = currTime;
     // Remove the oldest entry if the log is too large
@@ -238,12 +237,12 @@ export const AutomatorData = {
     return Object.values(player.reality.automator.scripts)
       .filter(s => s.id !== this.scriptIndex())
       .map(s => s.content.length)
-      .reduce((sum, len) => sum + len, 0) +
-      this.singleScriptCharacters();
+      .reduce((sum, len) => sum + len, 0)
+      + this.singleScriptCharacters();
   },
   isWithinLimit() {
-    return this.singleScriptCharacters() <= this.MAX_ALLOWED_SCRIPT_CHARACTERS &&
-      this.totalScriptCharacters() <= this.MAX_ALLOWED_TOTAL_CHARACTERS;
+    return this.singleScriptCharacters() <= this.MAX_ALLOWED_SCRIPT_CHARACTERS
+      && this.totalScriptCharacters() <= this.MAX_ALLOWED_TOTAL_CHARACTERS;
   },
 
   // This must be called every time the current script or editor mode are changed
@@ -260,7 +259,7 @@ export const AutomatorData = {
     // because otherwise edits can't be fully undone back to the very first change
     this.charsSinceLastUndoState += newChars;
     const pastGap = this.charsSinceLastUndoState <= this.MIN_CHARS_BETWEEN_UNDOS;
-    if (pastGap && this.undoBuffer.length !== 0) return;
+    if (pastGap && this.undoBuffer.length > 0) return;
 
     if (this.undoBuffer[this.undoBuffer.length - 1] !== data) this.undoBuffer.push(data);
     if (this.undoBuffer.length > this.MAX_UNDO_ENTRIES) this.undoBuffer.shift();
@@ -295,7 +294,7 @@ export const AutomatorData = {
     AutomatorBackend.saveScript(this.scriptIndex(), redoContent);
     if (player.reality.automator.type === AUTOMATOR_TYPE.TEXT) AutomatorTextUI.editor.setValue(redoContent);
     else BlockAutomator.updateEditor(redoContent);
-  }
+  },
 };
 
 export const LineEnum = { Active: "active", Event: "event", Error: "error" };
@@ -344,7 +343,7 @@ export const AutomatorHighlighter = {
       }
       this.lines[lineType] = -1;
     }
-  }
+  },
 };
 
 // Manages line highlighting in a way which is agnostic to the current editor mode (line or block)
@@ -382,7 +381,7 @@ export const AutomatorScroller = {
     if (player.reality.automator.type === AUTOMATOR_TYPE.BLOCK) {
       BlockAutomator.gutter.style.bottom = `${editor.scrollTop}px`;
     }
-  }
+  },
 };
 
 export const AutomatorBackend = {
@@ -417,7 +416,7 @@ export const AutomatorBackend = {
   findRawScriptObject(id) {
     const scripts = player.reality.automator.scripts;
     const index = Object.values(scripts).findIndex(s => s.id === id);
-    return scripts[parseInt(Object.keys(scripts)[index], 10)];
+    return scripts[Number.parseInt(Object.keys(scripts)[index], 10)];
   },
 
   get currentRunningScript() {
@@ -479,7 +478,7 @@ export const AutomatorBackend = {
         if (presetID !== -1) foundPresets.add(presetID);
       }
     }
-    const presets = Array.from(foundPresets);
+    const presets = [...foundPresets];
     presets.sort();
     return presets;
   },
@@ -496,10 +495,10 @@ export const AutomatorBackend = {
       // Needs a space-padded regex match so that (for example) a constant "unl" doesn't match to an unlock command
       // Additionally we need a negative lookbehind in order to ignore matches with presets which have the same name
       for (const key of availableConstants) {
-        if (rawLine.match(`(?<![Nn][Aa][Mm][Ee])\\s${key}(\\s|$)`)) foundConstants.add(key);
+        if (`(?<![Nn][Aa][Mm][Ee])\\s${key}(\\s|$)`.test(rawLine)) foundConstants.add(key);
       }
     }
-    const constants = Array.from(foundConstants);
+    const constants = [...foundConstants];
     constants.sort();
     return constants;
   },
@@ -561,12 +560,12 @@ export const AutomatorBackend = {
     let remainingData = dataString;
     while (remainingData.length > 0) {
       const segmentLength = Number(remainingData.slice(0, 5));
-      remainingData = remainingData.substr(5);
+      remainingData = remainingData.slice(5);
       if (Number.isNaN(segmentLength) || remainingData.length < segmentLength) {
         throw new Error("Inconsistent or malformed serialized automator data");
       } else {
         const segmentData = remainingData.slice(0, segmentLength);
-        remainingData = remainingData.substr(segmentLength);
+        remainingData = remainingData.slice(segmentLength);
         dataArray.push(segmentData);
       }
     }
@@ -589,7 +588,7 @@ export const AutomatorBackend = {
     try {
       decoded = GameSaveSerializer.decodeText(rawInput, "automator script");
       parts = this.deserializeAutomatorData(decoded);
-    } catch (e) {
+    } catch {
       return null;
     }
 
@@ -626,19 +625,19 @@ export const AutomatorBackend = {
         if (presetID !== -1) foundPresets.add(presetID);
       }
       const availableConstants = Object.keys(player.reality.automator.constants);
-      for (const key of availableConstants) if (rawLine.match(`\\s${key}(\\s|$)`)) foundConstants.add(key);
+      for (const key of availableConstants) if (`\\s${key}(\\s|$)`.test(rawLine)) foundConstants.add(key);
     }
 
     // Serialize presets
     const presets = [];
-    for (const id of Array.from(foundPresets)) {
+    for (const id of [...foundPresets]) {
       const preset = player.timestudy.presets[id];
       presets.push(`${id}:${preset?.name ?? ""}:${preset?.studies ?? ""}`);
     }
 
     // Serialize constants
     const constants = [];
-    for (const name of Array.from(foundConstants)) {
+    for (const name of [...foundConstants]) {
       constants.push(`${name}:${player.reality.automator.constants[name]}`);
     }
 
@@ -654,7 +653,7 @@ export const AutomatorBackend = {
     try {
       decoded = GameSaveSerializer.decodeText(rawInput, "automator data");
       parts = this.deserializeAutomatorData(decoded);
-    } catch (e) {
+    } catch {
       return null;
     }
     if (parts.length !== 4) return null;
@@ -719,9 +718,10 @@ export const AutomatorBackend = {
     if (!this.isOn) return;
     let stack;
     switch (this.mode) {
-      case AUTOMATOR_MODE.PAUSE:
+      case AUTOMATOR_MODE.PAUSE: {
         return;
-      case AUTOMATOR_MODE.SINGLE_STEP:
+      }
+      case AUTOMATOR_MODE.SINGLE_STEP: {
         this.singleStep();
         stack = AutomatorBackend.stack.top;
         // If single step completes the last line and repeat is off, the command stack will be empty and
@@ -729,16 +729,19 @@ export const AutomatorBackend = {
         if (stack && this.state.followExecution) AutomatorScroller.scrollToRawLine(stack.lineNumber);
         this.state.mode = AUTOMATOR_MODE.PAUSE;
         return;
-      case AUTOMATOR_MODE.RUN:
+      }
+      case AUTOMATOR_MODE.RUN: {
         break;
-      default:
+      }
+      default: {
         this.stop();
         return;
+      }
     }
 
     player.reality.automator.execTimer += diff;
     const commandsThisUpdate = Math.min(
-      Math.floor(player.reality.automator.execTimer / this.currentInterval.toNumber()), this.MAX_COMMANDS_PER_UPDATE
+      Math.floor(player.reality.automator.execTimer / this.currentInterval.toNumber()), this.MAX_COMMANDS_PER_UPDATE,
     );
     player.reality.automator.execTimer -= commandsThisUpdate * this.currentInterval.toNumber();
 
@@ -751,24 +754,31 @@ export const AutomatorBackend = {
     if (this.stack.isEmpty) return false;
     for (let steps = 0; steps < 100 && !this.hasJustCompleted; steps++) {
       switch (this.runCurrentCommand()) {
-        case AUTOMATOR_COMMAND_STATUS.SAME_INSTRUCTION:
+        case AUTOMATOR_COMMAND_STATUS.SAME_INSTRUCTION: {
           return true;
-        case AUTOMATOR_COMMAND_STATUS.NEXT_INSTRUCTION:
+        }
+        case AUTOMATOR_COMMAND_STATUS.NEXT_INSTRUCTION: {
           return this.nextCommand();
-        case AUTOMATOR_COMMAND_STATUS.NEXT_TICK_SAME_INSTRUCTION:
+        }
+        case AUTOMATOR_COMMAND_STATUS.NEXT_TICK_SAME_INSTRUCTION: {
           return false;
-        case AUTOMATOR_COMMAND_STATUS.NEXT_TICK_NEXT_INSTRUCTION:
+        }
+        case AUTOMATOR_COMMAND_STATUS.NEXT_TICK_NEXT_INSTRUCTION: {
           this.nextCommand();
           return false;
-        case AUTOMATOR_COMMAND_STATUS.SKIP_INSTRUCTION:
+        }
+        case AUTOMATOR_COMMAND_STATUS.SKIP_INSTRUCTION: {
           this.nextCommand();
           break;
-        case AUTOMATOR_COMMAND_STATUS.HALT:
+        }
+        case AUTOMATOR_COMMAND_STATUS.HALT: {
           this.stop();
           return false;
-        case AUTOMATOR_COMMAND_STATUS.RESTART:
+        }
+        case AUTOMATOR_COMMAND_STATUS.RESTART: {
           this.restart();
           return false;
+        }
       }
 
       // We need to break out of the loop if the last commands are all SKIP_INSTRUCTION, or else it'll start
@@ -798,17 +808,21 @@ export const AutomatorBackend = {
     // HALT and RESTART are exceptions, as these are called by commands which force
     // program flow to do something else other than simply advancing to the next line
     switch (this.runCurrentCommand()) {
-      case AUTOMATOR_COMMAND_STATUS.NEXT_TICK_SAME_INSTRUCTION:
+      case AUTOMATOR_COMMAND_STATUS.NEXT_TICK_SAME_INSTRUCTION: {
         break;
-      case AUTOMATOR_COMMAND_STATUS.HALT:
+      }
+      case AUTOMATOR_COMMAND_STATUS.HALT: {
         this.stop();
         break;
-      case AUTOMATOR_COMMAND_STATUS.RESTART:
+      }
+      case AUTOMATOR_COMMAND_STATUS.RESTART: {
         this.restart();
         break;
-      default:
+      }
+      default: {
         this.nextCommand();
         break;
+      }
     }
   },
 
@@ -831,7 +845,7 @@ export const AutomatorBackend = {
         }
         this.stop();
       } else if (this.stack.top.commandState && this.stack.top.commandState.advanceOnPop) {
-        AutomatorData.logCommandEvent(`Exiting IF block`, this.stack.top.commandState.ifEndLine);
+        AutomatorData.logCommandEvent("Exiting IF block", this.stack.top.commandState.ifEndLine);
         return this.nextCommand();
       }
     } else {
@@ -859,7 +873,7 @@ export const AutomatorBackend = {
   },
 
   initializeFromSave() {
-    const scriptIds = Object.keys(player.reality.automator.scripts).map(id => parseInt(id, 10));
+    const scriptIds = Object.keys(player.reality.automator.scripts).map(id => Number.parseInt(id, 10));
     if (scriptIds.length === 0) {
       scriptIds.push(this._createDefaultScript());
     } else {
@@ -894,11 +908,11 @@ export const AutomatorBackend = {
 
   newScript() {
     // Make sure the new script has a unique name
-    const scriptNames = AutomatorBackend._scripts.map(s => s.name);
+    const scriptNames = new Set(AutomatorBackend._scripts.map(s => s.name));
     let newScript;
-    if (scriptNames.includes("New Script")) {
+    if (scriptNames.has("New Script")) {
       let newIndex = 2;
-      while (scriptNames.includes(`New Script (${newIndex})`)) newIndex++;
+      while (scriptNames.has(`New Script (${newIndex})`)) newIndex++;
       newScript = AutomatorScript.create(`New Script (${newIndex})`);
     } else {
       newScript = AutomatorScript.create("New Script");
@@ -913,7 +927,7 @@ export const AutomatorBackend = {
   deleteScript(id) {
     // We need to delete scripts from two places - in the savefile and compiled AutomatorScript Objects
     const saveId = Object.values(player.reality.automator.scripts).findIndex(s => s.id === id);
-    delete player.reality.automator.scripts[parseInt(Object.keys(player.reality.automator.scripts)[saveId], 10)];
+    delete player.reality.automator.scripts[Number.parseInt(Object.keys(player.reality.automator.scripts)[saveId], 10)];
     const idx = this._scripts.findIndex(e => e.id === id);
     this._scripts.splice(idx, 1);
     if (this._scripts.length === 0) {
@@ -1066,6 +1080,6 @@ export const AutomatorBackend = {
     },
     get isEmpty() {
       return this._data.length === 0;
-    }
+    },
   },
 };

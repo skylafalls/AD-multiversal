@@ -6,7 +6,7 @@ export default {
   name: "AutomatorControls",
   components: {
     AutomatorButton,
-    AutomatorModeSwitch
+    AutomatorModeSwitch,
   },
   data() {
     return {
@@ -43,7 +43,7 @@ export default {
         "c-automator__button--active": this.isRunning,
         "fa-play": !this.isRunning && !this.isPaused,
         "fa-pause": this.isRunning,
-        "fa-eject": this.isPaused
+        "fa-eject": this.isPaused,
       };
     },
     statusText() {
@@ -70,7 +70,7 @@ export default {
       this.justCompleted = AutomatorBackend.hasJustCompleted;
       this.forceRestartOn = AutomatorBackend.state.forceRestart;
       this.followExecution = AutomatorBackend.state.followExecution;
-      this.hasErrors = AutomatorData.currentErrors().length !== 0;
+      this.hasErrors = AutomatorData.currentErrors().length > 0;
       this.currentLine = AutomatorBackend.currentLineNumber;
 
       // When the automator isn't running, the script name contains the last run script instead of the
@@ -79,8 +79,8 @@ export default {
         ? AutomatorBackend.scriptName
         : AutomatorBackend.currentEditingScript.name;
       this.duplicateStatus = AutomatorBackend.hasDuplicateName(this.statusName);
-      this.editingDifferentScript = (this.isRunning || this.isPaused) &&
-        AutomatorBackend.currentEditingScript.id !== AutomatorBackend.currentRunningScript.id;
+      this.editingDifferentScript = (this.isRunning || this.isPaused)
+        && AutomatorBackend.currentEditingScript.id !== AutomatorBackend.currentRunningScript.id;
 
       this.currentChars = AutomatorData.singleScriptCharacters();
       this.hasUndo = AutomatorData.undoBuffer.length > 0;
@@ -112,7 +112,7 @@ export default {
     follow: () => AutomatorBackend.toggleFollowExecution(),
     undo: () => AutomatorData.undoScriptEdit(),
     redo: () => AutomatorData.redoScriptEdit(),
-  }
+  },
 };
 </script>
 

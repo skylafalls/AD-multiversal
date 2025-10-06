@@ -19,14 +19,14 @@ export default {
       },
       set(tab) {
         this.tabId = tab.id;
-      }
+      },
     },
     matchingTabs() {
       return GameDatabase.h2p.search(this.searchValue).filter(searchObj => searchObj.tab.isUnlocked());
     },
     topThreshold() {
       return Math.min(this.matchingTabs[Math.min(this.matchingTabs.length - 1, 4)].relevance + 0.01, 0.5);
-    }
+    },
   },
   created() {
     const unlockedTabs = GameDatabase.h2p.tabs.filter(tab => tab.isUnlocked());
@@ -44,17 +44,17 @@ export default {
   methods: {
     setActiveTab(tab) {
       this.activeTab = tab;
-      document.getElementById("h2p-body").scrollTop = 0;
+      document.querySelector("#h2p-body").scrollTop = 0;
     },
     isFirstIrrelevant(idx) {
       const matches = this.matchingTabs;
       const searchObjThis = matches[idx];
       const searchObjOther = matches[idx - 1];
 
-      return idx > 0 &&
-        searchObjThis.relevance >= this.topThreshold &&
-        searchObjOther.relevance < this.topThreshold;
-    }
+      return idx > 0
+        && searchObjThis.relevance >= this.topThreshold
+        && searchObjOther.relevance < this.topThreshold;
+    },
   },
 };
 </script>

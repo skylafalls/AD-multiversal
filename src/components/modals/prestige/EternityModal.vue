@@ -4,14 +4,14 @@ import ResetModal from "@/components/modals/prestige/ResetModal";
 export default {
   name: "EternityModal",
   components: {
-    ResetModal
+    ResetModal,
   },
   data() {
     return {
       exitingEC: false,
       startingIP: new Decimal(),
       gainedEternityPoints: new Decimal(),
-      gainedEternities: new Decimal()
+      gainedEternities: new Decimal(),
     };
   },
   computed: {
@@ -29,7 +29,7 @@ export default {
     startWithIP() {
       return this.startingIP.gt(0)
         ? `You will start your next Eternity with ${quantify("Infinity Point", this.startingIP, 2)}.`
-        : ``;
+        : "";
     },
     eternityChallenge() {
       const ec = EternityChallenge.current;
@@ -41,7 +41,7 @@ export default {
       }
       const gainedCompletions = ec.gainedCompletionStatus.gainedCompletions;
       return `You will gain ${quantifyInt("completion", gainedCompletions)} for Eternity Challenge ${ec.id}.`;
-    }
+    },
   },
   methods: {
     update() {
@@ -53,7 +53,7 @@ export default {
     handleYesClick() {
       animateAndEternity();
       EventHub.ui.offAll(this);
-    }
+    },
   },
 };
 </script>

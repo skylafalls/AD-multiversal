@@ -4,7 +4,7 @@ import GlyphComponent from "@/components/GlyphComponent";
 export default {
   name: "EquippedGlyphs",
   components: {
-    GlyphComponent
+    GlyphComponent,
   },
   data() {
     return {
@@ -37,8 +37,8 @@ export default {
     undoTooltip() {
       if (!this.undoSlotsAvailable) return "You do not have available inventory space to unequip Glyphs to";
       return this.undoAvailable
-        ? ("Unequip the last equipped Glyph and rewind Reality to when you equipped it." +
-          " (Most resources will be fully reset)")
+        ? ("Unequip the last equipped Glyph and rewind Reality to when you equipped it."
+          + " (Most resources will be fully reset)")
         : "Undo is only available for Glyphs equipped during this Reality";
     },
     unequipText() {
@@ -51,10 +51,10 @@ export default {
     glyphRespecStyle() {
       if (this.respec) {
         return {
-          color: "var(--color-reality-light)",
+          "color": "var(--color-reality-light)",
           "background-color": "var(--color-reality)",
           "border-color": "#094e0b",
-          cursor: "pointer",
+          "cursor": "pointer",
         };
       }
       return {
@@ -68,7 +68,7 @@ export default {
         "l-glyph-equip-button": this.isDoomed,
         "l-glyph-equip-button-short": !this.isDoomed,
       };
-    }
+    },
   },
   created() {
     this.on$(GAME_EVENT.GLYPHS_EQUIPPED_CHANGED, this.glyphsChanged);
@@ -90,9 +90,9 @@ export default {
       const dx = -this.GLYPH_SIZE / 2 + this.arrangementRadius * Math.sin(angle);
       const dy = -this.GLYPH_SIZE / 2 + this.arrangementRadius * Math.cos(angle);
       return {
-        position: "absolute",
-        left: `calc(50% + ${dx}rem)`,
-        top: `calc(50% + ${dy}rem)`,
+        "position": "absolute",
+        "left": `calc(50% + ${dx}rem)`,
+        "top": `calc(50% + ${dy}rem)`,
         "z-index": 1,
       };
     },
@@ -106,7 +106,7 @@ export default {
     },
     drop(event, idx) {
       this.dragoverIndex = -1;
-      const id = parseInt(event.dataTransfer.getData(GLYPH_MIME_TYPE), 10);
+      const id = Number.parseInt(event.dataTransfer.getData(GLYPH_MIME_TYPE), 10);
       if (isNaN(id)) return;
       const glyph = Glyphs.findById(id);
       if (glyph) Glyphs.equip(glyph, idx);
@@ -151,8 +151,8 @@ export default {
         const sound = idx + (increaseSound ? 6 : 1);
         new Audio(`audio/note${sound}.mp3`).play();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

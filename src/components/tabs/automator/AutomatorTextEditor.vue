@@ -4,7 +4,7 @@ export default {
   props: {
     currentScriptId: {
       type: [Number, String],
-      required: true
+      required: true,
     },
   },
   data() {
@@ -41,7 +41,7 @@ export default {
     },
     fullScreen() {
       this.$nextTick(() => this.UI.editor.refresh());
-    }
+    },
   },
   created() {
     AutomatorTextUI.initialize();
@@ -49,7 +49,7 @@ export default {
     this.on$(GAME_EVENT.AUTOMATOR_SAVE_CHANGED, () => this.onGameLoad());
   },
   mounted() {
-    this.$refs.container.appendChild(this.UI.container);
+    this.$refs.container.append(this.UI.container);
     this.$nextTick(() => {
       this.UI.editor.refresh();
       this.UI.editor.performLint();
@@ -91,7 +91,7 @@ export default {
       if (`${this.currentScriptId}` === scriptID) this.markActiveLine(lineNumber);
       else this.unmarkActiveLine();
     },
-  }
+  },
 };
 
 export const AutomatorTextUI = {
@@ -107,11 +107,11 @@ export const AutomatorTextUI = {
     theme: "liquibyte",
     tabSize: 2,
     extraKeys: {
-      Tab: cm => cm.execCommand("indentMore"),
+      "Tab": cm => cm.execCommand("indentMore"),
       "Shift-Tab": cm => cm.execCommand("indentLess"),
     },
     autoCloseBrackets: true,
-    lineWrapping: true
+    lineWrapping: true,
   },
   initialize() {
     if (this.container) return;
@@ -123,7 +123,7 @@ export const AutomatorTextUI = {
     this.container = document.createElement("div");
     this.container.className = "l-automator-editor__codemirror-container";
     this.textArea = document.createElement("textarea");
-    this.container.appendChild(this.textArea);
+    this.container.append(this.textArea);
   },
   setUpEditor() {
     this.editor = CodeMirror.fromTextArea(this.textArea, this.mode);

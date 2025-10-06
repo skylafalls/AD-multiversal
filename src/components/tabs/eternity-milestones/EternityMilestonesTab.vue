@@ -4,7 +4,7 @@ import EternityMilestoneButton from "./EternityMilestoneButton";
 export default {
   name: "EternityMilestonesTab",
   components: {
-    EternityMilestoneButton
+    EternityMilestoneButton,
   },
   data() {
     return {
@@ -14,12 +14,12 @@ export default {
   computed: {
     milestones() {
       return Object.values(GameDatabase.eternity.milestones)
-        .sort((a, b) => a.eternities - b.eternities)
+        .toSorted((a, b) => a.eternities - b.eternities)
         .map(config => new EternityMilestoneState(config));
     },
     rows() {
       return Math.ceil(this.milestones.length / 3);
-    }
+    },
   },
   methods: {
     update() {
@@ -27,8 +27,8 @@ export default {
     },
     getMilestone(row, column) {
       return () => this.milestones[(row - 1) * 3 + column - 1];
-    }
-  }
+    },
+  },
 };
 </script>
 

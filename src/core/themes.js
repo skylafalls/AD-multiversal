@@ -3,7 +3,7 @@ import { sha512_256 } from "js-sha512";
 export const Theme = function Theme(name, config) {
   this.name = name;
 
-  this.isDark = function() {
+  this.isDark = function () {
     return (this.isDefault() || name === "S12")
       ? player.options.newUI
       : config.isDark;
@@ -15,23 +15,23 @@ export const Theme = function Theme(name, config) {
 
   this.isSecret = config.isSecret;
 
-  this.isDefault = function() {
+  this.isDefault = function () {
     return name === "Normal";
   };
 
-  this.isAvailable = function() {
+  this.isAvailable = function () {
     if (!this.isSecret) return true;
     // Note: match[0] gets the full string of a match, here the initial S and number in a theme name.
     return player.secretUnlocks.themes.some(theme => theme.match(/^S[0-9]*/u)[0] === name);
   };
 
-  this.displayName = function() {
+  this.displayName = function () {
     if (!this.isSecret || !this.isAvailable()) return name;
     // Secret themes are stored as "S9Whatever", so we need to strip the SN part
     return player.secretUnlocks.themes.find(theme => theme.match(/^S[0-9]*/u)[0] === name).replace(/^S[0-9]*/u, "");
   };
 
-  this.set = function() {
+  this.set = function () {
     // Remove all entries in the class list from the class list
     document.body.classList.remove(...document.body.classList);
 
@@ -40,9 +40,9 @@ export const Theme = function Theme(name, config) {
     if (this.isDark()) document.body.classList.add("s-base--dark");
 
     if (this.isAnimated && player.options.animations.background) {
-      document.getElementById("background-animations").style.display = "block";
+      document.querySelector("#background-animations").style.display = "block";
     } else {
-      document.getElementById("background-animations").style.display = "none";
+      document.querySelector("#background-animations").style.display = "none";
     }
     if (player.options.newUI) {
       player.options.themeModern = name;
@@ -54,28 +54,28 @@ export const Theme = function Theme(name, config) {
     PerkNetwork.forceNetworkRemake();
   };
 
-  this.cssClass = function() {
-    return `t-${this.name.replace(/\s+/gu, "-").toLowerCase()}`;
+  this.cssClass = function () {
+    return `t-${this.name.replaceAll(/\s+/gu, "-").toLowerCase()}`;
   };
 };
 
-Theme.currentName = function() {
+Theme.currentName = function () {
   return player.options.newUI
     ? player.options.themeModern
     : player.options.themeClassic;
 };
 
-Theme.current = function() {
+Theme.current = function () {
   return Themes.find(Theme.currentName());
 };
 
-Theme.set = function(name) {
+Theme.set = function (name) {
   const theme = Themes.find(name);
   theme.set();
   return theme;
 };
 
-Theme.secretThemeIndex = function(name) {
+Theme.secretThemeIndex = function (name) {
   const secretThemes = [
     "ef853879b60fa6755d9599fd756c94d112f987c0cd596abf48b08f33af5ff537",
     "078570d37e6ffbf06e079e07c3c7987814e03436d00a17230ef5f24b1cb93290",
@@ -94,15 +94,15 @@ Theme.secretThemeIndex = function(name) {
   return secretThemes.indexOf(sha);
 };
 
-Theme.isSecretTheme = function(name) {
+Theme.isSecretTheme = function (name) {
   return Theme.secretThemeIndex(name) !== -1;
 };
 
-Theme.animatedThemeUnlocked = function() {
+Theme.animatedThemeUnlocked = function () {
   return Themes.all.some(theme => theme.isAvailable && theme.isAnimated);
 };
 
-Theme.tryUnlock = function(name) {
+Theme.tryUnlock = function (name) {
   const index = Theme.secretThemeIndex(name);
   if (index === -1) {
     return false;
@@ -123,7 +123,7 @@ Theme.tryUnlock = function(name) {
   return true;
 };
 
-Theme.create = function(name, settings) {
+Theme.create = function (name, settings) {
   const config = {
     isDark: false || settings.dark,
     isMetro: false || settings.metro,
@@ -135,29 +135,29 @@ Theme.create = function(name, settings) {
 
 export const Themes = {
   all: [
-    /* eslint-disable no-multi-spaces */
+
     // Note that "Normal" is a special case where dark is overridden elsewhere with whether or not the UI is Modern
-    Theme.create("Normal",          {                                                         }),
-    Theme.create("Metro",           {              metro: true,                               }),
-    Theme.create("Dark",            { dark: true,                                             }),
-    Theme.create("Dark Metro",      { dark: true,  metro: true,                               }),
-    Theme.create("Inverted",        {                                                         }),
-    Theme.create("Inverted Metro",  {              metro: true,                               }),
-    Theme.create("AMOLED",          { dark: true,                                             }),
-    Theme.create("AMOLED Metro",    { dark: true,  metro: true,                               }),
-    Theme.create("S1",              {                           animated: true, secret: true, }),
-    Theme.create("S2",              {                                           secret: true, }),
-    Theme.create("S3",              {                                           secret: true, }),
-    Theme.create("S4",              {                                           secret: true, }),
-    Theme.create("S5",              {                                           secret: true, }),
-    Theme.create("S6",              { dark: true,               animated: true, secret: true, }),
-    Theme.create("S7",              {              metro: true,                 secret: true, }),
-    Theme.create("S8",              {              metro: true,                 secret: true, }),
-    Theme.create("S9",              {                                           secret: true, }),
-    Theme.create("S10",             { dark: true,  metro: true, animated: true, secret: true, }),
-    Theme.create("S11",             { dark: true,               animated: true, secret: true, }),
-    Theme.create("S12",             {                                           secret: true, }),
-    /* eslint-enable no-multi-spaces */
+    Theme.create("Normal", {}),
+    Theme.create("Metro", { metro: true }),
+    Theme.create("Dark", { dark: true }),
+    Theme.create("Dark Metro", { dark: true, metro: true }),
+    Theme.create("Inverted", {}),
+    Theme.create("Inverted Metro", { metro: true }),
+    Theme.create("AMOLED", { dark: true }),
+    Theme.create("AMOLED Metro", { dark: true, metro: true }),
+    Theme.create("S1", { animated: true, secret: true }),
+    Theme.create("S2", { secret: true }),
+    Theme.create("S3", { secret: true }),
+    Theme.create("S4", { secret: true }),
+    Theme.create("S5", { secret: true }),
+    Theme.create("S6", { dark: true, animated: true, secret: true }),
+    Theme.create("S7", { metro: true, secret: true }),
+    Theme.create("S8", { metro: true, secret: true }),
+    Theme.create("S9", { secret: true }),
+    Theme.create("S10", { dark: true, metro: true, animated: true, secret: true }),
+    Theme.create("S11", { dark: true, animated: true, secret: true }),
+    Theme.create("S12", { secret: true }),
+
   ],
 
   available() {
@@ -168,5 +168,5 @@ export const Themes = {
   find(name) {
     return Themes.all
       .find(theme => theme.name === name);
-  }
+  },
 };

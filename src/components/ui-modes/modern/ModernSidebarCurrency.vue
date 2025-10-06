@@ -5,7 +5,7 @@ export default {
     return {
       sidebarID: 0,
       resourceName: "",
-      resourceValue: new Decimal(0)
+      resourceValue: new Decimal(0),
     };
   },
   computed: {
@@ -16,13 +16,13 @@ export default {
     resource() {
       // With "default" sorting, return the latest unlocked resource - otherwise, return the specified one
       return this.sidebarID === 0
-        ? this.resourceDB.filter(e => e.isAvailable()).sort((a, b) => b.id - a.id)[0]
+        ? this.resourceDB.filter(e => e.isAvailable()).toSorted((a, b) => b.id - a.id)[0]
         : this.resourceDB.find(e => e.id === this.sidebarID);
     },
     displayValue() {
       // RM + iM seems to cause strange, undesirable linebreaks
       return this.resource.formatValue(this.resourceValue).replace(" + ", "+");
-    }
+    },
   },
   methods: {
     update() {
@@ -50,7 +50,7 @@ export default {
       return {
         transform: `scale(${strLen < 10 ? 1 : 10 / strLen})`,
       };
-    }
+    },
   },
 };
 </script>

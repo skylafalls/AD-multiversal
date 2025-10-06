@@ -10,7 +10,7 @@ export default {
     OpenModalHotkeysButton,
     OptionsButton,
     PrimaryToggleButton,
-    SliderComponent
+    SliderComponent,
   },
   data() {
     return {
@@ -32,7 +32,7 @@ export default {
         max: 54,
         interval: 1,
         width: "100%",
-        tooltip: false
+        tooltip: false,
       };
     },
     sliderPropsAutomatorLogSize() {
@@ -41,9 +41,9 @@ export default {
         max: 500,
         interval: 50,
         width: "100%",
-        tooltip: false
+        tooltip: false,
       };
-    }
+    },
   },
   watch: {
     offlineProgress(newValue) {
@@ -62,7 +62,7 @@ export default {
       player.options.automaticTabSwitching = newValue;
     },
     automatorLogSize(newValue) {
-      player.options.automatorEvents.maxEntries = parseInt(newValue, 10);
+      player.options.automatorEvents.maxEntries = Number.parseInt(newValue, 10);
     },
   },
   // This puts the slider in the right spot on initialization
@@ -87,7 +87,7 @@ export default {
     // Given the endpoints of 22-54, this produces 500, 600, ... , 900, 1000, 2000, ... , 1e6 ticks
     // It's essentially 10^(x/10) but with the mantissa spaced linearly instead of logarithmically
     parseOfflineSlider(str) {
-      const value = parseInt(str, 10);
+      const value = Number.parseInt(str, 10);
       return (1 + value % 9) * Math.pow(10, Math.floor(value / 9));
     },
     adjustSliderValueOfflineTicks(value) {
@@ -97,8 +97,8 @@ export default {
     adjustSliderValueAutomatorLogSize(value) {
       this.automatorLogSize = value;
       player.options.automatorEvents.maxEntries = this.automatorLogSize;
-    }
-  }
+    },
+  },
 };
 </script>
 

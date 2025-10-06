@@ -8,58 +8,58 @@ export default {
     tooltipContentStyle: {
       type: Object,
       required: false,
-      default: () => ({})
+      default: () => ({}),
     },
     tooltipArrowStyle: {
       type: Object,
       required: false,
-      default: () => ({})
+      default: () => ({}),
     },
     left: {
       type: String,
       required: false,
-      default: ""
+      default: "",
     },
     top: {
       type: String,
       required: false,
-      default: ""
+      default: "",
     },
     right: {
       type: String,
       required: false,
-      default: ""
+      default: "",
     },
     bottom: {
       type: String,
       required: false,
-      default: ""
+      default: "",
     },
     contentClass: {
       type: [Object, String],
       required: false,
-      default: ""
+      default: "",
     },
     tooltipClass: {
       type: [Object, String],
       required: false,
-      default: ""
+      default: "",
     },
     mode: {
       type: String,
       required: false,
-      default: "top"
+      default: "top",
     },
     show: {
       type: Boolean,
-      required: false
-    }
+      required: false,
+    },
   },
   data() {
     return {
       hovering: false,
       mainContent: null,
-      isDarkTheme: false
+      isDarkTheme: false,
     };
   },
   computed: {
@@ -68,7 +68,7 @@ export default {
         left: this.left,
         top: this.top,
         right: this.right,
-        bottom: this.bottom
+        bottom: this.bottom,
       };
     },
     tooltipType() {
@@ -80,16 +80,21 @@ export default {
     },
     tooltipTransform() {
       switch (this.mode) {
-        case "top":
+        case "top": {
           return `translate(${this.showNegativeSign("X")}50%, -100%)`;
-        case "bottom":
+        }
+        case "bottom": {
           return `translate(${this.showNegativeSign("X")}50%, 100%)`;
-        case "right":
+        }
+        case "right": {
           return `translate(100%, ${this.showNegativeSign("Y")}50%)`;
-        case "left":
+        }
+        case "left": {
           return `translate(-100%, ${this.showNegativeSign("Y")}50%)`;
-        default:
+        }
+        default: {
           return "";
+        }
       }
     },
     showTooltip() {
@@ -106,22 +111,22 @@ export default {
     tooltipInternalClass() {
       return {
         "c-tooltip-show": this.showTooltip,
-        [this.tooltipType]: true
+        [this.tooltipType]: true,
       };
     },
     tooltipContentClass() {
       return [
         this.tooltipInternalClass,
         this.tooltipClass,
-        this.tooltipContentLightDarkClass
+        this.tooltipContentLightDarkClass,
       ];
     },
     tooltipArrowClass() {
       return [
         this.tooltipInternalClass,
-        this.tooltipArrowLightDarkClass
+        this.tooltipArrowLightDarkClass,
       ];
-    }
+    },
   },
   methods: {
     update() {
@@ -133,7 +138,7 @@ export default {
       }
       return this.top ? "-" : "";
     },
-  }
+  },
 };
 </script>
 

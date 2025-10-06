@@ -6,13 +6,13 @@ import { BACKUP_SLOT_TYPE } from "@/core/storage";
 export default {
   name: "BackupEntry",
   components: {
-    PrimaryButton
+    PrimaryButton,
   },
   props: {
     slotData: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -32,7 +32,7 @@ export default {
         this.save.reality.realityMachines,
         this.save.eternityPoints,
         this.save.infinityPoints,
-        this.save.antimatter
+        this.save.antimatter,
       ];
       const names = ["Reality Shards",
         "Imaginary Machine Cap",
@@ -52,14 +52,18 @@ export default {
     slotType() {
       const formattedTime = this.slotData.intervalStr?.();
       switch (this.slotData.type) {
-        case BACKUP_SLOT_TYPE.ONLINE:
+        case BACKUP_SLOT_TYPE.ONLINE: {
           return `Saves every ${formattedTime} online`;
-        case BACKUP_SLOT_TYPE.OFFLINE:
+        }
+        case BACKUP_SLOT_TYPE.OFFLINE: {
           return `Saves after ${formattedTime} offline`;
-        case BACKUP_SLOT_TYPE.RESERVE:
+        }
+        case BACKUP_SLOT_TYPE.RESERVE: {
           return "Pre-loading save";
-        default:
+        }
+        default: {
           throw new Error("Unrecognized backup save type");
+        }
       }
     },
     lastSaved() {

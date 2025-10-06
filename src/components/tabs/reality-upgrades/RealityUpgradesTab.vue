@@ -4,7 +4,7 @@ import RealityUpgradeButton from "./RealityUpgradeButton";
 export default {
   name: "RealityUpgradesTab",
   components: {
-    RealityUpgradeButton
+    RealityUpgradeButton,
   },
   computed: {
     upgrades: () => RealityUpgrades.all,
@@ -18,8 +18,8 @@ export default {
   methods: {
     id(row, column) {
       return (row - 1) * 5 + column - 1;
-    }
-  }
+    },
+  },
 };
 </script>
 

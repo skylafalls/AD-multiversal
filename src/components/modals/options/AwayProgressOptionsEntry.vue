@@ -24,7 +24,7 @@ export default {
     },
     text() {
       return `${this.type.formatName}:`;
-    }
+    },
   },
   watch: {
     setting(newValue) {
@@ -36,7 +36,7 @@ export default {
       const type = this.type;
       this.setting = type.option;
       this.isVisible = type.isUnlocked();
-    }
+    },
   },
 };
 </script>

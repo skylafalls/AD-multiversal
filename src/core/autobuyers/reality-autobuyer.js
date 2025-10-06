@@ -6,7 +6,7 @@ export class RealityAutobuyerState extends AutobuyerState {
   }
 
   get name() {
-    return `Reality`;
+    return "Reality";
   }
 
   get isUnlocked() {
@@ -66,7 +66,7 @@ export class RealityAutobuyerState extends AutobuyerState {
       AUTO_REALITY_MODE.EITHER,
       AUTO_REALITY_MODE.BOTH,
       AUTO_REALITY_MODE.TIME,
-      AUTO_REALITY_MODE.RELIC_SHARD
+      AUTO_REALITY_MODE.RELIC_SHARD,
     ]
       .nextSibling(this.mode);
   }
@@ -84,8 +84,8 @@ export class RealityAutobuyerState extends AutobuyerState {
     // settings are changed (which causes it to check again); otherwise, glyph choices would be generated every tick
     const dontCheckModes = [AUTO_GLYPH_SCORE.LOWEST_SACRIFICE, AUTO_GLYPH_SCORE.LOWEST_ALCHEMY,
       AUTO_GLYPH_SCORE.ALCHEMY_VALUE];
-    const shouldCheckFilter = EffarigUnlock.glyphFilter.isUnlocked && !player.reality.hasCheckedFilter &&
-      !dontCheckModes.includes(AutoGlyphProcessor.scoreMode);
+    const shouldCheckFilter = EffarigUnlock.glyphFilter.isUnlocked && !player.reality.hasCheckedFilter
+      && !dontCheckModes.includes(AutoGlyphProcessor.scoreMode);
     if (isRealityAvailable() && player.options.autoRealityForFilter && shouldCheckFilter) {
       const gainedLevel = gainedGlyphLevel();
       const checkModes = [AUTO_REALITY_MODE.GLYPH, AUTO_REALITY_MODE.EITHER, AUTO_REALITY_MODE.BOTH];
@@ -109,24 +109,30 @@ export class RealityAutobuyerState extends AutobuyerState {
     const rmProc = MachineHandler.gainedRealityMachines.times(ampFactor).gte(this.rm);
     const glyphProc = gainedGlyphLevel().actualLevel.gte(this.glyph);
     switch (this.mode) {
-      case AUTO_REALITY_MODE.RM:
+      case AUTO_REALITY_MODE.RM: {
         proc = rmProc;
         break;
-      case AUTO_REALITY_MODE.GLYPH:
+      }
+      case AUTO_REALITY_MODE.GLYPH: {
         proc = glyphProc;
         break;
-      case AUTO_REALITY_MODE.EITHER:
+      }
+      case AUTO_REALITY_MODE.EITHER: {
         proc = rmProc || glyphProc;
         break;
-      case AUTO_REALITY_MODE.BOTH:
+      }
+      case AUTO_REALITY_MODE.BOTH: {
         proc = rmProc && glyphProc;
         break;
-      case AUTO_REALITY_MODE.TIME:
+      }
+      case AUTO_REALITY_MODE.TIME: {
         proc = player.records.thisReality.realTime / 1000 > this.time;
         break;
-      case AUTO_REALITY_MODE.RELIC_SHARD:
+      }
+      case AUTO_REALITY_MODE.RELIC_SHARD: {
         proc = Effarig.shardsGained.mul(ampFactor).gt(this.shard);
         break;
+      }
     }
     if (proc) autoReality();
   }

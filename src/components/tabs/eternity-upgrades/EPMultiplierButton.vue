@@ -6,7 +6,7 @@ export default {
   name: "EPMultiplierButton",
   components: {
     PrimaryButton,
-    PrimaryToggleButton
+    PrimaryToggleButton,
   },
   data() {
     return {
@@ -14,7 +14,7 @@ export default {
       isAutoUnlocked: false,
       isAffordable: false,
       multiplier: new Decimal(),
-      cost: new Decimal()
+      cost: new Decimal(),
     };
   },
   computed: {
@@ -36,7 +36,7 @@ export default {
       return {
         "o-eternity-upgrade": true,
         "o-eternity-upgrade--available": this.isAffordable,
-        "o-eternity-upgrade--unavailable": !this.isAffordable
+        "o-eternity-upgrade--unavailable": !this.isAffordable,
       };
     },
     isDoomed: () => Pelle.isDoomed,
@@ -44,7 +44,7 @@ export default {
   watch: {
     isAutobuyerActive(newValue) {
       Autobuyer.epMult.isActive = newValue;
-    }
+    },
   },
   methods: {
     update() {
@@ -58,8 +58,8 @@ export default {
     purchaseUpgrade() {
       if (RealityUpgrade(15).isLockingMechanics) RealityUpgrade(15).tryShowWarningModal();
       else this.upgrade.purchase();
-    }
-  }
+    },
+  },
 };
 </script>
 

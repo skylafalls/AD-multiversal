@@ -24,8 +24,8 @@ export default {
     },
     collapseEmpty() {
       Glyphs.collapseEmptySlots();
-    }
-  }
+    },
+  },
 };
 </script>
 

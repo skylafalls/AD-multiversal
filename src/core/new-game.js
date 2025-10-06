@@ -20,7 +20,7 @@ export const NG = {
         name: speedrun.name,
         offlineTimeUsed: speedrun.offlineTimeUsed,
         records: [...speedrun.records],
-        achievementTimes: JSON.parse(JSON.stringify(speedrun.achievementTimes)),
+        achievementTimes: structuredClone(speedrun.achievementTimes),
         seedSelection: speedrun.seedSelection,
         initialSeed: speedrun.initialSeed,
       };
@@ -86,12 +86,12 @@ export const NG = {
     player.speedrun.isUnlocked = hasSpeedrun;
     Themes.find(Theme.currentName()).set();
     player.timestudy.presets = JSON.parse(presets);
-    JSON.parse(companions).forEach(g => {
+    JSON.parse(companions).forEach((g) => {
       Glyphs.addToInventory(g);
     });
     Notations.all.find(n => n.name === player.options.notation).setAsCurrent();
     ADNotations.Settings.exponentCommas.min = 10 ** player.options.notationDigits.comma;
     ADNotations.Settings.exponentCommas.max = 10 ** player.options.notationDigits.notation;
     player.lastUpdate = Date.now();
-  }
+  },
 };

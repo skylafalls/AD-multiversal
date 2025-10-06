@@ -4,7 +4,7 @@ export default {
   props: {
     milestone: {
       type: Object,
-      required: true
+      required: true,
     },
     currTime: {
       type: Number,
@@ -23,7 +23,7 @@ export default {
     runIndices: {
       type: Array,
       required: true,
-    }
+    },
   },
   data() {
     return {
@@ -57,12 +57,12 @@ export default {
     timeStyle(time) {
       const isFastest = time === [this.currTime, this.refTime, this.bestTime].filter(t => t !== 0).min();
       return {
-        color: "var(--color-text)",
-        opacity: isFastest ? 1 : 0.85,
+        "color": "var(--color-text)",
+        "opacity": isFastest ? 1 : 0.85,
         "font-weight": isFastest ? "bold" : null,
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -4,32 +4,32 @@ import GlyphComponent from "@/components/GlyphComponent";
 export default {
   name: "GlyphShowcasePanelEntry",
   components: {
-    GlyphComponent
+    GlyphComponent,
   },
   props: {
     idx: {
       type: Number,
-      required: true
+      required: true,
     },
     glyph: {
       type: Object,
-      required: true
+      required: true,
     },
     showLevel: {
       type: Boolean,
-      required: true
+      required: true,
     },
     realityGlyphBoost: {
       type: Decimal,
-      default: new Decimal()
+      default: new Decimal(),
     },
     maxGlyphEffects: {
       type: Number,
-      required: true
+      required: true,
     },
     showSacrifice: {
       type: Boolean,
-      required: true
+      required: true,
     },
   },
   data() {
@@ -58,11 +58,11 @@ export default {
     },
     levelText() {
       if (this.type === "companion") return "";
-      // eslint-disable-next-line no-nested-ternary
+
       const arrow = this.isLevelCapped
         ? "<i class='fas fa-sort-down'></i>"
         : (this.isLevelBoosted ? "<i class='fas fa-sort-up'></i>" : "");
-      // eslint-disable-next-line no-nested-ternary
+
       const color = this.isLevelCapped
         ? "#ff4444"
         : (this.isLevelBoosted ? "#44FF44" : "var(--color-text);");
@@ -73,10 +73,10 @@ export default {
     typeStyle() {
       // Special case for cursed glyphs because its black default has poor contrast on some themes
       return {
-        color: GlyphAppearanceHandler.getBorderColor(this.type),
+        "color": GlyphAppearanceHandler.getBorderColor(this.type),
         "font-weight": "bold",
         "text-shadow": this.type === "cursed" ? "0.05rem 0.05rem var(--color-text)" : undefined,
-        animation: this.type === "reality" ? "a-reality-glyph-description-cycle 10s infinite" : undefined,
+        "animation": this.type === "reality" ? "a-reality-glyph-description-cycle 10s infinite" : undefined,
       };
     },
     rarityStyle() {
@@ -86,19 +86,19 @@ export default {
         : getRarity(this.glyph.strength)[Theme.current().isDark() ? "darkColor" : "lightColor"];
       return {
         color,
-        "font-weight": "bold"
+        "font-weight": "bold",
       };
     },
     effectStyle() {
       return {
         "font-size": `${this.type === "effarig" ? 1 : 1.2}rem`,
-        "height": this.glyphEffectListHeight(this.maxGlyphEffects)
+        "height": this.glyphEffectListHeight(this.maxGlyphEffects),
       };
     },
     glyphEffectList() {
       const db = GlyphEffects;
-      const effects =
-      getGlyphEffectValuesFromArray(this.glyph.effects, this.effectiveLevel, this.glyph.strength, this.type);
+      const effects
+        = getGlyphEffectValuesFromArray(this.glyph.effects, this.effectiveLevel, this.glyph.strength, this.type);
       const effectStrings = effects
         .map(e => this.formatEffectString(db[e.id], e.value));
       // Filter out undefined results since shortDesc only exists for generated effects
@@ -118,7 +118,7 @@ export default {
         "3rem",
         "6rem",
         "8rem",
-        "11rem"
+        "11rem",
       ];
       return heights[effects - 1];
     },
@@ -134,7 +134,7 @@ export default {
         text: `${rawDesc}`
           .replace("{value}", singleValue)
           .replace("{value2}", alteredValue),
-        isPelleDisabled: dbEntry.isDisabledByDoomed
+        isPelleDisabled: dbEntry.isDisabledByDoomed,
       };
     },
     clickGlyph(glyph) {

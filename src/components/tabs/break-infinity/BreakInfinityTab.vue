@@ -6,11 +6,11 @@ export default {
   name: "BreakInfinityTab",
   components: {
     BreakInfinityButton,
-    InfinityUpgradeButton
+    InfinityUpgradeButton,
   },
   data() {
     return {
-      isUnlocked: false
+      isUnlocked: false,
     };
   },
   computed: {
@@ -29,15 +29,15 @@ export default {
         [
           BreakInfinityUpgrade.infinitiedGen,
           BreakInfinityUpgrade.autobuyMaxDimboosts,
-          BreakInfinityUpgrade.autobuyerSpeed
+          BreakInfinityUpgrade.autobuyerSpeed,
         ],
         [
           BreakInfinityUpgrade.tickspeedCostMult,
           BreakInfinityUpgrade.dimCostMult,
-          BreakInfinityUpgrade.ipGen
-        ]
+          BreakInfinityUpgrade.ipGen,
+        ],
       ];
-    }
+    },
   },
   methods: {
     update() {
@@ -46,13 +46,13 @@ export default {
     btnClassObject(column) {
       return {
         "l-infinity-upgrade-grid__cell": true,
-        "o-infinity-upgrade-btn--multiplier": column === 3
+        "o-infinity-upgrade-btn--multiplier": column === 3,
       };
     },
     timeDisplayShort(time) {
       return timeDisplayShort(time);
-    }
-  }
+    },
+  },
 };
 </script>
 

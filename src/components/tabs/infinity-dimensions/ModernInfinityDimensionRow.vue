@@ -8,13 +8,13 @@ export default {
   components: {
     GenericDimensionRowText,
     PrimaryButton,
-    PrimaryToggleButton
+    PrimaryToggleButton,
   },
   props: {
     tier: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -66,17 +66,17 @@ export default {
       return `Purchased ${quantifyInt("time", this.purchases)}`;
     },
     showRow() {
-      return this.eternityReached || this.isUnlocked || this.canUnlock || this.amount.gt(0) ||
-        this.hasPrevTier;
+      return this.eternityReached || this.isUnlocked || this.canUnlock || this.amount.gt(0)
+        || this.hasPrevTier;
     },
     showCostTitle() {
       return this.cost.max(1).log10().lte(1e6);
-    }
+    },
   },
   watch: {
     isAutobuyerOn(newValue) {
       Autobuyer.infinityDimension(this.tier).isActive = newValue;
-    }
+    },
   },
   methods: {
     update() {
@@ -109,7 +109,7 @@ export default {
     buyMaxInfinityDimension() {
       InfinityDimension(this.tier).buyMax(false);
     },
-  }
+  },
 };
 </script>
 

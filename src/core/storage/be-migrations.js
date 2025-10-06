@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 function D(x) {
   return new Decimal(x);
 }
@@ -6,12 +5,11 @@ function D(x) {
 const BEMAX = new Decimal("10^^9000000000000000");
 
 function updateGlyphs(glyph) {
-  if (glyph.effects instanceof Array) return glyph;
+  if (Array.isArray(glyph.effects)) return glyph;
   let intIDindex = (["companion", "cursed", "reality"].includes(glyph.type) ? 28 : 0);
   const effectList = [];
   for (let i = 0; i < 32; i++) {
     if ((glyph.effects >> i) % 2 === 1) {
-      // eslint-disable-next-line no-loop-func, eqeqeq
       effectList.push(GlyphEffects.all.filter(e => e.intID == intIDindex)[0].id);
     }
     intIDindex += 1;
@@ -21,7 +19,7 @@ function updateGlyphs(glyph) {
   glyph.level = D(glyph.level);
   glyph.rawLevel = D(glyph.rawLevel);
   glyph.strength = D(glyph.strength);
-  // eslint-disable-next-line consistent-return
+
   return glyph;
 }
 
@@ -35,7 +33,6 @@ function raFix(player) {
   return array;
 }
 
-// eslint-disable-next-line complexity
 export function beMigration(player) {
   player.auto.annihilation.multiplier = D(player.auto.annihilation.multiplier);
   player.auto.dimBoost.galaxies = D(player.auto.dimBoost.galaxies);
@@ -100,7 +97,7 @@ export function beMigration(player) {
   player.celestials.ra.pets.effarig.v = D(player.celestials.ra.pets.v.memoryChunks);
   player.celestials.ra.unlocks = raFix(player);
   delete player.celestials.ra.unlockBits;
-  // eslint-disable-next-line eqeqeq, max-statements-per-line
+
   player.celestials.teresa.bestAMSet = player.celestials.teresa.bestAMSet.map(n => updateGlyphs(n));
   player.celestials.teresa.lastRepeatediM = new Decimal();
   if (player.celestials.teresa.lastRepeatedMachines.gte("1e5000")) {
@@ -124,7 +121,7 @@ export function beMigration(player) {
   player.dilation.baseTachyonGalaxies = D(player.dilation.baseTachyonGalaxies);
   player.dilation.nextThreshold = D(player.dilation.nextThreshold);
   player.dilation.totalTachyonGalaxies = D(player.dilation.totalTachyonGalaxies);
-  // eslint-disable-next-line no-negated-condition
+
   for (let i = 1; i < 14; i !== 3 ? i++ : i = 11) {
     player.dilation.rebuyables[i] = D(player.dilation.rebuyables[i]);
   }
@@ -156,7 +153,6 @@ export function beMigration(player) {
     const effectList = [];
     for (let i = 0; i < 30; i++) {
       if ((player.reality.glyphs.filter.types[item].specifiedMask >> i) % 2 === 1) {
-      // eslint-disable-next-line no-loop-func, eqeqeq
         effectList.push(GlyphEffects.all.filter(e => e.intID == i)[0].id);
       }
       if (i <= 26 && GlyphEffects.all[i].glyphTypes.includes(item)) {

@@ -22,8 +22,8 @@ export default {
       return this.conflict.cloud.saveName !== this.conflict.local.saveName;
     },
     suggestionText() {
-      const goodStyle = `style="color: var(--color-good)"`;
-      const badStyle = `style="color: var(--color-bad)"`;
+      const goodStyle = "style=\"color: var(--color-good)\"";
+      const badStyle = "style=\"color: var(--color-bad)\"";
 
       const suggestions = ["Loading this Cloud save "];
       const cloudProg = this.conflict.cloud.compositeProgress, localProg = this.conflict.local.compositeProgress;
@@ -39,14 +39,14 @@ export default {
         suggestions.push(`<br><b ${badStyle}>Are you sure you wish to overwrite your local save?</b>`);
       }
       return suggestions.join("");
-    }
+    },
   },
   methods: {
     confirm() {
       this.conflict.onAccept?.();
       EventHub.dispatch(GAME_EVENT.CLOSE_MODAL);
-    }
-  }
+    },
+  },
 };
 </script>
 

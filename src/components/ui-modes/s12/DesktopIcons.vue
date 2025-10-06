@@ -6,7 +6,7 @@ export default {
   name: "DesktopIcons",
   data() {
     return {
-      DesktopIcons
+      DesktopIcons,
     };
   },
   mounted() {
@@ -23,7 +23,7 @@ export default {
     },
     handleClick(idx) {
       // This makes what everything is doing clearer
-      // eslint-disable-next-line no-negated-condition
+
       if (DesktopIcons.selected !== idx) {
         DesktopIcons.selected = idx;
         isSelectingIcon = true;
@@ -31,8 +31,8 @@ export default {
       } else {
         DesktopIcons.entries[idx].action();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

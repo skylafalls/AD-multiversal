@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       remainingTimeText: "",
-      galaxyText: ""
+      galaxyText: "",
     };
   },
   methods: {
@@ -36,8 +36,8 @@ export default {
         const timeEstimateText = timeToThousand.eq(0)
           ? "an extremely long time"
           : `${TimeSpan.fromSeconds(timeToThousand)}`;
-        this.remainingTimeText = `You are gaining ${formatX(gainFactorPerSecond, 2, 1)} Replicanti per second` +
-          ` (${timeEstimateText} until ${format(nextMilestone)})`;
+        this.remainingTimeText = `You are gaining ${formatX(gainFactorPerSecond, 2, 1)} Replicanti per second`
+          + ` (${timeEstimateText} until ${format(nextMilestone)})`;
       } else {
         this.remainingTimeText = "";
       }
@@ -84,7 +84,6 @@ export default {
         this.remainingTimeText += ` (${TimeSpan.fromSeconds(new Decimal(totalTime))} total)`;
       }
 
-
       if (Replicanti.galaxies.max.gt(0)) {
         // If the player has max RGs, don't display the "You are gaining blah" text
         if (player.replicanti.galaxies.eq(Replicanti.galaxies.max)) {
@@ -120,10 +119,10 @@ export default {
             ${TimeSpan.fromSeconds(allGalaxyTime.sub(thisGalaxyTime).clampMin(0))})`;
         }
       } else {
-        this.galaxyText = ``;
+        this.galaxyText = "";
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -1,5 +1,3 @@
-/* eslint-disable max-depth */
-/* eslint-disable camelcase */
 import { MultiplierTabHelper } from "./helper-functions";
 import { multiplierTabValues } from "./values";
 
@@ -48,58 +46,58 @@ function getProps(resource, tier) {
 // specification, all children props are dynamically added based on the arrays in the helper functions above
 export const multiplierTabTree = {
   AM_total: [
-    ["AD_total", "tickspeed_total", "AM_effarigAM"]
+    ["AD_total", "tickspeed_total", "AM_effarigAM"],
   ],
   AD_total: [
     getProps("AD"),
-    append8("AD_total")
+    append8("AD_total"),
   ],
   ID_total: [
     getProps("ID"),
-    append8("ID_total")
+    append8("ID_total"),
   ],
   TD_total: [
     getProps("TD"),
-    append8("TD_total")
+    append8("TD_total"),
   ],
   IP_total: [
-    getProps("IP")
+    getProps("IP"),
   ],
   IP_base: [
-    ["IP_antimatter", "IP_divisor"]
+    ["IP_antimatter", "IP_divisor"],
   ],
   EP_total: [
-    getProps("EP")
+    getProps("EP"),
   ],
   EP_base: [
-    ["EP_IP", "EP_divisor"]
+    ["EP_IP", "EP_divisor"],
   ],
   TP_total: [
-    getProps("TP")
+    getProps("TP"),
   ],
   DT_total: [
-    getProps("DT")
+    getProps("DT"),
   ],
   tickspeed_total: [
-    ["tickspeed_base", "tickspeed_upgrades", "tickspeed_galaxies", "tickspeed_pelleTickspeedPow"]
+    ["tickspeed_base", "tickspeed_upgrades", "tickspeed_galaxies", "tickspeed_pelleTickspeedPow"],
   ],
   tickspeed_upgrades: [
-    ["tickspeedUpgrades_purchased", "tickspeedUpgrades_free"]
+    ["tickspeedUpgrades_purchased", "tickspeedUpgrades_free"],
   ],
   tickspeed_galaxies: [
-    ["galaxies_antimatter", "galaxies_replicanti", "galaxies_tachyon", "galaxies_nerfPelle"]
+    ["galaxies_antimatter", "galaxies_replicanti", "galaxies_tachyon", "galaxies_nerfPelle"],
   ],
   infinities_total: [
-    getProps("infinities")
+    getProps("infinities"),
   ],
   eternities_total: [
-    getProps("eternities")
+    getProps("eternities"),
   ],
   gamespeed_total: [
-    getProps("gamespeed")
+    getProps("gamespeed"),
   ],
   replicanti_total: [
-    getProps("replicanti")
+    getProps("replicanti"),
   ],
 };
 
@@ -169,7 +167,7 @@ const removedRegexes = ["AD_sacrifice", "AD_breakInfinityUpgrade", "AD_nerfIC", 
   "ID_replicanti", "ID_infinityChallenge", "ID_eternityUpgrades",
   "TD_achievement", "TD_eternityUpgrade", "TD_dilationUpgrade", "TD_realityUpgrade",
   ".._achievementMult", ".._glyph", ".._alchemy", ".._imaginaryUpgrade", ".._iap",
-  ".._nerfV", ".._nerfCursed", ".._nerfPelle", ".._pelle"
+  ".._nerfV", ".._nerfCursed", ".._nerfPelle", ".._pelle",
 ];
 const removedProps = Object.keys(multiplierTabTree)
   .filter(key => removedRegexes.some(regex => key.match(regex)));
@@ -191,7 +189,7 @@ for (let dim = 1; dim <= 7; dim++) {
   multiplierTabTree[`ID_purchase_${dim}`] = [[`ID_basePurchase_${dim}`, `ID_tesseractPurchase_${dim}`,
     "ID_powPurchase"]];
 }
-multiplierTabTree.ID_purchase_8 = [[`ID_basePurchase_8`, `ID_infinityGlyphSacrifice`, "ID_powPurchase"]];
+multiplierTabTree.ID_purchase_8 = [["ID_basePurchase_8", "ID_infinityGlyphSacrifice", "ID_powPurchase"]];
 
 // These are also added one layer deep
 for (let dim = 1; dim <= 7; dim++) {
@@ -231,8 +229,8 @@ for (const res of singleRes) {
 }
 
 // Fill in eternity upgrade entries
-multiplierTabTree.ID_eternityUpgrade = [[`ID_eu1`, `ID_eu2`, `ID_eu3`]];
-multiplierTabTree.TD_eternityUpgrade = [[`TD_eu1`, `TD_eu2`]];
+multiplierTabTree.ID_eternityUpgrade = [["ID_eu1", "ID_eu2", "ID_eu3"]];
+multiplierTabTree.TD_eternityUpgrade = [["TD_eu1", "TD_eu2"]];
 for (let dim = 1; dim <= 8; dim++) {
   multiplierTabTree[`ID_eternityUpgrade_${dim}`] = [[`ID_eu1_${dim}`, `ID_eu2_${dim}`, `ID_eu3_${dim}`]];
   multiplierTabTree[`TD_eternityUpgrade_${dim}`] = [[`TD_eu1_${dim}`, `TD_eu2_${dim}`]];

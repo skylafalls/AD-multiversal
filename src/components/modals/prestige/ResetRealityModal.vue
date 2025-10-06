@@ -4,7 +4,7 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "ResetRealityModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   data() {
     return {
@@ -13,7 +13,9 @@ export default {
     };
   },
   computed: {
-    resetTerm() { return this.isDoomed ? "Armageddon" : "Reality"; },
+    resetTerm() {
+      return this.isDoomed ? "Armageddon" : "Reality";
+    },
   },
   methods: {
     update() {
@@ -23,7 +25,7 @@ export default {
     handleYesClick() {
       beginProcessReality(getRealityProps(true));
       EventHub.ui.offAll(this);
-    }
+    },
   },
 };
 </script>

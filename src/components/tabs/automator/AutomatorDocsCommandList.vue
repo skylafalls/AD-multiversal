@@ -4,7 +4,7 @@ import AutomatorDocsManPage from "./AutomatorDocsManPage";
 export default {
   name: "AutomatorDocsCommandList",
   components: {
-    AutomatorDocsManPage
+    AutomatorDocsManPage,
   },
   data() {
     return {
@@ -18,8 +18,8 @@ export default {
   methods: {
     commandsInCategory(category) {
       return this.commands.filter(c => c.category === category && c.isUnlocked());
-    }
-  }
+    },
+  },
 };
 </script>
 

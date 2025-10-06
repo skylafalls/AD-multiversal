@@ -6,7 +6,7 @@ export default {
   name: "ClassicTimeDimensionsTab",
   components: {
     PrimaryButton,
-    TimeDimensionRow
+    TimeDimensionRow,
   },
   data() {
     return {
@@ -42,8 +42,8 @@ export default {
     },
     toggleAllAutobuyers() {
       toggleAllTimeDims();
-    }
-  }
+    },
+  },
 };
 </script>
 

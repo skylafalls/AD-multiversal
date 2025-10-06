@@ -15,8 +15,8 @@ export default {
     },
     name: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -45,28 +45,36 @@ export default {
     },
     extraLine() {
       switch (this.number) {
-        case 0:
+        case 0: {
           return this.teresaBestAM.eq(1)
             ? `You have not unlocked the reward for Teresa's Reality yet. Unlocking the reward requires
               purchasing the Reality study and completing the Reality for the first time.`
             : `Your highest Teresa completion was for ${format(this.teresaBestAM, 2, 2)} antimatter,
               gaining you a ${formatX(this.teresaRunMult, 2)} multiplier to Glyph Sacrifice power.`;
-        case 1: return this.effarigDone
+        }
+        case 1: { return this.effarigDone
           ? "Effarig is completed!"
           : `You are currently on the ${this.effarigLayer} Layer.`;
-        case 2: return this.enslavedDone
+        }
+        case 2: { return this.enslavedDone
           ? "Have... we... not helped enough..."
           : "We... can help... Let us... help...";
-        case 3: return "";
-        case 4: return `Within Ra's Reality, some resources will generate Memory Chunks
+        }
+        case 3: { return "";
+        }
+        case 4: { return `Within Ra's Reality, some resources will generate Memory Chunks
           for Celestial Memories based on their amounts:`;
-        case 5: return this.laitelaFastest.gte(300)
+        }
+        case 5: { return this.laitelaFastest.gte(300)
           ? "You have not completed Lai'tela at this tier."
           : `Your fastest completion on this tier is ${this.laitelaTime}.`;
-        case 6: return "";
-        default: throw new Error(`Attempted to start an Unknown Celestial in Celestial Modal Confirmation.`);
+        }
+        case 6: { return "";
+        }
+        default: { throw new Error("Attempted to start an Unknown Celestial in Celestial Modal Confirmation.");
+        }
       }
-    }
+    },
   },
   methods: {
     update() {
@@ -82,14 +90,22 @@ export default {
     handleYesClick() {
       beginProcessReality(getRealityProps(true));
       switch (this.number) {
-        case 0: return Teresa.initializeRun();
-        case 1: return Effarig.initializeRun();
-        case 2: return Enslaved.initializeRun();
-        case 3: return V.initializeRun();
-        case 4: return Ra.initializeRun();
-        case 5: return Laitela.initializeRun();
-        case 6: throw new Error(`Attempted to start Pelle through EnterCelestialsModal instead of ArmageddonModal`);
-        default: throw new Error(`Attempted to start an Unknown Celestial in Celestial Modal Confirmation.`);
+        case 0: { return Teresa.initializeRun();
+        }
+        case 1: { return Effarig.initializeRun();
+        }
+        case 2: { return Enslaved.initializeRun();
+        }
+        case 3: { return V.initializeRun();
+        }
+        case 4: { return Ra.initializeRun();
+        }
+        case 5: { return Laitela.initializeRun();
+        }
+        case 6: { throw new Error("Attempted to start Pelle through EnterCelestialsModal instead of ArmageddonModal");
+        }
+        default: { throw new Error("Attempted to start an Unknown Celestial in Celestial Modal Confirmation.");
+        }
       }
     },
   },

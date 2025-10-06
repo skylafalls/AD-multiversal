@@ -35,19 +35,19 @@ function giveEternityRewards(auto) {
     player.records.thisEternity.time,
     player.records.thisEternity.realTime,
     gainedEternityPoints(),
-    newEternities
+    newEternities,
   );
 
   player.records.thisReality.bestEternitiesPerMs = player.records.thisReality.bestEternitiesPerMs.clampMin(
-    newEternities.div(Decimal.clampMin(33, player.records.thisEternity.realTime))
+    newEternities.div(Decimal.clampMin(33, player.records.thisEternity.realTime)),
   );
-  player.records.bestEternity.bestEPminReality =
-    player.records.bestEternity.bestEPminReality.max(player.records.thisEternity.bestEPmin);
+  player.records.bestEternity.bestEPminReality
+    = player.records.bestEternity.bestEPminReality.max(player.records.thisEternity.bestEPmin);
 
   player.records.bestEternity.trueTime = Math.min(player.records.bestEternity.trueTime, player.records.thisEternity.trueTime);
   Currency.infinitiesBanked.value = Currency.infinitiesBanked.value.plusEffectsOf(
     Achievement(131).effects.bankedInfinitiesGain,
-    TimeStudy(191)
+    TimeStudy(191),
   );
 
   if (Effarig.isRunning && !EffarigUnlock.eternity.isUnlocked) {
@@ -68,7 +68,6 @@ export function eternityResetRequest() {
 
 export function eternity(force, auto, specialConditions = {}) {
   if (specialConditions.switchingDilation && !Player.canEternity) {
-    // eslint-disable-next-line no-param-reassign
     force = true;
   }
   // We define this variable so we can use it in checking whether to give
@@ -147,14 +146,13 @@ export function eternity(force, auto, specialConditions = {}) {
   return true;
 }
 
-// eslint-disable-next-line no-empty-function
 export function animateAndEternity(callback) {
   if (!Player.canEternity) return false;
-  const hasAnimation = !FullScreenAnimationHandler.isDisplaying &&
-    !RealityUpgrade(10).isLockingMechanics &&
-    !(RealityUpgrade(12).isLockingMechanics && EternityChallenge(1).isRunning) &&
-    ((player.dilation.active && player.options.animations.dilation) ||
-    (!player.dilation.active && player.options.animations.eternity));
+  const hasAnimation = !FullScreenAnimationHandler.isDisplaying
+    && !RealityUpgrade(10).isLockingMechanics
+    && !(RealityUpgrade(12).isLockingMechanics && EternityChallenge(1).isRunning)
+    && ((player.dilation.active && player.options.animations.dilation)
+      || (!player.dilation.active && player.options.animations.eternity));
 
   if (hasAnimation) {
     if (player.dilation.active) {
@@ -238,8 +236,8 @@ export function gainedEternities() {
   return Pelle.isDisabled("eternityMults")
     ? new Decimal(1)
     : new Decimal(getAdjustedGlyphEffect("timeetermult"))
-      .timesEffectsOf(RealityUpgrade(3), Achievement(113))
-      .pow(AlchemyResource.eternity.effectValue);
+        .timesEffectsOf(RealityUpgrade(3), Achievement(113))
+        .pow(AlchemyResource.eternity.effectValue);
 }
 
 export class EternityMilestoneState {
@@ -258,7 +256,7 @@ export const EternityMilestone = mapGameDataToObject(
   GameDatabase.eternity.milestones,
   config => (config.isBaseResource
     ? new EternityMilestoneState(config)
-    : new EternityMilestoneState(config))
+    : new EternityMilestoneState(config)),
 );
 
 class EternityUpgradeState extends SetPurchasableMechanicState {
@@ -315,7 +313,6 @@ class EPMultiplierState extends GameMechanicState {
     return true;
   }
 
-  // eslint-disable-next-line consistent-return
   costInv() {
     let tempVal = DC.D0;
     let bulk = DC.D1;
@@ -323,7 +320,6 @@ class EPMultiplierState extends GameMechanicState {
     if (cur.gt(this.costIncreaseThresholds[3])) {
       cur = Decimal.log(cur.div(500), 1e3);
       return cur.add(Math.pow(1332, 1.2)).root(1.2).floor().max(1332);
-      // eslint-disable-next-line no-else-return
     }
     if (cur.gt(this.costIncreaseThresholds[2])) {
       bulk = this.costIncreaseThresholds[2].div(500).log(500).floor();
@@ -353,7 +349,6 @@ class EPMultiplierState extends GameMechanicState {
       return false;
     }
 
-
     // Technically inaccurate, but it works fine (is it inaccurate tho???)
     // Should probably use hardcoded values but im lazy so no
 
@@ -366,8 +361,8 @@ class EPMultiplierState extends GameMechanicState {
     Currency.eternityPoints.subtract(price);
     this.boughtAmount = this.boughtAmount.add(bulk);
     let i = 0;
-    while (Currency.eternityPoints.gt(this.costAfterCount(this.boughtAmount)) &&
-    i < 50 && this.boughtAmount.layer < 1) {
+    while (Currency.eternityPoints.gt(this.costAfterCount(this.boughtAmount))
+      && i < 50 && this.boughtAmount.layer < 1) {
       this.boughtAmount = this.boughtAmount.add(1);
       Currency.eternityPoints.subtract(this.costAfterCount(this.boughtAmount.sub(1)));
       i += 1;
@@ -397,7 +392,7 @@ class EPMultiplierState extends GameMechanicState {
 
 export const EternityUpgrade = mapGameDataToObject(
   GameDatabase.eternity.upgrades,
-  config => new EternityUpgradeState(config)
+  config => new EternityUpgradeState(config),
 );
 
 EternityUpgrade.epMult = new EPMultiplierState();

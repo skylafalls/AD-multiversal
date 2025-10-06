@@ -7,24 +7,24 @@ export const GameSaveSerializer = {
     const json = JSON.stringify(save, this.jsonConverter);
     return this.encodeText(json, "savefile");
   },
-  // eslint-disable-next-line no-unused-vars
+
   jsonConverter(key, value) {
     if (value === Infinity) {
       return "Infinity";
     }
     if (value instanceof Set) {
-      return Array.from(value.keys());
+      return [...value.keys()];
     }
     return value;
   },
   deserialize(data) {
-    if (typeof data !== "string") return undefined;
+    if (typeof data !== "string") return;
     try {
       const json = this.decodeText(data, "savefile");
-      // eslint-disable-next-line no-unused-vars
+
       return JSON.parse(json, (k, v) => ((v === Infinity) ? "Infinity" : v));
-    } catch (e) {
-      return undefined;
+    } catch {
+      return;
     }
   },
   // Define these now so we don't keep creating new ones, which vaguely seems bad.
@@ -40,14 +40,14 @@ export const GameSaveSerializer = {
   // confuse your saves with AD saves but can still import AD saves (this will
   // also require changing some other code slightly, particularly decode).
   startingString: {
-    savefile: "AntimatterDimensionsSavefileFormat",
+    "savefile": "AntimatterDimensionsSavefileFormat",
     "automator script": "AntimatterDimensionsAutomatorScriptFormat",
     "automator data": "AntimatterDimensionsAutomatorDataFormat",
     "glyph filter": "AntimatterDimensionsGlyphFilterFormat",
   },
   // The ending strings aren't as verbose so that we can save a little space.
   endingString: {
-    savefile: "EndOfSavefile",
+    "savefile": "EndOfSavefile",
     "automator script": "EndOfAutomatorScript",
     "automator data": "EndOfAutomatorData",
     "glyph filter": "EndOfGlyphFilter",
@@ -76,8 +76,8 @@ export const GameSaveSerializer = {
     // This step converts from unsigned 8-bit arrays to strings with codepoints less than 256.
     // We need to do this outselves because GameSaveSerializer.decoder would give us unicode sometimes.
     {
-      encode: x => Array.from(x).map(i => String.fromCharCode(i)).join(""),
-      decode: x => Uint8Array.from(Array.from(x).map(i => i.charCodeAt(0)))
+      encode: x => [...x].map(i => String.fromCodePoint(i)).join(""),
+      decode: x => Uint8Array.from([...x].map(i => i.codePointAt(0))),
     },
     // This step makes the characters in saves printable. At this point in the process, all characters
     // will already have codepoints less than 256 (from the previous step), so emoji in the original save
@@ -88,14 +88,14 @@ export const GameSaveSerializer = {
     // because btoa just ignores it. These regex have no potentially-unicode characters, I think,
     // and they're applied to strings with just ASCII anyway, but I'm adding u to make Codeacy happy.
     {
-      encode: x => x.replace(/=+$/gu, "").replace(/0/gu, "0a").replace(/\+/gu, "0b").replace(/\//gu, "0c"),
-      decode: x => x.replace(/0b/gu, "+").replace(/0c/gu, "/").replace(/0a/gu, "0")
+      encode: x => x.replaceAll(/=+$/gu, "").replaceAll(/0/gu, "0a").replaceAll(/\+/gu, "0b").replaceAll(/\//gu, "0c"),
+      decode: x => x.replaceAll(/0b/gu, "+").replaceAll(/0c/gu, "/").replaceAll(/0a/gu, "0"),
     },
     {
       encode: (x, type) => x + GameSaveSerializer.endingString[type],
       decode: (x, type) => x.slice(0, x.length - GameSaveSerializer.endingString[type].length),
-      condition: version => version >= "AAB"
-    }
+      condition: version => version >= "AAB",
+    },
   ],
   getSteps(type, version) {
     // This is a version marker, as well as indicating to players that this is from AD
@@ -104,7 +104,7 @@ export const GameSaveSerializer = {
     // if we want a new version of savefile encoding.
     return this.steps.filter(i => (!i.condition) || i.condition(version)).concat({
       encode: x => `${GameSaveSerializer.startingString[type] + GameSaveSerializer.version}${x}`,
-      decode: x => x.slice(GameSaveSerializer.startingString[type].length + 3)
+      decode: x => x.slice(GameSaveSerializer.startingString[type].length + 3),
     });
   },
   // Apply each step's encode function in encoding order.
@@ -128,5 +128,5 @@ export const GameSaveSerializer = {
       return this.getSteps(type, version).reduceRight((x, step) => step.decode(x, type), text);
     }
     return atob(text);
-  }
+  },
 };

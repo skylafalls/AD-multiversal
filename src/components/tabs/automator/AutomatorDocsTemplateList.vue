@@ -16,7 +16,7 @@ export default {
           automatically fill in all of the individual blocks needed for the template`
         : `copy the template as text onto your clipboard. You can directly paste the template text into your Automator
           wherever you would like it`;
-    }
+    },
   },
   methods: {
     update() {
@@ -39,7 +39,7 @@ export default {
       for (const block of templateBlocks) {
         blocksToAdd.push({
           ...block,
-          id: block.id + maxExistingID - minTemplateID + 1
+          id: block.id + maxExistingID - minTemplateID + 1,
         });
       }
       BlockAutomator.lines = beforeBlocks;
@@ -49,8 +49,8 @@ export default {
     },
     setIndex(index) {
       this.selectedTemplateID = index;
-    }
-  }
+    },
+  },
 };
 </script>
 

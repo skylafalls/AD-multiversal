@@ -4,12 +4,12 @@ export default {
   props: {
     resource: {
       type: Object,
-      required: true
+      required: true,
     },
     classObject: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -20,26 +20,26 @@ export default {
     spinnerTransform() {
       return {
         transform: `rotate(${this.fillFraction * 360}deg)`,
-        background: this.fillFraction === 1 ? "#ff9800" : undefined
+        background: this.fillFraction === 1 ? "#ff9800" : undefined,
       };
     },
     fillerTransform() {
       return {
         opacity: this.fillFraction > 0.5 ? 1 : 0,
-        background: this.fillFraction === 1 ? "#ff9800" : undefined
+        background: this.fillFraction === 1 ? "#ff9800" : undefined,
       };
     },
     maskTransform() {
       return {
-        opacity: this.fillFraction > 0.5 ? 0 : 1
+        opacity: this.fillFraction > 0.5 ? 0 : 1,
       };
-    }
+    },
   },
   methods: {
     update() {
       this.fillFraction = this.resource.fillFraction;
-    }
-  }
+    },
+  },
 };
 </script>
 

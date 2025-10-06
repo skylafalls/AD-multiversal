@@ -12,7 +12,7 @@ export const eternity = {
   timeStudies: {
     dilation: dilationTimeStudies,
     ec: ecTimeStudies,
-    normal: normalTimeStudies
+    normal: normalTimeStudies,
   },
-  upgrades: eternityUpgrades
+  upgrades: eternityUpgrades,
 };

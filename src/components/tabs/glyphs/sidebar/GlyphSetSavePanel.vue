@@ -6,7 +6,7 @@ export default {
   name: "GlyphSetSavePanel",
   components: {
     ToggleButton,
-    GlyphSetPreview
+    GlyphSetPreview,
   },
   data() {
     return {
@@ -24,7 +24,7 @@ export default {
         full set of previously-saved Glyphs`;
     },
     noSet() {
-      return `No Glyph Preset saved in this slot`;
+      return "No Glyph Preset saved in this slot";
     },
   },
   watch: {
@@ -54,14 +54,14 @@ export default {
       this.level = player.options.ignoreGlyphLevel;
     },
     refreshGlyphSets() {
-      this.glyphSets = cloneDeep(player.reality.glyphs.sets.map(g => cloneDeep(Glyphs.copyForRecords(g.glyphs))));
+      this.glyphSets = structuredClone(player.reality.glyphs.sets.map(g => cloneDeep(Glyphs.copyForRecords(g.glyphs))));
     },
     setName(id) {
       const name = this.names[id] === "" ? "" : `: ${this.names[id]}`;
       return `Glyph Preset #${id + 1}${name}`;
     },
     saveGlyphSet(id) {
-      if (!this.hasEquipped || player.reality.glyphs.sets[id].glyphs.length) return;
+      if (!this.hasEquipped || player.reality.glyphs.sets[id].glyphs.length > 0) return;
       player.reality.glyphs.sets[id].glyphs = Glyphs.active.compact();
       this.refreshGlyphSets();
       EventHub.dispatch(GAME_EVENT.GLYPH_SET_SAVE_CHANGE);
@@ -71,8 +71,8 @@ export default {
     // preset match, and leniently when matching greedily may lead to an incomplete set being loaded
     loadGlyphSet(set, id) {
       if (!this.setLengthValid(set)) return;
-      let glyphsToLoad = [...set].sort((a, b) => Decimal.compare(a.level.mul(a.strength), b.level.mul(b.strength)));
-      const activeGlyphs = [...Glyphs.active.filter(g => g)];
+      let glyphsToLoad = [...set].toSorted((a, b) => Decimal.compare(a.level.mul(a.strength), b.level.mul(b.strength)));
+      const activeGlyphs = Glyphs.active.filter(g => g);
 
       // Create an array where each entry contains a single active glyph and all its matches in the preset which it
       // could fill in for, based on the preset loading settings
@@ -81,7 +81,7 @@ export default {
         const options = Glyphs.findByValues(glyph, glyphsToLoad, {
           level: this.level ? -1 : 0,
           strength: this.rarity ? -1 : 0,
-          effects: this.effects ? -1 : 0
+          effects: this.effects ? -1 : 0,
         });
         activeOptions.push({ glyph, options });
       }
@@ -99,7 +99,7 @@ export default {
         const options = Glyphs.findByValues(glyph, Glyphs.sortedInventoryList, {
           level: this.level ? 1 : 0,
           strength: this.rarity ? 1 : 0,
-          effects: this.effects ? 1 : 0
+          effects: this.effects ? 1 : 0,
         });
         remainingOptions[index] = { glyph, options };
       }
@@ -154,7 +154,7 @@ export default {
       return toLoad;
     },
     deleteGlyphSet(id) {
-      if (!player.reality.glyphs.sets[id].glyphs.length) return;
+      if (player.reality.glyphs.sets[id].glyphs.length === 0) return;
       if (player.options.confirmations.deleteGlyphSetSave) Modal.glyphSetSaveDelete.show({ glyphSetId: id });
       else {
         player.reality.glyphs.sets[id].glyphs = [];
@@ -177,8 +177,8 @@ export default {
     },
     glyphSetKey(set, index) {
       return `${index} ${Glyphs.hash(set)}`;
-    }
-  }
+    },
+  },
 };
 </script>
 

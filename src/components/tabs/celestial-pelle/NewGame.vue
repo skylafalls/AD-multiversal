@@ -15,7 +15,7 @@ export default {
         opacity: this.opacity,
         visibility: this.visible ? "visible" : "hidden",
       };
-    }
+    },
   },
   methods: {
     update() {
@@ -29,8 +29,8 @@ export default {
     },
     openSelectionModal() {
       Modal.cosmeticSetChoice.show();
-    }
-  }
+    },
+  },
 };
 </script>
 

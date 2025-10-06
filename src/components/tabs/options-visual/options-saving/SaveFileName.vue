@@ -1,11 +1,10 @@
 <script>
 export default {
   name: "SaveFileName",
-  components: {
-  },
+  components: {},
   data() {
     return {
-      saveFileName: ""
+      saveFileName: "",
     };
   },
   methods: {
@@ -13,14 +12,14 @@ export default {
       this.saveFileName = player.options.saveFileName;
     },
     removeNotAvailableCharacters(input) {
-      return input.replace(/[^a-zA-Z0-9 -]/gu, "");
+      return input.replaceAll(/[^a-zA-Z0-9 -]/gu, "");
     },
     handleChange(event) {
       const newName = this.removeNotAvailableCharacters(event.target.value.trim());
       player.options.saveFileName = newName;
       event.target.value = newName;
-    }
-  }
+    },
+  },
 };
 </script>
 

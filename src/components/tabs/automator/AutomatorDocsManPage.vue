@@ -4,15 +4,15 @@ export default {
   props: {
     command: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     description() {
       const desc = this.command.description;
       return typeof desc === "function" ? desc() : desc;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -27,7 +27,7 @@ export class TimeStudyConnection {
 /**
  * @type {TimeStudyConnection[]}
  */
-TimeStudy.allConnections = (function() {
+TimeStudy.allConnections = (function () {
   const TS = id => TimeStudy(id);
   const EC = id => TimeStudy.eternityChallenge(id);
   const connections = [
@@ -153,7 +153,7 @@ TimeStudy.allConnections = (function() {
     [TimeStudy.timeDimension(5), TimeStudy.timeDimension(6)],
     [TimeStudy.timeDimension(6), TimeStudy.timeDimension(7)],
     [TimeStudy.timeDimension(7), TimeStudy.timeDimension(8)],
-    [TimeStudy.timeDimension(8), TimeStudy.reality]
+    [TimeStudy.timeDimension(8), TimeStudy.reality],
   ].map(props => new TimeStudyConnection(props[0], props[1], props[2]));
 
   return connections;

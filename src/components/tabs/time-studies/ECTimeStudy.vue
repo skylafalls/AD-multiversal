@@ -6,20 +6,20 @@ export default {
   name: "ECTimeStudy",
   components: {
     TimeStudyButton,
-    HintText
+    HintText,
   },
   props: {
     setup: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       hasRequirement: false,
       requirement: {
         current: new Decimal(),
-        total: new Decimal()
+        total: new Decimal(),
       },
       completions: 0,
       showTotalCompletions: false,
@@ -49,7 +49,7 @@ export default {
     },
     needsSecondLinebreak() {
       return [3, 4, 7].includes(this.study.id);
-    }
+    },
   },
   methods: {
     update() {
@@ -70,8 +70,8 @@ export default {
         requirement.total.copyFrom(study.requirementTotal);
         requirement.current.copyFrom(study.requirementCurrent.min(requirement.total));
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

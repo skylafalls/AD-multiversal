@@ -6,13 +6,13 @@ export default {
   name: "DilationTimeStudy",
   components: {
     DescriptionDisplay,
-    TimeStudyButton
+    TimeStudyButton,
   },
   props: {
     setup: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -45,7 +45,7 @@ export default {
       if (this.study.isBought || !this.study.cost || this.ttGen.eq(0)) return null;
       const time = Decimal.sub(this.study.cost, this.currTT).dividedBy(this.ttGen);
       return time.gt(0) ? `Enough TT in ${TimeSpan.fromSeconds(time).toStringShort()}` : null;
-    }
+    },
   },
   methods: {
     update() {
@@ -61,20 +61,24 @@ export default {
     },
     clickHandler() {
       switch (this.id) {
-        case 1:
+        case 1: {
           return () => Tab.eternity.dilation.show();
+        }
         case 2:
         case 3:
         case 4:
-        case 5:
+        case 5: {
           return () => Tab.dimensions.time.show();
-        case 6:
+        }
+        case 6: {
           return () => Tab.reality.glyphs.show();
-        default:
+        }
+        default: {
           throw new Error("Unrecognized Dilation study was clicked");
+        }
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

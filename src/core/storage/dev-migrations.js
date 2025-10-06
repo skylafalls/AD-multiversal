@@ -9,7 +9,7 @@ function arrayToBits(array) {
 // WARNING: Don't use state accessors and functions from global scope here, that's not safe in long-term
 export const devMigrations = {
   patches: [
-    player => {
+    (player) => {
       migrations.normalizeTimespans(player);
       player.bestReality = player.bestReality === 9999999999
         ? 999999999999
@@ -18,16 +18,16 @@ export const devMigrations = {
         player.lastTenRealities[i][0] *= 100;
       }
     },
-    player => {
+    (player) => {
       player.reality.glyphs.last = "";
     },
-    player => {
+    (player) => {
       player.secretUnlocks.themes = [];
     },
-    player => {
+    (player) => {
       player.wormhole.power *= 36;
     },
-    player => {
+    (player) => {
       player.reality.rebuyables = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
       for (let i = 1; i < 6; i++) {
         if (player.reality.upg.includes(i)) {
@@ -36,37 +36,37 @@ export const devMigrations = {
         }
       }
     },
-    player => {
+    (player) => {
       player.reality.tdbuyer = {
         on: false,
-        threshhold: 1
+        threshhold: 1,
       };
       player.reality.epmultbuyer = {
         on: false,
-        threshhold: 1
+        threshhold: 1,
       };
     },
-    player => {
+    (player) => {
       player.reality.perks = new Set();
     },
-    player => {
+    (player) => {
       player.reality.pp = 0;
     },
-    player => {
+    (player) => {
       player.reality.pp = player.realities;
     },
-    player => {
+    (player) => {
       // Give starting perk
       if (player.reality.pp > 0) {
         player.reality.pp -= 1;
         player.reality.perks.add(0);
       }
     },
-    player => {
+    (player) => {
       // Var for s45
       player.secretUnlocks.dragging = 0;
     },
-    player => {
+    (player) => {
       for (let i = 0; i < player.reality.glyphs.active.length; i++) {
         const glyph = player.reality.glyphs.active[i];
         if (glyph.effects.autochall !== undefined) {
@@ -83,13 +83,13 @@ export const devMigrations = {
         }
       }
     },
-    player => {
+    (player) => {
       player.reality.upgReqs.push(false, false, false, false, false);
     },
-    player => {
+    (player) => {
       player.reality.realityMachines = new Decimal(player.reality.realityMachines);
     },
-    player => {
+    (player) => {
       player.reality.glyphs.sac = {
         power: 0,
         infinity: 0,
@@ -99,10 +99,10 @@ export const devMigrations = {
         effarig: 0,
       };
     },
-    player => {
+    (player) => {
       player.wormhole.pause = false;
     },
-    player => {
+    (player) => {
       player.wormholePause = false;
       if (player.wormhole[0] !== undefined) return;
       player.wormhole = [
@@ -122,41 +122,41 @@ export const devMigrations = {
           phase: 0,
           active: false,
           unlocked: false,
-        }
+        },
       ];
     },
-    player => {
+    (player) => {
       if (player.reality.upg.includes(20)) {
         player.wormhole[1].unlocked = true;
       }
     },
-    player => {
+    (player) => {
       player.reality.upgReqs.push(false, false, false, false, false);
     },
-    player => {
+    (player) => {
       player.reality.tdbuyer = undefined;
       player.reality.tdbuyers = [false, false, false, false, false, false, false, false];
       player.reality.epmultbuyer = false;
     },
-    player => {
+    (player) => {
       if (!["rm", "glyph", "either", "both"].includes(player.autoRealityMode)) {
         player.autoRealityMode = "rm";
       }
     },
     migrations.convertAutobuyerMode,
-    player => {
+    (player) => {
       for (const key in player.celestials.effarig.glyphWeights) {
         player.celestials.effarig.glyphWeights[key] *= 100;
       }
     },
-    player => {
+    (player) => {
       // The previous migration didn't work if loading a test save before celestials were added, whoops
       for (const key in player.celestials.effarig.glyphWeights) {
         player.celestials.effarig.glyphWeights[key] = 25;
       }
     },
-    // eslint-disable-next-line no-unused-vars
-    player => {
+
+    (player) => {
       // The following patch is deeply incompatible with current player object:
       // Patch that changes wormhole => black hole will be applied later in this patch chain
       // (see the warning at the top of this file)
@@ -177,7 +177,7 @@ export const devMigrations = {
     },
     migrations.fixChallengeIds,
     migrations.adjustMultCosts,
-    player => {
+    (player) => {
       const teresa = player.celestials.effarig;
       player.celestials.effarig = player.celestials.teresa;
       player.celestials.teresa = teresa;
@@ -196,12 +196,12 @@ export const devMigrations = {
         }
       }
     },
-    player => {
+    (player) => {
       // The previous migration messed things up pretty badly. The swap was done
       // after deepmerge with defaultPlayer, which means that default values got added correctly,
       // and then swapped into the incorrect place. We can blow away glyph weights and auto sac
       // settings
-      // eslint-disable-next-line max-params
+
       function movePropIfPossible(celestial1, celestial2, prop, defaultValue, merge = null) {
         if (player.celestials[celestial1][prop] !== undefined) {
           if (player.celestials[celestial2][prop] === undefined) {
@@ -220,7 +220,7 @@ export const devMigrations = {
         ep: 25,
         repl: 25,
         dt: 25,
-        eternities: 25
+        eternities: 25,
       });
       // There was a big glyph filter refactor done at some point, and it's infeasible to properly preserve old
       // filter settings through this old migration. Any imported saves from before the Teresa/Effarig name swap
@@ -260,23 +260,23 @@ export const devMigrations = {
       });
       movePropIfPossible("effarig", "teresa", "bestAMSet", []);
     },
-    player => {
+    (player) => {
       player.blackHole = player.wormhole;
       player.blackHolePause = player.wormholePause;
       delete player.wormhole;
       delete player.wormholePause;
     },
-    player => {
+    (player) => {
       for (let i = 0; i < player.blackHole.length; i++) {
         player.blackHole[i].id = i;
         player.blackHole[i].intervalUpgrades = Math.round(
-          Math.log(player.blackHole[i].speed / (3600 / (Math.pow(10, i)))) / Math.log(0.8)
+          Math.log(player.blackHole[i].speed / (3600 / (Math.pow(10, i)))) / Math.log(0.8),
         );
         player.blackHole[i].powerUpgrades = Math.round(
-          Math.log(player.blackHole[i].power / (180 / Math.pow(2, i))) / Math.log(1.35)
+          Math.log(player.blackHole[i].power / (180 / Math.pow(2, i))) / Math.log(1.35),
         );
         player.blackHole[i].durationUpgrades = Math.round(
-          Math.log(player.blackHole[i].duration / (10 - i * 3)) / Math.log(1.3)
+          Math.log(player.blackHole[i].duration / (10 - i * 3)) / Math.log(1.3),
         );
         delete player.blackHole[i].speed;
         delete player.blackHole[i].power;
@@ -289,11 +289,11 @@ export const devMigrations = {
     migrations.convertAchivementsToNumbers,
     migrations.adjustGameCreatedTime,
     migrations.moveSavedStudyTrees,
-    player => {
+    (player) => {
       // Leftover stuff from dev.updateTestSave
       if (player.celestials.teresa.rmStore > Teresa.rmStoreMax) {
-        player.reality.realityMachines =
-          player.reality.realityMachines.plus(player.celestials.teresa.rmStore - Teresa.rmStoreMax);
+        player.reality.realityMachines
+          = player.reality.realityMachines.plus(player.celestials.teresa.rmStore - Teresa.rmStoreMax);
         player.celestials.teresa.rmStore = Teresa.rmStoreMax;
       }
       if (player.reality.upg) {
@@ -326,12 +326,12 @@ export const devMigrations = {
     migrations.migrateNotation,
     migrations.fixAutobuyers,
     migrations.removeAutoIPProperties,
-    player => {
+    (player) => {
       // Swapping glyph level with reality real time
       player.lastTenRealities = player.lastTenRealities
         .map(a => [a[0], a[1], a[3], a[2]]);
     },
-    player => {
+    (player) => {
       player.achievements.delete(157);
       player.achievements.delete(156);
       player.achievements.delete(155);
@@ -342,27 +342,27 @@ export const devMigrations = {
     },
     migrations.uniformDimensions,
     migrations.removeEternityChallGoal,
-    player => {
+    (player) => {
       // There were 3 black holes in player object
       delete player.blackHole.pop();
     },
-    player => {
+    (player) => {
       const allGlyphs = player.reality.glyphs.active.concat(player.reality.glyphs.inventory);
       for (let i = 0; i < allGlyphs.length; i++) {
         allGlyphs[i].id = i;
       }
     },
-    // eslint-disable-next-line no-unused-vars
-    player => {
+
+    (player) => {
       // This used to clearNewsArray, which cleared all news entries completely. Unsure what exactly that accomplished,
       // but convertNews should accomplish the same migration purpose. However, this entry still needs to stay here as
       // a no-op because otherwise save conversion will have an off-by-one error and generally break entirely.
     },
-    player => {
+    (player) => {
       migrations.removeTickspeed(player);
       migrations.removePostC3Reward(player);
     },
-    player => {
+    (player) => {
       const allGlyphs = player.reality.glyphs.active.concat(player.reality.glyphs.inventory);
       for (const glyph of allGlyphs) {
         let effectBitmask = 0;
@@ -376,10 +376,10 @@ export const devMigrations = {
       }
     },
     // Ra exp formula changed
-    player => {
+    (player) => {
       const pets = player.celestials.ra.pets;
       for (const prop in pets) {
-        if (!Object.prototype.hasOwnProperty.call(pets, prop)) continue;
+        if (!Object.hasOwn(pets, prop)) continue;
         const pet = pets[prop];
         const oldExp = pet.exp + 10000 * (Math.pow(1.12, pet.level - 1) - 1) / (0.12);
         pet.level = 1;
@@ -388,10 +388,10 @@ export const devMigrations = {
       player.celestials.ra.unlocks = [];
     },
     // Ra exp formula changed again
-    player => {
+    (player) => {
       const pets = player.celestials.ra.pets;
       for (const prop in pets) {
-        if (!Object.prototype.hasOwnProperty.call(pets, prop)) continue;
+        if (!Object.hasOwn(pets, prop)) continue;
         const pet = pets[prop];
         let oldExp = pet.exp;
         for (let lv = 1; lv < pet.level; lv++) {
@@ -405,7 +405,7 @@ export const devMigrations = {
       player.celestials.ra.unlocks = [];
     },
     migrations.renameMoney,
-    player => {
+    (player) => {
       migrations.moveAutobuyers(player);
       const old = player.realityBuyer;
       const realityAutobuyer = player.auto.reality;
@@ -418,17 +418,20 @@ export const devMigrations = {
       eternityAutobuyer.mode = ["amount", "time", "relative"].indexOf(player.autoEternityMode);
       const condition = new Decimal(old.limit);
       switch (player.autoEternityMode) {
-        case "amount":
+        case "amount": {
           eternityAutobuyer.amount = condition;
           break;
-        case "time":
+        }
+        case "time": {
           eternityAutobuyer.time = condition.lt(DC.NUMMAX)
             ? condition.toNumber()
             : eternityAutobuyer.time;
           break;
-        case "relative":
+        }
+        case "relative": {
           eternityAutobuyer.xLast = condition;
           break;
+        }
       }
 
       delete player.realityBuyer;
@@ -438,13 +441,13 @@ export const devMigrations = {
     migrations.convertNews,
     migrations.convertEternityCountToDecimal,
     migrations.renameDimboosts,
-    player => {
+    (player) => {
       // Reset reality autobuyer mode, since AUTO_REALITY_MODE was incorrectly starting from 1 and not from 0.
       // Disable it also to not wreck people's long runs or smth
       player.auto.reality.mode = 0;
       player.auto.reality.isActive = false;
     },
-    player => {
+    (player) => {
       // Perk shop refactor
       player.celestials.teresa.perkShop = [
         Math.floor(Math.log(player.celestials.teresa.glyphLevelMult) / Math.log(1.05)),
@@ -457,7 +460,7 @@ export const devMigrations = {
     },
     migrations.migrateConfirmations,
     migrations.removeOtherTickspeedProps,
-    player => {
+    (player) => {
       // These were accidentally added back in due to a bad merge conflict resolution
       delete player.resets;
       delete player.tickDecrease;
@@ -465,7 +468,7 @@ export const devMigrations = {
     migrations.renameNewsOption,
     migrations.removeDimensionCosts,
     migrations.renameTickspeedPurchaseBumps,
-    player => {
+    (player) => {
       const safeArrayToBits = x => ((x === undefined) ? 0 : arrayToBits(x));
       player.celestials.teresa.unlockBits = safeArrayToBits(player.celestials.teresa.unlocks);
       delete player.celestials.teresa.unlocks;
@@ -478,31 +481,31 @@ export const devMigrations = {
       player.celestials.laitela.unlockBits = safeArrayToBits(player.celestials.laitela.unlocks);
       delete player.celestials.laitela.unlocks;
     },
-    player => {
+    (player) => {
       player.reality.seed = Math.floor(Math.abs(player.reality.seed)) % 0xFFFFFFFF;
     },
-    player => {
+    (player) => {
       player.auto.sacrifice.multiplier = new Decimal(player.auto.sacrifice.multiplier);
     },
     migrations.changeC8Handling,
-    player => {
+    (player) => {
       while (player.celestials.teresa.perkShop.length < 5) player.celestials.teresa.perkShop.push(0);
     },
-    player => {
+    (player) => {
       delete player.secretUnlocks.fixed;
     },
-    player => {
+    (player) => {
       delete player.celestials.effarig.quoteIdx;
       delete player.celestials.enslaved.quoteIdx;
     },
-    player => {
+    (player) => {
       const tempAuto = player.celestials.teresa.perkShop[4];
       const tempMusic = player.celestials.teresa.perkShop[3];
       player.celestials.teresa.perkShop[3] = tempAuto;
       player.celestials.teresa.perkShop[4] = tempMusic;
     },
     migrations.convertAchievementsToBits,
-    player => {
+    (player) => {
       for (const dimension of player.dimensions.antimatter) {
         delete dimension.power;
       }
@@ -513,18 +516,18 @@ export const devMigrations = {
         delete dimension.power;
       }
     },
-    player => {
+    (player) => {
       const cursedMask = 15;
       const allGlyphs = player.reality.glyphs.active.concat(player.reality.glyphs.inventory);
       for (const glyph of allGlyphs) {
         if (glyph.type === "cursed") glyph.effects = cursedMask;
       }
     },
-    player => {
+    (player) => {
       player.options.showHintText.alchemy = player.options.showAlchemyResources;
       delete player.options.showAlchemyResources;
     },
-    player => {
+    (player) => {
       // Adds in effect selection settings and removes non-generated types while preserving old glyph filter settings
       const oldSettings = player.celestials.effarig.autoGlyphSac.types;
       const newSettings = GlyphTypes.list
@@ -545,10 +548,10 @@ export const devMigrations = {
       }
       player.celestials.effarig.autoGlyphSac.types = newSettings;
     },
-    player => {
+    (player) => {
       player.reality.glyphs.inventorySize += 10;
     },
-    player => {
+    (player) => {
       player.celestials.v.unlockBits = 0;
       // Adding this in case the player is loading a save (otherwise it
       // doesn't update immediately and the player still has nonzero ST
@@ -556,43 +559,43 @@ export const devMigrations = {
       V.updateTotalRunUnlocks();
       V.checkForUnlocks();
     },
-    player => {
+    (player) => {
       // Reset the v-unlocks again
       player.celestials.v.unlockBits = 0;
       // See above migration for an explanation of the below line.
       V.updateTotalRunUnlocks();
       V.checkForUnlocks();
     },
-    player => {
+    (player) => {
       player.reality.autoAchieve = !player.reality.disableAutoAchieve;
       delete player.reality.disableAutoAchieve;
       delete player.newEC10Test;
     },
-    player => {
+    (player) => {
       // Some older saves have screwed up Ra unlocks for some reason, this should fix that
       player.celestials.ra.unlockBits = 0;
       Ra.checkForUnlocks();
     },
-    player => {
+    (player) => {
       // Required for compatibility after V records refactor
       player.celestials.v.runRecords[0] = -10;
     },
-    player => {
+    (player) => {
       delete player.celestials.v.cursedThisRun;
     },
-    player => {
+    (player) => {
       // Reset Ra unlocks again, because apparently Ra-Teresa Lv1 upgrades were always active due to an oversight
       player.celestials.ra.unlockBits = 0;
       Ra.checkForUnlocks();
     },
-    player => {
+    (player) => {
       // Glyph filter refactor (not worth the trouble of translating between the modes, but copy the configs)
       Object.assign(player.celestials.effarig.glyphScoreSettings, player.celestials.effarig.autoGlyphSac);
       player.celestials.effarig.glyphTrashMode = 0;
       delete player.celestials.effarig.autoGlyphSac;
       delete player.celestials.effarig.autoGlyphPick;
     },
-    player => {
+    (player) => {
       delete player.reality.glyphs.inventorySize;
       for (const glyph of player.reality.glyphs.inventory) {
         if (glyph.idx >= 10) {
@@ -600,13 +603,13 @@ export const devMigrations = {
         }
       }
     },
-    player => {
+    (player) => {
       // Typo fix, as long as we have to delete a player property let's also
       // correctly initialize the new one.
       player.onlyEighthDimensions = player.onlyEighthDimensons;
       delete player.onlyEighthDimensons;
     },
-    player => {
+    (player) => {
       for (const pet of Ra.pets.all) {
         pet.level = Math.clampMax(pet.level, 25);
       }
@@ -619,13 +622,13 @@ export const devMigrations = {
         }
       }
     },
-    player => {
+    (player) => {
       for (let i = 0; i < player.celestials.ra.alchemy.length; i++) {
         player.celestials.ra.alchemy[i].amount = Math.clampMax(
           player.celestials.ra.alchemy[i].amount, Ra.alchemyResourceCap);
       }
     },
-    player => {
+    (player) => {
       delete player.celestials.laitela.maxAmGained;
       for (const dim of player.celestials.laitela.dimensions) {
         dim.powerDMUpgrades = dim.powerUpgrades;
@@ -638,7 +641,7 @@ export const devMigrations = {
       player.celestials.laitela.darkMatterMult = Number(player.celestials.laitela.higgs) + 1;
       delete player.celestials.laitela.anomalies;
     },
-    player => {
+    (player) => {
       delete player.achPow;
       delete player.interval;
       delete player.tickThreshold;
@@ -646,48 +649,48 @@ export const devMigrations = {
       delete player.celestials.v.quoteIdx;
       delete player.celestials.ra.quoteIdx;
     },
-    player => {
+    (player) => {
       player.celestials.enslaved.totalDimCapIncrease = 0;
       player.celestials.enslaved.tesseracts = 0;
     },
-    player => {
+    (player) => {
       delete player.auto.galaxy.buyMax;
     },
-    player => {
+    (player) => {
       delete player.reality.glyphs.sac.cursed;
       Achievement(153).lock();
       Achievement(157).lock();
     },
-    player => {
+    (player) => {
       // Return all PP spent on old V goal reduction
       if (player.celestials.v.ppSpent) {
         player.reality.pp += player.celestials.v.ppSpent;
         delete player.celestials.v.ppSpent;
       }
     },
-    player => {
+    (player) => {
       player.thisEternityMaxAM = new Decimal(0);
     },
-    player => {
+    (player) => {
       migrations.migrateLastTenRuns(player);
       //  Put in a default value of 1 for realities.
       player.lastTenRealities = player.lastTenRealities.map(x => [x[0], x[1], 1, Number(x[2]), x[3]]);
       migrations.migrateIPGen(player);
     },
-    player => {
+    (player) => {
       player.noReplicantiGalaxies = player.reality.upgReqChecks[0];
       delete player.reality.upgReqChecks;
     },
-    player => {
+    (player) => {
       player.bestGlyphStrength = player.reality.glyphs.active.concat(
         player.reality.glyphs.inventory).map(g => g.strength).max();
     },
-    player => {
+    (player) => {
       player.options.showHintText.glyphEffectDots = player.options.showGlyphEffectDots;
       delete player.options.showGlyphEffectDots;
       migrations.renameCloudVariable(player);
     },
-    player => {
+    (player) => {
       const newPerks = new Set([...player.reality.perks].filter(x => x < 20 || x > 25));
       const gainedPerkPoints = player.reality.perks.size - newPerks.size;
       player.reality.pp += gainedPerkPoints;
@@ -697,17 +700,17 @@ export const devMigrations = {
           "Some of your perks (glyph perks) were removed. The perk points you spent on them have been refunded.");
       }
     },
-    player => {
+    (player) => {
       delete player.reality.glyphs.last;
     },
-    player => {
+    (player) => {
       if (player.reality.secondGaussian === null) {
         // Future-proof against potential changes to the default value
         // (as a special case of not using state accessors).
         player.reality.secondGaussian = 1e6;
       }
     },
-    player => {
+    (player) => {
       delete player.celestials.laitela.reachedSingularityCapLimit;
       delete player.celestials.laitela.secondsSinceCappedTime;
       delete player.celestials.laitela.singularityAutoCapLimit;
@@ -718,7 +721,7 @@ export const devMigrations = {
       player.celestials.laitela.darkMatterMult = Math.clampMin(player.celestials.laitela.darkMatterMult, 1);
       player.celestials.laitela.dimensions.forEach(d => d.ascensionCount = 0);
     },
-    player => {
+    (player) => {
       const allRandomGlyphs = player.reality.glyphs.active
         .concat(player.reality.glyphs.inventory)
         .filter(i => i.type !== "companion");
@@ -726,7 +729,7 @@ export const devMigrations = {
         glyph.strength = Math.ceil(glyph.strength * 400) / 400;
       }
     },
-    player => {
+    (player) => {
       if (player.dimensions.normal !== undefined) {
         for (let i = 0; i < player.dimensions.normal.length; i++) {
           const dimension = player.dimensions.normal[i];
@@ -737,20 +740,20 @@ export const devMigrations = {
         delete player.dimensions.normal;
       }
     },
-    player => {
+    (player) => {
       if (player.options.news.enabled === undefined) {
         player.options.news = {
           enabled: player.options.news,
           repeatBuffer: 40,
           AIChance: 0,
-          speed: 1
+          speed: 1,
         };
       }
     },
-    player => {
+    (player) => {
       delete player.options.confirmations.glyphTrash;
     },
-    player => {
+    (player) => {
       migrations.standardizeUncompletedTimes(player);
       if (player.bestReality === 999999999999) player.bestReality = Number.MAX_VALUE;
       if (player.bestRealityRealTime === 999999999999) player.bestRealityRealTime = Number.MAX_VALUE;
@@ -759,16 +762,16 @@ export const devMigrations = {
         if (player.lastTenRealities[i][3] === 26784000) player.lastTenRealities[i][3] = Number.MAX_VALUE;
       }
     },
-    player => {
+    (player) => {
       for (const script of Object.values(player.reality.automator.scripts)) {
-        script.content =
-          script.content.replace(/^([ \t]*)(wait|if|while|until)([\t ]+)(completions)/igmu, "$1$2$3pending $4");
+        script.content
+          = script.content.replaceAll(/^([ \t]*)(wait|if|while|until)([\t ]+)(completions)/igmu, "$1$2$3pending $4");
       }
     },
-    player => {
+    (player) => {
       player.celestials.ra.unlockBits &= ~(1 << 29);
     },
-    player => {
+    (player) => {
       player.records.gameCreatedTime = player.gameCreatedTime;
       player.records.totalTimePlayed = player.totalTimePlayed;
       player.records.realTimePlayed = player.realTimePlayed;
@@ -865,7 +868,7 @@ export const devMigrations = {
       delete player.bestRealityRealTime;
       delete player.bestSpeedSet;
     },
-    player => {
+    (player) => {
       player.replicanti.boughtGalaxyCap = player.replicanti.gal;
       player.reality.perkPoints = player.reality.pp;
       player.celestials.teresa.pouredAmount = player.celestials.teresa.rmStore;
@@ -918,7 +921,7 @@ export const devMigrations = {
       delete player.dilation.baseFreeGalaxies;
       delete player.dilation.freeGalaxies;
     },
-    player => {
+    (player) => {
       player.auto.infinityDims = Array.range(0, 8).map(() => ({ lastTick: 0 }));
       for (let i = 0; i < 8; i++) {
         player.auto.infinityDims[i].isActive = player.infDimBuyers[i];
@@ -990,14 +993,14 @@ export const devMigrations = {
     },
     migrations.convertTimeTheoremPurchases,
     migrations.infinitiedConversion,
-    player => {
+    (player) => {
       delete player.saveOverThresholdFlag;
       delete player.saveOverThresholdFlagModalDisplayed;
     },
-    player => {
+    (player) => {
       if (!Autobuyer.reality.isUnlocked) player.auto.reality.isActive = false;
     },
-    player => {
+    (player) => {
       // Delete PEC5 (id 64)
       if (player.reality.perks.has(64)) {
         player.reality.perks.delete(64);
@@ -1010,7 +1013,7 @@ export const devMigrations = {
       }
       player.reality.upgReqs = reqBitmask;
     },
-    player => {
+    (player) => {
       // Delete SAM2 (id 11)
       if (player.reality.perks.has(11)) {
         player.reality.perks.delete(11);
@@ -1018,12 +1021,12 @@ export const devMigrations = {
       }
       if (player.reality.perks.has(10)) Perk.startAM.onPurchased();
     },
-    player => {
+    (player) => {
       player.achievementChecks.maxStudiesThisReality = player.timestudy.studies.length;
       player.celestials.teresa.lastRepeatedMachines = new Decimal(player.celestials.teresa.lastRepeatedRM);
       delete player.celestials.teresa.lastRepeatedRM;
     },
-    player => {
+    (player) => {
       // Make sure scripts don't have any gaps in indices, and load up the correct script on migration
       let newID = 1;
       let selectedID = 1;
@@ -1041,36 +1044,36 @@ export const devMigrations = {
     },
     migrations.deleteDimboostBulk,
     migrations.removePriority,
-    player => {
+    (player) => {
       player.reality.realityMachines = player.reality.realityMachines.floor();
     },
     migrations.deleteFloatingTextOption,
-    player => {
+    (player) => {
       // Delete ACH5
       if (player.reality.perks.has(206)) {
         player.reality.perks.delete(206);
         player.reality.perkPoints++;
       }
     },
-    player => {
+    (player) => {
       player.records.thisEternity.maxIP = new Decimal(player.infinityPoints);
       player.auto.bigCrunch.xHighest = player.auto.bigCrunch.xCurrent;
       player.auto.eternity.xHighest = player.auto.eternity.xCurrent;
       delete player.auto.bigCrunch.xCurrent;
       delete player.auto.eternity.xCurrent;
     },
-    player => {
+    (player) => {
       // Fix an issue where a boolean property could become int and trigger number checking code.
       player.achievementChecks.continuumThisReality = Boolean(player.achievementChecks.continuumThisReality);
     },
-    player => {
+    (player) => {
       player.secretUnlocks.spreadingCancer = player.spreadingCancer;
       delete player.spreadingCancer;
     },
-    player => {
+    (player) => {
       delete player.celestials.enslaved.totalDimCapIncrease;
     },
-    player => {
+    (player) => {
       for (const i of player.reality.glyphs.undo) {
         for (const j of ["thisInfinityTime", "thisInfinityRealTime", "thisEternityTime", "thisEternityRealTime"]) {
           if (!(j in i)) {
@@ -1080,7 +1083,7 @@ export const devMigrations = {
         }
       }
     },
-    player => {
+    (player) => {
       // Requirement migration/refactor
       const oldChecks = player.achievementChecks;
       player.requirementChecks = {
@@ -1111,7 +1114,7 @@ export const devMigrations = {
           cancerGalaxies: player.secretUnlocks.spreadingCancer,
           singleTickspeed: player.secretUnlocks.why,
           perkTreeDragging: player.secretUnlocks.dragging,
-        }
+        },
       };
       delete player.usedMaxAll;
       delete player.secretUnlocks.spreadingCancer;
@@ -1144,32 +1147,32 @@ export const devMigrations = {
       delete player.secretUnlocks.eiffelTowerChapter;
     },
     migrations.refactorDoubleIPRebuyable,
-    player => {
+    (player) => {
       if (player.requirementChecks.reality.slowestBH === 0) player.requirementChecks.reality.slowestBH = 1;
     },
-    player => {
+    (player) => {
       // #1764 fix - EM200 bug from eternity autobuyer appearing to be zero but not actually being zero
       if (player.auto.eternity.amount.lt(0.01)) player.auto.eternity.amount = new Decimal(0);
     },
-    player => {
+    (player) => {
       player.options.hiddenSubtabBits = Array.repeat(0, 11);
       player.options.lastOpenSubtab = Array.repeat(0, 11);
     },
-    player => {
+    (player) => {
       const highestRefinementData = [
         { name: "power", id: ALCHEMY_RESOURCE.POWER },
         { name: "infinity", id: ALCHEMY_RESOURCE.INFINITY },
         { name: "time", id: ALCHEMY_RESOURCE.TIME },
         { name: "replication", id: ALCHEMY_RESOURCE.REPLICATION },
         { name: "dilation", id: ALCHEMY_RESOURCE.DILATION },
-        { name: "effarig", id: ALCHEMY_RESOURCE.EFFARIG }
+        { name: "effarig", id: ALCHEMY_RESOURCE.EFFARIG },
       ];
       for (const resource of highestRefinementData) {
         player.celestials.ra.highestRefinementValue[resource.name] = player.celestials.ra.alchemy[resource.id].amount;
       }
     },
     migrations.deletePostChallUnlocked,
-    player => {
+    (player) => {
       // Delete PEC4 (id 63)
       if (player.reality.perks.has(63)) {
         player.reality.perks.delete(63);
@@ -1182,7 +1185,7 @@ export const devMigrations = {
       }
       delete player.auto.timeTheorems.lastTick;
     },
-    player => {
+    (player) => {
       // We can't reliably check if the player has or hasn't unlocked the automator via automator points without
       // essentially copy-pasting all the automator point code here (in the interest of avoiding use of globals).
       // So, in the range of progress where it's unclear, we stop it entirely in case it hasn't actually unlocked yet.
@@ -1193,14 +1196,14 @@ export const devMigrations = {
         player.reality.automator.state.forceRestart = false;
       }
     },
-    player => {
+    (player) => {
       for (const resource of player.celestials.ra.alchemy) {
         // We shouldn't access global variables in migrations so instead of Ra.alchemyResourceCap we use 25000.
         resource.amount = Math.clampMax(resource.amount, 25000);
       }
     },
-    player => {
-      const triadRegex = new RegExp(`T(\\d)`, "gu");
+    (player) => {
+      const triadRegex = new RegExp("T(\\d)", "gu");
       player.timestudy.presets.forEach(p => p.studies = p.studies.replaceAll(triadRegex, "30$1"));
       // This may also potentially change variable or preset names in scripts, breaking them, but the likelihood of
       // this being a widespread issue is low enough that this is probably a better option than a really obtuse regex
@@ -1214,10 +1217,10 @@ export const devMigrations = {
         delete player.celestials.v.triadStudies;
       }
     },
-    player => {
+    (player) => {
       delete player.options.confirmations.harshAutoClean;
     },
-    player => {
+    (player) => {
       player.celestials.laitela.singularitySorting = {
         // Added more support in singularity milestone list, uses enum SINGULARITY_MILESTONE_RESOURCE in constants.js
         displayResource: player.options.showCondenseToMilestone ? 1 : 0,
@@ -1230,16 +1233,16 @@ export const devMigrations = {
     () => {
       // This is just an empty patch because some orders got really messed up. Sorry -Scar
     },
-    player => {
+    (player) => {
       player.reality.glyphs.sets = player.reality.glyphs.sets.map(glyphs => ({ glyphs, name: "" }));
     },
-    player => {
+    (player) => {
       // Remove any accidental recursion that may have been introduced by the above patch
       while (!Array.isArray(player.reality.glyphs.sets[0].glyphs)) {
         player.reality.glyphs.sets = player.reality.glyphs.sets.map(glyphs => (glyphs.glyphs));
       }
     },
-    player => {
+    (player) => {
       // For saves before cel7 existed, it will first add this prop (as a number) and then run this migration code. For
       // saves which are already in cel7, this prop will already exist as a Decimal. This workaround handles both cases
       player.celestials.pelle.rifts.chaos.fill = new Decimal(player.celestials.pelle.rifts.chaos.fill).toNumber();
@@ -1248,11 +1251,11 @@ export const devMigrations = {
       player.celestials.pelle.collapsed = {
         upgrades: false,
         rifts: false,
-        galaxies: false
+        galaxies: false,
       };
       player.celestials.pelle.galaxyGenerator.unlocked = player.celestials.pelle.galaxyGenerator.generatedGalaxies > 0;
     },
-    player => {
+    (player) => {
       if (player.celestials.pelle.doomed) player.achievementBits[17] |= 1;
       if (player.celestials.pelle.upgrades.has(4)) player.achievementBits[17] |= 2;
       if (player.celestials.pelle.doomed && player.challenge.infinity.completedBits === 510) {
@@ -1260,42 +1263,42 @@ export const devMigrations = {
       }
       if (player.timestudy.studies.compact().includes(181)) player.achievementBits[17] |= (1 << 5);
     },
-    player => {
+    (player) => {
       player.achievementBits[16] |= (player.achievementBits[16] & (1 << 4)) << 3;
       player.achievementBits[16] &= ~(1 << 4);
       player.achievementBits[16] |= (player.achievementBits[16] & (1 << 2)) << 2;
       player.achievementBits[16] &= ~(1 << 2);
     },
-    player => {
+    (player) => {
       player.achievementBits[17] &= ~(1 << 5);
       if (player.timestudy.studies.compact().includes(181) && player.celestials.pelle.doomed) {
         player.achievementBits[17] |= (1 << 5);
       }
     },
-    player => {
+    (player) => {
       if (player.celestials.pelle.doomed && (player.challenge.infinity.completedBits & (1 << 5)) !== 0) {
         player.achievementBits[17] |= (1 << 2);
       } else {
         player.achievementBits[17] &= ~(1 << 2);
       }
     },
-    player => {
+    (player) => {
       player.celestials.pelle.collapsed = player.celestials.collapsed;
       player.celestials.pelle.showBought = player.celestials.showBought;
       delete player.celestials.collapsed;
       delete player.celestials.showBought;
     },
     migrations.infMultNameConversion,
-    player => {
+    (player) => {
       if (player.celestials.pelle.collapsed === undefined) {
         player.celestials.pelle.collapsed = {
           upgrades: false,
           rifts: false,
-          galaxies: false
+          galaxies: false,
         };
       }
     },
-    player => {
+    (player) => {
       const from = player.celestials.laitela;
       if (from.automation) {
         player.auto.darkMatterDims.isActive = from.automation.dimensions;
@@ -1318,10 +1321,10 @@ export const devMigrations = {
       delete player.celestials.laitela.autoAnnihilationSetting;
     },
     migrations.etercreqConversion,
-    player => {
+    (player) => {
       delete player.options.confirmations.reality;
     },
-    player => {
+    (player) => {
       const hasDimboost = player.celestials.pelle.upgrades.has(19);
       const hasDilUpg = player.celestials.pelle.upgrades.has(18);
       player.celestials.pelle.upgrades.delete(18);
@@ -1329,32 +1332,32 @@ export const devMigrations = {
       if (hasDimboost) player.celestials.pelle.upgrades.add(18);
       if (hasDilUpg) player.celestials.pelle.upgrades.add(19);
     },
-    player => {
+    (player) => {
       delete player.auto.bulkOn;
     },
-    player => {
+    (player) => {
       player.requirementChecks.permanent.emojiGalaxies = player.requirementChecks.permanent.cancerGalaxies;
       delete player.requirementChecks.permanent.cancerGalaxies;
     },
-    player => {
+    (player) => {
       delete player.celestials.effarig.unlocksBits;
       delete player.celestials.ra.unlocksBits;
     },
-    player => {
+    (player) => {
       for (const script of Object.values(player.reality.automator.scripts)) {
-        script.id = parseInt(script.id, 10);
+        script.id = Number.parseInt(script.id, 10);
       }
     },
-    player => {
+    (player) => {
       player.secretUnlocks.themes.delete("S4Cancer");
       player.secretUnlocks.themes.add("S4Design");
     },
-    player => {
+    (player) => {
       player.reality.automator.state.editorScript = Number(player.reality.automator.state.editorScript);
       // I'm not sure if there's any error with the type of topLevelScript, but better safe than sorry
       player.reality.automator.state.topLevelScript = Number(player.reality.automator.state.topLevelScript);
     },
-    player => {
+    (player) => {
       // Move dil upg no reset and tachyon particles no reset
       if (player.celestials.pelle.upgrades.delete(20)) player.celestials.pelle.upgrades.add(21);
       if (player.celestials.pelle.upgrades.delete(19)) player.celestials.pelle.upgrades.add(20);
@@ -1371,7 +1374,7 @@ export const devMigrations = {
       }
       if (hasDimboostsResetNothing) player.celestials.pelle.upgrades.add(7);
     },
-    player => {
+    (player) => {
       const cel = player.celestials;
       const convToBit = x => x.toBitmask() >> 1;
       if (cel.teresa.quotes) player.celestials.teresa.quoteBits = convToBit(cel.teresa.quotes);
@@ -1390,11 +1393,11 @@ export const devMigrations = {
       delete player.celestials.laitela.quotes;
       delete player.celestials.pelle.quotes;
     },
-    player => {
+    (player) => {
       if (player.celestials.pelle.rifts.famine) {
         player.celestials.pelle.rifts.vacuum = {
           ...player.celestials.pelle.rifts.famine,
-          fill: new Decimal(player.celestials.pelle.rifts.famine.fill)
+          fill: new Decimal(player.celestials.pelle.rifts.famine.fill),
         };
         delete player.celestials.pelle.rifts.famine;
       }
@@ -1402,7 +1405,7 @@ export const devMigrations = {
       if (player.celestials.pelle.rifts.pestilence) {
         player.celestials.pelle.rifts.decay = {
           ...player.celestials.pelle.rifts.pestilence,
-          fill: new Decimal(player.celestials.pelle.rifts.pestilence.fill)
+          fill: new Decimal(player.celestials.pelle.rifts.pestilence.fill),
         };
         delete player.celestials.pelle.rifts.pestilence;
       }
@@ -1410,7 +1413,7 @@ export const devMigrations = {
       if (player.celestials.pelle.rifts.war) {
         player.celestials.pelle.rifts.recursion = {
           ...player.celestials.pelle.rifts.war,
-          fill: new Decimal(player.celestials.pelle.rifts.war.fill)
+          fill: new Decimal(player.celestials.pelle.rifts.war.fill),
         };
         delete player.celestials.pelle.rifts.war;
       }
@@ -1418,16 +1421,16 @@ export const devMigrations = {
       if (player.celestials.pelle.rifts.death) {
         player.celestials.pelle.rifts.paradox = {
           ...player.celestials.pelle.rifts.death,
-          fill: new Decimal(player.celestials.pelle.rifts.death.fill)
+          fill: new Decimal(player.celestials.pelle.rifts.death.fill),
         };
         delete player.celestials.pelle.rifts.death;
       }
     },
-    player => {
+    (player) => {
       delete player.newGame;
     },
     migrations.moveTS33,
-    player => {
+    (player) => {
       const toMove = ["antimatterDims", "infinityDims", "timeDims", "replicantiUpgrades", "dilationUpgrades",
         "blackHolePower", "realityUpgrades", "imaginaryUpgrades"];
       for (const x of toMove) {
@@ -1440,11 +1443,11 @@ export const devMigrations = {
         player.auto[x] = { all, isActive: true };
       }
     },
-    player => {
+    (player) => {
       player.celestials.ra.petWithRemembrance = player.celestials.ra.petWithRecollection;
       delete player.celestials.ra.petWithRecollection;
     },
-    player => {
+    (player) => {
       for (const key of Object.keys(player.reality.automator.scripts)) {
         const lines = player.reality.automator.scripts[key].content.split("\n");
         for (let num = 0; num < lines.length; num++) {
@@ -1482,14 +1485,14 @@ export const devMigrations = {
       }
       player.reality.automator.scripts = newScripts;
     },
-    player => {
+    (player) => {
       delete player.celestials.pelle.armageddonDuration;
       delete player.celestials.pelle.maxAMThisArmageddon;
       delete player.options.sidebarMinimized;
       delete player.options.chart;
       delete player.devMode;
     },
-    player => {
+    (player) => {
       const swap1 = player.achievementBits[10] & 4;
       const swap2 = player.achievementBits[11] & 8;
       if (swap1) {
@@ -1503,7 +1506,7 @@ export const devMigrations = {
         player.achievementBits[10] &= ~4;
       }
     },
-    player => {
+    (player) => {
       if (player.options.newUI) {
         player.options.themeModern = player.options.theme ?? player.options.themeModern;
       } else {
@@ -1513,13 +1516,13 @@ export const devMigrations = {
 
       if (BlackHole(1).isUnlocked) player.records.timePlayedAtBHUnlock = player.records.totalTimePlayed;
     },
-    player => {
+    (player) => {
       player.IAP.enabled = !player.IAP.disabled;
       const toDelete = ["totalSTD", "spentSTD", "exportSTD", "IPPurchases", "EPPurchases", "RMPurchases",
         "dimPurchases", "allDimPurchases", "replicantiPurchases", "dilatedTimePurchases", "disabled"];
       for (const key of toDelete) delete player.IAP[key];
     },
-    player => {
+    (player) => {
       const allGlyphs = player.reality.glyphs.active.concat(player.reality.glyphs.inventory);
       for (const glyph of allGlyphs) {
         if (glyph.symbol === "key266b") {
@@ -1530,10 +1533,10 @@ export const devMigrations = {
         if (glyph.type === "companion") glyph.color = undefined;
       }
     },
-    player => {
+    (player) => {
       player.options.lightGlyphs = !player.options.forceDarkGlyphs;
       delete player.options.forceDarkGlyphs;
-    }
+    },
   ],
 
   patch(player) {
@@ -1547,5 +1550,5 @@ export const devMigrations = {
 
   setLatestTestVersion(player) {
     player.options.testVersion = this.patches.length;
-  }
+  },
 };

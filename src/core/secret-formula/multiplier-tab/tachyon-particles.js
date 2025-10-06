@@ -72,5 +72,5 @@ export const TP = {
     powValue: () => Enslaved.tachyonNerf,
     isActive: () => Enslaved.isRunning,
     icon: MultiplierTabIcons.GENERIC_ENSLAVED,
-  }
+  },
 };

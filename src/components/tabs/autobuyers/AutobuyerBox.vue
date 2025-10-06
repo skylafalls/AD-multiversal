@@ -6,27 +6,27 @@ import AutobuyerIntervalLabel from "./AutobuyerIntervalLabel";
 export default {
   name: "AutobuyerBox",
   components: {
-    AutobuyerIntervalLabel
+    AutobuyerIntervalLabel,
   },
   props: {
     autobuyer: {
       type: Object,
-      required: true
+      required: true,
     },
     name: {
       type: String,
-      required: true
+      required: true,
     },
     showInterval: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     isModal: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -49,13 +49,13 @@ export default {
         "c-autobuyer-buy-box": true,
         "o-primary-btn": true,
         "o-primary-btn--enabled": this.isUnlockable,
-        "o-primary-btn--disabled": !this.isUnlockable
+        "o-primary-btn--disabled": !this.isUnlockable,
       };
     },
     autobuyerBoxRowClass() {
       return {
         "c-autobuyer-box-row": true,
-        "c-autobuyer-box-row__modal": this.isModal
+        "c-autobuyer-box-row__modal": this.isModal,
       };
     },
     autobuyerToggleClass() {
@@ -71,14 +71,14 @@ export default {
           "o-autobuyer-toggle-checkbox__label-modal": this.isModal,
           "o-autobuyer-toggle-checkbox__label--active-paused": this.isActive,
           "o-autobuyer-toggle-checkbox__label--deactive-paused": !this.isActive,
-          "o-autobuyer-toggle-checkbox__label--disabled": !this.globalToggle
+          "o-autobuyer-toggle-checkbox__label--disabled": !this.globalToggle,
         };
       }
       return {
         "o-autobuyer-toggle-checkbox__label": true,
         "o-autobuyer-toggle-checkbox__label-modal": this.isModal,
         "o-autobuyer-toggle-checkbox__label--active": this.isActive,
-        "o-autobuyer-toggle-checkbox__label--disabled": !this.globalToggle
+        "o-autobuyer-toggle-checkbox__label--disabled": !this.globalToggle,
       };
     },
     showEternity() {
@@ -93,21 +93,23 @@ export default {
     extraInfo() {
       // This logic takes advantage of AUTO_CRUNCH_MODE and AUTO_ETERNITY_MODE being identical
       switch (this.currMode) {
-        case AUTO_ETERNITY_MODE.TIME:
+        case AUTO_ETERNITY_MODE.TIME: {
           return this.nextTime > 0
             ? `Will trigger in ${TimeSpan.fromSeconds(new Decimal(this.nextTime)).toStringShort()}`
             : "Will trigger ASAP";
+        }
         case AUTO_ETERNITY_MODE.X_HIGHEST:
-        default:
+        default: {
           return `Will trigger at ${format(this.nextValue, 2)} ${this.autobuyer.name === "Infinity" ? "IP" : "EP"}`;
+        }
       }
-    }
+    },
   },
   watch: {
     isActive(newValue) {
       // eslint-disable-next-line vue/no-mutating-props
       this.autobuyer.isActive = newValue;
-    }
+    },
   },
   methods: {
     update() {
@@ -134,8 +136,8 @@ export default {
       this.autobuyer.purchase();
       TabNotification.newAutobuyer.clearTrigger();
       GameCache.cheapestAntimatterAutobuyer.invalidate();
-    }
-  }
+    },
+  },
 };
 </script>
 

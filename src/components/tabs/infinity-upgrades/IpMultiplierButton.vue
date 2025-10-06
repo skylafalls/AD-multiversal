@@ -8,24 +8,24 @@ export default {
   components: {
     PrimaryButton,
     PrimaryToggleButton,
-    InfinityUpgradeButton
+    InfinityUpgradeButton,
   },
   data() {
     return {
       isAutobuyerActive: false,
       isAutoUnlocked: false,
-      isCapped: false
+      isCapped: false,
     };
   },
   computed: {
     upgrade() {
       return InfinityUpgrade.ipMult;
-    }
+    },
   },
   watch: {
     isAutobuyerActive(newValue) {
       Autobuyer.ipMult.isActive = newValue;
-    }
+    },
   },
   methods: {
     update() {
@@ -35,8 +35,8 @@ export default {
     },
     buyMaxIPMult() {
       InfinityUpgrade.ipMult.buyMax();
-    }
-  }
+    },
+  },
 };
 </script>
 

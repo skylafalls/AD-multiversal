@@ -37,13 +37,13 @@ export class TimeStudyTreeLayout {
     const normalRowLayout = new TimeStudyRowLayout({
       itemWidth: 18 * scaling,
       itemHeight: 10 * scaling,
-      spacing: 3 * scaling
+      spacing: 3 * scaling,
     });
 
     const wideRowLayout = new TimeStudyRowLayout({
       itemWidth: 12 * scaling,
       itemHeight: 10 * scaling,
-      spacing: 0.6 * scaling
+      spacing: 0.6 * scaling,
     });
     const normalRow = (...items) => new TimeStudyRow(normalRowLayout, items);
     const wideRow = (...items) => new TimeStudyRow(wideRowLayout, items, true);
@@ -54,77 +54,76 @@ export class TimeStudyTreeLayout {
     /**
      * @type {TimeStudyRow[]}
      */
-    /* eslint-disable no-multi-spaces, space-in-parens, func-call-spacing */
+
     this.rows = [
-      normalRow(                       null,   TS(11),   null                         ),
-      normalRow(                           TS(21), TS(22)                             ),
-      normalRow(                   null, TS(31), TS(32), TS(33)                       )
+      normalRow(null, TS(11), null),
+      normalRow(TS(21), TS(22)),
+      normalRow(null, TS(31), TS(32), TS(33)),
     ];
 
-    if (type === STUDY_TREE_LAYOUT_TYPE.ALTERNATIVE_62 || type === STUDY_TREE_LAYOUT_TYPE.ALTERNATIVE_62_181 ||
-      type === STUDY_TREE_LAYOUT_TYPE.ALTERNATIVE_TRIAD_STUDIES) {
+    if (type === STUDY_TREE_LAYOUT_TYPE.ALTERNATIVE_62 || type === STUDY_TREE_LAYOUT_TYPE.ALTERNATIVE_62_181
+      || type === STUDY_TREE_LAYOUT_TYPE.ALTERNATIVE_TRIAD_STUDIES) {
       this.rows.push(
-        normalRow(                     null, TS(41), TS(42), EC(5)                      ),
-        normalRow(                               TS(51)                                 )
+        normalRow(null, TS(41), TS(42), EC(5)),
+        normalRow(TS(51)),
       );
     } else {
       this.rows.push(
-        normalRow(                           TS(41), TS(42)                             ),
-        normalRow(                       null,   TS(51),  EC(5)                         )
+        normalRow(TS(41), TS(42)),
+        normalRow(null, TS(51), EC(5)),
       );
     }
 
     this.rows.push(
-      normalRow(                       null,   TS(61),  TS(62)                        ),
-      normalRow(                      TS(71),  TS(72),  TS(73)                        ),
-      normalRow(                      TS(81),  TS(82),  TS(83)                        ),
-      normalRow(                      TS(91),  TS(92),  TS(93)                        ),
-      normalRow(                      TS(101), TS(102), TS(103)                       ),
-      normalRow(                       EC(7),  TS(111),  null                         ),
-      normalRow(                      TS(121), TS(122), TS(123)                       ),
-      normalRow(               EC(6), TS(131), TS(132), TS(133), EC(8)                ),
-      normalRow(                      TS(141), TS(142), TS(143)                       ),
-      normalRow(               null,   EC(9), TS(151),   null,   EC(4)                ),
-      normalRow(                          TS(161), TS(162)                            )
+      normalRow(null, TS(61), TS(62)),
+      normalRow(TS(71), TS(72), TS(73)),
+      normalRow(TS(81), TS(82), TS(83)),
+      normalRow(TS(91), TS(92), TS(93)),
+      normalRow(TS(101), TS(102), TS(103)),
+      normalRow(EC(7), TS(111), null),
+      normalRow(TS(121), TS(122), TS(123)),
+      normalRow(EC(6), TS(131), TS(132), TS(133), EC(8)),
+      normalRow(TS(141), TS(142), TS(143)),
+      normalRow(null, EC(9), TS(151), null, EC(4)),
+      normalRow(TS(161), TS(162)),
     );
 
-    if (type === STUDY_TREE_LAYOUT_TYPE.ALTERNATIVE_181 || type === STUDY_TREE_LAYOUT_TYPE.ALTERNATIVE_62_181 ||
-      type === STUDY_TREE_LAYOUT_TYPE.ALTERNATIVE_TRIAD_STUDIES) {
+    if (type === STUDY_TREE_LAYOUT_TYPE.ALTERNATIVE_181 || type === STUDY_TREE_LAYOUT_TYPE.ALTERNATIVE_62_181
+      || type === STUDY_TREE_LAYOUT_TYPE.ALTERNATIVE_TRIAD_STUDIES) {
       this.rows.push(
-        normalRow(                         null, TS(171),  EC(2)                        ),
-        normalRow(                        EC(1), TS(181),  EC(3)                        )
+        normalRow(null, TS(171), EC(2)),
+        normalRow(EC(1), TS(181), EC(3)),
       );
     } else {
       this.rows.push(
-        normalRow(                               TS(171)                                ),
-        normalRow(                         EC(1), EC(2), EC(3)                          ),
-        normalRow(                               TS(181)                                )
+        normalRow(TS(171)),
+        normalRow(EC(1), EC(2), EC(3)),
+        normalRow(TS(181)),
       );
     }
 
     this.rows.push(
-      normalRow(                               EC(10)                                 ),
-      normalRow(             TS(191),          TS(192),          TS(193)              ),
-      normalRow(                               TS(201)                                ),
-      normalRow(    TS(211),          TS(212),          TS(213),          TS(214)     ),
-      wideRow  (TS(221), TS(222), TS(223), TS(224), TS(225), TS(226), TS(227), TS(228))
+      normalRow(EC(10)),
+      normalRow(TS(191), TS(192), TS(193)),
+      normalRow(TS(201)),
+      normalRow(TS(211), TS(212), TS(213), TS(214)),
+      wideRow (TS(221), TS(222), TS(223), TS(224), TS(225), TS(226), TS(227), TS(228)),
     );
 
     if (type === STUDY_TREE_LAYOUT_TYPE.ALTERNATIVE_TRIAD_STUDIES && !Pelle.isDoomed) {
       this.rows.push(
-        normalRow(                 TS(301), TS(302), TS(303), TS(304)                 )
+        normalRow(TS(301), TS(302), TS(303), TS(304)),
       );
     }
 
     this.rows.push(
-      normalRow(    TS(231),          TS(232),          TS(233),          TS(234)     ),
-      normalRow(              EC(11),                             EC(12)              ),
-      normalRow(                          TimeStudy.dilation                          ),
-      normalRow(          TimeStudy.timeDimension(5), TimeStudy.timeDimension(6)      ),
-      normalRow(          TimeStudy.timeDimension(7), TimeStudy.timeDimension(8)      ),
-      normalRow(                          TimeStudy.reality                           )
+      normalRow(TS(231), TS(232), TS(233), TS(234)),
+      normalRow(EC(11), EC(12)),
+      normalRow(TimeStudy.dilation),
+      normalRow(TimeStudy.timeDimension(5), TimeStudy.timeDimension(6)),
+      normalRow(TimeStudy.timeDimension(7), TimeStudy.timeDimension(8)),
+      normalRow(TimeStudy.reality),
     );
-    /* eslint-enable no-multi-spaces, space-in-parens, func-call-spacing */
 
     /**
      * @type {TimeStudySetup[]}
@@ -138,7 +137,7 @@ export class TimeStudyTreeLayout {
         const setup = new TimeStudySetup({
           study,
           row: rowIndex,
-          column: columnIndex
+          column: columnIndex,
         });
         if (row.isWide) {
           setup.isSmall = true;
@@ -150,14 +149,14 @@ export class TimeStudyTreeLayout {
     this.secretStudy = new TimeStudySetup({
       study: secretStudy,
       row: 0,
-      column: 0
+      column: 0,
     });
 
     const enslavedStudy = {};
     this.enslavedStudy = new TimeStudySetup({
       study: enslavedStudy,
       row: 0,
-      column: 2
+      column: 2,
     });
 
     /**
@@ -166,10 +165,10 @@ export class TimeStudyTreeLayout {
     this.connections = TimeStudy.allConnections
       .map(c => new TimeStudyConnectionSetup(c));
     this.secretStudyConnection = new TimeStudyConnectionSetup(
-      new TimeStudyConnection(TS(11), secretStudy)
+      new TimeStudyConnection(TS(11), secretStudy),
     );
     this.enslavedStudyConnection = new TimeStudyConnectionSetup(
-      new TimeStudyConnection(TS(11), enslavedStudy)
+      new TimeStudyConnection(TS(11), enslavedStudy),
     );
 
     this.width = this.rows.map(row => row.width).nMax();
@@ -219,5 +218,5 @@ export const STUDY_TREE_LAYOUT_TYPE = {
     if (alt62) return this.ALTERNATIVE_62;
     if (alt181) return this.ALTERNATIVE_181;
     return this.NORMAL;
-  }
+  },
 };

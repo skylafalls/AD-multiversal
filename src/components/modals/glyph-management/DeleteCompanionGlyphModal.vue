@@ -4,7 +4,7 @@ import PrimaryButton from "@/components/PrimaryButton";
 export default {
   name: "DeleteCompanionGlyphModal",
   components: {
-    PrimaryButton
+    PrimaryButton,
   },
   data() {
     return {
@@ -14,14 +14,19 @@ export default {
   computed: {
     message() {
       switch (this.messageIndex) {
-        case 0: return "Are you sure you want to get rid of your Companion Glyph?";
-        case 1: return "You will not receive any cake.";
-        case 2: return "This is permanent! You will not get another Companion Glyph!";
-        case 3: return `You deleted your faithful Companion Glyph more quickly than any
+        case 0: { return "Are you sure you want to get rid of your Companion Glyph?";
+        }
+        case 1: { return "You will not receive any cake.";
+        }
+        case 2: { return "This is permanent! You will not get another Companion Glyph!";
+        }
+        case 3: { return `You deleted your faithful Companion Glyph more quickly than any
                         other test subject on record. Congratulations.`;
-        default: return "Invalid message index";
+        }
+        default: { return "Invalid message index";
+        }
       }
-    }
+    },
   },
   methods: {
     handleLeftButtonClick() {
@@ -51,7 +56,7 @@ export default {
       // Passing information into modals seems to require a bunch of refactoring that's not worth it for this one case.
       const toDelete = player.reality.glyphs.inventory.filter(g => g.type === "companion")[0];
       Glyphs.removeFromInventory(toDelete);
-    }
+    },
   },
 };
 </script>

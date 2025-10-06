@@ -2,7 +2,7 @@
 export const LAITELA_UPGRADE_DIRECTION = {
   SELF_BOOST: 0,
   BOOSTS_MAIN: 1,
-  BOOSTS_LAITELA: 2
+  BOOSTS_LAITELA: 2,
 };
 
 export const singularityMilestones = {
@@ -212,7 +212,7 @@ export const singularityMilestones = {
     repeat: 0,
     limit: 1,
     description: "Annihilation mult. generates 4th DMD when Annihilation is available",
-    effect: () => cloneDeep(Laitela.darkMatterMult),
+    effect: () => structuredClone(Laitela.darkMatterMult),
     effectFormat: x => `${format(x, 2, 1)}/s`,
     upgradeDirection: LAITELA_UPGRADE_DIRECTION.SELF_BOOST,
   },
@@ -287,5 +287,5 @@ export const singularityMilestones = {
     effect: () => Currency.singularities.value.max(1).log10().div(80).add(1),
     effectFormat: x => formatX(Decimal.clampMin(x, 1), 2, 2),
     upgradeDirection: LAITELA_UPGRADE_DIRECTION.BOOSTS_MAIN,
-  }
+  },
 };

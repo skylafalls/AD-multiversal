@@ -6,7 +6,7 @@ export class DarkMatterDimensionAscensionAutobuyerState extends IntervaledAutobu
   }
 
   get name() {
-    return `Dark Matter Dimension Ascension`;
+    return "Dark Matter Dimension Ascension";
   }
 
   get isUnlocked() {

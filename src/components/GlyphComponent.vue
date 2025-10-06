@@ -14,27 +14,27 @@ const rarityBorderStyles = {
       lineType: "linear",
       angles: [45],
       colorSplit: [14, 16, 84, 86],
-    }
+    },
   ],
   rare: [
     {
       lineType: "linear",
       angles: [45, 135],
       colorSplit: [14, 16, 84, 86],
-    }
+    },
   ],
   epic: [
     {
       lineType: "linear",
       angles: [45, 135],
       colorSplit: [12, 14, 16, 18, 82, 84, 86, 88],
-    }
+    },
   ],
   legendary: [
     {
       lineType: "bump",
       colorSplit: [15, 25],
-    }
+    },
   ],
   mythical: [
     {
@@ -45,7 +45,7 @@ const rarityBorderStyles = {
       lineType: "linear",
       angles: [45, 135],
       colorSplit: [10, 13, 87, 90],
-    }
+    },
   ],
   transcendent: [
     {
@@ -56,7 +56,7 @@ const rarityBorderStyles = {
       lineType: "linear",
       angles: [45, 135],
       colorSplit: [10, 12, 14, 16, 84, 86, 88, 90],
-    }
+    },
   ],
   celestial: [
     {
@@ -94,17 +94,17 @@ const rarityBorderStyles = {
     {
       lineType: "companion",
     },
-  ]
+  ],
 };
 
 // This function does all the parsing of the above gradient specifications
-// eslint-disable-next-line max-params
+
 function generateGradient(data, color, glyph, isCircular) {
   // The undefined declarations here are mostly to make ESLint happy, and aren't necessarily used in all cases
   let borders, scaleFn, centers, specialData, isColor = false;
   const entries = [], elements = [];
   switch (data.lineType) {
-    case "linear":
+    case "linear": {
       // Produces stripes at the specified angle, where color sharply switches between the specified color and
       // transparent at each percentage in lines
       borders = [0, ...data.colorSplit, 100];
@@ -117,7 +117,8 @@ function generateGradient(data, color, glyph, isCircular) {
         elements.push(`repeating-linear-gradient(${angle}deg, ${entries.join(",")})`);
       }
       return elements.join(",");
-    case "bump":
+    }
+    case "bump": {
       // Produces four bumps on the cardinal directions of the glyph border, with specified color fade distances.
       // These bumps overlap some dots on effarig glyphs, so we conditionally make them more transparent (effectively
       // shrinking them so they don't overlap)
@@ -131,7 +132,8 @@ function generateGradient(data, color, glyph, isCircular) {
           transparent ${scaleFn(data.colorSplit[1])}%)`);
       }
       return entries.join(",");
-    case "radial":
+    }
+    case "radial": {
       // Produces a centered circle that only shades within a certain radial distance
       borders = [50, ...data.colorSplit, 100];
       scaleFn = perc => (isCircular ? 0.9 * perc : 100 - (100 - perc) / 2);
@@ -140,14 +142,16 @@ function generateGradient(data, color, glyph, isCircular) {
         isColor = !isColor;
       }
       return `radial-gradient(${entries.join(",")})`;
-    case "spike":
+    }
+    case "spike": {
       // Produces a single spike at the specified center, spanning between the specified angles with 5deg blur
       entries.push(`transparent ${data.angles[0] - 5}deg`);
       entries.push(`${color}b0 ${data.angles[0] + 5}deg`);
       entries.push(`${color}b0 ${data.angles[1] - 5}deg`);
       entries.push(`transparent ${data.angles[1] + 5}deg`);
       return `conic-gradient(from 0deg at ${data.center[0]}% ${data.center[1]}%, ${entries.join(",")})`;
-    case "companion":
+    }
+    case "companion": {
       // Special case to make the companion border look like a heart
       borders = [0, 30, 330, 360];
       specialData = [color, "transparent", "transparent", color];
@@ -163,60 +167,62 @@ function generateGradient(data, color, glyph, isCircular) {
           transparent ${scaleFn(50)}%)`);
       }
       return elements.join(",");
-    default:
+    }
+    default: {
       throw new Error("Unrecognized glyph border data");
+    }
   }
 }
 
 export default {
   name: "GlyphComponent",
   components: {
-    GlyphTooltip
+    GlyphTooltip,
   },
   props: {
     glyph: {
       type: Object,
-      required: true
+      required: true,
     },
     isInModal: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     isNew: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     isUnequipped: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     showSacrifice: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     ignoreModifiedLevel: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     realityGlyphBoost: {
       type: Decimal,
       required: false,
-      default: () => new Decimal()
+      default: () => new Decimal(),
     },
     isInventoryGlyph: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     isActiveGlyph: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     size: {
       type: String,
@@ -226,22 +232,22 @@ export default {
     glowBlur: {
       type: String,
       required: false,
-      default: "1rem"
+      default: "1rem",
     },
     glowSpread: {
       type: String,
       required: false,
-      default: "0.2rem"
+      default: "0.2rem",
     },
     bottomPadding: {
       type: String,
       required: false,
-      default: "0.3rem"
+      default: "0.3rem",
     },
     textProportion: {
       type: Number,
       required: false,
-      default: 0.5
+      default: 0.5,
     },
     circular: {
       type: Boolean,
@@ -257,7 +263,7 @@ export default {
       type: Boolean,
       required: false,
       default: false,
-    }
+    },
   },
   data() {
     return {
@@ -331,7 +337,7 @@ export default {
       return {
         border: overrideColor?.border ?? GlyphAppearanceHandler.getBorderColor(this.glyph.type),
         symbol: overrideColor?.border ?? symbolColor,
-        bg: overrideColor?.bg ?? this.cosmeticConfig.currentColor.bg
+        bg: overrideColor?.bg ?? this.cosmeticConfig.currentColor.bg,
       };
     },
     symbolColor() {
@@ -345,9 +351,9 @@ export default {
     },
     overStyle() {
       return {
-        width: this.size,
-        height: this.size,
-        position: "absolute",
+        "width": this.size,
+        "height": this.size,
+        "position": "absolute",
         "background-color": "rgba(0, 0, 0, 0)",
         "box-shadow": `0 0 ${this.glowBlur} calc(${this.glowSpread} + 0.1rem) ${this.borderColor} inset`,
         "border-radius": this.circular ? "50%" : "0",
@@ -355,36 +361,38 @@ export default {
     },
     outerStyle() {
       return {
-        width: this.size,
-        height: this.size,
+        "width": this.size,
+        "height": this.size,
         "background-color": this.borderColor,
         "box-shadow": `0 0 ${this.glowBlur} ${this.glowSpread} ${this.borderColor}`,
         "border-radius": this.circular ? "50%" : "0",
-        "-webkit-user-drag": this.draggable ? "" : "none"
+        "-webkit-user-drag": this.draggable ? "" : "none",
       };
     },
     innerStyle() {
       const color = this.symbolColor;
       return {
-        width: `calc(${this.size} - 0.2rem)`,
-        height: `calc(${this.size} - 0.2rem)`,
+        "width": `calc(${this.size} - 0.2rem)`,
+        "height": `calc(${this.size} - 0.2rem)`,
         "font-size": `calc( ${this.size} * ${this.textProportion} )`,
         color,
         "text-shadow": this.symbolBlur ? `-0.04em 0.04em 0.08em ${color}` : undefined,
         "border-radius": this.circular ? "50%" : "0",
         "padding-bottom": this.bottomPadding,
-        background: this.bgColor
+        "background": this.bgColor,
       };
     },
     mouseEventHandlers() {
-      const handlers = this.hasTooltip ? {
-        mouseenter: this.mouseEnter,
-        "&mousemove": this.mouseMove,
-        mouseleave: this.mouseLeave,
-        mousedown: this.mouseDown,
-        touchstart: this.touchStart,
-        touchend: this.touchEnd
-      } : {};
+      const handlers = this.hasTooltip
+        ? {
+            "mouseenter": this.mouseEnter,
+            "&mousemove": this.mouseMove,
+            "mouseleave": this.mouseLeave,
+            "mousedown": this.mouseDown,
+            "touchstart": this.touchStart,
+            "touchend": this.touchEnd,
+          }
+        : {};
       if (this.hasTooltip || this.draggable) {
         handlers.touchmove = this.touchMove;
       }
@@ -397,16 +405,21 @@ export default {
       let directionID = this.$viewModel.tabs.reality.glyphTooltipDirection;
       if (this.flipTooltip) directionID += 1;
       switch (directionID) {
-        case -1:
+        case -1: {
           return "l-glyph-tooltip--down-left";
-        case 0:
+        }
+        case 0: {
           return "l-glyph-tooltip--down-right";
-        case 1:
+        }
+        case 1: {
           return "l-glyph-tooltip--up-left";
-        case 2:
+        }
+        case 2: {
           return "l-glyph-tooltip--up-right";
-        default:
+        }
+        default: {
           return "l-glyph-tooltip--down-left";
+        }
       }
     },
     // This finds all the effects of a glyph and shifts all their IDs so that type's lowest-ID effect is 0 and all
@@ -416,7 +429,7 @@ export default {
       if (!this.glyph.effects) return {};
       const subVal = Object.values(GlyphInfo[this.glyph.type].effects().mapToObject(x => x.intID, x => x.intID)).nMin();
       const glyphEffects = GlyphInfo[this.glyph.type].effects().filter(e => this.glyph.effects.includes(e.id));
-      // eslint-disable-next-line consistent-return
+
       return glyphEffects.mapToObject(x => x.intID - subVal, x => x.id);
     },
     isRealityGlyph() {
@@ -436,39 +449,46 @@ export default {
       if (!this.isInventoryGlyph || blacklist.includes(this.glyph.type)) return null;
 
       const options = player.options.showHintText;
-      if (options.glyphInfoType === GlyphInfoVue.types.NONE ||
-        (!options.showGlyphInfoByDefault && !this.$viewModel.shiftDown)) {
+      if (options.glyphInfoType === GlyphInfoVue.types.NONE
+        || (!options.showGlyphInfoByDefault && !this.$viewModel.shiftDown)) {
         return null;
       }
 
       const typeEnum = GlyphInfoVue.types;
       switch (options.glyphInfoType) {
-        case typeEnum.LEVEL:
+        case typeEnum.LEVEL: {
           this.updateDisplayLevel();
           return formatInt(this.displayLevel.eq(0) ? this.glyph.level : this.displayLevel);
-        case typeEnum.RARITY:
+        }
+        case typeEnum.RARITY: {
           return formatRarity(strengthToRarity(Pelle.isDoomed ? Pelle.glyphStrength : this.glyph.strength));
-        case typeEnum.SAC_VALUE:
+        }
+        case typeEnum.SAC_VALUE: {
           return format(this.sacrificeReward, 2, 2);
-        case typeEnum.FILTER_SCORE:
+        }
+        case typeEnum.FILTER_SCORE: {
           return format(AutoGlyphProcessor.filterValue(this.glyph), 1, 1);
-        case typeEnum.CURRENT_REFINE:
+        }
+        case typeEnum.CURRENT_REFINE: {
           return `${format(this.refineReward, 2, 2)} ${this.symbol}`;
-        case typeEnum.MAX_REFINE:
+        }
+        case typeEnum.MAX_REFINE: {
           return `${format(this.uncappedRefineReward, 2, 2)} ${this.symbol}`;
-        default:
+        }
+        default: {
           throw new Error("Unrecognized Glyph info type in info text");
+        }
       }
     },
     showBorders() {
       return player.options.glyphBorders;
-    }
+    },
   },
   watch: {
     logTotalSacrifice() {
       this.tooltipLoaded = false;
       if (this.isCurrentTooltip) this.showTooltip();
-    }
+    },
   },
   created() {
     this.on$(GAME_EVENT.GLYPH_VISUAL_CHANGE, () => {
@@ -552,8 +572,8 @@ export default {
       glyphInfo.refineValue = GlyphSacrificeHandler.glyphRawRefinementGain(this.glyph);
       this.$viewModel.tabs.reality.currentGlyphTooltip = this.componentID;
       if (
-        AutoGlyphProcessor.sacMode === AUTO_GLYPH_REJECT.SACRIFICE ||
-        (AutoGlyphProcessor.sacMode === AUTO_GLYPH_REJECT.REFINE_TO_CAP && this.refineReward.eq(new Decimal()))
+        AutoGlyphProcessor.sacMode === AUTO_GLYPH_REJECT.SACRIFICE
+        || (AutoGlyphProcessor.sacMode === AUTO_GLYPH_REJECT.REFINE_TO_CAP && this.refineReward.eq(new Decimal()))
       ) {
         this.currentAction = "sacrifice";
       } else {
@@ -664,11 +684,11 @@ export default {
     // Translates 0...3 into equally-spaced coordinates around a circle 90deg apart (0...6 and 45deg for effarig)
     effectIconPos(id) {
       // Place dots clockwise starting from the bottom left
-      // eslint-disable-next-line max-len
+
       let numOfEffects = GlyphInfo[this.glyph.type].effects().length;
       if (numOfEffects > 6) numOfEffects += 1;
       // Take the smallest power of 2, greater than the number of effects
-      const angle = (Math.PI / (numOfEffects / 2)) * (parseInt(id, 10) + (numOfEffects / 8));
+      const angle = (Math.PI / (numOfEffects / 2)) * (Number.parseInt(id, 10) + (numOfEffects / 8));
       const scale = 0.28 * this.size.replace("rem", "");
       const dx = -scale * Math.sin(angle);
       const dy = scale * (Math.cos(angle) + 0.15);
@@ -679,13 +699,13 @@ export default {
       const pos = this.effectIconPos(id);
 
       return {
-        position: "absolute",
-        width: "0.3rem",
-        height: "0.3rem",
+        "position": "absolute",
+        "width": "0.3rem",
+        "height": "0.3rem",
         "border-radius": "50%",
-        background: this.symbolColor,
-        transform: `translate(${pos.dx - 0.15 * 0.3}rem, ${pos.dy - 0.15 * 0.3}rem)`,
-        opacity: Theme.current().name === "S9" ? 0 : 0.8
+        "background": this.symbolColor,
+        "transform": `translate(${pos.dx - 0.15 * 0.3}rem, ${pos.dy - 0.15 * 0.3}rem)`,
+        "opacity": Theme.current().name === "S9" ? 0 : 0.8,
       };
     },
     glyphBorderStyle() {
@@ -698,16 +718,16 @@ export default {
       const lines = borderAttrs.map(attr => generateGradient(attr, this.borderColor, this.glyph, this.circular));
 
       return {
-        position: "absolute",
-        left: "2%",
-        width: "96%",
-        height: "96%",
+        "position": "absolute",
+        "left": "2%",
+        "width": "96%",
+        "height": "96%",
         "border-radius": this.circular ? "50%" : "0",
         // Some cases will have undefined lines which need to be removed to combine everything together properly
-        background: lines.filter(l => l).join(",")
+        "background": lines.filter(l => l).join(","),
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

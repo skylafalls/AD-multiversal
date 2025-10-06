@@ -18,7 +18,7 @@ export default {
       bestShardRate: new Decimal(),
       bestShardRateVal: new Decimal(),
       ppGained: new Decimal(),
-      celestialRunText: ["", "", "", "", ""]
+      celestialRunText: ["", "", "", "", ""],
     };
   },
   computed: {
@@ -28,7 +28,7 @@ export default {
     },
     formatMachineStats() {
       if (!PlayerProgress.realityUnlocked() && this.nextMachineEP.gt("1e8000")) {
-        return `(Capped this Reality!)`;
+        return "(Capped this Reality!)";
       }
       if (this.machinesGained.gt(0) && this.machinesGained.lt(100)) {
         return `(Next at ${format(this.nextMachineEP, 2)} EP)`;
@@ -60,7 +60,7 @@ export default {
         "c-reality-button--locked": !this.canReality,
         "c-reality-button--special": this.showSpecialEffect,
       };
-    }
+    },
   },
   methods: {
     percentToNextGlyphLevelText() {
@@ -132,10 +132,10 @@ export default {
       if (Teresa.isRunning && Teresa.rewardMultiplier(Currency.antimatter.value).gt(Teresa.runRewardMultiplier)) {
         return true;
       }
-      return Currency.eternityPoints.value.max(1).log10().gte(4000) &&
-        ((Effarig.isRunning && !EffarigUnlock.reality.isUnlocked) || (Enslaved.isRunning && !Enslaved.isCompleted));
-    }
-  }
+      return Currency.eternityPoints.value.max(1).log10().gte(4000)
+        && ((Effarig.isRunning && !EffarigUnlock.reality.isUnlocked) || (Enslaved.isRunning && !Enslaved.isCompleted));
+    },
+  },
 };
 </script>
 

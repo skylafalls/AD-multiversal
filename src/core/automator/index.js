@@ -1,13 +1,13 @@
 import "./automator-codemirror";
 
 export {
-  forbiddenConstantPatterns
+  forbiddenConstantPatterns,
 } from "./lexer";
 
 export {
   blockifyTextAutomator,
   hasCompilationErrors,
-  validateLine
+  validateLine,
 } from "./compiler";
 
 export * from "./automator-backend";

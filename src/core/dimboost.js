@@ -24,7 +24,7 @@ export class DimBoost {
       InfinityUpgrade.dimboostMult,
       InfinityChallenge(7).reward,
       InfinityChallenge(7),
-      TimeStudy(81)
+      TimeStudy(81),
     ))
       .timesEffectsOf(
         TimeStudy(83),
@@ -32,7 +32,7 @@ export class DimBoost {
         Achievement(117),
         Achievement(142),
         GlyphEffect.dimBoostPower,
-        PelleRifts.recursion.milestones[0]
+        PelleRifts.recursion.milestones[0],
       ).powEffectsOf(InfinityUpgrade.dimboostMult.chargedEffect);
     if (GlyphAlteration.isAdded("effarig")) boost = boost.pow(getSecondaryGlyphEffect("effarigforgotten"));
     return boost;
@@ -78,8 +78,8 @@ export class DimBoost {
 
   static get canBeBought() {
     if (DimBoost.purchasedBoosts.gte(this.maxBoosts)) return false;
-    if (player.records.thisInfinity.maxAM.gt(Player.infinityGoal) &&
-       (!player.break || Player.isInAntimatterChallenge)) return false;
+    if (player.records.thisInfinity.maxAM.gt(Player.infinityGoal)
+      && (!player.break || Player.isInAntimatterChallenge)) return false;
     return true;
   }
 
@@ -102,7 +102,7 @@ export class DimBoost {
     let amount = DC.D20;
     const discount = Effects.sum(
       TimeStudy(211),
-      TimeStudy(222)
+      TimeStudy(222),
     );
     if (tier === 6 && NormalChallenge(10).isRunning) {
       amount = amount.add(targetResets.sub(3).mul(DC.D20.sub(discount)).round());
@@ -136,9 +136,9 @@ export class DimBoost {
     }
 
     const formattedMultText = `give a ${formatX(DimBoost.power, 2, 1)} multiplier `;
-    let dimensionRange = `to the 1st Dimension`;
+    let dimensionRange = "to the 1st Dimension";
     if (boosts.gt(0)) dimensionRange = `to Dimensions 1-${Decimal.min(boosts.add(1), 8)}`;
-    if (boosts.gte(DimBoost.maxDimensionsUnlockable - 1)) dimensionRange = `to all Dimensions`;
+    if (boosts.gte(DimBoost.maxDimensionsUnlockable - 1)) dimensionRange = "to all Dimensions";
 
     let boostEffects;
     if (NormalChallenge(8).isRunning) boostEffects = newUnlock;
@@ -146,9 +146,9 @@ export class DimBoost {
     else boostEffects = `${newUnlock} and ${formattedMultText} ${dimensionRange}`;
 
     if (boostEffects === "") return "Dimension Boosts are currently useless";
-    const areDimensionsKept = (Perk.antimatterNoReset.isBought || Achievement(111).canBeApplied) &&
-      (!Pelle.isDoomed || PelleUpgrade.dimBoostResetsNothing.isBought);
-    if (areDimensionsKept) return boostEffects[0].toUpperCase() + boostEffects.substring(1);
+    const areDimensionsKept = (Perk.antimatterNoReset.isBought || Achievement(111).canBeApplied)
+      && (!Pelle.isDoomed || PelleUpgrade.dimBoostResetsNothing.isBought);
+    if (areDimensionsKept) return boostEffects[0].toUpperCase() + boostEffects.slice(1);
     return `Reset your Dimensions to ${boostEffects}`;
   }
 
@@ -175,7 +175,6 @@ export class DimBoost {
   }
 }
 
-// eslint-disable-next-line max-params
 export function softReset(tempBulk, forcedADReset = false, forcedAMReset = false, enteringAntimatterChallenge = false) {
   if (Currency.antimatter.gt(Player.infinityLimit)) return;
   const bulk = Decimal.min(tempBulk, DimBoost.maxBoosts.sub(player.dimensionBoosts));
@@ -249,7 +248,7 @@ function maxBuyDimBoosts() {
   let amount = DC.D20;
   const discount = Effects.sum(
     TimeStudy(211),
-    TimeStudy(222)
+    TimeStudy(222),
   );
   let multiplierPerDB;
   if (tier === 6) {
@@ -267,7 +266,6 @@ function maxBuyDimBoosts() {
   const ad = AntimatterDimension(tier).totalAmount;
   let calcBoosts;
   calcBoosts = ad.sub(amount).div(multiplierPerDB);
-
 
   if (EternityChallenge(5).isRunning) {
     calcBoosts = decimalCubicSolution(DC.D1, DC.D1.neg(), multiplierPerDB.add(2), ad.add(18).neg());

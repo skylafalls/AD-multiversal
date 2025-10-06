@@ -6,17 +6,17 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "ExitDilationModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   data() {
     return {
       tachyonGain: new Decimal(0),
-      isDoomed: false
+      isDoomed: false,
     };
   },
   computed: {
     gainText() {
-      if (this.tachyonGain.lte(0)) return `not gain anything`;
+      if (this.tachyonGain.lte(0)) return "not gain anything";
       return `gain ${quantify("Tachyon Particle", this.tachyonGain, 2, 1)}`;
     },
     isInEC() {
@@ -24,7 +24,7 @@ export default {
     },
     confirmText() {
       return this.isDoomed ? "Okay" : "Exit";
-    }
+    },
   },
   methods: {
     update() {

@@ -110,7 +110,7 @@ export class Modal {
   show(modalConfig) {
     if (!GameUI.initialized) return;
     this._uniqueID = nextModalID++;
-    this._props = Object.assign({}, modalConfig || {});
+    this._props = { ...modalConfig || {} };
     if (this._closeEvent) this.applyCloseListeners(this._closeEvent);
     if (modalConfig?.closeEvent) this.applyCloseListeners(modalConfig.closeEvent);
 
@@ -162,7 +162,7 @@ export class Modal {
 
   static hideAll() {
     if (!GameUI.initialized) return;
-    while (ui.view.modal.queue.length) {
+    while (ui.view.modal.queue.length > 0) {
       if (ui.view.modal.queue[0].hide) {
         ui.view.modal.queue[0].hide();
       } else {
@@ -318,23 +318,23 @@ function getSaveInfo(save) {
 Modal.cloudSaveConflict = new Modal(CloudSaveConflictModal);
 Modal.cloudLoadConflict = new Modal(CloudLoadConflictModal);
 Modal.cloudInvalidData = new Modal(CloudInvalidDataModal);
-// eslint-disable-next-line max-params
-Modal.addCloudConflict = function(saveId, saveComparison, cloudSave, localSave, onAccept) {
+
+Modal.addCloudConflict = function (saveId, saveComparison, cloudSave, localSave, onAccept) {
   Modal.hide();
   ui.view.modal.cloudConflict = {
     saveId,
     saveComparison,
     cloud: getSaveInfo(cloudSave),
     local: getSaveInfo(localSave),
-    onAccept
+    onAccept,
   };
 };
 
-Modal.addImportConflict = function(importingSave, currentSave) {
+Modal.addImportConflict = function (importingSave, currentSave) {
   Modal.hide();
   ui.view.modal.cloudConflict = {
     importingSave: getSaveInfo(importingSave),
-    currentSave: getSaveInfo(currentSave)
+    currentSave: getSaveInfo(currentSave),
   };
 };
 

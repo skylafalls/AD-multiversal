@@ -14,7 +14,7 @@ export default {
     AntimatterDimensionRow,
     AntimatterGalaxyRow,
     DimensionBoostRow,
-    TickspeedRow
+    TickspeedRow,
   },
   data() {
     return {
@@ -87,8 +87,8 @@ export default {
       this.multiplierText = `Buy 10 Dimension purchase multiplier: ${formatX(this.buy10Mult, 2, 2)}`;
       if (!isSacrificeUnlocked) return;
       this.isSacrificeAffordable = Sacrifice.canSacrifice;
-      this.isFullyAutomated = Autobuyer.sacrifice.isActive && Achievement(118).isEffectActive &&
-        (this.isSacrificeAffordable || Sacrifice.nextBoost.lte(1));
+      this.isFullyAutomated = Autobuyer.sacrifice.isActive && Achievement(118).isEffectActive
+        && (this.isSacrificeAffordable || Sacrifice.nextBoost.lte(1));
       this.currentSacrifice.copyFrom(Sacrifice.totalBoost);
       this.sacrificeBoost.copyFrom(Sacrifice.nextBoost);
       this.disabledCondition = Sacrifice.disabledCondition;
@@ -96,8 +96,8 @@ export default {
         ? ` | Dimensional Sacrifice multiplier: ${formatX(this.currentSacrifice, 2, 2)}`
         : "";
       this.multiplierText += sacText;
-    }
-  }
+    },
+  },
 };
 </script>
 

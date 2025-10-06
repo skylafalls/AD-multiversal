@@ -11,12 +11,12 @@ export function isModuleLoaded() {
 
 export function setZoomFactor(zoomFactor) {
   return module.safeCall(
-    x => x.webFrame.setZoomFactor(zoomFactor)
+    x => x.webFrame.setZoomFactor(zoomFactor),
   );
 }
 
 export function openExternal(url) {
   return module.safeCall(
-    x => x.shell.openExternal(url)
+    x => x.shell.openExternal(url),
   );
 }

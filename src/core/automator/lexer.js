@@ -1,7 +1,6 @@
 // Note: chevrotain doesn't play well with unicode regex
-/* eslint-disable require-unicode-regexp */
-/* eslint-disable camelcase */
-import { createToken, Lexer } from "chevrotain";
+
+import { Lexer, createToken } from "chevrotain";
 
 import { DC } from "../constants";
 
@@ -9,7 +8,7 @@ const createCategory = name => createToken({ name, pattern: Lexer.NA, longer_alt
 
 // Shorthand for creating tokens and adding them to a list
 const tokenLists = {};
-// eslint-disable-next-line max-params
+
 const createInCategory = (category, name, pattern, props = {}) => {
   const categories = [category];
   if (props.extraCategories) categories.push(...props.extraCategories);
@@ -31,7 +30,7 @@ const createInCategory = (category, name, pattern, props = {}) => {
 const HSpace = createToken({
   name: "HSpace",
   pattern: /[ \t]+/,
-  group: Lexer.SKIPPED
+  group: Lexer.SKIPPED,
 });
 
 const EOL = createToken({
@@ -121,18 +120,18 @@ createInCategory(AutomatorCurrency, "RM", /rm/i, { $getter: () => Currency.reali
 createInCategory(AutomatorCurrency, "infinities", /infinities/i, { $getter: () => Currency.infinities.value });
 createInCategory(AutomatorCurrency, "bankedInfinities", /banked[ \t]+infinities/i, {
   $autocomplete: "banked infinities",
-  $getter: () => Currency.infinitiesBanked.value
+  $getter: () => Currency.infinitiesBanked.value,
 });
 createInCategory(AutomatorCurrency, "eternities", /eternities/i, { $getter: () => Currency.eternities.value });
 createInCategory(AutomatorCurrency, "realities", /realities/i, { $getter: () => Currency.realities.value });
 
 createInCategory(AutomatorCurrency, "PendingIP", /pending[ \t]+ip/i, {
   $autocomplete: "pending IP",
-  $getter: () => (Player.canCrunch ? gainedInfinityPoints() : DC.D0)
+  $getter: () => (Player.canCrunch ? gainedInfinityPoints() : DC.D0),
 });
 createInCategory(AutomatorCurrency, "PendingEP", /pending[ \t]+ep/i, {
   $autocomplete: "pending EP",
-  $getter: () => (Player.canEternity ? gainedEternityPoints() : DC.D0)
+  $getter: () => (Player.canEternity ? gainedEternityPoints() : DC.D0),
 });
 createInCategory(AutomatorCurrency, "PendingTP", /pending[ \t]+tp/i, {
   $autocomplete: "pending TP",
@@ -140,7 +139,7 @@ createInCategory(AutomatorCurrency, "PendingTP", /pending[ \t]+tp/i, {
 });
 createInCategory(AutomatorCurrency, "PendingRM", /pending[ \t]+rm/i, {
   $autocomplete: "pending RM",
-  $getter: () => (isRealityAvailable() ? MachineHandler.gainedRealityMachines : DC.D0)
+  $getter: () => (isRealityAvailable() ? MachineHandler.gainedRealityMachines : DC.D0),
 });
 createInCategory(AutomatorCurrency, "PendingGlyphLevel", /pending[ \t]+glyph[ \t]+level/i, {
   $autocomplete: "pending Glyph level",
@@ -172,7 +171,7 @@ createInCategory(AutomatorCurrency, "PendingCompletions", /pending[ \t]+completi
     // completions returns true
     if (!EternityChallenge.isRunning) return DC.NUMMAX;
     return EternityChallenge.current.gainedCompletionStatus.totalCompletions;
-  }
+  },
 });
 
 createInCategory(AutomatorCurrency, "FilterScore", /filter[ \t]+score/i, {
@@ -206,8 +205,8 @@ for (let i = 1; i <= 12; ++i) {
   const id = i;
   createInCategory(AutomatorCurrency, `EC${i}`, new RegExp(`ec${i} completions`, "i"), {
     $autocomplete: `ec${i} completions`,
-    // eslint-disable-next-line no-loop-func
-    $getter: () => EternityChallenge(id).completions
+
+    $getter: () => EternityChallenge(id).completions,
   });
 }
 
@@ -379,7 +378,7 @@ Comma.LABEL = "❟";
 
 export const lexer = new Lexer(automatorTokens, {
   positionTracking: "full",
-  ensureOptimizations: true
+  ensureOptimizations: true,
 });
 
 // The lexer uses an ID system that's separate from indices into the token array
@@ -391,11 +390,11 @@ for (const token of lexer.lexerDefinition) {
 // We use this while building up the grammar
 export const tokenMap = automatorTokens.mapToObject(e => e.name, e => e);
 
-const automatorCurrencyNames = tokenLists.AutomatorCurrency.map(i => i.$autocomplete.toUpperCase());
+const automatorCurrencyNames = new Set(tokenLists.AutomatorCurrency.map(i => i.$autocomplete.toUpperCase()));
 
-export const standardizeAutomatorValues = function(x) {
+export const standardizeAutomatorValues = function (x) {
   try {
-    if (automatorCurrencyNames.includes(x.toUpperCase())) return x.toUpperCase();
+    if (automatorCurrencyNames.has(x.toUpperCase())) return x.toUpperCase();
   } catch {
     // This only happens if the input is a number or Decimal, in which case we don't attempt to change any formatting
     // and simply return
@@ -415,8 +414,8 @@ export const standardizeAutomatorValues = function(x) {
 // In order to disallow individual words within command key words/phrases, we need to ignore certain patterns (mostly
 // ones with special regex characters), split the rest of them up across all spaces and tabs, and then flatten the
 // final resulting array. Note that this technically duplicates words present in multiple phrases (eg. "pending")
-const ignoredPatterns = ["Identifier", "LCurly", "RCurly"];
+const ignoredPatterns = new Set(["Identifier", "LCurly", "RCurly"]);
 export const forbiddenConstantPatterns = lexer.lexerDefinition
-  .filter(p => !ignoredPatterns.includes(p.name))
+  .filter(p => !ignoredPatterns.has(p.name))
   .map(p => p.PATTERN.source)
-  .flatMap(p => ((p.includes("(") || p.includes(")")) ? p : p.split("[ \\t]+")));
+  .flatMap(p => ((p.includes("(") || p.includes(")")) ? p : p.split(String.raw`[ \t]+`)));

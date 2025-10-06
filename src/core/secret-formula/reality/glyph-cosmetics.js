@@ -15,7 +15,7 @@ export const glyphCosmeticSets = {
     id: "sus",
     name: "Suspicious",
     symbol: ["ඔ", "ඕ", "ඞ", "ඩ"],
-    color: ["B#FCA40A"]
+    color: ["B#FCA40A"],
   },
   currency: {
     id: "currency",
@@ -74,14 +74,14 @@ export const glyphCosmeticSets = {
     name: "Integration",
     symbol: ["∬", "∭", "∮", "∯", "∰", "∱", "∲", "∳"],
     preventBlur: true,
-    color: ["B#123456"]
+    color: ["B#123456"],
   },
   numbers: {
     id: "numbers",
     name: "Circled Numbers",
     symbol: ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧"],
     preventBlur: true,
-    color: ["B#607D8B"]
+    color: ["B#607D8B"],
   },
   blocks: {
     id: "blocks",
@@ -113,7 +113,7 @@ export const glyphCosmeticSets = {
     name: "Musical Symbols",
     symbol: ["♩", "♪", "♬", "♭", "♮", "♯"],
     preventBlur: true,
-    color: ["W#E621E6"]
+    color: ["W#E621E6"],
   },
   recycle: {
     id: "recycle",
@@ -132,7 +132,7 @@ export const glyphCosmeticSets = {
     name: "Hazard Symbols",
     symbol: ["☠", "☢", "☣", "⚠"],
     preventBlur: true,
-    color: ["W#FCA40A"]
+    color: ["W#FCA40A"],
   },
   celestial: {
     id: "celestial",
@@ -200,21 +200,21 @@ export const glyphCosmeticSets = {
     name: "Egyptian Numbers",
     symbol: ["𓆄", "𓅔", "𓆾", "𓂰", "𓍦", "𓎋", "𓐀", "𓃐"],
     preventBlur: true,
-    color: ["W#123456"]
+    color: ["W#123456"],
   },
   egyptWeather: {
     id: "egyptWeather",
     name: "Egyptian Weathervanes",
     symbol: ["𓈹", "𓈧", "𓈷", "𓉈", "𓈩", "𓈻", "𓈽"],
     preventBlur: true,
-    color: ["W#607D8B"]
+    color: ["W#607D8B"],
   },
   limbs: {
     id: "limbs",
     name: "Awkward Limbs",
     symbol: ["𓈝", "𓄒", "𓃂", "𓃁", "𓂩", "𓂙", "𓂓", "𓂼"],
     preventBlur: true,
-    color: ["B#E621E6"]
+    color: ["B#E621E6"],
   },
   animal: {
     id: "animal",

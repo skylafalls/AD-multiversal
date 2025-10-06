@@ -9,8 +9,8 @@ export default {
   props: {
     index: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -43,7 +43,7 @@ export default {
     update() {
       const entry = this.entry;
       this.isUnlocked = entry.isUnlocked();
-    }
+    },
   },
 };
 </script>

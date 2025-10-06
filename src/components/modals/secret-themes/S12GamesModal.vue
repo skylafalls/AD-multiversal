@@ -18,8 +18,8 @@ export default {
   methods: {
     update() {
       if (this.$viewModel.theme !== "S12") EventHub.dispatch(GAME_EVENT.CLOSE_MODAL);
-    }
-  }
+    },
+  },
 };
 </script>
 

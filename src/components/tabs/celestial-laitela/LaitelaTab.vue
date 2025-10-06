@@ -18,7 +18,7 @@ export default {
     AnnihilationButton,
     LaitelaAutobuyerPane,
     CelestialQuoteHistory,
-    PrimaryButton
+    PrimaryButton,
   },
   data() {
     return {
@@ -34,7 +34,7 @@ export default {
       singularitiesUnlocked: false,
       singularityCap: new Decimal(0),
       singularityWaitTime: "",
-      showAnnihilation: false
+      showAnnihilation: false,
     };
   },
   computed: {
@@ -52,10 +52,10 @@ export default {
       this.maxDarkMatter.copyFrom(Currency.darkMatter.max);
       this.darkEnergy.copyFrom(player.celestials.laitela.darkEnergy);
       this.matterExtraPurchasePercentage.copyFrom(Laitela.matterExtraPurchaseFactor.sub(1));
-      this.autobuyersUnlocked = SingularityMilestone.darkDimensionAutobuyers.canBeApplied ||
-        SingularityMilestone.darkDimensionAutobuyers.canBeApplied ||
-        SingularityMilestone.autoCondense.canBeApplied ||
-        Laitela.darkMatterMult.gt(1);
+      this.autobuyersUnlocked = SingularityMilestone.darkDimensionAutobuyers.canBeApplied
+        || SingularityMilestone.darkDimensionAutobuyers.canBeApplied
+        || SingularityMilestone.autoCondense.canBeApplied
+        || Laitela.darkMatterMult.gt(1);
       this.singularityPanelVisible = Currency.singularities.gt(0);
       this.singularitiesUnlocked = Singularity.capIsReached || this.singularityPanelVisible;
       this.singularityCap.copyFrom(Singularity.cap);
@@ -73,7 +73,7 @@ export default {
       ui.view.h2pForcedTab = GameDatabase.h2p.tabs.filter(tab => tab.name === "Lai'tela")[0];
       Modal.h2p.show();
     },
-  }
+  },
 };
 </script>
 

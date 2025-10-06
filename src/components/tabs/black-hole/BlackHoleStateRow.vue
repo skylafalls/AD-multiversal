@@ -4,8 +4,8 @@ export default {
   props: {
     blackHole: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -23,7 +23,7 @@ export default {
     },
     id() {
       return this.blackHole.id;
-    }
+    },
   },
   methods: {
     update() {
@@ -36,8 +36,8 @@ export default {
       this.nextChange = TimeSpan.fromSeconds(new Decimal(blackHole.timeWithPreviousActiveToNextStateChange))
         .toStringShort();
       this.state = blackHole.displayState;
-    }
-  }
+    },
+  },
 };
 </script>
 

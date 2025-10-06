@@ -9,8 +9,8 @@ export default {
   props: {
     saveslot: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   data: () => ({
     componentID: UIID.next(),
@@ -22,12 +22,10 @@ export default {
       return this.$viewModel.currentContextMenu === this.componentID;
     },
     listeners() {
-      return Object.assign({}, this.$listeners, {
-        touchstart: () => this.startShowTimer(),
+      return { ...this.$listeners, touchstart: () => this.startShowTimer(),
         mouseenter: () => this.startShowTimer(),
-        mouseleave: () => this.startHideTimer(),
-      });
-    }
+        mouseleave: () => this.startHideTimer() };
+    },
   },
   methods: {
     startShowTimer() {
@@ -96,7 +94,6 @@ export default {
     />
   </div>
 </template>
-
 
 <style scoped>
 .hover-menu__wrapper {

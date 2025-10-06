@@ -19,7 +19,7 @@ export default {
       realityShards: new Decimal(0),
       shardRate: new Decimal(0),
       upgrades: [],
-      boughtUpgrades: []
+      boughtUpgrades: [],
     };
   },
   computed: {
@@ -29,8 +29,12 @@ export default {
         : "fas fa-compress-arrows-alt";
     },
     rebuyables: () => PelleUpgrade.rebuyables,
-    visibleUpgrades() { return this.upgrades.slice(0, 5); },
-    fadedUpgrades() { return this.upgrades.slice(5, 10); },
+    visibleUpgrades() {
+      return this.upgrades.slice(0, 5);
+    },
+    fadedUpgrades() {
+      return this.upgrades.slice(5, 10);
+    },
     allUpgrades() {
       let upgrades = [];
       if (this.showBought) upgrades = this.boughtUpgrades;
@@ -39,7 +43,7 @@ export default {
     },
     showImprovedEstimate() {
       return this.isHovering && !this.shardRate.eq(0);
-    }
+    },
   },
   methods: {
     update() {
@@ -57,8 +61,8 @@ export default {
     },
     toggleCollapse() {
       player.celestials.pelle.collapsed.upgrades = !this.isCollapsed;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -13,23 +13,23 @@ export default {
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     glyphSet: {
       type: Array,
-      required: true
+      required: true,
     },
     isGlyphSelection: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showSetName: {
       type: Boolean,
-      default: true
+      default: true,
     },
     displaySacrifice: {
       type: Boolean,
-      default: true
+      default: true,
     },
   },
   data() {
@@ -53,7 +53,7 @@ export default {
         "c-glyph-choice-container": true,
         "c-glyph-choice-container-single": this.glyphs.length === 1,
       };
-    }
+    },
   },
   methods: {
     update() {
@@ -72,7 +72,7 @@ export default {
       const standardOrder = ["reality", "effarig", "power", "infinity", "replication", "time", "dilation",
         "cursed", "companion"];
       this.glyphs.sort((a, b) => standardOrder.indexOf(a.type) - standardOrder.indexOf(b.type));
-    }
+    },
   },
 };
 </script>

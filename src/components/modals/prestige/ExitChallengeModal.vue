@@ -4,7 +4,7 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "ExitChallengeModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   props: {
     challengeName: {
@@ -22,7 +22,7 @@ export default {
     exitFn: {
       type: Function,
       required: true,
-    }
+    },
   },
   computed: {
     isCelestial() {
@@ -30,13 +30,13 @@ export default {
     },
     isRestarting() {
       return this.isCelestial ? player.options.retryCelestial : player.options.retryChallenge;
-    }
+    },
   },
   methods: {
     handleYesClick() {
       this.exitFn();
       EventHub.ui.offAll(this);
-    }
+    },
   },
 };
 </script>

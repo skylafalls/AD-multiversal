@@ -6,15 +6,15 @@ export default {
   name: "TimeDimensionsTab",
   components: {
     ClassicTimeDimensionsTab,
-    ModernTimeDimensionsTab
+    ModernTimeDimensionsTab,
   },
   computed: {
     activeComponent() {
       return this.$viewModel.newUI
         ? "ModernTimeDimensionsTab"
         : "ClassicTimeDimensionsTab";
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -4,13 +4,13 @@ import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 export default {
   name: "DeleteAutomatorScriptModal",
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   props: {
     scriptID: {
       type: [String, Number],
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     handleYesClick() {

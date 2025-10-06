@@ -1,12 +1,11 @@
 import { beMigration } from "./be-migrations";
 import { deepmergeAll } from "@/utility/deepmerge";
 
-
 // WARNING: Don't use state accessors and functions from global scope here, that's not safe in long-term
 export const migrations = {
   firstRealityMigration: 13,
   patches: {
-    1: player => {
+    1: (player) => {
       for (let i = 0; i < player.autobuyers.length; i++) {
         if (player.autobuyers[i] % 1 !== 0) {
           player.infinityPoints = player.infinityPoints.plus(player.autobuyers[i].cost - 1);
@@ -14,7 +13,7 @@ export const migrations = {
       }
       player.autobuyers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     },
-    2: player => {
+    2: (player) => {
       if (player.dimensionMultDecrease !== 10) {
         if (player.dimensionMultDecrease === 9) {
           player.dimensionMultDecrease = 10;
@@ -33,10 +32,10 @@ export const migrations = {
         }
       }
     },
-    5: player => {
+    5: (player) => {
       player.newsArray = [];
     },
-    9: player => {
+    9: (player) => {
       const achs = [];
       if (player.achievements.delete("r22")) achs.push("r35");
       if (player.achievements.delete("r35")) achs.push("r76");
@@ -45,10 +44,10 @@ export const migrations = {
       for (const id of achs) player.achievements.add(id);
       player.replicanti.intervalCost = player.replicanti.intervalCost.dividedBy(1e20);
     },
-    9.5: player => {
+    9.5: (player) => {
       if (player.timestudy.studies.includes(191)) player.timestudy.theorem = player.timestudy.theorem.plus(100);
     },
-    10: player => {
+    10: (player) => {
       if (player.timestudy.studies.includes(72)) {
         for (let i = 4; i < 8; i++) {
           player[`infinityDimension${i}`].amount = Decimal.div(player[`infinityDimension${i}`].amount,
@@ -56,7 +55,7 @@ export const migrations = {
         }
       }
     },
-    12: player => {
+    12: (player) => {
       const timeDimStartCosts = [null, 1, 5, 100, 1000];
       const timeDimCostMults = [null, 3, 9, 27, 81];
       // Updates TD costs to harsher scaling
@@ -65,13 +64,13 @@ export const migrations = {
           if (new Decimal("1e300").lt(player[`timeDimension${i}`].cost)) {
             player[`timeDimension${i}`].cost = Decimal.pow(
               timeDimCostMults[i] * 2.2,
-              player[`timeDimension${i}`].bought
+              player[`timeDimension${i}`].bought,
             ).times(timeDimStartCosts[i]);
           }
         }
       }
     },
-    12.1: player => {
+    12.1: (player) => {
       for (const achievement of player.achievements) {
         if (achievement.includes("s") && achievement.length <= 3) {
           player.achievements.splice(player.achievements.indexOf("r36"), 1);
@@ -79,7 +78,7 @@ export const migrations = {
         }
       }
     },
-    13: player => {
+    13: (player) => {
       // 12.3 is currently on live, will be updated to 13 after release
 
       // Last update version check, fix emoji/cancer issue,
@@ -160,7 +159,7 @@ export const migrations = {
     // ALL MIGRATIONS BELOW THIS POINT ARE POST-RELEASE FOR THE REALITY UPDATE! THE PRECEEDING MIGRATION (13) IS
     // THE FIRST MIGRATION WHICH DOES THE MAJORITY OF DATA FORMAT CHANGES
 
-    14: player => {
+    14: (player) => {
       migrations.reworkBHPulsing(player);
 
       // Added glyph auto-sort by level; in order to keep the button state cycling consistent with the sort buttons' UI
@@ -168,7 +167,7 @@ export const migrations = {
       // makes sure that older saves maintain the same settings after this shift
       if (player.reality.autoSort !== 0) player.reality.autoSort++;
     },
-    15: player => {
+    15: (player) => {
       // Added additional resource tracking in last 10 prestige records and adjusted data format to be more consistent
       // by reordering to be [game time, real time, prestige currency, prestige count, challenge, ...(other resources)]
       // Also fixes a migration bug where values could be undefined or null by assigning defaults when necessary
@@ -180,7 +179,7 @@ export const migrations = {
             Number(infRec[3] ?? Number.MAX_VALUE),
             new Decimal(infRec[1] ?? 1),
             new Decimal(infRec[2] ?? 1),
-            ""
+            "",
           ];
         }
 
@@ -192,7 +191,7 @@ export const migrations = {
             new Decimal(eterRec[1] ?? 1),
             new Decimal(eterRec[2] ?? 1),
             "",
-            new Decimal(0)
+            new Decimal(0),
           ];
         }
 
@@ -205,7 +204,7 @@ export const migrations = {
             realRec[2] ?? 1,
             "",
             0,
-            0
+            0,
           ];
         }
       }
@@ -226,7 +225,7 @@ export const migrations = {
         player.news.totalSeen = Math.max(player.news.totalSeen, unique);
       }
     },
-    16: player => {
+    16: (player) => {
       // Migrate perk layouts to the new format which has more than a boolean toggle
       player.options.perkLayout = player.options.fixedPerkStartingPos ? 0 : 1;
       delete player.options.fixedPerkStartingPos;
@@ -254,25 +253,25 @@ export const migrations = {
         player.reality.glyphs.sets.push({ name: "", glyphs: [] });
       }
     },
-    17: player => {
+    17: (player) => {
       // Moved all multiplier tab attributes to be scoped, and added replicanti subtab in the middle to preserve
       // progression order - shift it up as needed in order to keep players on the same subtab
       const oldSubtab = player.options.currentMultiplierSubtab ?? 0;
       player.options.multiplierTab.currTab = oldSubtab + (oldSubtab > 5 ? 1 : 0);
       delete player.options.currentMultiplierSubtab;
     },
-    18: player => {
+    18: (player) => {
       // These two props are technically redundant in their values, but we always update both in tandem in order
       // to ensure a consistent UI sort order. However, before this version the sort order didn't exist, so we have
       // to immediately fill it
       player.reality.automator.constantSortOrder = Object.keys(player.reality.automator.constants);
     },
-    19: player => {
+    19: (player) => {
       // This was removed in favor of the more generic "Exit challenge" modal, but a few references were missing and
       // this prop was left in the save file instead of being cleaned up
       delete player.options.confirmations.resetCelestial;
     },
-    20: player => {
+    20: (player) => {
       // GLYPH FILTER INTERNAL FORMAT REFACTOR
       // For the case of importing a save created before the reality update, many of these props are undefined due to
       // having never been in the player object in the first place. In this case we fill with defaults, which are mostly
@@ -283,7 +282,7 @@ export const migrations = {
       player.reality.glyphs.filter = {
         select: effarig?.mode ?? 0,
         trash: effarig?.glyphTrashMode ?? 0,
-        simple: effarig?.simpleEffectCount ?? 0
+        simple: effarig?.simpleEffectCount ?? 0,
       };
 
       // There are a few big things going on in this loop which are annotated within, but this largely transfers all the
@@ -296,7 +295,7 @@ export const migrations = {
         const oldData = effarig.glyphScoreSettings?.types[type];
         const typeEffects = effectDB
           .filter(t => t.glyphTypes.includes(type))
-          .sort((a, b) => a.bitmaskIndex - b.bitmaskIndex);
+          .toSorted((a, b) => a.bitmaskIndex - b.bitmaskIndex);
 
         // Two of these effects were renamed to be shorter
         reducedFilter[type] = {
@@ -330,8 +329,8 @@ export const migrations = {
       // bug reports related to Vue reactivity. Worst case scenario if something is incorrect here is that some people
       // will have some slightly weird saves. We don't need to modify the glyph filter settings here because these are
       // migrated above by their effect keys; this properly places them into the correct bit positions automatically
-      const updateBitmask = bitmask => {
-        if (bitmask instanceof Array) return bitmask;
+      const updateBitmask = (bitmask) => {
+        if (Array.isArray(bitmask)) return bitmask;
         const modifiedBits = [20, 21, 22].map(b => 1 << b).nSum();
         const foundBits = [20, 21, 22].map(b => (bitmask & (1 << b)) !== 0);
         foundBits.push(foundBits.shift());
@@ -355,7 +354,7 @@ export const migrations = {
       player.options.glyphBG = player.options.lightGlyphs ? 1 : 2;
       delete player.options.lightGlyphs;
     },
-    21: player => {
+    21: (player) => {
       // Added tracking for unlocked ECs even after they re-lock - makes old save data consistent
       for (let ec = 1; ec <= 12; ec++) {
         if (player.eternityChalls[`eterc${ec}`] > 0) player.reality.unlockedEC |= 1 << ec;
@@ -364,7 +363,7 @@ export const migrations = {
       // Added max RM tracking for cel1 records - also for data consistency (though not 100% accurate)
       player.reality.maxRM = new Decimal(player.reality.realityMachines);
     },
-    22: player => {
+    22: (player) => {
       // Added 3 new perk layouts, inserted before blob
       if (player.options.perkLayout > 2) player.options.perkLayout += 3;
 
@@ -389,9 +388,9 @@ export const migrations = {
       if (player.reality.seed === 1) player.reality.seed = newSeed;
       if (player.reality.initialSeed === 1) player.reality.initialSeed = newSeed;
     },
-    23: player => {
+    23: (player) => {
       // We missed presets in effarig format migration
-      const updateBitmask = bitmask => {
+      const updateBitmask = (bitmask) => {
         const modifiedBits = [20, 21, 22].map(b => 1 << b).sum();
         const foundBits = [20, 21, 22].map(b => (bitmask & (1 << b)) !== 0);
         foundBits.push(foundBits.shift());
@@ -407,14 +406,14 @@ export const migrations = {
         }
       }
     },
-    24: player => {
+    24: (player) => {
       // Automator constants didn't copy over properly across new games - retroactively fix bugged saves as well
       const definedConstants = Object.keys(player.reality.automator.constants);
       if (definedConstants.length !== player.reality.automator.constantSortOrder.length) {
         player.reality.automator.constantSortOrder = [...definedConstants];
       }
     },
-    25: player => {
+    25: (player) => {
       // If the player has r146 "Perks of living" achievement we give them the DAB perk automatically
       if ((player.achievementBits[13] & 32) !== 0 && !player.reality.perks.has(107)) {
         player.reality.perks.add(107);
@@ -423,12 +422,12 @@ export const migrations = {
       // This update has a rebalance that assumes the 3rd dilation repeatable is unpurchasable in cel7
       if (player.celestials.pelle.doomed) player.dilation.rebuyables[3] = 0;
     },
-    26: player => {
+    26: (player) => {
       delete player.infinity?.upgradeBits;
     },
     // 83 is used because 8 = B, and 3 = E, so 83 = BE, short for BE port (blob edition).
     // Recommended to start any modded migrations at 100.
-    83: player => {
+    83: (player) => {
       beMigration(player);
     },
   },
@@ -489,7 +488,7 @@ export const migrations = {
     function unfuckChallengeId(id) {
       if (!id.startsWith("challenge")) return id;
       wasFucked = true;
-      const legacyId = parseInt(id.substr(9), 10);
+      const legacyId = Number.parseInt(id.slice(9), 10);
       const config = GameDatabase.challenges.normal.find(c => c.legacyId === legacyId);
       return `challenge${config.id}`;
     }
@@ -528,15 +527,15 @@ export const migrations = {
         player.achievements.add(achByName.id);
         continue;
       }
-      const newId = parseInt(oldId.slice(1), 10);
+      const newId = Number.parseInt(oldId.slice(1), 10);
       if (isNaN(newId)) throw new Error(`Could not parse achievement id ${oldId}`);
       if (oldId.startsWith("r")) {
-        if (GameDatabase.achievements.normal.find(a => a.id === newId) === undefined) {
+        if (GameDatabase.achievements.normal.some(a => a.id === newId) === undefined) {
           throw new Error(`Unrecognized achievement ${oldId}`);
         }
         player.achievements.add(newId);
       } else if (oldId.startsWith("s")) {
-        if (GameDatabase.achievements.secret.find(a => a.id === newId) === undefined) {
+        if (GameDatabase.achievements.secret.some(a => a.id === newId) === undefined) {
           throw new Error(`Unrecognized secret achievement ${newId}`);
         }
         player.secretAchievements.add(newId);
@@ -571,10 +570,10 @@ export const migrations = {
   moveChallengeInfo(player) {
     function parseChallengeName(name) {
       if (name.startsWith("challenge")) {
-        return { type: "normal", id: parseInt(name.slice(9), 10) };
+        return { type: "normal", id: Number.parseInt(name.slice(9), 10) };
       }
       if (name.startsWith("postc")) {
-        return { type: "infinity", id: parseInt(name.slice(5), 10) };
+        return { type: "infinity", id: Number.parseInt(name.slice(5), 10) };
       }
       if (name !== "") throw new Error(`Unrecognized challenge ID ${name}`);
       return null;
@@ -611,7 +610,7 @@ export const migrations = {
       const saved = player.currentEternityChall;
       delete player.currentEternityChall;
       if (saved.startsWith("eterc")) {
-        player.challenge.eternity.current = parseInt(saved.slice(5), 10);
+        player.challenge.eternity.current = Number.parseInt(saved.slice(5), 10);
       } else if (saved !== "") throw new Error(`Unrecognized eternity challenge ${saved}`);
     }
     if (player.eternityChallUnlocked !== undefined) {
@@ -640,9 +639,9 @@ export const migrations = {
     // the benefit of the doubt.
     player.requirementChecks.eternity.noRG = player.replicanti.gal === 0;
     if (
-      player.timestudy.theorem.gt(0) ||
-      player.timestudy.studies.length > 0 ||
-      player.challenge.eternity.unlocked !== 0
+      player.timestudy.theorem.gt(0)
+      || player.timestudy.studies.length > 0
+      || player.challenge.eternity.unlocked !== 0
     ) player.requirementChecks.reality.noPurchasedTT = false;
     if (player.sacrificed.gt(0)) player.requirementChecks.infinity.noSacrifice = false;
     player.requirementChecks.permanent.emojiGalaxies = player.spreadingCancer;
@@ -666,9 +665,9 @@ export const migrations = {
       player.options.notation = "Standard";
     }
     const notationMigration = {
-      "Mixed": "Mixed scientific",
-      "Default": "Brackets",
-      "Emojis": "Cancer"
+      Mixed: "Mixed scientific",
+      Default: "Brackets",
+      Emojis: "Cancer",
     };
     if (notationMigration[notation] !== undefined) {
       player.options.notation = notationMigration[notation];
@@ -682,10 +681,10 @@ export const migrations = {
       }
 
       if (
-        player.autobuyers[i] % 1 !== 0 &&
-          (player.autobuyers[i].bulk === undefined ||
-            isNaN(player.autobuyers[i].bulk) ||
-            player.autobuyers[i].bulk === null)
+        player.autobuyers[i] % 1 !== 0
+        && (player.autobuyers[i].bulk === undefined
+          || isNaN(player.autobuyers[i].bulk)
+          || player.autobuyers[i].bulk === null)
       ) {
         player.autobuyers[i].bulk = 1;
       }
@@ -694,10 +693,10 @@ export const migrations = {
       player.autobuyers[9].bulk = 1;
     }
     if (
-      player.autobuyers[11] % 1 !== 0 &&
-      player.autobuyers[11].priority !== undefined &&
-      player.autobuyers[11].priority !== null &&
-      player.autobuyers[11].priority !== "undefined"
+      player.autobuyers[11] % 1 !== 0
+      && player.autobuyers[11].priority !== undefined
+      && player.autobuyers[11].priority !== null
+      && player.autobuyers[11].priority !== "undefined"
     ) {
       player.autobuyers[11].priority = new Decimal(player.autobuyers[11].priority);
     }
@@ -760,7 +759,7 @@ export const migrations = {
         cost: `${name}Cost`,
         amount: `${name}Amount`,
         bought: `${name}Bought`,
-        pow: `${name}Pow`
+        pow: `${name}Pow`,
       };
       const dimension = player.dimensions.antimatter[tier - 1];
       dimension.cost = new Decimal(player[oldProps.cost]);
@@ -808,10 +807,10 @@ export const migrations = {
 
   moveAutobuyers(player) {
     if (
-      player.autobuyers[11] % 1 !== 0 &&
-      player.autobuyers[11].priority !== undefined &&
-      player.autobuyers[11].priority !== null &&
-      player.autobuyers[11].priority !== "undefined"
+      player.autobuyers[11] % 1 !== 0
+      && player.autobuyers[11].priority !== undefined
+      && player.autobuyers[11].priority !== null
+      && player.autobuyers[11].priority !== "undefined"
     ) {
       player.autobuyers[11].priority = new Decimal(player.autobuyers[11].priority);
     }
@@ -875,15 +874,18 @@ export const migrations = {
       autobuyer.mode = ["amount", "time", "relative"].indexOf(player.autoCrunchMode);
       const condition = new Decimal(old.priority);
       switch (player.autoCrunchMode) {
-        case "amount":
+        case "amount": {
           autobuyer.amount = condition;
           break;
-        case "time":
+        }
+        case "time": {
           autobuyer.time = condition.lt(DC.NUMMAX) ? condition.toNumber() : autobuyer.time;
           break;
-        case "relative":
+        }
+        case "relative": {
           autobuyer.xHighest = condition;
           break;
+        }
       }
       autobuyer.isActive = old.isOn;
       autobuyer.lastTick = player.realTimePlayed;
@@ -918,7 +920,7 @@ export const migrations = {
     if (player.newsArray === undefined) {
       player.newsArray = [];
     } else {
-      player.newsArray = player.newsArray.map(x => (typeof(x) === "number" ? `a${x}` : x));
+      player.newsArray = player.newsArray.map(x => (typeof (x) === "number" ? `a${x}` : x));
     }
     const oldNewsArray = new Set(player.newsArray);
     player.news = {};
@@ -927,7 +929,7 @@ export const migrations = {
       uselessNewsClicks: 0,
       paperclips: 0,
       newsQueuePosition: 1000,
-      eiffelTowerChapter: 0
+      eiffelTowerChapter: 0,
     };
 
     // This loop is copied more or less straight out of NewsHandler.addSeenNews with the extraneous comments and
@@ -938,7 +940,7 @@ export const migrations = {
     for (const id of oldNewsArray) {
       const groups = id.match(/([a-z]+)(\d+)/u);
       const type = groups[1];
-      const number = parseInt(groups[2], 10);
+      const number = Number.parseInt(groups[2], 10);
       if (!player.news.seen[type]) player.news.seen[type] = [];
       while (maskLength * player.news.seen[type].length < number) player.news.seen[type].push(0);
       player.news.seen[type][Math.floor(number / maskLength)] |= 1 << (number % maskLength);
@@ -1233,7 +1235,7 @@ export const migrations = {
     this.prePatch(saveData);
     // This adds all the undefined properties to the save which are in player.js
     const player = deepmergeAll([Player.defaultStart, saveData]);
-    const versions = Object.keys(this.patches).map(parseFloat).sort();
+    const versions = Object.keys(this.patches).map(parseFloat).toSorted();
     let version;
     while ((version = versions.find(v => player.version < v && v < maxVersion)) !== undefined) {
       const patch = this.patches[version];
@@ -1250,5 +1252,5 @@ export const migrations = {
   patchPostReality(saveData) {
     // Plus 1 because this the threshold is exclusive (it migrates up to but not including the maxVersion)
     return this.patch(saveData, Object.keys(migrations.patches).map(k => Number(k)).nMax() + 1);
-  }
+  },
 };

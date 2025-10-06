@@ -8,7 +8,7 @@ export class BreakdownEntryInfo {
     const keyArgs = this.key.split("_");
     const dbEntry = GameDatabase.multiplierTabValues[keyArgs[0]][keyArgs[1]];
     const args = keyArgs.length >= 3
-      ? keyArgs.slice(2).map(a => (a.match("^\\d+$") ? Number(a) : a))
+      ? keyArgs.slice(2).map(a => (a.match(String.raw`^\d+$`) ? Number(a) : a))
       : [];
     this._name = createGetter(dbEntry.name, args);
     this._multValue = createGetter(dbEntry.multValue, args);
@@ -25,7 +25,7 @@ export class BreakdownEntryInfo {
       mult: new Decimal(0),
       pow: 0,
       isVisible: false,
-      lastVisibleAt: 0
+      lastVisibleAt: 0,
     });
   }
 

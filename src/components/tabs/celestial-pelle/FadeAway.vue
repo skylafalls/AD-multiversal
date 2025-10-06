@@ -3,14 +3,14 @@ export default {
   name: "FadeAway",
   data() {
     return {
-      opacity: 0
+      opacity: 0,
     };
   },
   methods: {
     update() {
       this.opacity = (GameEnd.endState - END_STATE_MARKERS.FADE_AWAY) / 2;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -4,12 +4,12 @@ export default {
   props: {
     isColored: {
       type: Boolean,
-      default: true
+      default: true,
     },
     effect: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     effectConfig() {
@@ -28,7 +28,7 @@ export default {
         .replace("{value2}", value2);
     },
     textColor() {
-      if (!this.isColored) return { };
+      if (!this.isColored) return {};
       const typeObject = this.effectConfig.id === "timeshardpow"
         ? CosmeticGlyphTypes.time
         : CosmeticGlyphTypes[this.effectConfig.glyphTypes[0]()];
@@ -37,22 +37,22 @@ export default {
       if (typeObject.id === "cursed") glyphColor = "var(--color-celestials)";
 
       return {
-        color: glyphColor,
+        "color": glyphColor,
         "text-shadow": `-1px 1px 1px var(--color-text-base), 1px 1px 1px var(--color-text-base),
                             -1px -1px 1px var(--color-text-base), 1px -1px 1px var(--color-text-base),
                             0 0 3px ${typeObject.currentColor.border}`,
-        animation: typeObject.id === "reality" ? "a-reality-glyph-description-cycle 10s infinite" : undefined,
+        "animation": typeObject.id === "reality" ? "a-reality-glyph-description-cycle 10s infinite" : undefined,
       };
     },
     valueClass() {
       return this.effect.value.capped ? "c-current-glyph-effects__effect--capped" : "";
-    }
+    },
   },
   created() {
     this.on$(GAME_EVENT.GLYPH_VISUAL_CHANGE, () => {
       this.$recompute("effectConfig");
     });
-  }
+  },
 };
 </script>
 

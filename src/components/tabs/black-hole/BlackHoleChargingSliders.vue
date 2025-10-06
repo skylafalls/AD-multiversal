@@ -6,7 +6,7 @@ import SliderComponent from "@/components/SliderComponent";
 export default {
   name: "BlackHoleChargingSliders",
   components: {
-    SliderComponent
+    SliderComponent,
   },
   data() {
     return {
@@ -28,7 +28,7 @@ export default {
     reqLockText() {
       return `Inversion strength cannot be modified due to Lock for
         "${ImaginaryUpgrade(24).name}"`;
-    }
+    },
   },
   methods: {
     update() {
@@ -45,7 +45,7 @@ export default {
       player.blackHoleNegative = Decimal.pow10(-this.negativeSlider);
       player.requirementChecks.reality.slowestBH = Decimal.max(
         player.requirementChecks.reality.slowestBH,
-        player.blackHoleNegative
+        player.blackHoleNegative,
       );
     },
     sliderProps(negative) {
@@ -54,10 +54,10 @@ export default {
         max: negative ? this.maxNegativeBlackHole : 990,
         interval: 1,
         width: "55rem",
-        tooltip: false
+        tooltip: false,
       };
     },
-  }
+  },
 };
 </script>
 

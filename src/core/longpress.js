@@ -31,15 +31,15 @@ class LongPress {
   }
 
   static addTo(obj, timeout, handlers) {
-    if (!Object.prototype.hasOwnProperty.call(handlers, "longPress")) {
-      throw "Need to specify a longPress handler";
+    if (!Object.hasOwn(handlers, "longPress")) {
+      throw new Error("Need to specify a longPress handler");
     }
     const begin = e => LongPress._pressBegin(timeout, handlers.longPress, handlers.cancel, handlers.repeat, e);
     obj.addEventListener("mousedown", begin);
     obj.addEventListener("touchstart", begin);
     obj.addEventListener("mouseout", LongPress._cancelCurrentPress);
     obj.addEventListener("touchcancel", LongPress._cancelCurrentPress);
-    obj.addEventListener("touchmove", e => {
+    obj.addEventListener("touchmove", (e) => {
       // Suggested in stackoverflow example
       e.preventDefault();
       const t = e.changedTouches[0];
@@ -69,7 +69,6 @@ class LongPress {
     LongPress._currentTarget = null;
   }
 
-  // eslint-disable-next-line max-params
   static _pressBegin(timeout, handler, cancelHandler, repeat, e) {
     // If there's a timer already running, that means that something wasn't cancelled
     // properly (a press shouldn't begin if it hasn't ended). Clear out any existing presses:
@@ -140,7 +139,7 @@ export function useLongPress(vue) {
         cancel: () => emit("longpresscancel"),
         click: () => emit("longpressclick"),
       });
-    }
+    },
   });
 }
 
@@ -157,8 +156,8 @@ export function useRepeatingClick(vue) {
       LongPress.addTo(el, binding.value.delay, {
         longPress: () => emit("repeatclick"),
         click: () => emit("firstclick"),
-        repeat: 250
+        repeat: 250,
       });
-    }
+    },
   });
 }

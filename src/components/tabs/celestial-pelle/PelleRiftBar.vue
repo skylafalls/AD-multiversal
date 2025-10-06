@@ -6,12 +6,12 @@ import CustomizeableTooltip from "@/components/CustomizeableTooltip";
 export default {
   name: "PelleRiftBar",
   components: {
-    CustomizeableTooltip
+    CustomizeableTooltip,
   },
   props: {
     rift: {
       type: Object,
-      required: true
+      required: true,
     },
   },
   data() {
@@ -23,7 +23,7 @@ export default {
       hasEffectiveFill: false,
       selectedHoverMilestone: this.rift.milestones[0],
       // Converts 1 rem to number of px
-      remToPx: parseInt(getComputedStyle(document.documentElement).fontSize, 10),
+      remToPx: Number.parseInt(getComputedStyle(document.documentElement).fontSize, 10),
       effects: [],
       selectedMilestoneResourceText: "",
       selectedMilestoneDescriptionText: "",
@@ -32,9 +32,9 @@ export default {
   computed: {
     tooltipArrowStyle() {
       return {
-        borderTop: "0.55rem solid var(--color-pelle--base)"
+        borderTop: "0.55rem solid var(--color-pelle--base)",
       };
-    }
+    },
   },
   methods: {
     update() {
@@ -79,13 +79,13 @@ export default {
     handleMilestoneRequirementTooltipDisplay(event) {
       const mouseX = event.clientX - this.$refs.pelleRiftBar.getBoundingClientRect().x;
 
-      const milestonesCloseTo = this.rift.milestones.filter(m => {
+      const milestonesCloseTo = this.rift.milestones.filter((m) => {
         // Gets distance from the milestone bar in terms of rem
         // 31.6: the width of the bar is 32 rem, but adjusted to a border with 0.2rem on both sides
         const dist = Math.abs((m.requirement * 31.6) - mouseX / this.remToPx);
         if (dist < 1) m.dist = dist;
         return dist < 1;
-      }).map(m => {
+      }).map((m) => {
         const dist = m.dist;
         delete m.dist;
         // Temporarily store the distance without recalculation to sort the list by distance
@@ -93,18 +93,18 @@ export default {
         return { dist, m };
       });
 
-      if (milestonesCloseTo.length) {
-        this.selectedHoverMilestone = milestonesCloseTo.sort((a, b) => a.dist - b.dist)[0].m;
+      if (milestonesCloseTo.length > 0) {
+        this.selectedHoverMilestone = milestonesCloseTo.toSorted((a, b) => a.dist - b.dist)[0].m;
       }
     },
     tooltipContentClass() {
       const hasMilestone = this.hasMilestone(this.selectedHoverMilestone);
       return {
         "c-pelle-milestone-tooltip": true,
-        "c-pelle-milestone-tooltip--unlocked": hasMilestone
+        "c-pelle-milestone-tooltip--unlocked": hasMilestone,
       };
     },
-  }
+  },
 };
 </script>
 

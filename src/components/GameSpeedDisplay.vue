@@ -1,8 +1,7 @@
 <script>
 export default {
   name: "GameSpeedDisplay",
-  props: {
-  },
+  props: {},
   data() {
     return {
       baseSpeed: new Decimal(),
@@ -32,7 +31,7 @@ export default {
       return this.baseSpeed.eq(1)
         ? "The game is running at normal speed."
         : `Game speed is altered: ${this.baseSpeedText}`;
-    }
+    },
   },
   methods: {
     update() {
@@ -51,8 +50,8 @@ export default {
         return `${formatInt(1)} / ${format(Decimal.div(1, num), 2)}`;
       }
       return `${format(num, 2)}`;
-    }
-  }
+    },
+  },
 };
 </script>
 

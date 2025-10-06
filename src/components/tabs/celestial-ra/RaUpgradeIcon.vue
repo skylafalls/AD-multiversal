@@ -4,8 +4,8 @@ export default {
   props: {
     unlock: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -28,12 +28,12 @@ export default {
       return {
         "c-ra-upgrade-icon": true,
         "c-ra-upgrade-icon--inactive": !this.isUnlocked,
-        [`c-ra-upgrade-icon--${this.petID}`]: true
+        [`c-ra-upgrade-icon--${this.petID}`]: true,
       };
     },
     isUseless() {
       return this.unlock.disabledByPelle;
-    }
+    },
   },
   methods: {
     update() {
@@ -41,8 +41,8 @@ export default {
       this.isUnlocked = unlock.isUnlocked;
       this.level = unlock.level;
       this.description = unlock.reward;
-    }
-  }
+    },
+  },
 };
 </script>
 

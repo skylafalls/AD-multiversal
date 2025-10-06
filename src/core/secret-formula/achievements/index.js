@@ -3,5 +3,5 @@ import { secretAchievements } from "./secret-achievements";
 
 export const achievements = {
   normal: normalAchievements,
-  secret: secretAchievements
+  secret: secretAchievements,
 };

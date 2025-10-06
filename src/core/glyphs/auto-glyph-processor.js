@@ -19,20 +19,27 @@ export const AutoGlyphProcessor = {
   // This exists only to make a couple code sections cleaner.
   bitmaskIndexOffset(type) {
     switch (type) {
-      case "time":
+      case "time": {
         return 0;
-      case "dilation":
+      }
+      case "dilation": {
         return 4;
-      case "replication":
+      }
+      case "replication": {
         return 8;
-      case "infinity":
+      }
+      case "infinity": {
         return 12;
-      case "power":
+      }
+      case "power": {
         return 16;
-      case "effarig":
+      }
+      case "effarig": {
         return 20;
-      default:
+      }
+      default: {
         throw new Error("Unknown glyph type mode in bitmaskIndexOffset");
+      }
     }
   },
   // This function is meant to be something which assigns a value to every glyph, with the assumption that
@@ -43,17 +50,20 @@ export const AutoGlyphProcessor = {
     if (["companion", "reality"].includes(glyph.type)) return new Decimal(Infinity);
     if (glyph.type === "cursed") return new Decimal(-Infinity);
     switch (this.scoreMode) {
-      case AUTO_GLYPH_SCORE.LOWEST_SACRIFICE:
+      case AUTO_GLYPH_SCORE.LOWEST_SACRIFICE: {
         // Picked glyphs are never kept in this mode. Sacrifice cap needs to be checked since effarig caps
         // at a lower value than the others and we don't want to uselessly pick that to sacrifice all the time
         return player.reality.glyphs.sac[glyph.type].gte(GlyphInfo[glyph.type].sacrificeInfo.cap)
           ? new Decimal(-Infinity)
           : player.reality.glyphs.sac[glyph.type].mul(-1);
-      case AUTO_GLYPH_SCORE.EFFECT_COUNT:
+      }
+      case AUTO_GLYPH_SCORE.EFFECT_COUNT: {
         // Effect count, plus a very small rarity term to break ties in favor of rarer glyphs
         return strengthToRarity(glyph.strength).div(1e3).add(getGlyphEffectsFromArray(glyph.effects).length);
-      case AUTO_GLYPH_SCORE.RARITY_THRESHOLD:
+      }
+      case AUTO_GLYPH_SCORE.RARITY_THRESHOLD: {
         return strengthToRarity(glyph.strength);
+      }
       case AUTO_GLYPH_SCORE.SPECIFIED_EFFECT: {
         // Value is equal to rarity but minus 200 for each missing effect. This makes all glyphs which don't
         // satisfy the requirements have a negative score and generally the worse a glyph misses the requirements,
@@ -87,12 +97,14 @@ export const AutoGlyphProcessor = {
           ? resource.amount.neg()
           : new Decimal(-Infinity);
       }
-      case AUTO_GLYPH_SCORE.ALCHEMY_VALUE:
+      case AUTO_GLYPH_SCORE.ALCHEMY_VALUE: {
         return AlchemyResource[glyph.type].isUnlocked
           ? GlyphSacrificeHandler.glyphRefinementGain(glyph)
           : new Decimal(-Infinity);
-      default:
+      }
+      default: {
         throw new Error("Unknown glyph score mode in score assignment");
+      }
     }
   },
   // This is a mode-specific threshold which determines if selected glyphs are "good enough" to keep
@@ -101,20 +113,25 @@ export const AutoGlyphProcessor = {
     // value on the basis that we never want to automatically get rid of them
     if (this.types[glyph.type] === undefined) return DC.BEMAX.neg();
     switch (this.scoreMode) {
-      case AUTO_GLYPH_SCORE.EFFECT_COUNT:
+      case AUTO_GLYPH_SCORE.EFFECT_COUNT: {
         return player.reality.glyphs.filter.simple;
+      }
       case AUTO_GLYPH_SCORE.RARITY_THRESHOLD:
-      case AUTO_GLYPH_SCORE.SPECIFIED_EFFECT:
+      case AUTO_GLYPH_SCORE.SPECIFIED_EFFECT: {
         return this.types[glyph.type].rarity;
-      case AUTO_GLYPH_SCORE.EFFECT_SCORE:
+      }
+      case AUTO_GLYPH_SCORE.EFFECT_SCORE: {
         return this.types[glyph.type].score;
+      }
       case AUTO_GLYPH_SCORE.LOWEST_SACRIFICE:
       case AUTO_GLYPH_SCORE.LOWEST_ALCHEMY:
-      case AUTO_GLYPH_SCORE.ALCHEMY_VALUE:
+      case AUTO_GLYPH_SCORE.ALCHEMY_VALUE: {
         // These modes never keep glyphs and always refine/sacrifice
         return DC.BEMAX;
-      default:
+      }
+      default: {
         throw new Error("Unknown glyph score mode in threshold check");
+      }
     }
   },
   wouldKeep(glyph) {
@@ -125,7 +142,7 @@ export const AutoGlyphProcessor = {
     // We want to make sure to account for when glyphs are compared to different thresholds based on their type, or
     // else we end up always picking the rarest glyph despite all filter settings. However, we need to special-case
     // modes which never keep glyphs, or else they all become the same value and it ends up picking pseudo-randomly
-    const glyphScore = glyph => {
+    const glyphScore = (glyph) => {
       const filter = this.filterValue(glyph);
       const threshold = this.thresholdValue(glyph);
       return Decimal.gte(threshold, Number.MAX_VALUE) ? filter : Decimal.sub(filter, threshold);
@@ -144,60 +161,76 @@ export const AutoGlyphProcessor = {
     }
 
     switch (this.sacMode) {
-      case AUTO_GLYPH_REJECT.SACRIFICE:
+      case AUTO_GLYPH_REJECT.SACRIFICE: {
         GlyphSacrificeHandler.sacrificeGlyph(glyph, true);
         break;
-      case AUTO_GLYPH_REJECT.REFINE:
+      }
+      case AUTO_GLYPH_REJECT.REFINE: {
         GlyphSacrificeHandler.attemptRefineGlyph(glyph, true);
         break;
-      case AUTO_GLYPH_REJECT.REFINE_TO_CAP:
+      }
+      case AUTO_GLYPH_REJECT.REFINE_TO_CAP: {
         if (GlyphSacrificeHandler.glyphRefinementGain(glyph) === 0) GlyphSacrificeHandler.sacrificeGlyph(glyph, true);
         else GlyphSacrificeHandler.attemptRefineGlyph(glyph, true);
         break;
-      default:
+      }
+      default: {
         throw new Error("Unknown auto Glyph Sacrifice mode");
+      }
     }
   },
   // Generally only used for UI in order to notify the player that they might end up retroactively getting rid of
   // some glyphs they otherwise want to keep
   hasNegativeEffectScore() {
-    return this.scoreMode === AUTO_GLYPH_SCORE.EFFECT_SCORE &&
-      Object.values(this.types).map(t => t.effectScores.min()).min() < 0;
+    return this.scoreMode === AUTO_GLYPH_SCORE.EFFECT_SCORE
+      && Object.values(this.types).map(t => t.effectScores.min()).min() < 0;
   },
 
   // These are here because they're used in multiple UI components
   filterModeName(id) {
     switch (id) {
-      case AUTO_GLYPH_SCORE.LOWEST_SACRIFICE:
+      case AUTO_GLYPH_SCORE.LOWEST_SACRIFICE: {
         return "Lowest Total Glyph Sacrifice";
-      case AUTO_GLYPH_SCORE.EFFECT_COUNT:
+      }
+      case AUTO_GLYPH_SCORE.EFFECT_COUNT: {
         return "Number of Effects";
-      case AUTO_GLYPH_SCORE.RARITY_THRESHOLD:
+      }
+      case AUTO_GLYPH_SCORE.RARITY_THRESHOLD: {
         return "Rarity Threshold";
-      case AUTO_GLYPH_SCORE.SPECIFIED_EFFECT:
+      }
+      case AUTO_GLYPH_SCORE.SPECIFIED_EFFECT: {
         return "Specified Effect";
-      case AUTO_GLYPH_SCORE.EFFECT_SCORE:
+      }
+      case AUTO_GLYPH_SCORE.EFFECT_SCORE: {
         return "Effect Score";
-      case AUTO_GLYPH_SCORE.LOWEST_ALCHEMY:
+      }
+      case AUTO_GLYPH_SCORE.LOWEST_ALCHEMY: {
         return "Lowest Alchemy Resource";
-      case AUTO_GLYPH_SCORE.ALCHEMY_VALUE:
+      }
+      case AUTO_GLYPH_SCORE.ALCHEMY_VALUE: {
         return "Refinement Value";
-      default:
+      }
+      default: {
         return "Invalid Glyph filter mode";
+      }
     }
   },
   trashModeDesc(id) {
     switch (id) {
-      case AUTO_GLYPH_REJECT.SACRIFICE:
+      case AUTO_GLYPH_REJECT.SACRIFICE: {
         return "Always sacrifice";
-      case AUTO_GLYPH_REJECT.REFINE:
+      }
+      case AUTO_GLYPH_REJECT.REFINE: {
         return "Always refine";
-      case AUTO_GLYPH_REJECT.REFINE_TO_CAP:
+      }
+      case AUTO_GLYPH_REJECT.REFINE_TO_CAP: {
         return "Refine to cap, then sacrifice";
-      default:
+      }
+      default: {
         return "Invalid Glyph trash mode";
+      }
     }
-  }
+  },
 };
 
 export function autoAdjustGlyphWeights() {
@@ -215,11 +248,11 @@ export function autoAdjustGlyphWeights() {
   for (const key of weightKeys) {
     weights.push({
       key,
-      percent: scaledWeight(key)
+      percent: scaledWeight(key),
     });
   }
   const fracPart = x => x - Math.floor(x);
-  const priority = weights.sort((a, b) => fracPart(b.percent) - fracPart(a.percent)).map(w => w.key);
+  const priority = weights.toSorted((a, b) => fracPart(b.percent) - fracPart(a.percent)).map(w => w.key);
   const missingPercent = 100 - weights.map(w => Math.floor(w.percent)).reduce((a, b) => a + b);
   for (let i = 0; i < weightKeys.length; i++) {
     const key = priority[i];
@@ -270,7 +303,7 @@ function getGlyphLevelSources() {
       // These are copied from Reality Upgrade 18's gameDB entry
       coeff: new Decimal(0.45),
       exp: new Decimal(0.5),
-    }
+    },
   };
 }
 
@@ -373,6 +406,6 @@ export function staticGlyphWeights() {
     instability,
     hyperInstability,
     realityUpgrades,
-    achievements
+    achievements,
   };
 }

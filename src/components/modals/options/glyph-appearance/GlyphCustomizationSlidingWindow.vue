@@ -18,7 +18,7 @@ export default {
       type: Number,
       required: false,
       default: -1,
-    }
+    },
   },
   data() {
     return {
@@ -54,7 +54,7 @@ export default {
     // Maximum number of options visible at one time, used to determine scrolling bounds
     windowSize() {
       return 17;
-    }
+    },
   },
   created() {
     this.updateSelected();
@@ -95,7 +95,7 @@ export default {
     containerClassObject() {
       return {
         "c-all-options": true,
-        "o-option--inactive": !this.isActive
+        "o-option--inactive": !this.isActive,
       };
     },
     defaultOptionClassObject() {
@@ -119,14 +119,14 @@ export default {
       if (this.isSymbol || !color) return {};
       const colorProps = GlyphAppearanceHandler.getColorProps(color);
       return {
-        background: colorProps.bg,
-        color: this.invertBW(colorProps.bg),
+        "background": colorProps.bg,
+        "color": this.invertBW(colorProps.bg),
         "box-shadow": `0 0 0.4rem 0.1rem ${colorProps.border}`,
       };
     },
     windowStyle() {
       return {
-        transform: `translate(${2 - 2.5 * this.leftmostIndex}rem)`,
+        "transform": `translate(${2 - 2.5 * this.leftmostIndex}rem)`,
         "transition-duration": "0.3s",
       };
     },
@@ -152,8 +152,8 @@ export default {
     },
     invertBW(color) {
       return color === "black" ? "white" : "black";
-    }
-  }
+    },
+  },
 };
 </script>
 

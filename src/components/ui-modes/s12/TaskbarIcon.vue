@@ -6,12 +6,12 @@ export default {
   props: {
     tab: {
       type: Object,
-      required: true
+      required: true,
     },
     tabPosition: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -25,7 +25,7 @@ export default {
   computed: {
     isCurrentTab() {
       return this.tab.isOpen && !S12Windows.isMinimised;
-    }
+    },
   },
   methods: {
     update() {
@@ -36,7 +36,7 @@ export default {
         this.tabName = Pelle.transitionText(
           this.tab.name,
           Pelle.endTabNames[this.tabPosition],
-          Math.clamp(GameEnd.endState - (this.tab.id % 4) / 10, 0, 1)
+          Math.clamp(GameEnd.endState - (this.tab.id % 4) / 10, 0, 1),
         );
       } else {
         this.tabName = this.tab.name;

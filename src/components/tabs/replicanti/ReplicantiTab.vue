@@ -52,7 +52,7 @@ export default {
       return new ReplicantiUpgradeButtonSetup(
         ReplicantiUpgrade.chance,
         value => `Replicate chance: ${formatPercents(value)}`,
-        cost => `+${formatPercents(0.01)} Costs: ${format(cost)} IP`
+        cost => `+${formatPercents(0.01)} Costs: ${format(cost)} IP`,
       );
     },
     replicantiIntervalSetup() {
@@ -61,9 +61,9 @@ export default {
         const actualInterval = upgrade.applyModifiers(interval);
         const intervalNum = actualInterval.toNumber();
         if (
-          Number.isFinite(intervalNum) &&
-          intervalNum > 1 &&
-          upgrade.isCapped
+          Number.isFinite(intervalNum)
+          && intervalNum > 1
+          && upgrade.isCapped
         ) {
           // Checking isCapped() prevents text overflow when formatted as "__ ➜ __"
           return TimeSpan.fromMilliseconds(new Decimal(intervalNum)).toStringShort(false);
@@ -77,15 +77,15 @@ export default {
         upgrade,
         value => `Interval: ${formatInterval(value)}`,
         cost =>
-          `➜ ${formatInterval(upgrade.nextValue)} Costs: ${format(cost)} IP`
+          `➜ ${formatInterval(upgrade.nextValue)} Costs: ${format(cost)} IP`,
       );
     },
     maxGalaxySetup() {
       const upgrade = ReplicantiUpgrade.galaxies;
       return new ReplicantiUpgradeButtonSetup(
         upgrade,
-        value => {
-          let description = `Max Replicanti Galaxies: `;
+        (value) => {
+          let description = "Max Replicanti Galaxies: ";
           const extra = upgrade.extra;
           if (extra.gt(0)) {
             const total = extra.add(value);
@@ -95,7 +95,7 @@ export default {
           }
           return description;
         },
-        cost => `+${formatInt(1)} Costs: ${format(cost)} IP`
+        cost => `+${formatInt(1)} Costs: ${format(cost)} IP`,
       );
     },
     boostText() {
@@ -125,7 +125,7 @@ export default {
       return this.estimateToMax.lt(0.01)
         ? "Currently Increasing"
         : TimeSpan.fromSeconds(this.estimateToMax).toStringShort();
-    }
+    },
   },
   methods: {
     update() {
@@ -147,7 +147,7 @@ export default {
       this.hasDTMult = getAdjustedGlyphEffect("replicationdtgain").neq(0) && !Pelle.isDoomed;
       this.multDT = Decimal.max(
         Decimal.log10(Replicanti.amount).times(getAdjustedGlyphEffect("replicationdtgain")),
-        1
+        1,
       );
       this.hasIPMult = AlchemyResource.exponential.amount.gt(0) && !this.isDoomed;
       this.multIP = Replicanti.amount.powEffectOf(AlchemyResource.exponential);
@@ -164,10 +164,10 @@ export default {
       this.remoteRG = ReplicantiUpgrade.galaxies.remoteRGStart;
       this.effarigInfinityBonusRG = Effarig.bonusRG;
       this.nextEffarigRGThreshold = new Decimal(Number.MAX_VALUE).pow(
-        Effarig.bonusRG.add(2)
+        Effarig.bonusRG.add(2),
       );
-      this.canSeeGalaxyButton =
-        Replicanti.galaxies.max.gte(1) || PlayerProgress.eternityUnlocked();
+      this.canSeeGalaxyButton
+        = Replicanti.galaxies.max.gte(1) || PlayerProgress.eternityUnlocked();
       this.maxReplicanti.copyFrom(player.records.thisReality.maxReplicanti);
       this.estimateToMax = this.calculateEstimate();
     },
@@ -183,7 +183,7 @@ export default {
       const nextMilestone = this.maxReplicanti;
       const coeff = Decimal.divide(updateRateMs / 1000, logGainFactorPerTick.times(postScale));
       return coeff.times(nextMilestone.divide(this.amount).pow(postScale).minus(1));
-    }
+    },
   },
 };
 </script>

@@ -5,7 +5,7 @@ export default {
     bounds: {
       type: Object,
       required: true,
-    }
+    },
   },
   mounted() {
     this.drop();
@@ -17,7 +17,7 @@ export default {
       const bounds = this.bounds;
       const snowPos = {
         x: Math.random() * (bounds.x - windowBorderOffset),
-        y: windowBorderOffset + Math.random() * (bounds.y - windowBorderOffset)
+        y: windowBorderOffset + Math.random() * (bounds.y - windowBorderOffset),
       };
       this.$el.textContent = snowText();
       this.$el.setAttribute("x", snowPos.x);
@@ -30,7 +30,7 @@ export default {
         const START_HEX = START.codePointAt(0) || 65;
         const SNOW = [];
         for (let i = 0; i < LEN; i++) {
-          SNOW.push(String.fromCharCode(START_HEX + i));
+          SNOW.push(String.fromCodePoint(START_HEX + i));
         }
         return SNOW[Math.floor(Math.random() * SNOW.length)];
       }

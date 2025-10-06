@@ -6,7 +6,7 @@ import PelleUpgrade from "./PelleUpgrade";
 export default {
   name: "GalaxyGeneratorPanel",
   components: {
-    PelleUpgrade
+    PelleUpgrade,
   },
   data() {
     return {
@@ -42,7 +42,7 @@ export default {
     },
     emphasisedStart() {
       return Decimal.pow(this.generatedGalaxies.div(this.cap), 0.45).toNumber();
-    }
+    },
   },
   methods: {
     update() {
@@ -68,7 +68,7 @@ export default {
     unlock() {
       player.celestials.pelle.galaxyGenerator.unlocked = true;
       Pelle.quotes.galaxyGeneratorUnlock.show();
-    }
+    },
   },
 };
 </script>

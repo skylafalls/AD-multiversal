@@ -109,7 +109,7 @@ export const Laitela = {
     this.celestial.singularityCapIncreases = DC.D0;
   },
   quotes: Quotes.laitela,
-  symbol: "ᛝ"
+  symbol: "ᛝ",
 };
 
 EventHub.logic.on(GAME_EVENT.TAB_CHANGED, () => {

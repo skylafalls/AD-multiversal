@@ -9,14 +9,14 @@ export default {
   props: {
     saveslot: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       name: "",
       displayName: "",
-      canEternity: false
+      canEternity: false,
     };
   },
   computed: {
@@ -46,8 +46,7 @@ export default {
     // This is largely done because of UI reasons - there is no Unicode specification for character width, which means
     // that arbitrary Unicode inputs can allow for massive text overflow
     isASCII(input) {
-      // eslint-disable-next-line no-control-regex
-      return !/[^\u0000-\u00ff]/u.test(input);
+      return !/[^\u0000-\u00FF]/u.test(input);
     },
     save() {
       this.hideContextMenu();
@@ -92,7 +91,7 @@ export default {
     },
     edit() {
       Modal.studyString.show({ id: this.saveslot - 1 });
-    }
+    },
   },
 };
 </script>

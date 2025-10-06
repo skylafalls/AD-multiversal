@@ -6,41 +6,41 @@ export default {
   props: {
     complete: {
       type: Number,
-      required: true
+      required: true,
     },
     position: {
       type: Object,
-      required: true
+      required: true,
     },
     legend: {
       type: Object,
       required: false,
-      default: undefined
+      default: undefined,
     },
     ring: {
       type: Object,
-      required: true
+      required: true,
     },
     fill: {
       type: String,
       required: false,
-      default: undefined
+      default: undefined,
     },
     alwaysShowLegend: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     forceLegend: {
       type: Function,
       required: false,
-      default: undefined
+      default: undefined,
     },
     clickAction: {
       type: Function,
       required: false,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   data() {
     return {
@@ -81,7 +81,7 @@ export default {
     nodeClass() {
       return {
         "o-celestial-nav__force-hover": this.hoverOverride,
-        "o-celestial-nav__clickable": this.clickAction !== undefined
+        "o-celestial-nav__clickable": this.clickAction !== undefined,
       };
     },
   },
@@ -98,10 +98,11 @@ export default {
     getLines() {
       if (!this.legend) return null;
       const data = typeof (this.legend.text) === "function"
-        ? this.legend.text(this.complete) : this.legend.text;
+        ? this.legend.text(this.complete)
+        : this.legend.text;
       return typeof (data) === "string" ? [data] : data;
     },
-  }
+  },
 };
 </script>
 

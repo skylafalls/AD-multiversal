@@ -4,16 +4,16 @@ export default {
   props: {
     subtab: {
       type: Object,
-      required: true
+      required: true,
     },
     tab: {
       type: Object,
-      required: true
+      required: true,
     },
     changeEnabled: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -23,8 +23,8 @@ export default {
   },
   computed: {
     isCurrentSubtab() {
-      return this.tab.id === Tabs.current.id &&
-        this.subtab.id === Tabs.current._currentSubtab.id;
+      return this.tab.id === Tabs.current.id
+        && this.subtab.id === Tabs.current._currentSubtab.id;
     },
     classObject() {
       return {

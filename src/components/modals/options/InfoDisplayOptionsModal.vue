@@ -29,7 +29,7 @@ export default {
   computed: {
     fullCompletion() {
       return player.records.fullGameCompletions > 0;
-    }
+    },
   },
   watch: {
     showPercentage(newValue) {
@@ -78,7 +78,7 @@ export default {
       this.realityUpgrades = options.realityUpgrades;
       this.perks = options.perks;
       this.alchemy = options.alchemy;
-    }
+    },
   },
 };
 </script>

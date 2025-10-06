@@ -6,15 +6,15 @@ export default {
   props: {
     complete: {
       type: Number,
-      required: true
+      required: true,
     },
     position: {
       type: Object,
-      required: true
+      required: true,
     },
     ring: {
       type: Object,
-      required: true
+      required: true,
     },
     symbol: {
       type: String,
@@ -24,27 +24,27 @@ export default {
     symbolScale: {
       type: Number,
       required: false,
-      default: 1.4
+      default: 1.4,
     },
     symbolOffset: {
       type: String,
       required: false,
-      default: "0"
+      default: "0",
     },
     completeClass: {
       type: String,
       required: false,
-      default: undefined
+      default: undefined,
     },
     incompleteClass: {
       type: String,
       required: false,
-      default: undefined
+      default: undefined,
     },
     fill: {
       type: String,
       required: false,
-      default: undefined
+      default: undefined,
     },
     isStacked: {
       type: Boolean,
@@ -68,7 +68,7 @@ export default {
     ringFilter() {
       return this.complete >= 1 && !this.isStacked ? "url(#completeGlow)" : "";
     },
-  }
+  },
 };
 </script>
 

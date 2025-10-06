@@ -25,22 +25,21 @@ export default {
   },
   data() {
     return {
-      ending: false
+      ending: false,
     };
   },
   computed: {
     view() {
       return this.$viewModel;
-    }
+    },
   },
   methods: {
     update() {
       this.ending = GameEnd.endState >= END_STATE_MARKERS.FADE_AWAY && !GameEnd.creditsClosed;
-    }
-  }
+    },
+  },
 };
 </script>
-
 
 <template>
   <span>

@@ -6,7 +6,7 @@ export class EternityAutobuyerState extends AutobuyerState {
   }
 
   get name() {
-    return `Eternity`;
+    return "Eternity";
   }
 
   get isUnlocked() {
@@ -58,11 +58,11 @@ export class EternityAutobuyerState extends AutobuyerState {
   }
 
   autoEternitiesAvailable(considerMilestoneReached) {
-    return (considerMilestoneReached || EternityMilestone.autoEternities.isReached) &&
-      !Player.isInAnyChallenge && !player.dilation.active &&
-      player.auto.autobuyersOn && this.data.isActive &&
-      this.mode === AUTO_ETERNITY_MODE.AMOUNT &&
-      this.amount.equals(0);
+    return (considerMilestoneReached || EternityMilestone.autoEternities.isReached)
+      && !Player.isInAnyChallenge && !player.dilation.active
+      && player.auto.autobuyersOn && this.data.isActive
+      && this.mode === AUTO_ETERNITY_MODE.AMOUNT
+      && this.amount.equals(0);
   }
 
   bumpAmount(mult) {
@@ -88,13 +88,16 @@ export class EternityAutobuyerState extends AutobuyerState {
     }
 
     switch (this.mode) {
-      case AUTO_ETERNITY_MODE.AMOUNT:
+      case AUTO_ETERNITY_MODE.AMOUNT: {
         return gainedEternityPoints().gte(this.amount);
-      case AUTO_ETERNITY_MODE.TIME:
+      }
+      case AUTO_ETERNITY_MODE.TIME: {
         return Time.thisEternityTrueTime.totalSeconds.toNumber() > this.time;
+      }
       case AUTO_ETERNITY_MODE.X_HIGHEST:
-      default:
+      default: {
         return gainedEternityPoints().gte(this.highestPrevPrestige.times(this.xHighest));
+      }
     }
   }
 

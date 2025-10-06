@@ -13,7 +13,6 @@ import GameSpeedDisplay from "@/components/GameSpeedDisplay";
 
 import { S12Windows } from "./windows";
 
-
 export default {
   name: "S12Ui",
   components: {

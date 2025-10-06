@@ -4,15 +4,15 @@ export default {
   data() {
     return {
       infinityPoints: new Decimal(),
-      isVisible: false
+      isVisible: false,
     };
   },
   methods: {
     update() {
       this.infinityPoints.copyFrom(Currency.infinityPoints);
       this.isVisible = PlayerProgress.infinityUnlocked();
-    }
-  }
+    },
+  },
 };
 </script>
 

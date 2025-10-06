@@ -10,7 +10,7 @@ export function watchLatestCommit() {
   function watch() {
     fetch(url, { method: "GET" })
       .then(response => response.json())
-      .then(json => {
+      .then((json) => {
         if (json === undefined) {
           return;
         }
@@ -20,13 +20,13 @@ export function watchLatestCommit() {
         }
 
         Modal.message.show(
-          "Refresh the page (game will be saved), we've got new stuff: " +
-          `"${json.message}" by ${json.author}`,
+          "Refresh the page (game will be saved), we've got new stuff: "
+          + `"${json.message}" by ${json.author}`,
           {
             callback: updateRefresh,
-            closeButton: true
+            closeButton: true,
           },
-          3
+          3,
         );
       });
   }

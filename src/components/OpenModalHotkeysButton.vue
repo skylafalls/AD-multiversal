@@ -4,8 +4,8 @@ export default {
   methods: {
     handleClick() {
       Modal.hotkeys.show();
-    }
-  }
+    },
+  },
 };
 </script>
 

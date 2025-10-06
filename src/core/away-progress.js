@@ -28,7 +28,7 @@ class AwayProgress {
   get classObject() {
     // Format the camelCase name to kebab-case
     return `c-modal-away-progress__${
-      this.classObjectReference.replace(/[A-Z]/gu, match => `-${match.toLowerCase()}`)
+      this.classObjectReference.replaceAll(/[A-Z]/gu, match => `-${match.toLowerCase()}`)
     }`;
   }
 
@@ -36,7 +36,7 @@ class AwayProgress {
     if (this.forcedName) return this.forcedName;
     // Format the camelCase name to Title Case, with spaces added before the capital letters
     return this.name
-      .replace(/[A-Z]/gu, match => ` ${match}`)
+      .replaceAll(/[A-Z]/gu, match => ` ${match}`)
       .replace(/^\w/u, c => c.toUpperCase());
   }
 

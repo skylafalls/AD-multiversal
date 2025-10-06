@@ -4,8 +4,8 @@ export default {
   props: {
     glyphType: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -26,7 +26,7 @@ export default {
     descStyle() {
       return {
         "color": GlyphAppearanceHandler.getBorderColor(this.glyphType),
-        "border-color": this.typeConfig.color
+        "border-color": this.typeConfig.color,
       };
     },
     minScoreInputStyle() {
@@ -45,11 +45,11 @@ export default {
     },
     superWeightInputLimit() {
       return 1e100;
-    }
+    },
   },
   created() {
     this.effectScores = { ...AutoGlyphProcessor.types[this.glyphType].effectScores };
-    console.log(AutoGlyphProcessor.types[this.glyphType])
+    console.log(AutoGlyphProcessor.types[this.glyphType]);
   },
   methods: {
     update() {
@@ -69,12 +69,12 @@ export default {
     },
     setEffectScore(index, event) {
       const inputValue = event.target.value;
-      // eslint-disable-next-line no-constant-condition
+
       if (true || !isNaN(inputValue)) {
         this.autoSacrificeSettings.effectScores[index] = new Decimal(this.limitedInput(inputValue)).toNumber();
       }
     },
-  }
+  },
 };
 </script>
 

@@ -4,19 +4,19 @@ import ChallengeGridCell from "@/components/ChallengeGridCell";
 export default {
   name: "ChallengeGrid",
   components: {
-    ChallengeGridCell
+    ChallengeGridCell,
   },
   props: {
     challenges: {
       type: Array,
-      required: true
+      required: true,
     },
     isChallengeVisible: {
       type: Function,
       required: false,
-      default: () => true
-    }
-  }
+      default: () => true,
+    },
+  },
 };
 </script>
 

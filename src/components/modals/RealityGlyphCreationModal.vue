@@ -6,7 +6,7 @@ export default {
   name: "RealityGlyphCreationModal",
   components: {
     ModalWrapper,
-    PrimaryButton
+    PrimaryButton,
   },
   data() {
     return {
@@ -22,7 +22,7 @@ export default {
       this.realityGlyphLevel.copyFrom(AlchemyResource.reality.effectValue);
       const realityEffectConfigs = GlyphEffects.all
         .filter(eff => eff.glyphTypes.includes("reality"))
-        .sort((a, b) => a.intID - b.intID);
+        .toSorted((a, b) => a.intID - b.intID);
       const minRealityEffectIndex = realityEffectConfigs.map(cfg => cfg.intID).min();
       this.possibleEffects = realityEffectConfigs
         .map(cfg => [realityGlyphEffectLevelThresholds[cfg.intID - minRealityEffectIndex], cfg.id]);
@@ -44,7 +44,7 @@ export default {
       const value = config.effect(this.realityGlyphLevel, rarityToStrength(100));
       const effectTemplate = config.singleDesc;
       return effectTemplate.replace("{value}", config.formatEffect(value));
-    }
+    },
   },
 };
 </script>

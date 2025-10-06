@@ -3,8 +3,8 @@ import { compile } from "./compiler";
 import { parser } from "./parser";
 
 function walkSuggestion(suggestion, prefix, output) {
-  const hasAutocomplete = suggestion.$autocomplete &&
-    suggestion.$autocomplete.startsWith(prefix) && suggestion.$autocomplete !== prefix;
+  const hasAutocomplete = suggestion.$autocomplete
+    && suggestion.$autocomplete.startsWith(prefix) && suggestion.$autocomplete !== prefix;
   const isUnlocked = suggestion.$unlocked ? suggestion.$unlocked() : true;
   if (hasAutocomplete && isUnlocked) output.add(suggestion.$autocomplete);
   for (const s of suggestion.categoryMatches) {
@@ -12,7 +12,6 @@ function walkSuggestion(suggestion, prefix, output) {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
 CodeMirror.registerHelper("lint", "automato", (contents, _, editor) => {
   const doc = editor.getDoc();
   const errors = compile(contents, true).errors;
@@ -24,7 +23,7 @@ CodeMirror.registerHelper("lint", "automato", (contents, _, editor) => {
   }));
 });
 
-CodeMirror.registerHelper("hint", "anyword", editor => {
+CodeMirror.registerHelper("hint", "anyword", (editor) => {
   const cursor = editor.getDoc().getCursor();
   let start = cursor.ch;
   const end = cursor.ch;
@@ -33,7 +32,7 @@ CodeMirror.registerHelper("hint", "anyword", editor => {
   const lineStart = line.slice(0, start);
   const currentPrefix = line.slice(start, end);
   const lineLex = lexer.tokenize(lineStart);
-  if (lineLex.errors.length > 0) return undefined;
+  if (lineLex.errors.length > 0) return;
   const rawSuggestions = parser.computeContentAssist("command", lineLex.tokens);
   const suggestions = new Set();
   for (const s of rawSuggestions) {
@@ -41,9 +40,9 @@ CodeMirror.registerHelper("hint", "anyword", editor => {
     walkSuggestion(s.nextTokenType, currentPrefix, suggestions);
   }
   return {
-    list: Array.from(suggestions),
+    list: [...suggestions],
     from: CodeMirror.Pos(cursor.line, start),
-    to: CodeMirror.Pos(cursor.line, end)
+    to: CodeMirror.Pos(cursor.line, end),
   };
 });
 
@@ -63,20 +62,20 @@ CodeMirror.defineSimpleMode("automato", {
     { regex: /studies\s+/ui, token: "keyword", next: "studiesArgs" },
     { regex: /blob\s\s/ui, token: "blob" },
     {
-      // eslint-disable-next-line max-len
+
       regex: /(auto|if|pause|studies|time[ \t]+theorems?|space[ \t]+theorems?|until|wait|while|black[ \t]+hole|stored?[ \t]+game[ \t]+time|notify)\s/ui,
       token: "keyword",
-      next: "commandArgs"
+      next: "commandArgs",
     },
     {
       regex: /stop/ui,
       token: "keyword",
-      next: "commandDone"
+      next: "commandDone",
     },
     {
       regex: /start\s|unlock\s/ui,
       token: "keyword",
-      next: "startUnlock"
+      next: "startUnlock",
     },
     { regex: /infinity\S+|eternity\S+|reality\S+|pause\S+|restart\S+/ui, token: "error", next: "commandDone" },
     { regex: /infinity|eternity|reality/ui, token: "keyword", next: "prestige" },
@@ -181,5 +180,5 @@ CodeMirror.defineSimpleMode("automato", {
   meta: {
     lineComment: "//",
     electricChars: "}",
-  }
+  },
 });

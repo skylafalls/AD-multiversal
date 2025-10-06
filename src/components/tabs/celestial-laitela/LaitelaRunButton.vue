@@ -4,7 +4,7 @@ import GlyphSetPreview from "@/components/GlyphSetPreview";
 export default {
   name: "LaitelaRunButton",
   components: {
-    GlyphSetPreview
+    GlyphSetPreview,
   },
   data() {
     return {
@@ -37,7 +37,7 @@ export default {
       this.realityReward.copyFrom(Laitela.realityReward);
       this.isRunning = Laitela.isRunning;
       this.singularitiesUnlocked = Currency.singularities.gt(0);
-      this.bestSet = cloneDeep(Glyphs.copyForRecords(player.records.bestReality.laitelaSet));
+      this.bestSet = structuredClone(Glyphs.copyForRecords(player.records.bestReality.laitelaSet));
       this.tierNotCompleted = this.realityTime.eq(3600) || (this.realityTime.eq(300) && this.maxDimTier < 8);
     },
     startRun() {
@@ -47,7 +47,7 @@ export default {
     classObject() {
       return {
         "o-laitela-run-button": true,
-        "o-laitela-run-button--large": !this.singularitiesUnlocked
+        "o-laitela-run-button--large": !this.singularitiesUnlocked,
       };
     },
     runButtonClassObject() {
@@ -55,10 +55,10 @@ export default {
         "o-laitela-run-button__icon": true,
         "o-laitela-run-button__icon--running": this.isRunning,
         "c-celestial-run-button--clickable": !this.isDoomed,
-        "o-pelle-disabled-pointer": this.isDoomed
+        "o-pelle-disabled-pointer": this.isDoomed,
       };
     },
-  }
+  },
 };
 </script>
 

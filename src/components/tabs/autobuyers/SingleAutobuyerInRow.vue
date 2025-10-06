@@ -10,12 +10,12 @@ export default {
   components: {
     AutobuyerSingleToggleLabel,
     AutobuyerIntervalLabel,
-    AutobuyerModeButton
+    AutobuyerModeButton,
   },
   props: {
     autobuyer: {
       type: Object,
-      required: true
+      required: true,
     },
     showIndividual: Boolean,
     parentDisabled: Boolean,
@@ -38,7 +38,7 @@ export default {
       const buyer = this.autobuyer;
       this.isVisible = buyer.isUnlocked || buyer.isBought;
     },
-  }
+  },
 };
 </script>
 

@@ -4,21 +4,21 @@ export default {
   props: {
     celestial: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      isShown: false
+      isShown: false,
     };
   },
   computed: {
     color() {
-      return this.celestial === "laitela" ? `var(--color-laitela--accent)` : `var(--color-${this.celestial}--base)`;
+      return this.celestial === "laitela" ? "var(--color-laitela--accent)" : `var(--color-${this.celestial}--base)`;
     },
     possessiveForm() {
       return Celestials[this.celestial].possessiveName;
-    }
+    },
   },
   methods: {
     update() {
@@ -27,7 +27,7 @@ export default {
     show() {
       Quote.showHistory(Celestials[this.celestial].quotes.all);
     },
-  }
+  },
 };
 </script>
 

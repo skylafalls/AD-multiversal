@@ -47,7 +47,7 @@ export default {
     },
     UILabel() {
       return `UI: ${this.$viewModel.newUI ? "Modern" : "Classic"}`;
-    }
+    },
   },
   watch: {
     headerTextColored(newValue) {
@@ -65,7 +65,7 @@ export default {
         : this.sidebarDB.find(e => e.id === player.options.sidebarResourceID).optionName;
       this.headerTextColored = options.headerTextColored;
     },
-  }
+  },
 };
 </script>
 

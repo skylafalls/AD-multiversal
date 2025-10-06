@@ -6,7 +6,7 @@ export default {
   name: "ChallengeTabHeader",
   components: {
     PrimaryButton,
-    PrimaryToggleButton
+    PrimaryToggleButton,
   },
   data() {
     return {
@@ -51,7 +51,7 @@ export default {
         current.exit(false);
       }
     },
-  }
+  },
 };
 </script>
 

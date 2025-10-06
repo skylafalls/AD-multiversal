@@ -39,8 +39,8 @@ window.EventHub = class EventHub {
         .map(handlers => handlers.length)
         .sum();
     }
-    return `UI(UPDATE/Total): ${EventHub.ui._handlers[GAME_EVENT.UPDATE].length}/${countHandlers(EventHub.ui)}; ` +
-      `Logic(Total): ${countHandlers(EventHub.logic)}`;
+    return `UI(UPDATE/Total): ${EventHub.ui._handlers[GAME_EVENT.UPDATE].length}/${countHandlers(EventHub.ui)}; `
+      + `Logic(Total): ${countHandlers(EventHub.logic)}`;
   }
 };
 

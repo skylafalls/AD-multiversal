@@ -11,7 +11,7 @@ export const PERK_FAMILY = {
 };
 
 // This function isn't used in-game, see note below for its intended usage
-// eslint-disable-next-line no-unused-vars
+
 function vectorToNum(v) {
   return Math.floor(v.x / 5) + 400 * Math.floor(v.y / 5) + 80200;
 }
@@ -146,7 +146,7 @@ export const perks = {
     id: 40,
     label: "EU1",
     family: PERK_FAMILY.ETERNITY,
-    description: `Automatically unlock the first row of Eternity Upgrades for free once you have Eternities.`,
+    description: "Automatically unlock the first row of Eternity Upgrades for free once you have Eternities.",
     layoutPosList: [89407, 80601, 80201, 79800, 80591, 73007],
   },
   autounlockEU2: {
@@ -221,10 +221,10 @@ export const perks = {
     id: 53,
     label: "DILR",
     family: PERK_FAMILY.DILATION,
-    description: "Remove the Eternity Challenge 11, Eternity Challenge 12, and total Time Theorem " +
-      "requirements from Time Dilation unlock.",
+    description: "Remove the Eternity Challenge 11, Eternity Challenge 12, and total Time Theorem "
+      + "requirements from Time Dilation unlock.",
     automatorPoints: 5,
-    shortDescription: () => `Unlocking Dilation only requires TT`,
+    shortDescription: () => "Unlocking Dilation only requires TT",
     layoutPosList: [129011, 81802, 80203, 80198, 80600, 109116],
   },
   bypassEC1Lock: {
@@ -435,7 +435,7 @@ export const perks = {
     label: "TTF",
     family: PERK_FAMILY.AUTOMATION,
     get description() {
-      return `Purchasing Time Theorems no longer spends your Antimatter, Infinity Points, or Eternity Points.`;
+      return "Purchasing Time Theorems no longer spends your Antimatter, Infinity Points, or Eternity Points.";
     },
     layoutPosList: [33840, 78998, 80597, 81002, 77800, 67309],
   },
@@ -444,7 +444,7 @@ export const perks = {
     label: "TTM",
     family: PERK_FAMILY.AUTOMATION,
     get description() {
-      return `Upgrade the Time Theorem Autobuyer to buy max Time Theorems.`;
+      return "Upgrade the Time Theorem Autobuyer to buy max Time Theorems.";
     },
     automatorPoints: 10,
     shortDescription: () => "Max TT Autobuyer",
@@ -455,7 +455,7 @@ export const perks = {
     label: "DAB",
     family: PERK_FAMILY.AUTOMATION,
     get description() {
-      return `Dilation Upgrade autobuyers buy three times as many Dilation Upgrades at once.`;
+      return "Dilation Upgrade autobuyers buy three times as many Dilation Upgrades at once.";
     },
     effect: 3,
     automatorPoints: 5,
@@ -519,10 +519,10 @@ export const perks = {
     automatorPoints: 10,
     shortDescription: () => "Keep Achievements on Reality",
     layoutPosList: [23353, 81402, 81403, 79404, 79803, 84639],
-  }
+  },
 };
 
-export const perkConnections = (function() {
+export const perkConnections = (function () {
   const p = perks;
   // First item is the start, other items are the ends
   const groups = [

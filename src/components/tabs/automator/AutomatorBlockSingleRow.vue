@@ -7,21 +7,21 @@ export default {
   name: "AutomatorBlockSingleRow",
   components: {
     draggable,
-    AutomatorBlockSingleInput
+    AutomatorBlockSingleInput,
   },
   props: {
     block: {
       type: Object,
-      required: true
+      required: true,
     },
     updateBlock: {
       type: Function,
-      required: true
+      required: true,
     },
     deleteBlock: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -93,7 +93,7 @@ export default {
       return {
         "c-automator-block-row-active": this.isActiveLine,
         "c-automator-block-row-event": this.isEventLine,
-        "c-automator-block-row-error": this.isErrorLine
+        "c-automator-block-row-error": this.isErrorLine,
       };
     },
     // The target value is either a String or some kind of a number - we need to force it to be a String for the
@@ -101,8 +101,8 @@ export default {
     nextSelection() {
       const val = this.b.targets ? this.b[this.b.targets[0]] : "";
       return val;
-    }
-  }
+    },
+  },
 };
 </script>
 

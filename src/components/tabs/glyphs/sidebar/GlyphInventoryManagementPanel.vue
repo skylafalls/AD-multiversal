@@ -10,14 +10,14 @@ export default {
     GlyphSortButtonGroup,
     GlyphProtectedRowButtonGroup,
     GlyphAutosortButtonGroup,
-    GlyphCleanButtonGroup
+    GlyphCleanButtonGroup,
   },
   props: {
     hasMoreOptions: {
       type: Boolean,
       required: false,
-      default: true
-    }
+      default: true,
+    },
   },
   computed: {
     groupClass() {
@@ -26,9 +26,9 @@ export default {
         "c-glyph-sacrifice-options": true,
         "l-glyph-sidebar-panel-size": true,
         "l-glyph-inventory-management": true,
-        "c-glyph-inventory-management-with-border": !this.hasMoreOptions
+        "c-glyph-inventory-management-with-border": !this.hasMoreOptions,
       };
-    }
+    },
   },
 };
 </script>

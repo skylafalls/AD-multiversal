@@ -6,13 +6,13 @@ export default {
   name: "RaPet",
   components: {
     RaUpgradeIcon,
-    RaPetLevelBar
+    RaPetLevelBar,
   },
   props: {
     petConfig: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -38,7 +38,9 @@ export default {
     };
   },
   computed: {
-    levelCap() { return Ra.levelCap; },
+    levelCap() {
+      return Ra.levelCap;
+    },
     showScalingUpgrade() {
       return this.petConfig.scalingUpgradeVisible(this.level);
     },
@@ -53,7 +55,7 @@ export default {
     },
     petStyle() {
       return {
-        color: this.pet.color
+        color: this.pet.color,
       };
     },
     unlocks() {
@@ -110,7 +112,7 @@ export default {
         "c-ra-pet-btn--available": available,
         [`c-ra-pet-btn--${pet.id}`]: available,
         "c-ra-pet-btn--available__capped": capped,
-        [`c-ra-pet-btn--${pet.id}__capped`]: capped
+        [`c-ra-pet-btn--${pet.id}__capped`]: capped,
       };
     },
     barStyle(type) {
@@ -120,7 +122,7 @@ export default {
         : this.memories;
       return {
         width: `${100 * Decimal.min(1, gone.div(cost)).toNumber()}%`,
-        background: this.pet.color
+        background: this.pet.color,
       };
     },
   },

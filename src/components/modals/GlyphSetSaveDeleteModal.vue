@@ -6,22 +6,22 @@ export default {
   name: "GlyphSetSaveDeleteModal",
   components: {
     ModalWrapperChoice,
-    GlyphSetPreview
+    GlyphSetPreview,
   },
   props: {
     glyphSetId: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      glyphSet: []
+      glyphSet: [],
     };
   },
   methods: {
     update() {
-      this.glyphSet = cloneDeep(Glyphs.copyForRecords(player.reality.glyphs.sets[this.glyphSetId].glyphs));
+      this.glyphSet = structuredClone(Glyphs.copyForRecords(player.reality.glyphs.sets[this.glyphSetId].glyphs));
     },
     handleYesClick() {
       player.reality.glyphs.sets[this.glyphSetId].glyphs = [];

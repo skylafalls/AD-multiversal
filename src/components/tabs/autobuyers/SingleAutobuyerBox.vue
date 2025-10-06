@@ -9,13 +9,13 @@ export default {
   components: {
     AutobuyerSingleToggleLabel,
     AutobuyerIntervalLabel,
-    AutobuyerInput
+    AutobuyerInput,
   },
   props: {
     autobuyer: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -30,14 +30,14 @@ export default {
     },
     isSacrifice() {
       return this.name === "Dimensional Sacrifice";
-    }
+    },
   },
   methods: {
     update() {
       this.isUnlocked = this.autobuyer.isUnlocked;
       this.isHiddenSacrifice = this.isSacrifice && Achievement(118).canBeApplied;
     },
-  }
+  },
 };
 </script>
 

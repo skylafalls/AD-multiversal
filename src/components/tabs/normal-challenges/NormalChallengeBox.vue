@@ -6,13 +6,13 @@ export default {
   name: "NormalChallengeBox",
   components: {
     ChallengeBox,
-    DescriptionDisplay
+    DescriptionDisplay,
   },
   props: {
     challenge: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -22,7 +22,7 @@ export default {
       isCompleted: false,
       isBroken: false,
       isUnlocked: false,
-      lockedAt: new Decimal()
+      lockedAt: new Decimal(),
     };
   },
   computed: {
@@ -31,7 +31,7 @@ export default {
         return this.challenge.config;
       }
       return {
-        description: `Infinity ${formatInt(this.challenge.config.lockedAt)} times to unlock.`
+        description: `Infinity ${formatInt(this.challenge.config.lockedAt)} times to unlock.`,
       };
     },
     name() {
@@ -50,8 +50,8 @@ export default {
       this.lockedAt = this.challenge.config.lockedAt;
       this.isBroken = Enslaved.isRunning && Enslaved.BROKEN_CHALLENGES.includes(this.challenge.id);
       this.isCompleted = this.challenge.isCompleted && !this.isBroken;
-    }
-  }
+    },
+  },
 };
 </script>
 
