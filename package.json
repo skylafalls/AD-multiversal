@@ -10,7 +10,7 @@
   "dependencies": {
     "adnot-beport-large": "^1.3.2",
     "adnot-beport-small": "^1.2.1",
-    "break_eternity.js": "^1.4.2",
+    "break_eternity.js": "^2.1.2",
     "chevrotain": "^4.8.1",
     "codemirror": "^5.65.20",
     "drag-drop-touch": "^1.3.1",
