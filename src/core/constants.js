@@ -1,5 +1,3 @@
-import { cloneDeep } from "lodash";
-
 window.PRESTIGE_EVENT = {
   DIMENSION_BOOST: 0,
   ANTIMATTER_GALAXY: 1,
@@ -411,6 +409,7 @@ window.SPEEDRUN_SEED_STATE = {
 };
 
 // We're just going to use cloneDeep from lodash, since its better
+// We're just going to use structuredClone from the ECMAScript standard since it's better
 window.cloneDeep = value => structuredClone(value);
 
 //
