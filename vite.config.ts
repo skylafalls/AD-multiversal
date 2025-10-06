@@ -11,6 +11,9 @@ const config = defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  experimental: {
+    enableNativePlugin: true,
+  },
 });
 
 export default config;
