@@ -122,7 +122,7 @@ export default {
     changePauseMode() {
       let steps;
       switch (this.pauseMode) {
-        case BLACK_HOLE_PAUSE_MODE.NO_PAUSE:
+        case BLACK_HOLE_PAUSE_MODE.NO_PAUSE: {
           // Note: { We don't need to check for permanent BH2 because the button disappears at that point
           steps = BlackHole(1).isPermanent ? 2 : 1;
           break;
