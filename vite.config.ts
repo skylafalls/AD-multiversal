@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig } from "rolldown-vite";
 import { fileURLToPath } from "node:url";
 import vue2 from "@vitejs/plugin-vue2";
 
