@@ -1,10 +1,12 @@
 // @ts-check
+import { defineConfig } from "@eslint/config-helpers";
+
 import oxlint from "eslint-plugin-oxlint";
 import stylistic from "@stylistic/eslint-plugin";
 import tseslint from "typescript-eslint";
 import vue from "eslint-plugin-vue";
 
-const config = tseslint.config(
+const config = defineConfig(
   tseslint.configs.strict,
   ...vue.configs["flat/vue2-recommended"],
   stylistic.configs.recommended,
