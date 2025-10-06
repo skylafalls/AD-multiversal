@@ -19,4 +19,5 @@ bun run dev
 
 This will make the game served via your localhost, and the playable link will
 be displayed in your terminal. The server **doesn't** need to be restarted
-after you've made changes - just reload the page.
+after you've made changes, [`vite`](https://vite.dev/) will automatically reload the page for you so
+you don't need to do anything.
