@@ -2,9 +2,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "node build/pre-build.js && vite build && node build/post-build.js",
-    "preview": "vite preview",
+    "dev": "bunx --bun vite",
+    "build": "bun run build/pre-build.js && vite build && bun run build/post-build.js",
+    "preview": "bunx --bun preview",
     "lint": "oxlint . --fix --fix-suggestions --ignore-path=.gitignore && bunx --bun eslint --fix ."
   },
   "dependencies": {
@@ -44,5 +44,6 @@
     "stylelint-order": "^7.0.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.45.0"
-  }
+  },
+  "packageManager": "bun@1.2.23"
 }
