@@ -21,7 +21,7 @@ some other stuff here are:
   - a requirement for the next layer, this also removes the cap from some stuff
 
 ## Atomics (Layer 6)
-at the end of the multiversal section of spatial studies, you will be able to unlock the atomic layer by (tbd)
+at the end of the multiversal section of spatial studies, you will be able to unlock the atomic layer by some other spatial study idfk
 
 ## Quantum (Layer 7)
 quantum physics stuff can be unlocked here by some other spatial study
