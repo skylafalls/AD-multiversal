@@ -1,6 +1,5 @@
-/* eslint-disable import/extensions */
-import pako from "pako/dist/pako.esm.mjs";
-/* eslint-enable import/extensions */
+import { deflateSync, inflateSync } from "fflate";
+import { decodeBase64Url, encodeBase64Url } from "@std/encoding";
 
 export const GameSaveSerializer = {
   serialize(save) {
@@ -55,7 +54,7 @@ export const GameSaveSerializer = {
   // This should always be three characters long, and should ideally go AAA, AAB, AAC, etc.
   // so that we can do inequality tests on it to compare versions (though skipping a version
   // shouldn't be a problem).
-  version: "AAB",
+  version: "AAC",
   // Steps are given in encoding order.
   // Export and cloud save use the same steps because the maximum ~15% saving
   // from having them be different seems not to be worth it.
@@ -72,7 +71,7 @@ export const GameSaveSerializer = {
     // This step transforms saves into unsigned 8-bit arrays, as pako requires.
     { encode: x => GameSaveSerializer.encoder.encode(x), decode: x => GameSaveSerializer.decoder.decode(x) },
     // This step is  where the compression actually happens. The pako library works with unsigned 8-bit arrays.
-    { encode: x => pako.deflate(x), decode: x => pako.inflate(x) },
+    { encode: x => deflateSync(x), decode: x => inflateSync(x) },
     // This step converts from unsigned 8-bit arrays to strings with codepoints less than 256.
     // We need to do this outselves because GameSaveSerializer.decoder would give us unicode sometimes.
     {
@@ -82,15 +81,7 @@ export const GameSaveSerializer = {
     // This step makes the characters in saves printable. At this point in the process, all characters
     // will already have codepoints less than 256 (from the previous step), so emoji in the original save
     // won't break this.
-    { encode: x => btoa(x), decode: x => atob(x) },
-    // This step removes + and /, because if they occur, you can double-click on a save and get
-    // everything up to the first + or /, which can be hard to debug. We also remove = (always trailing)
-    // because btoa just ignores it. These regex have no potentially-unicode characters, I think,
-    // and they're applied to strings with just ASCII anyway, but I'm adding u to make Codeacy happy.
-    {
-      encode: x => x.replaceAll(/=+$/gu, "").replaceAll(/0/gu, "0a").replaceAll(/\+/gu, "0b").replaceAll(/\//gu, "0c"),
-      decode: x => x.replaceAll(/0b/gu, "+").replaceAll(/0c/gu, "/").replaceAll(/0a/gu, "0"),
-    },
+    { encode: x => encodeBase64Url(x), decode: x => decodeBase64Url(x) },
     {
       encode: (x, type) => x + GameSaveSerializer.endingString[type],
       decode: (x, type) => x.slice(0, x.length - GameSaveSerializer.endingString[type].length),
