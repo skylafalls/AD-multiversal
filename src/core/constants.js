@@ -410,6 +410,7 @@ window.SPEEDRUN_SEED_STATE = {
 
 // We're just going to use cloneDeep from lodash, since its better
 // We're just going to use structuredClone from the ECMAScript standard since it's better
+// my bad it's not ECMAScript it's WHATWG i think
 window.cloneDeep = value => structuredClone(value);
 
 //
