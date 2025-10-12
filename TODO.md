@@ -56,6 +56,13 @@ unlike [NG+3R](https://aarextiaokhiao.github.io/IvarK.github.io/), you cannot "m
 
 gluon pairs also affects color charges. mainly, entangling a color pair will boost the charge gain for that pair while diminishing the charge's effect for the third color that wasn't tangled.
 
+### pair production
+you can discharge antimatter galaxies to create a pair of electrons and positrons.
+
+discharging galaxies nullifies the effect of galaxies (AGs - dAGs) to generate a pair of the two charged particles, in return for these effects:
+- electrons boosts the per-10 antimatter dimension multiplier (exponentially)
+- positrons boosts the dimension boost base multiplier (also exponentially)
+
 ## Quantum (Layer 7)
 quantum physics stuff can be unlocked here by some other spatial study
 
