@@ -44,9 +44,9 @@ export function decodeArrayBuffer(input) {
 }
 
 function removePaddingChars(input) {
-  const lkey = keyStr.indexOf(input.charAt(input.length - 1));
+  const lkey = keyStr.indexOf(input.at(-1));
   if (lkey === 64) {
-    return input.slice(0, input.length - 1);
+    return input.slice(0, -1);
   }
   return input;
 }

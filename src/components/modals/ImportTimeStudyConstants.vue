@@ -53,7 +53,7 @@ export default {
     // beginning and end are both potentially useful to see
     shortenString(str) {
       if (str.length < 55) return str;
-      return `${str.slice(0, 12)}...${str.slice(str.length - 40, str.length)}`;
+      return `${str.slice(0, 12)}...${str.slice(-40)}`;
     },
   },
 };

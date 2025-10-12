@@ -60,7 +60,7 @@ export class NormalTimeStudyState extends TimeStudyState {
           && currTree.currDimPathCount < currTree.allowedDimPathCount;
       }
       default: {
-        throw Error(`Unrecognized TS requirement type: ${this.reqType}`);
+        throw new Error(`Unrecognized TS requirement type: ${this.reqType}`);
       }
     }
   }

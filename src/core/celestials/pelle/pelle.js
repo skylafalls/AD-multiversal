@@ -111,9 +111,9 @@ export const Pelle = {
     // Force unhide MOST subtabs, although some of the tabs get ignored since they don't contain any
     // meaningful interactable gameplay elements in Doomed
     const tabsToIgnore = new Set(["statistics", "achievements", "reality", "celestials"]);
-    const ignoredIDs = GameDatabase.tabs.filter(t => tabsToIgnore.has(t.key)).map(t => t.id);
+    const ignoredIDs = new Set(GameDatabase.tabs.filter(t => tabsToIgnore.has(t.key)).map(t => t.id));
     for (let tabIndex = 0; tabIndex < GameDatabase.tabs.length; tabIndex++) {
-      player.options.hiddenSubtabBits[tabIndex] &= ignoredIDs.includes(tabIndex) ? -1 : 0;
+      player.options.hiddenSubtabBits[tabIndex] &= ignoredIDs.has(tabIndex) ? -1 : 0;
     }
     Pelle.quotes.initial.show();
     GameStorage.save(true);

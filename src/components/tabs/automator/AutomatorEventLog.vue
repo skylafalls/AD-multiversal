@@ -99,7 +99,7 @@ export default {
           return `, ${Time.toDateTimeString(entry.timestamp)}`;
         }
         default: {
-          throw Error("Unrecognized timestamp mode in Automator event log");
+          throw new Error("Unrecognized timestamp mode in Automator event log");
         }
       }
     },

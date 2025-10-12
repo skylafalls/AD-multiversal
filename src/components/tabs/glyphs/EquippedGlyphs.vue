@@ -128,9 +128,15 @@ export default {
     },
     dragEvents(idx) {
       return {
-        dragover: $event => this.dragover($event, idx),
-        dragleave: () => this.dragleave(idx),
-        drop: $event => this.drop($event, idx),
+        dragover: ($event) => {
+          this.dragover($event, idx);
+        },
+        dragleave: () => {
+          this.dragleave(idx);
+        },
+        drop: ($event) => {
+          this.drop($event, idx);
+        },
       };
     },
     showEquippedModal() {

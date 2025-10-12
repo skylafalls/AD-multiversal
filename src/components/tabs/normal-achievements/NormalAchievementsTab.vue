@@ -50,7 +50,7 @@ export default {
       if (this.achMultToTP) boostList.push(`Tachyon Particles: ${achTPEffect}`);
       if (this.achMultToBH) boostList.push(`Black Hole Power: ${achievementPower}`);
       if (this.achMultToTT) boostList.push(`Time Theorem production: ${achievementPower}`);
-      return `${boostList.join("<br>")}`;
+      return boostList.join("<br>");
     },
   },
   watch: {

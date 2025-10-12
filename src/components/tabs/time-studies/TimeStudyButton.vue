@@ -65,15 +65,24 @@ export default {
       switch (this.study.type) {
         case TIME_STUDY_TYPE.NORMAL: {
           switch (this.setup.path) {
-            case TIME_STUDY_PATH.ANTIMATTER_DIM: return "o-time-study-antimatter-dim";
-            case TIME_STUDY_PATH.INFINITY_DIM: return "o-time-study-infinity-dim";
-            case TIME_STUDY_PATH.TIME_DIM: return "o-time-study-time-dim";
-            case TIME_STUDY_PATH.ACTIVE: return "o-time-study-active";
-            case TIME_STUDY_PATH.PASSIVE: return "o-time-study-passive";
-            case TIME_STUDY_PATH.IDLE: return "o-time-study-idle";
-            case TIME_STUDY_PATH.LIGHT: return "o-time-study-light";
-            case TIME_STUDY_PATH.DARK: return "o-time-study-dark";
-            default: return "o-time-study-normal";
+            case TIME_STUDY_PATH.ANTIMATTER_DIM: { return "o-time-study-antimatter-dim";
+            }
+            case TIME_STUDY_PATH.INFINITY_DIM: { return "o-time-study-infinity-dim";
+            }
+            case TIME_STUDY_PATH.TIME_DIM: { return "o-time-study-time-dim";
+            }
+            case TIME_STUDY_PATH.ACTIVE: { return "o-time-study-active";
+            }
+            case TIME_STUDY_PATH.PASSIVE: { return "o-time-study-passive";
+            }
+            case TIME_STUDY_PATH.IDLE: { return "o-time-study-idle";
+            }
+            case TIME_STUDY_PATH.LIGHT: { return "o-time-study-light";
+            }
+            case TIME_STUDY_PATH.DARK: { return "o-time-study-dark";
+            }
+            default: { return "o-time-study-normal";
+            }
           }
         }
         case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: {

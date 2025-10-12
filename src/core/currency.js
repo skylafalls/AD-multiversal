@@ -228,23 +228,23 @@ export class Currency {
   }
 
   eq(amount) {
-    return this.operations.eq(this.value, amount);
+    this.operations.eq(this.value, amount);
   }
 
   gt(amount) {
-    return this.operations.gt(this.value, amount);
+    this.operations.gt(this.value, amount);
   }
 
   gte(amount) {
-    return this.operations.gte(this.value, amount);
+    this.operations.gte(this.value, amount);
   }
 
   lt(amount) {
-    return this.operations.lt(this.value, amount);
+    this.operations.lt(this.value, amount);
   }
 
   lte(amount) {
-    return this.operations.lte(this.value, amount);
+    this.operations.lte(this.value, amount);
   }
 
   purchase(cost) {

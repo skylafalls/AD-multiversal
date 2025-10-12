@@ -250,15 +250,15 @@ export class DarkMatterDimensionState extends DimensionState {
   }
 
   buyInterval() {
-    return this.buyManyInterval(DC.D1);
+    this.buyManyInterval(DC.D1);
   }
 
   buyPowerDM() {
-    return this.buyManyPowerDM(DC.D1);
+    this.buyManyPowerDM(DC.D1);
   }
 
   buyPowerDE() {
-    return this.buyManyPowerDE(DC.D1);
+    this.buyManyPowerDE(DC.D1);
   }
 
   ascend() {

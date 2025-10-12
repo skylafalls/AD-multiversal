@@ -123,7 +123,7 @@ export default {
           return "fas fa-flask";
         }
         default: {
-          throw Error("Unrecognized glyph filter mode");
+          throw new Error("Unrecognized glyph filter mode");
         }
       }
     },
@@ -170,7 +170,7 @@ export default {
           return this.alchemyUnlocked;
         }
         default: {
-          throw Error("Unrecognized glyph filter mode");
+          throw new Error("Unrecognized glyph filter mode");
         }
       }
     },

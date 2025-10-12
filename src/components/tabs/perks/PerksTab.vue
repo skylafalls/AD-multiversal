@@ -21,7 +21,9 @@ export default {
     },
   },
   created() {
-    EventHub.ui.on(GAME_EVENT.PERK_BOUGHT, () => PerkNetwork.updatePerkColor());
+    EventHub.ui.on(GAME_EVENT.PERK_BOUGHT, () => {
+      PerkNetwork.updatePerkColor();
+    });
   },
   mounted() {
     PerkNetwork.initialStabilization = false;

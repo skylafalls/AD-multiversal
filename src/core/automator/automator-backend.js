@@ -261,12 +261,12 @@ export const AutomatorData = {
     const pastGap = this.charsSinceLastUndoState <= this.MIN_CHARS_BETWEEN_UNDOS;
     if (pastGap && this.undoBuffer.length > 0) return;
 
-    if (this.undoBuffer[this.undoBuffer.length - 1] !== data) this.undoBuffer.push(data);
+    if (this.undoBuffer.at(-1) !== data) this.undoBuffer.push(data);
     if (this.undoBuffer.length > this.MAX_UNDO_ENTRIES) this.undoBuffer.shift();
     this.charsSinceLastUndoState = 0;
   },
   pushRedoData(data) {
-    if (this.redoBuffer[this.redoBuffer.length - 1] !== data) this.redoBuffer.push(data);
+    if (this.redoBuffer.at(-1) !== data) this.redoBuffer.push(data);
   },
   // These following two methods pop the top entry off of the undo/redo stack and then push it
   // onto the *other* stack before modifying all the relevant UI elements and player props. These
@@ -862,7 +862,7 @@ export const AutomatorBackend = {
   },
 
   findScript(id) {
-    return this._scripts.find(e => e.id === id);
+    this._scripts.find(e => e.id === id);
   },
 
   _createDefaultScript() {

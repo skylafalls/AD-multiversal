@@ -29,7 +29,9 @@ export const shortcuts = [
     name: "Toggle Autobuyers",
     keys: ["a"],
     type: "bindHotkey",
-    function: () => keyboardToggleAutobuyers(),
+    function: () => {
+      keyboardToggleAutobuyers();
+    },
     visible: true,
   }, {
     name: "Buy one Tickspeed",
@@ -134,13 +136,17 @@ export const shortcuts = [
     name: "Start/Pause Automator",
     keys: ["u"],
     type: "bindHotkey",
-    function: () => keyboardAutomatorToggle(),
+    function: () => {
+      keyboardAutomatorToggle();
+    },
     visible: () => Player.automatorUnlocked,
   }, {
     name: "Restart Automator",
     keys: ["shift", "u"],
     type: "bindHotkey",
-    function: () => keyboardAutomatorRestart(),
+    function: () => {
+      keyboardAutomatorRestart();
+    },
     visible: () => Player.automatorUnlocked,
   }, {
     name: "Undo Edit (Automator)",
@@ -164,13 +170,17 @@ export const shortcuts = [
     name: "Toggle Continuum",
     keys: ["alt", "a"],
     type: "bindHotkey",
-    function: () => keyboardToggleContinuum(),
+    function: () => {
+      keyboardToggleContinuum();
+    },
     visible: () => Laitela.continuumUnlocked,
   }, {
     name: "Armageddon",
     keys: ["z"],
     type: "bindRepeatableHotkey",
-    function: () => armageddonRequest(),
+    function: () => {
+      armageddonRequest();
+    },
     visible: () => Pelle.isDoomed,
   }, {
     name: "Toggle Glyph unequip (Pelle)",
@@ -301,7 +311,9 @@ export const shortcuts = [
     name: "Adjust Autobuyers",
     keys: ["mod", "alt", "a"],
     type: "bind",
-    function: () => keyboardEditAutobuyers(),
+    function: () => {
+      keyboardEditAutobuyers();
+    },
     visible: () => Autobuyers.hasAutobuyersForEditModal,
   },
   {
@@ -316,28 +328,36 @@ export const shortcuts = [
     name: "Zoom In",
     keys: ["ctrl", "="],
     type: "bind",
-    function: () => ElectronRuntime.increaseZoom(),
+    function: () => {
+      ElectronRuntime.increaseZoom();
+    },
     visible: () => false,
   },
   {
     name: "Zoom In",
     keys: ["ctrl", "+"],
     type: "bind",
-    function: () => ElectronRuntime.increaseZoom(),
+    function: () => {
+      ElectronRuntime.increaseZoom();
+    },
     visible: () => false,
   },
   {
     name: "Zoom Out",
     keys: ["ctrl", "-"],
     type: "bind",
-    function: () => ElectronRuntime.decreaseZoom(),
+    function: () => {
+      ElectronRuntime.decreaseZoom();
+    },
     visible: () => false,
   },
   {
     name: "Reset Zoom",
     keys: ["ctrl", "0"],
     type: "bind",
-    function: () => ElectronRuntime.resetZoom(),
+    function: () => {
+      ElectronRuntime.resetZoom();
+    },
     visible: () => false,
   },
 ];

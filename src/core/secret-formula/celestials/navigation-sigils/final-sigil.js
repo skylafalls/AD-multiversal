@@ -60,7 +60,7 @@ function sigilShape(type, att, fill, colorOverride) {
       break;
     }
     default: {
-      throw Error("Unrecognized shape in sigil specification");
+      throw new Error("Unrecognized shape in sigil specification");
     }
   }
 

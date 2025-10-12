@@ -57,7 +57,7 @@ class Validator extends BaseVisitor {
         Validator.getPositionRange(parseError.token));
       // In some cases, at the end of the script we don't get any useful tokens out of the parse error
       if (parseError.token.tokenType.name === "EOF" && parseError.previousToken.tokenType.name === "EOF") {
-        err = Validator.combinePositionRanges(err, Validator.getPositionRange(tokens[tokens.length - 1]));
+        err = Validator.combinePositionRanges(err, Validator.getPositionRange(tokens.at(-1)));
       }
       // Deal with literal EOL in error message:
       err.info = parseError.message.replace(/'\n\s*'/ui, "End of line");
@@ -215,7 +215,7 @@ class Validator extends BaseVisitor {
         break;
       }
       case AUTOMATOR_VAR_TYPES.DURATION: {
-        varInfo.value = parseInt(1000 * value, 10);
+        varInfo.value = Number.parseInt(1000 * value, 10);
         break;
       }
       default: {
@@ -243,7 +243,7 @@ class Validator extends BaseVisitor {
         return TimeStudyTree.isValidImportString(value);
       }
       case AUTOMATOR_VAR_TYPES.DURATION: {
-        return !Number.isNaN(parseInt(1000 * value, 10));
+        return !Number.isNaN(Number.parseInt(1000 * value, 10));
       }
       default: {
         throw new Error("Unrecognized variable format in automator constant lookup");

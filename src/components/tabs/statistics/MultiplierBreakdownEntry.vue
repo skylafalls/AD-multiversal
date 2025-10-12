@@ -11,7 +11,7 @@ const nerfBlacklist = new Set(["IP_base", "EP_base", "TP_base"]);
 function padPercents(percents) {
   // Add some padding to percents to prevent text flicker
   // Max length is for "-100.0%"
-  return percents.padStart(7, "\xa0");
+  return percents.padStart(7, "\u00A0");
 }
 
 export default {

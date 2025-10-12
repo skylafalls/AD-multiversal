@@ -1,11 +1,13 @@
 // @ts-check
+import { defineConfig } from "@eslint/config-helpers";
+
 import oxlint from "eslint-plugin-oxlint";
 import stylistic from "@stylistic/eslint-plugin";
 import tseslint from "typescript-eslint";
 import vue from "eslint-plugin-vue";
 
-const config = tseslint.config(
-  tseslint.configs.strict,
+const config = defineConfig(
+  tseslint.configs.strictTypeChecked,
   ...vue.configs["flat/vue2-recommended"],
   stylistic.configs.recommended,
   {
@@ -22,7 +24,7 @@ const config = tseslint.config(
       parserOptions: {
         parser: tseslint.parser,
         projectService: true,
-        tsconfigBaseDir: import.meta.dirname,
+        tsconfig: "./tsconfig.json",
         extraFileExtensions: [".vue"],
       },
     },

@@ -7,7 +7,9 @@ class SecretAchievementState extends GameMechanicState {
     this._column = this.id % 10;
     this._bitmask = 1 << (this.column - 1);
     this._inverseBitmask = ~this._bitmask;
-    this.registerEvents(config.checkEvent, args => this.tryUnlock(args));
+    this.registerEvents(config.checkEvent, (args) => {
+      this.tryUnlock(args);
+    });
   }
 
   get name() {

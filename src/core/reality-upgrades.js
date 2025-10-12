@@ -3,7 +3,9 @@ import { BitPurchasableMechanicState, RebuyableMechanicState } from "./game-mech
 class RealityUpgradeState extends BitPurchasableMechanicState {
   constructor(config) {
     super(config);
-    this.registerEvents(config.checkEvent, () => this.tryUnlock());
+    this.registerEvents(config.checkEvent, () => {
+      this.tryUnlock();
+    });
   }
 
   get automatorPoints() {

@@ -11,7 +11,7 @@ export default {
     BlackHoleUpgradeRow,
     BlackHoleStateRow,
     BlackHoleChargingSliders,
-    BlackHoleUnlockButton
+    BlackHoleUnlockButton,
   },
   data() {
     return {

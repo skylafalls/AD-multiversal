@@ -63,6 +63,6 @@ export default {
     if (param <= 0) return first;
     if (param >= 1) return second;
     return first.slice(0, first.length * (1 - param))
-      + second.slice(second.length * (1 - param), second.length);
+      + second.slice(second.length * (1 - param));
   },
 };

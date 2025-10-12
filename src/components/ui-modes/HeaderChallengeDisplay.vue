@@ -129,7 +129,7 @@ export default {
       if (Player.isInAnyChallenge) {
         // Regex replacement is used to remove the "(X/Y)" which appears after ECs. The ternary statement is there
         // because this path gets called for NCs, ICs, and ECs
-        const toExit = this.activeChallengeNames[this.activeChallengeNames.length - 1].replace(/\W+\(.*\)/u, "");
+        const toExit = this.activeChallengeNames.at(-1).replace(/\W+\(.*\)/u, "");
         names = { chall: toExit, normal: isEC ? "Eternity" : "Infinity" };
         clickFn = () => {
           const oldChall = Player.anyChallenge;

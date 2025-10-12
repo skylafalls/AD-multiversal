@@ -147,7 +147,7 @@ Array.prototype.first = function (predicate) {
  */
 Array.prototype.last = function (predicate) {
   if (predicate === undefined) {
-    return this.length > 0 ? this[this.length - 1] : undefined;
+    return this.length > 0 ? this.at(-1) : undefined;
   }
   if (typeof predicate !== "function")
     throw new Error("Predicate must be a function");

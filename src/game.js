@@ -876,7 +876,9 @@ export function getTTPerSecond() {
 function recursiveTimeOut(fn, iterations, endFn) {
   fn(iterations);
   if (iterations === 0) endFn();
-  else setTimeout(() => recursiveTimeOut(fn, iterations - 1, endFn), 0);
+  else setTimeout(() => {
+    recursiveTimeOut(fn, iterations - 1, endFn);
+  }, 0);
 }
 
 function afterSimulation(seconds, playerBefore) {
