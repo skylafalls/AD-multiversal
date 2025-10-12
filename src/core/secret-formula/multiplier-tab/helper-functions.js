@@ -126,10 +126,10 @@ export const MultiplierTabHelper = {
         return dimStr === "ID1";
       }
       case 34: {
-        return dimStr.substr(0, 2) === "AD" && Number(dimStr.charAt(2)) !== 8;
+        return dimStr.slice(0, 2) === "AD" && Number(dimStr.charAt(2)) !== 8;
       }
       case 64: {
-        return dimStr.substr(0, 2) === "AD" && Number(dimStr.charAt(2)) <= 4;
+        return dimStr.slice(0, 2) === "AD" && Number(dimStr.charAt(2)) <= 4;
       }
       default: {
         return true;
@@ -144,7 +144,7 @@ export const MultiplierTabHelper = {
         return dimStr === "TD1";
       }
       case 71: {
-        return dimStr.substr(0, 2) === "AD" && Number(dimStr.charAt(2)) !== 8;
+        return dimStr.slice(0, 2) === "AD" && Number(dimStr.charAt(2)) !== 8;
       }
       case 72: {
         return dimStr === "ID4";
@@ -172,14 +172,14 @@ export const MultiplierTabHelper = {
     switch (ic) {
       case 1:
       case 6: {
-        return dimStr.substr(0, 2) === "ID";
+        return dimStr.slice(0, 2) === "ID";
       }
       case 3:
       case 4: {
-        return dimStr.substr(0, 2) === "AD";
+        return dimStr.slice(0, 2) === "AD";
       }
       case 8: {
-        return dimStr.substr(0, 2) === "AD" && Number(dimStr.charAt(2)) > 1 && Number(dimStr.charAt(2)) < 8;
+        return dimStr.slice(0, 2) === "AD" && Number(dimStr.charAt(2)) > 1 && Number(dimStr.charAt(2)) < 8;
       }
       default: {
         return false;
@@ -192,14 +192,14 @@ export const MultiplierTabHelper = {
     switch (ec) {
       case 1:
       case 10: {
-        return dimStr.substr(0, 2) === "TD";
+        return dimStr.slice(0, 2) === "TD";
       }
       case 2: {
         return dimStr === "ID1";
       }
       case 4:
       case 9: {
-        return dimStr.substr(0, 2) === "ID";
+        return dimStr.slice(0, 2) === "ID";
       }
       case 7: {
         return dimStr === "ID8";
@@ -229,7 +229,7 @@ export const MultiplierTabHelper = {
   },
 
   pluralizeDimensions(dims) {
-    return dims === 1 ? "Dimension\xA0" : "Dimensions";
+    return dims === 1 ? 'Dimension\u00A0' : "Dimensions";
   },
 
   // All of the following NC12-related functions are to make the parsing within the GameDB entry easier in terms of

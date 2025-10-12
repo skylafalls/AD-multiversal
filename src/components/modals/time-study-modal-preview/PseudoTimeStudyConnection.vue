@@ -43,7 +43,7 @@ export default {
           }
           case TIME_STUDY_PATH.IDLE: { return "o-time-study-connection--idle";
           }
-          default: { return undefined;
+          default: { return;
           }
         }
       }

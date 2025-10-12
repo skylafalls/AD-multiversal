@@ -678,7 +678,7 @@ window.logFactorial = (function () {
   const LOGS = Array.range(1, 11).map(Math.log);
   const TABLE = [0];
   for (const x of LOGS) {
-    TABLE.push(TABLE[TABLE.length - 1] + x);
+    TABLE.push(TABLE.at(-1) + x);
   }
   return (x) => {
     if (typeof x !== "number" || x < 0) return Number.NaN;

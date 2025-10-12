@@ -117,7 +117,7 @@ export default {
       const insetPath = this.getOffsetPath(-w / 2, tStart, tEnd).transformedBy(tform);
       const outsetPath = this.getOffsetPath(w / 2, tEnd, tStart).transformedBy(tform);
       const endVector = this.incompleteStartShape.direction.transformedBy(tform.withoutTranslation);
-      const inEnd = insetPath.path[insetPath.path.length - 1];
+      const inEnd = insetPath.path.at(-1);
       const outStart = outsetPath.path[0];
       const capCP0 = inEnd.position(1).plus(endVector.times(w / 2));
       const capCP1 = outStart.position(0).plus(endVector.times(w / 2));

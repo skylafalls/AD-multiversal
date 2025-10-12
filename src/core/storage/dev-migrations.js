@@ -1203,7 +1203,7 @@ export const devMigrations = {
       }
     },
     (player) => {
-      const triadRegex = new RegExp("T(\\d)", "gu");
+      const triadRegex = new RegExp(String.raw`T(\d)`, "gu");
       player.timestudy.presets.forEach(p => p.studies = p.studies.replaceAll(triadRegex, "30$1"));
       // This may also potentially change variable or preset names in scripts, breaking them, but the likelihood of
       // this being a widespread issue is low enough that this is probably a better option than a really obtuse regex

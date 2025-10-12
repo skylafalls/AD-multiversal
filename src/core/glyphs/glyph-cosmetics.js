@@ -270,10 +270,10 @@ export const GlyphAppearanceHandler = {
   clearInvalidCosmetics() {
     const allGlyphs = player.reality.glyphs.active.concat(player.reality.glyphs.inventory);
     const allSymbols = new Set(GlyphAppearanceHandler.availableSymbols.flat());
-    const allColors = GlyphAppearanceHandler.availableSymbols.flat();
+    const allColors = new Set(GlyphAppearanceHandler.availableSymbols.flat());
     for (const glyph of allGlyphs) {
       if (!allSymbols.has(glyph.symbol)) glyph.symbol = undefined;
-      if (!allColors.includes(glyph.color)) glyph.color = undefined;
+      if (!allColors.has(glyph.color)) glyph.color = undefined;
       if (!GlyphAppearanceHandler.availableTypes.includes(glyph.cosmetic)) glyph.cosmetic = undefined;
     }
     const cosmetics = player.reality.glyphs.cosmetics;
@@ -283,7 +283,7 @@ export const GlyphAppearanceHandler = {
     }
     for (const key of Object.keys(cosmetics.colorMap)) {
       const selectedColor = cosmetics.symbolMap[key];
-      if (!allColors.includes(selectedColor)) cosmetics.colorMap[key] = undefined;
+      if (!allColors.has(selectedColor)) cosmetics.colorMap[key] = undefined;
     }
   },
 };

@@ -72,7 +72,7 @@ function findLastPrestigeRecord(layer) {
       return `${format(player.records.recentRealities[0][1], 2)} RM`;
     }
     default: {
-      throw Error(`Unrecognized prestige ${layer} in Automator event log`);
+      throw new Error(`Unrecognized prestige ${layer} in Automator event log`);
     }
   }
 }
@@ -898,7 +898,7 @@ export const AutomatorCommands = [
           break;
         }
         default: {
-          throw Error("Unrecognized prestige layer in until loop");
+          throw new Error("Unrecognized prestige layer in until loop");
         }
       }
       return {

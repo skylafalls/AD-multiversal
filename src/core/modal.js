@@ -110,7 +110,7 @@ export class Modal {
   show(modalConfig) {
     if (!GameUI.initialized) return;
     this._uniqueID = nextModalID++;
-    this._props = { ...modalConfig || {} };
+    this._props = { ...modalConfig };
     if (this._closeEvent) this.applyCloseListeners(this._closeEvent);
     if (modalConfig?.closeEvent) this.applyCloseListeners(modalConfig.closeEvent);
 

@@ -266,6 +266,6 @@ window.makeEnumeration = function makeEnumeration(items) {
   if (items.length === 1) return items[0];
   if (items.length === 2) return `${items[0]} and ${items[1]}`;
   const commaSeparated = items.slice(0, -1).join(", ");
-  const last = items[items.length - 1];
+  const last = items.at(-1);
   return `${commaSeparated}, and ${last}`;
 };

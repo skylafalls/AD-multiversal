@@ -1041,7 +1041,7 @@ export const Player = {
         break;
       }
       default: {
-        throw Error("Unrecognized prestige layer for requirement reset");
+        throw new Error("Unrecognized prestige layer for requirement reset");
       }
     }
   },

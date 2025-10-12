@@ -70,7 +70,7 @@ export default {
           return Math.min(12, Math.floor(this.level / 2)) !== Math.min(12, Math.floor((this.level + 1) / 2));
         }
         case "Effarig": {
-          return AlchemyResources.all.filter(res => res.unlockedAt === this.level + 1).length > 0;
+          return AlchemyResources.all.some(res => res.unlockedAt === this.level + 1).length > 0;
         }
         case "Enslaved": {
           return true;

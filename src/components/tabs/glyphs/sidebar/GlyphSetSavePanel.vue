@@ -54,7 +54,7 @@ export default {
       this.level = player.options.ignoreGlyphLevel;
     },
     refreshGlyphSets() {
-      this.glyphSets = structuredClone(player.reality.glyphs.sets.map(g => cloneDeep(Glyphs.copyForRecords(g.glyphs))));
+      this.glyphSets = structuredClone(player.reality.glyphs.sets.map(g => structuredClone(Glyphs.copyForRecords(g.glyphs))));
     },
     setName(id) {
       const name = this.names[id] === "" ? "" : `: ${this.names[id]}`;
@@ -147,7 +147,7 @@ export default {
 
         const filteredOptions = entry.options.filter(g => !toLoad.includes(g));
         if (filteredOptions.length === 0) continue;
-        const selectedGlyph = filteredOptions[filteredOptions.length - 1];
+        const selectedGlyph = filteredOptions.at(-1);
         toLoad.push(selectedGlyph);
         slotsLeft--;
       }

@@ -125,7 +125,7 @@ export class TimeStudyTree {
       .replaceAll(" ", "")
       // Allows 11,,21 to be parsed as 11,21 and 11,|1 to be parsed as 11|1
       .replaceAll(/,{2,}/gu, ",")
-      .replaceAll(/,\|/gu, "|");
+      .replaceAll(",\\|", "|");
   }
 
   static formatStudyList(input) {
@@ -139,7 +139,7 @@ export class TimeStudyTree {
     const studyDB = new Set(GameDatabase.eternity.timeStudies.normal.map(s => s.id));
     const output = [];
     const studiesString = TimeStudyTree.truncateInput(input).split("|")[0];
-    if (studiesString.length) {
+    if (studiesString.length > 0) {
       const studyCluster = studiesString.split(",");
       for (const studyRange of studyCluster) {
         const studyRangeSplit = studyRange.split("-");
@@ -237,7 +237,7 @@ export class TimeStudyTree {
         break;
       }
       default: {
-        throw Error(`Unrecognized TS requirement type: ${this.reqType}`);
+        throw new Error(`Unrecognized TS requirement type: ${this.reqType}`);
       }
     }
     if (study instanceof ECTimeStudyState) {
