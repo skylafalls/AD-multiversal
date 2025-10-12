@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     /* Important settings */
-    "composite": true,
+    "noEmit": true,
     "allowJs": true,
     "moduleDetection": "force",
     "verbatimModuleSyntax": true,

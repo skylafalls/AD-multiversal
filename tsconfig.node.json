@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     /* Important settings */
-    "composite": true,
+    "noEmit": true,
     "allowJs": true,
     "moduleDetection": "force",
     "verbatimModuleSyntax": true,
@@ -15,7 +15,6 @@
     "moduleResolution": "Bundler",
     "isolatedModules": true,
     "resolveJsonModule": true,
-    "emitDeclarationOnly": true,
 
     /* Linting settings */
     "strict": true,
