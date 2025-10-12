@@ -6,6 +6,8 @@ this layer is reached by trying to "save" the game during the END sequence, a po
 
 you gain multiversal remains every reset which you can use to buy upgrades (also requires god particles)
 
+oh you also have multiversal milestones which is based on total remains
+
 celestials here are:
 - **thienum**: celestial of realms, has alternative universes (AUs) which has very different game mechanics
 - **knull**: celestial of darkness, hidden and mysterious, you have to search throughout the game to find his pieces
