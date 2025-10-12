@@ -862,7 +862,7 @@ export const AutomatorBackend = {
   },
 
   findScript(id) {
-    this._scripts.find(e => e.id === id);
+    return this._scripts.find(e => e.id === id);
   },
 
   _createDefaultScript() {
