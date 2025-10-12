@@ -16,6 +16,13 @@ const config = defineConfig(
       "@stylistic/semi": ["error", "always"],
       "@stylistic/brace-style": ["error", "1tbs"],
       "@typescript-eslint/no-explicit-any": "off",
+      // Disbable @typescript/no-unsafe-* rules for now until the AD codebase
+      // is fully type safe (currently it is very far from that)
+      "@typescript-eslint/no-unsafe-argument": "off",
+      "@typescript-eslint/no-unsafe-assignment": "off",
+      "@typescript-eslint/no-unsafe-call": "off",
+      "@typescript-eslint/no-unsafe-member-access": "off",
+      "@typescript-eslint/no-unsafe-return": "off",
     },
   },
   {
