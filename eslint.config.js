@@ -7,7 +7,7 @@ import tseslint from "typescript-eslint";
 import vue from "eslint-plugin-vue";
 
 const config = defineConfig(
-  tseslint.configs.strict,
+  tseslint.configs.strictTypeChecked,
   ...vue.configs["flat/vue2-recommended"],
   stylistic.configs.recommended,
   {
@@ -24,7 +24,7 @@ const config = defineConfig(
       parserOptions: {
         parser: tseslint.parser,
         projectService: true,
-        tsconfigBaseDir: import.meta.dirname,
+        tsconfig: "./tsconfig.json",
         extraFileExtensions: [".vue"],
       },
     },
