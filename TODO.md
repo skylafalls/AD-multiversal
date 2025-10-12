@@ -27,6 +27,7 @@ at the end of the multiversal section of spatial studies, you will be able to un
 
 note: i have no idea if you unlock meta dimensions or not, it'll probably be late-atomics you get something similar to meta dimensions's buff
 
+### quarks
 on atomic resets you gain various different quark types which are:
 - up, down, strange, charm, bottom, top
 
@@ -36,6 +37,15 @@ quarks also has an associated color (red, green, blue) which the product of the 
 - blue => eternity
 
 basically, the color determines which layer the quark boosts with its specific type determining the well, specific type.
+
+### gluons
+gluons are gained by tangling a certain pair of quark colors (exact formula unknown)
+
+these do not work like [NG+3](https://raw.githack.com/aarextiaokhiao/NG-plus-3/v2.3.1-Ghost-R/index.html) gluons, instead they work more like [NG+3R](https://aarextiaokhiao.github.io/IvarK.github.io/) gluons which means instead of purchasing upgrades, you can unlock boosts by spending some currency (unknown currency currently).
+
+each boost has a unique effect and an associated color, which means the boost only applies if you tangle a certain color pair (eg. only red boosts are activated by red-blue or green-red gluon pairs)
+
+unlike [NG+3R](https://aarextiaokhiao.github.io/IvarK.github.io/), you cannot "master" boosts, you can only unlock new ones (a maximum of 12 boosts), so you must be smart when pairing color gluons.
 
 ## Quantum (Layer 7)
 quantum physics stuff can be unlocked here by some other spatial study
