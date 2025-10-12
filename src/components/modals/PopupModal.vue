@@ -29,7 +29,9 @@ export default {
       // want to allow glyph customization to appear at the very end (and nothing else)
       this.showModal = GameEnd.endState <= END_STATE_MARKERS.INTERACTIVITY_DISABLED
         || this.modal.component.name === "CosmeticSetChoiceModal";
-      if (this.showModal !== oldShowModal) this.$nextTick(() => this.updatePositionStyles());
+      if (this.showModal !== oldShowModal) this.$nextTick(() => {
+        this.updatePositionStyles();
+      });
       this.updatePositionStyles();
     },
     updatePositionStyles() {

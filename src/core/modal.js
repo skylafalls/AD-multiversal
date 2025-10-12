@@ -99,12 +99,16 @@ export class Modal {
     let shouldClose = false;
     for (const prestige of prestigeOrder) {
       if (prestige === closeEvent) shouldClose = true;
-      if (shouldClose) EventHub.ui.on(prestige, () => this.removeFromQueue(), this._component);
+      if (shouldClose) EventHub.ui.on(prestige, () => {
+        this.removeFromQueue();
+      }, this._component);
     }
 
     // In a few cases we want to trigger a close based on a non-prestige event, so if the specified event wasn't in
     // the prestige array above, we just add it on its own
-    if (!shouldClose) EventHub.ui.on(closeEvent, () => this.removeFromQueue(), this._component);
+    if (!shouldClose) EventHub.ui.on(closeEvent, () => {
+      this.removeFromQueue();
+    }, this._component);
   }
 
   show(modalConfig) {

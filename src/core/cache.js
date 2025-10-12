@@ -37,7 +37,9 @@ class Lazy {
    */
   invalidateOn(...events) {
     for (const event of events) {
-      EventHub.logic.on(event, () => this.invalidate());
+      EventHub.logic.on(event, () => {
+        this.invalidate();
+      });
     }
     return this;
   }

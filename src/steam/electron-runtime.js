@@ -13,7 +13,9 @@ export const ElectronRuntime = {
 
     zoomFactor = Number(localStorage.getItem("Zoom"));
     zoomFactor = Number.isFinite(zoomFactor) ? zoomFactor : 1;
-    window.addEventListener("resize", () => this.updateZoom());
+    window.addEventListener("resize", () => {
+      this.updateZoom();
+    });
   },
 
   get isActive() {

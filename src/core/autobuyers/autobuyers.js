@@ -152,11 +152,25 @@ export const Autobuyers = (function () {
   };
 }());
 
-EventHub.logic.on(GAME_EVENT.ETERNITY_RESET_AFTER, () => Autobuyers.reset());
-EventHub.logic.on(GAME_EVENT.REALITY_RESET_AFTER, () => Autobuyers.reset());
+EventHub.logic.on(GAME_EVENT.ETERNITY_RESET_AFTER, () => {
+  Autobuyers.reset();
+});
+EventHub.logic.on(GAME_EVENT.REALITY_RESET_AFTER, () => {
+  Autobuyers.reset();
+});
 
-EventHub.logic.on(GAME_EVENT.DIMBOOST_AFTER, () => Autobuyers.resetTick(PRESTIGE_EVENT.DIMENSION_BOOST));
-EventHub.logic.on(GAME_EVENT.GALAXY_RESET_AFTER, () => Autobuyers.resetTick(PRESTIGE_EVENT.ANTIMATTER_GALAXY));
-EventHub.logic.on(GAME_EVENT.BIG_CRUNCH_AFTER, () => Autobuyers.resetTick(PRESTIGE_EVENT.INFINITY));
-EventHub.logic.on(GAME_EVENT.ETERNITY_RESET_AFTER, () => Autobuyers.resetTick(PRESTIGE_EVENT.ETERNITY));
-EventHub.logic.on(GAME_EVENT.REALITY_RESET_AFTER, () => Autobuyers.resetTick(PRESTIGE_EVENT.REALITY));
+EventHub.logic.on(GAME_EVENT.DIMBOOST_AFTER, () => {
+  Autobuyers.resetTick(PRESTIGE_EVENT.DIMENSION_BOOST);
+});
+EventHub.logic.on(GAME_EVENT.GALAXY_RESET_AFTER, () => {
+  Autobuyers.resetTick(PRESTIGE_EVENT.ANTIMATTER_GALAXY);
+});
+EventHub.logic.on(GAME_EVENT.BIG_CRUNCH_AFTER, () => {
+  Autobuyers.resetTick(PRESTIGE_EVENT.INFINITY);
+});
+EventHub.logic.on(GAME_EVENT.ETERNITY_RESET_AFTER, () => {
+  Autobuyers.resetTick(PRESTIGE_EVENT.ETERNITY);
+});
+EventHub.logic.on(GAME_EVENT.REALITY_RESET_AFTER, () => {
+  Autobuyers.resetTick(PRESTIGE_EVENT.REALITY);
+});

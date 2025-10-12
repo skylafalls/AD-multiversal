@@ -38,7 +38,9 @@ class KeySpin {
     this.interval = setInterval(() => {
       clearInterval(this.interval);
       this.executeAction();
-      this.interval = setInterval(() => this.executeAction(), 40);
+      this.interval = setInterval(() => {
+        this.executeAction();
+      }, 40);
     }, 500);
   }
 

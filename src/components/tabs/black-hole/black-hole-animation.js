@@ -253,11 +253,15 @@ export const BlackHoleAnimation = (function () {
 
       // Particles (scaled to take the same range as the orbit)
       this.particles = Array.range(0, PARTICLE_COUNT).map(() => new Particle());
-      this.frameRequest = requestAnimationFrame(time => this.update(time));
+      this.frameRequest = requestAnimationFrame((time) => {
+        this.update(time);
+      });
     }
 
     update(time) {
-      this.frameRequest = requestAnimationFrame(t => this.update(t));
+      this.frameRequest = requestAnimationFrame((t) => {
+        this.update(t);
+      });
       if (time === undefined || this.lastFrame === undefined) {
         this.lastFrame = time;
         return;

@@ -125,7 +125,7 @@ export class TimeStudyTree {
       .replaceAll(" ", "")
       // Allows 11,,21 to be parsed as 11,21 and 11,|1 to be parsed as 11|1
       .replaceAll(/,{2,}/gu, ",")
-      .replaceAll(",\\|", "|");
+      .replaceAll(String.raw`,\|`, "|");
   }
 
   static formatStudyList(input) {

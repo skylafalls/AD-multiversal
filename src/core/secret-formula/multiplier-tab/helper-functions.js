@@ -229,7 +229,7 @@ export const MultiplierTabHelper = {
   },
 
   pluralizeDimensions(dims) {
-    return dims === 1 ? 'Dimension\u00A0' : "Dimensions";
+    return dims === 1 ? "Dimension\u00A0" : "Dimensions";
   },
 
   // All of the following NC12-related functions are to make the parsing within the GameDB entry easier in terms of

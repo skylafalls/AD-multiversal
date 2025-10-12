@@ -16,10 +16,12 @@ class AutomatorParser extends Parser {
 
     $.RULE("script", () => $.SUBRULE($.block));
 
-    $.RULE("block", () => $.MANY_SEP({
-      SEP: T.EOL,
-      DEF: () => $.OPTION(() => $.SUBRULE($.command)),
-    }));
+    $.RULE("block", () => {
+      $.MANY_SEP({
+        SEP: T.EOL,
+        DEF: () => $.OPTION(() => $.SUBRULE($.command)),
+      });
+    });
 
     // This is a bit ugly looking. Chevrotain uses Function.toString() to do crazy
     // optimizations. That clashes with our desire to build our list of commands dynamically.
@@ -49,8 +51,10 @@ class AutomatorParser extends Parser {
 
     $.RULE("command", commandOr($, EOF));
 
-    $.RULE("badCommand", () => $.AT_LEAST_ONE(() => $.SUBRULE($.badCommandToken)),
-      { resyncEnabled: false },
+    $.RULE("badCommand", () => {
+      $.AT_LEAST_ONE(() => $.SUBRULE($.badCommandToken));
+    },
+    { resyncEnabled: false },
     );
 
     $.RULE("badCommandToken", () => $.OR([

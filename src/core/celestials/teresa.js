@@ -175,4 +175,6 @@ EventHub.logic.on(GAME_EVENT.TAB_CHANGED, () => {
   if (Tab.celestials.teresa.isOpen) Teresa.quotes.initial.show();
 });
 
-EventHub.logic.on(GAME_EVENT.GAME_LOAD, () => Teresa.checkForUnlocks());
+EventHub.logic.on(GAME_EVENT.GAME_LOAD, () => {
+  Teresa.checkForUnlocks();
+});

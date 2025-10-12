@@ -15,9 +15,15 @@ function prestigeNotify(flag) {
   }
 }
 
-EventHub.logic.on(GAME_EVENT.BIG_CRUNCH_AFTER, () => prestigeNotify(T.Infinity.$prestigeLevel));
-EventHub.logic.on(GAME_EVENT.ETERNITY_RESET_AFTER, () => prestigeNotify(T.Eternity.$prestigeLevel));
-EventHub.logic.on(GAME_EVENT.REALITY_RESET_AFTER, () => prestigeNotify(T.Reality.$prestigeLevel));
+EventHub.logic.on(GAME_EVENT.BIG_CRUNCH_AFTER, () => {
+  prestigeNotify(T.Infinity.$prestigeLevel);
+});
+EventHub.logic.on(GAME_EVENT.ETERNITY_RESET_AFTER, () => {
+  prestigeNotify(T.Eternity.$prestigeLevel);
+});
+EventHub.logic.on(GAME_EVENT.REALITY_RESET_AFTER, () => {
+  prestigeNotify(T.Reality.$prestigeLevel);
+});
 
 // Used by while and until - in order to get the text corrext, we need to invert the boolean if it's an until
 
@@ -65,7 +71,7 @@ function findLastPrestigeRecord(layer) {
       addedECs = AutomatorData.lastECCompletionCount;
       gainedEP = `${format(player.records.recentEternities[0][1], 2)} EP`;
       return addedECs === 0
-        ? `${gainedEP}`
+        ? gainedEP
         : `${gainedEP}, ${addedECs} completions`;
     }
     case "REALITY": {
@@ -207,7 +213,7 @@ export const AutomatorCommands = [
 
       if (duration) input = duration;
       else if (xHighest) input = `${xHighest} x highest`;
-      else if (fixedAmount) input = `${fixedAmount}`;
+      else if (fixedAmount) input = fixedAmount;
       else input = (on ? "ON" : "OFF");
 
       return {

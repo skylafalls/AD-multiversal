@@ -34,7 +34,9 @@ class LongPress {
     if (!Object.hasOwn(handlers, "longPress")) {
       throw new Error("Need to specify a longPress handler");
     }
-    const begin = e => LongPress._pressBegin(timeout, handlers.longPress, handlers.cancel, handlers.repeat, e);
+    const begin = (e) => {
+      LongPress._pressBegin(timeout, handlers.longPress, handlers.cancel, handlers.repeat, e);
+    };
     obj.addEventListener("mousedown", begin);
     obj.addEventListener("touchstart", begin);
     obj.addEventListener("mouseout", LongPress._cancelCurrentPress);
@@ -135,9 +137,15 @@ export function useLongPress(vue) {
         }
       };
       LongPress.addTo(el, binding.value.delay, {
-        longPress: () => emit("longpress"),
-        cancel: () => emit("longpresscancel"),
-        click: () => emit("longpressclick"),
+        longPress: () => {
+          emit("longpress");
+        },
+        cancel: () => {
+          emit("longpresscancel");
+        },
+        click: () => {
+          emit("longpressclick");
+        },
       });
     },
   });
@@ -154,8 +162,12 @@ export function useRepeatingClick(vue) {
         }
       };
       LongPress.addTo(el, binding.value.delay, {
-        longPress: () => emit("repeatclick"),
-        click: () => emit("firstclick"),
+        longPress: () => {
+          emit("repeatclick");
+        },
+        click: () => {
+          emit("firstclick");
+        },
         repeat: 250,
       });
     },

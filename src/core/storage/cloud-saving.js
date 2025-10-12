@@ -101,7 +101,9 @@ export const Cloud = {
       if (!this.lastCloudHash) this.lastCloudHash = thisCloudHash;
       const localSave = GameStorage.saves[saveId];
       const saveComparison = this.compareSaves(cloudSave, localSave, thisCloudHash);
-      const overwriteAndSendCloudSave = () => this.save();
+      const overwriteAndSendCloudSave = () => {
+        this.save();
+      };
 
       // If the comparison fails, we assume the cloud data is corrupted and show the relevant modal
       if (!saveComparison) {

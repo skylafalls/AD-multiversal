@@ -4,7 +4,9 @@ import { DC } from "./constants";
 class ImaginaryUpgradeState extends BitPurchasableMechanicState {
   constructor(config) {
     super(config);
-    this.registerEvents(config.checkEvent, () => this.tryUnlock());
+    this.registerEvents(config.checkEvent, () => {
+      this.tryUnlock();
+    });
   }
 
   get name() {
