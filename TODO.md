@@ -38,6 +38,13 @@ quarks also has an associated color (red, green, blue) which the product of the 
 
 basically, the color determines which layer the quark boosts with its specific type determining the well, specific type.
 
+each color has a certain color charge, which is boosted by the major currency from the layer associated with the color. these are:
+- reality machines => green charge
+- replicanti => red charge
+- time shards => blue charge
+
+these charges makes the colored quark effects stronger, acting as a positive feedback loop.
+
 ### gluons
 gluons are gained by tangling a certain pair of quark colors (exact formula unknown)
 
@@ -46,6 +53,8 @@ these do not work like [NG+3](https://raw.githack.com/aarextiaokhiao/NG-plus-3/v
 each boost has a unique effect and an associated color, which means the boost only applies if you tangle a certain color pair (eg. only red boosts are activated by red-blue or green-red gluon pairs)
 
 unlike [NG+3R](https://aarextiaokhiao.github.io/IvarK.github.io/), you cannot "master" boosts, you can only unlock new ones (a maximum of 12 boosts), so you must be smart when pairing color gluons.
+
+gluon pairs also affects color charges. mainly, entangling a color pair will boost the charge gain for that pair while diminishing the charge's effect for the third color that wasn't tangled.
 
 ## Quantum (Layer 7)
 quantum physics stuff can be unlocked here by some other spatial study
