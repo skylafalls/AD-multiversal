@@ -25,6 +25,18 @@ some other stuff here are:
 ## Atomics (Layer 6)
 at the end of the multiversal section of spatial studies, you will be able to unlock the atomic layer by some spatial study
 
+note: i have no idea if you unlock meta dimensions or not, it'll probably be late-atomics you get something similar to meta dimensions's buff
+
+on atomic resets you gain various different quark types which are:
+- up, down, strange, charm, bottom, top
+
+quarks also has an associated color (red, green, blue) which the product of the all the quark types in the color boosts a certain layer:
+- red => infinity
+- green => reality
+- blue => eternity
+
+basically, the color determines which layer the quark boosts with its specific type determining the well, specific type.
+
 ## Quantum (Layer 7)
 quantum physics stuff can be unlocked here by some other spatial study
 
