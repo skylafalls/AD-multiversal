@@ -1,5 +1,5 @@
 import { DC } from "./constants";
-import { EternityChallenge } from "./eternity-challenge";
+import { EternityChallenge } from "./eternity/eternity-challenge";
 
 class DimBoostRequirement {
   constructor(tier, amount) {

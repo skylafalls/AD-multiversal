@@ -1,5 +1,5 @@
-import { DC } from "./constants";
-import { Currency } from "./currency";
+import { DC } from "../constants";
+import { Currency } from "../currency";
 
 /**
  * @abstract
