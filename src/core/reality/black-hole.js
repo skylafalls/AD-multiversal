@@ -1,6 +1,6 @@
-import { isDecimal } from "../utility/type-check";
+import { isDecimal } from "../../utility/type-check";
 
-import { DC } from "./constants";
+import { DC } from "../constants";
 
 class BlackHoleUpgradeState {
   constructor(config) {

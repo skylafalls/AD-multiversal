@@ -1,4 +1,4 @@
-import { SetPurchasableMechanicState } from "./game-mechanics";
+import { SetPurchasableMechanicState } from "../game-mechanics";
 
 class PerkState extends SetPurchasableMechanicState {
   constructor(config) {

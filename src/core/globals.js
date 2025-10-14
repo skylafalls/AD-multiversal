@@ -1,4 +1,4 @@
-export * from "./glyph-effects";
+export * from "./reality/glyph-effects.js";
 export * from "./player";
 
 export * from "./performance-stats";
@@ -69,12 +69,7 @@ export * from "./sacrifice";
 export * from "./infinity/index.js";
 export * from "./eternity/index.js";
 export * from "./normal-challenges";
-export * from "./reality";
-export * from "./reality-upgrades";
-export * from "./imaginary-upgrades";
-export * from "./perks";
-export * from "./black-hole";
-export * from "./machines";
+export * from "./reality/index.js";
 export * from "./devtools";
 export * from "./news-ticker";
 export * from "./shop";
