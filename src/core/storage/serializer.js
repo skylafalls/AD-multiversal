@@ -3,7 +3,7 @@ import { decodeBase64Url, encodeBase64Url } from "@std/encoding";
 
 export const GameSaveSerializer = {
   serialize(save) {
-    const json = JSON.stringify(save, this.jsonConverter);
+    const json = JSON.stringify(save, (k, v) => this.jsonConverter(k, v));
     return this.encodeText(json, "savefile");
   },
 
@@ -18,13 +18,9 @@ export const GameSaveSerializer = {
   },
   deserialize(data) {
     if (typeof data !== "string") return;
-    try {
-      const json = this.decodeText(data, "savefile");
+    const json = this.decodeText(data, "savefile");
 
-      return JSON.parse(json, (k, v) => ((v === Infinity) ? "Infinity" : v));
-    } catch {
-      return;
-    }
+    return JSON.parse(json, (k, v) => ((v === Infinity) ? "Infinity" : v));
   },
   // Define these now so we don't keep creating new ones, which vaguely seems bad.
   encoder: new TextEncoder(),
@@ -72,12 +68,6 @@ export const GameSaveSerializer = {
     { encode: x => GameSaveSerializer.encoder.encode(x), decode: x => GameSaveSerializer.decoder.decode(x) },
     // This step is  where the compression actually happens. The pako library works with unsigned 8-bit arrays.
     { encode: x => deflateSync(x), decode: x => inflateSync(x) },
-    // This step converts from unsigned 8-bit arrays to strings with codepoints less than 256.
-    // We need to do this outselves because GameSaveSerializer.decoder would give us unicode sometimes.
-    {
-      encode: x => [...x].map(i => String.fromCodePoint(i)).join(""),
-      decode: x => Uint8Array.from([...x].map(i => i.codePointAt(0))),
-    },
     // This step makes the characters in saves printable. At this point in the process, all characters
     // will already have codepoints less than 256 (from the previous step), so emoji in the original save
     // won't break this.
