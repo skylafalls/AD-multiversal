@@ -66,15 +66,11 @@ export * from "./time-studies";
 
 export * from "./dimboost";
 export * from "./sacrifice";
-export * from "./big-crunch";
-export * from "./infinity-upgrades";
-export * from "./break-infinity-upgrades";
+export * from "./infinity/index.js";
 export * from "./normal-challenges";
-export * from "./infinity-challenges";
 export * from "./eternity";
 export * from "./eternity-challenge";
 export * from "./reality";
-export * from "./replicanti";
 export * from "./time-theorems";
 export * from "./reality-upgrades";
 export * from "./imaginary-upgrades";

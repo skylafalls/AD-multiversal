@@ -1,4 +1,4 @@
-import { GameMechanicState } from "./game-mechanics";
+import { GameMechanicState } from "../game-mechanics";
 
 export function tryCompleteInfinityChallenges() {
   if (EternityMilestone.autoIC.isReached) {

@@ -1,5 +1,5 @@
 <script>
-import { Replicanti } from "../../../core/replicanti";
+import { Replicanti } from "@/core/infinity/replicanti";
 
 import wordShift from "@/core/word-shift";
 
