@@ -45,13 +45,6 @@ export * from "./achievements/normal-achievement";
 export * from "./achievements/secret-achievement";
 export * from "./achievements/achievement-timer";
 
-export * from "./glyphs/glyph-core";
-export * from "./glyphs/glyph-cosmetics";
-export * from "./glyphs/glyph-effects";
-export * from "./glyphs/glyph-generator";
-export * from "./glyphs/glyph-purge-handler";
-export * from "./glyphs/auto-glyph-processor";
-
 export * from "./time";
 
 export * from "./dimensions/antimatter-dimension.js";
@@ -65,6 +58,12 @@ export * from "./early-game/index.js";
 export * from "./infinity/index.js";
 export * from "./eternity/index.js";
 export * from "./reality/index.js";
+export * from "./glyphs/glyph-core";
+export * from "./glyphs/glyph-cosmetics";
+export * from "./glyphs/glyph-effects";
+export * from "./glyphs/glyph-generator";
+export * from "./glyphs/glyph-purge-handler";
+export * from "./glyphs/auto-glyph-processor";
 export * from "./devtools";
 export * from "./news-ticker";
 export * from "./shop";

@@ -1,5 +1,4 @@
-import { Pelle } from "../globals";
-
+import { Pelle } from "../celestials/pelle/pelle.js";
 import { GlyphCombiner } from "@/core/secret-formula";
 
 class GlyphEffectState {
