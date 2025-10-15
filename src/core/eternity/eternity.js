@@ -1,6 +1,6 @@
-import { GameMechanicState, SetPurchasableMechanicState } from "./game-mechanics";
-import { DC } from "./constants";
-import FullScreenAnimationHandler from "./full-screen-animation-handler";
+import { GameMechanicState, SetPurchasableMechanicState } from "../game-mechanics";
+import { DC } from "#utils/constants.js";
+import FullScreenAnimationHandler from "../full-screen-animation-handler";
 
 function giveEternityRewards(auto) {
   player.records.bestEternity.time = Decimal.min(player.records.thisEternity.time, player.records.bestEternity.time);

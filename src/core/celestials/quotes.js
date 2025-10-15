@@ -1,5 +1,5 @@
-import { BitUpgradeState } from "../game-mechanics";
-import wordShift from "../word-shift";
+import { BitUpgradeState } from "../game-mechanics/bit-upgrade-state.js";
+import wordShift from "#utils/word-shift.js";
 
 export const Quote = {
   addToQueue(quote) {

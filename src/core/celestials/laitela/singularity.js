@@ -1,8 +1,8 @@
-import { DC } from "../../constants";
+import { DC } from "#utils/constants.js";
 
 import { GameMechanicState } from "../../game-mechanics";
 
-import { deepmergeAll } from "@/utility/deepmerge";
+import { deepmergeAll } from "#utils/deepmerge";
 
 class SingularityMilestoneState extends GameMechanicState {
   constructor(config) {

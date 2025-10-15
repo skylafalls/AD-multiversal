@@ -1,4 +1,4 @@
-import { DC } from "../constants";
+import { DC } from "#utils/constants.js";
 
 import { credits } from "@/core/secret-formula/credits";
 
@@ -25,7 +25,7 @@ Welcome to the How to Play!
 This modal (pop-up window) contains in-depth explanations and additional details for everything you will encounter
 as you progress through the game. As you unlock new features and mechanics, you will also gain access to additional
 pages here. If you ever feel lost or confused about how something in the game works, you may find a helpful
-explanation within the related entry in here. 
+explanation within the related entry in here.
 <br>
 <br>
 For now, opening the How to Play will always start you on this page. After you get your first Dimension Boost,

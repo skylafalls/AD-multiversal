@@ -1,4 +1,4 @@
-import { BitPurchasableMechanicState, RebuyableMechanicState } from "./game-mechanics";
+import { BitPurchasableMechanicState, RebuyableMechanicState } from "../game-mechanics";
 
 class RealityUpgradeState extends BitPurchasableMechanicState {
   constructor(config) {

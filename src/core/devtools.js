@@ -3,9 +3,9 @@
 
 
 import { sha512_256 } from "js-sha512";
-import { Player } from "./player";
-import { DC } from "./constants";
-import FullScreenAnimationHandler from "./full-screen-animation-handler";
+import { Player } from "./player.js";
+import { DC } from "#utils/constants.js";
+import FullScreenAnimationHandler from "./full-screen-animation-handler.js";
 
 export const dev = {};
 
@@ -122,7 +122,7 @@ dev.resetDilation = function() {
 
 // We want to give a large degree of options
 // when making a special glyph, so no max-params
- 
+
 dev.giveSpecialGlyph = function(color, symbol, level, rawLevel = level) {
   if (GameCache.glyphInventorySpace.value === 0) return;
   const glyph = GlyphGenerator.randomGlyph({ actualLevel: level, rawLevel });
@@ -388,7 +388,7 @@ dev.testReplicantiCode = function(singleId, useDebugger = false) {
     player.replicanti.chance = 1;
     for (let i = 0; i < situationLists.length; i++) {
       const div = situationLists.slice(0, i).map(x => x.length + 1).reduce((x, y) => x * y, 1);
-       
+
       const situation = [() => {}].concat(situationLists[i])[Math.floor(id / div) % (situationLists[i].length + 1)];
       situation();
     }
@@ -425,7 +425,7 @@ dev.testReplicantiCode = function(singleId, useDebugger = false) {
   const hash = sha512_256(resultList.toString());
   console.log(hash);
   if (useDebugger) {
-     
+
     debugger;
   }
   return hash;

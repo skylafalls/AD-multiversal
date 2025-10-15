@@ -1,6 +1,6 @@
-import { DC } from "./constants";
-import { deepmergeAll } from "@/utility/deepmerge";
-import { GameMechanicState } from "./game-mechanics";
+import { DC } from "#utils/constants.js";
+import { deepmergeAll } from "#utils/deepmerge.js";
+import { GameMechanicState } from "../game-mechanics";
 
 export function startEternityChallenge() {
   initializeChallengeCompletions();

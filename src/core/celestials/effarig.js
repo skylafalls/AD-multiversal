@@ -1,7 +1,7 @@
 import { BitUpgradeState } from "../game-mechanics";
 import { GameDatabase } from "../secret-formula/game-database";
 
-import { DC } from "../constants";
+import { DC } from "#utils/constants.js";
 
 import { Quotes } from "./quotes";
 

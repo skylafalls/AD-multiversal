@@ -1,6 +1,5 @@
-import { DC } from "../constants";
-
-import { DimensionState } from "./dimension";
+import { DC } from "#utils/constants.js";
+import { DimensionState } from "./dimension.js";
 
 export function infinityDimensionCommonMultiplier() {
   let mult = new Decimal(1)

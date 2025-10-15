@@ -1,7 +1,7 @@
 <script>
-import { Replicanti } from "../../../core/replicanti";
+import { Replicanti } from "@/core/infinity/replicanti";
 
-import wordShift from "@/core/word-shift";
+import wordShift from "#utils/word-shift";
 
 import ReplicantiUpgradeButton, { ReplicantiUpgradeButtonSetup } from "./ReplicantiUpgradeButton";
 import PrimaryButton from "@/components/PrimaryButton";

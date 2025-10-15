@@ -1,10 +1,10 @@
-import { AutomatorPanels } from "@/components/tabs/automator/AutomatorDocs";
-import { GlyphInfo } from "./secret-formula/reality/core-glyph-info";
-import { GlyphInfoVue } from "@/components/modals/options/SelectGlyphInfoDropdown";
+import { AutomatorPanels } from "@/components/tabs/automator/AutomatorDocs.vue";
+import { GlyphInfo } from "./secret-formula/reality/core-glyph-info.js";
+import { GlyphInfoVue } from "@/components/modals/options/SelectGlyphInfoDropdown.vue";
 
-import { AUTOMATOR_MODE, AUTOMATOR_TYPE } from "./automator/automator-backend";
-import { DC } from "./constants";
-import { deepmergeAll } from "@/utility/deepmerge";
+import { AUTOMATOR_MODE, AUTOMATOR_TYPE } from "./automator/automator-backend.js";
+import { DC } from "#utils/constants.js";
+import { deepmergeAll } from "#utils/deepmerge.js";
 
 function getGlyphTypes() {
   const v = { ...GlyphInfo };

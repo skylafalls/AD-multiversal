@@ -1,5 +1,5 @@
-import { DC } from "../../constants";
-import wordShift from "../../word-shift";
+import { DC } from "#utils/constants.js";
+import wordShift from "#utils/word-shift.js";
 
 export const pelleRifts = {
   vacuum: {

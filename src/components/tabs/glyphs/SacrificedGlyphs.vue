@@ -1,7 +1,7 @@
 <script>
 import { GlyphInfo } from "../../../core/secret-formula/index";
 
-import { DC } from "@/core/constants";
+import { DC } from "#utils/constants.js";
 
 import TypeSacrifice from "./TypeSacrifice";
 

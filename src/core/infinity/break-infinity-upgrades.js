@@ -1,5 +1,5 @@
-import { RebuyableMechanicState, SetPurchasableMechanicState } from "./game-mechanics";
-import { SpeedrunMilestones } from "./speedrun";
+import { RebuyableMechanicState, SetPurchasableMechanicState } from "../game-mechanics";
+import { SpeedrunMilestones } from "../speedrun";
 
 export class BreakInfinityUpgradeState extends SetPurchasableMechanicState {
   get currency() {

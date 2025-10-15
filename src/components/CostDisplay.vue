@@ -1,5 +1,5 @@
 <script>
-import { isDecimal, isFunction, isNumber } from "@/utility";
+import { isDecimal, isFunction, isNumber } from "#utils/type-check.js";
 
 export default {
   name: "CostDisplay",

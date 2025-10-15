@@ -39,7 +39,8 @@
 
     /* Path resolution */
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "#utils/*": ["./src/utils/*"]
     }
   },
   "include": [

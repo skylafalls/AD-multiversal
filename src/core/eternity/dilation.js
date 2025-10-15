@@ -1,7 +1,7 @@
-import { RebuyableMechanicState, SetPurchasableMechanicState } from "./game-mechanics";
-import { DC } from "./constants";
-import FullScreenAnimationHandler from "./full-screen-animation-handler";
-import { SpeedrunMilestones } from "./speedrun";
+import { RebuyableMechanicState, SetPurchasableMechanicState } from "../game-mechanics";
+import { DC } from "#utils/constants.js";
+import FullScreenAnimationHandler from "../full-screen-animation-handler";
+import { SpeedrunMilestones } from "../speedrun";
 
 export function animateAndDilate() {
   FullScreenAnimationHandler.display("a-dilate", 2);

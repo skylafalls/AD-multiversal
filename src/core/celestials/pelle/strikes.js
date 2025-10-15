@@ -1,4 +1,4 @@
-import { BitUpgradeState } from "../../utils";
+import { BitUpgradeState } from "../../game-mechanics/bit-upgrade-state.js";
 
 class PelleStrikeState extends BitUpgradeState {
   get bits() {

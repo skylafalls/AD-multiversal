@@ -1,5 +1,5 @@
-import { GameDatabase } from "./secret-formula/game-database";
-import { GlyphInfo } from "./secret-formula/reality/core-glyph-info";
+import { GameDatabase } from "../secret-formula/game-database";
+import { GlyphInfo } from "../secret-formula/reality/core-glyph-info";
 
 /**
  * Multiple glyph effects are combined into a summary object of this type.

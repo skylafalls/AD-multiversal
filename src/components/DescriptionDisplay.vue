@@ -1,7 +1,6 @@
 <script>
-import wordShift from "@/core/word-shift";
-
-import { isFunction, isString } from "@/utility";
+import wordShift from "#utils/word-shift.js";
+import { isFunction, isString } from "#utils/type-check.js";
 
 export default {
   name: "DescriptionDisplay",

@@ -1,6 +1,6 @@
 import Vue from "vue";
 
-import { DC } from "@/core/constants";
+import { DC } from "#utils/constants.js";
 
 export class BreakdownEntryInfo {
   constructor(key) {

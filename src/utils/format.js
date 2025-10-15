@@ -1,4 +1,4 @@
-import { isDecimal } from "../utility/type-check";
+import { isDecimal } from "./type-check";
 
 function isEND() {
   const threshold = GameEnd.endState >= END_STATE_MARKERS.END_NUMBERS

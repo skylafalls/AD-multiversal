@@ -1,5 +1,5 @@
-import { DC } from "./constants";
-import { GameMechanicState } from "./game-mechanics";
+import { DC } from "#utils/constants.js";
+import { GameMechanicState } from "../game-mechanics";
 
 export function updateNormalAndInfinityChallenges(diff) {
   if (NormalChallenge(11).isRunning || InfinityChallenge(6).isRunning) {

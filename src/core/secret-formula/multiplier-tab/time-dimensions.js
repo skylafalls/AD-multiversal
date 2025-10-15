@@ -1,4 +1,4 @@
-import { DC } from "../../constants";
+import { DC } from "#utils/constants.js";
 import { PlayerProgress } from "../../player-progress";
 
 import { MultiplierTabHelper } from "./helper-functions";

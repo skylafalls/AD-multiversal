@@ -1,5 +1,5 @@
 import { beMigration } from "./be-migrations";
-import { deepmergeAll } from "@/utility/deepmerge";
+import { deepmergeAll } from "@/utils/deepmerge";
 
 // WARNING: Don't use state accessors and functions from global scope here, that's not safe in long-term
 export const migrations = {

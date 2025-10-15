@@ -1,5 +1,5 @@
-import { DC } from "./constants";
-import FullScreenAnimationHandler from "./full-screen-animation-handler";
+import { DC } from "#utils/constants.js";
+import FullScreenAnimationHandler from "../full-screen-animation-handler";
 
 export function bigCrunchAnimation() {
   FullScreenAnimationHandler.display("a-implode", 2);

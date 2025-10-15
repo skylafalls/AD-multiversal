@@ -1,5 +1,5 @@
 import { BitUpgradeState, RebuyableMechanicState } from "../game-mechanics";
-import { DC } from "../constants";
+import { DC } from "#utils/constants.js";
 import { GameDatabase } from "../secret-formula/game-database";
 
 import { Quotes } from "./quotes";

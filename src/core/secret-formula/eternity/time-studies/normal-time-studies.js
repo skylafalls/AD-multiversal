@@ -1,4 +1,4 @@
-import { DC } from "../../../constants";
+import { DC } from "#utils/constants.js";
 
 const thisInfinityMult = (thisInfinity) => {
   // All "this inf time" or "best inf time" mults are * 10
@@ -329,7 +329,7 @@ export const normalTimeStudies = [
     requiresST: [131, 133],
     description: () => (Pelle.isDoomed
       ? `Replicanti Galaxies are ${formatPercents(0.4)} stronger`
-      : `Replicanti Galaxies are ${formatPercents(0.4)} stronger and Replicanti are 
+      : `Replicanti Galaxies are ${formatPercents(0.4)} stronger and Replicanti are
         ${Perk.studyPassive.isBought ? formatX(3) : formatX(1.5, 1, 1)} faster`),
     effect: 0.4,
   },

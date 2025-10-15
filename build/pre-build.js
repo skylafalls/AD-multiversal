@@ -1,17 +1,15 @@
-const fs = require("node:fs");
+import { getUserAgentRegExp } from "browserslist-useragent-regexp";
+import { resolve } from "node:path";
+import { writeFileSync } from "node:fs";
 
-const path = require("node:path");
-
-const browserslist = require("browserslist-useragent-regexp");
-
-const userAgentRegExp = browserslist.getUserAgentRegExp({ allowHigherVersions: true });
+const userAgentRegExp = getUserAgentRegExp({ allowHigherVersions: true });
 const checkFunction = `export const supportedBrowsers = ${userAgentRegExp};`;
-fs.writeFileSync(path.resolve(__dirname, "../src/supported-browsers.js"), checkFunction);
+writeFileSync(resolve(import.meta.dirname, "../src/supported-browsers.js"), checkFunction);
 
 const firebaseConfig = process.env.FIREBASE_CONFIG;
 if (firebaseConfig) {
-  fs.writeFileSync(
-    path.resolve(__dirname, "../src/core/storage/firebase-config.js"),
+  writeFileSync(
+    resolve(import.meta.dirname, "../src/core/storage/firebase-config.js"),
     `export const firebaseConfig = ${firebaseConfig};`,
   );
 }

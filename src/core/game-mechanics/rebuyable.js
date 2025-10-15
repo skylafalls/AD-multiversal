@@ -1,4 +1,4 @@
-import { isNumber } from "../../utility/type-check";
+import { isNumber } from "../../utils/type-check";
 
 import { GameMechanicState } from "./game-mechanic";
 
