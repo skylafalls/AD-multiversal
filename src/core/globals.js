@@ -1,4 +1,3 @@
-export * from "./reality/glyph-effects.js";
 export * from "./player";
 
 export * from "./performance-stats";
@@ -7,7 +6,6 @@ export * from "./cache";
 export * from "./intervals";
 export * from "./keyboard";
 export * from "./hotkeys";
-export * from "./galaxy";
 export * from "./away-progress";
 export * from "./confirmations";
 
@@ -15,7 +13,6 @@ export * from "./autobuyers/autobuyers";
 export * from "./storage";
 
 export * from "./notations";
-export * from "./tutorial";
 
 export * from "./new-game";
 
@@ -56,19 +53,17 @@ export * from "./glyphs/glyph-purge-handler";
 export * from "./glyphs/auto-glyph-processor";
 
 export * from "./time";
-export * from "./tickspeed";
 
-export * from "./dimensions/antimatter-dimension";
-export * from "./dimensions/infinity-dimension";
-export * from "./dimensions/time-dimension";
+export * from "./dimensions/antimatter-dimension.js";
+export * from "./dimensions/infinity-dimension.js";
+export * from "./dimensions/time-dimension.js";
 
-export * from "./time-studies";
+export * from "./time-studies/index.js";
 
-export * from "./dimboost";
-export * from "./sacrifice";
+export * from "./reality/index.js";
+export * from "./early-game/index.js";
 export * from "./infinity/index.js";
 export * from "./eternity/index.js";
-export * from "./normal-challenges";
 export * from "./reality/index.js";
 export * from "./devtools";
 export * from "./news-ticker";

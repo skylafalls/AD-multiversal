@@ -1,9 +1,17 @@
+import browserlist from "browserslist";
+import { browserslistToTargets } from "lightningcss";
 import { defineConfig } from "rolldown-vite";
 import { fileURLToPath } from "node:url";
 import vue2 from "@vitejs/plugin-vue2";
 
 const config = defineConfig({
   base: "/AD-multiversal/",
+  css: {
+    transformer: "postcss",
+    lightningcss: {
+      targets: browserslistToTargets(browserlist("> 0.1% and not dead and supports justify-content-space-evenly")),
+    },
+  },
   plugins: [vue2()],
   resolve: {
     extensions: [".js", ".ts", ".json", ".vue"],
@@ -13,6 +21,9 @@ const config = defineConfig({
   },
   experimental: {
     enableNativePlugin: true,
+  },
+  build: {
+    cssMinify: "lightningcss",
   },
 });
 
