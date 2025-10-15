@@ -1,5 +1,5 @@
 <script>
-import { openExternalLink } from "@/utility/open-external-link";
+import { openExternalLink } from "@/utils/open-external-link";
 import { STEAM } from "@/env";
 
 export default {

@@ -1,4 +1,4 @@
-import { isDecimal } from "../../utility/type-check";
+import { isDecimal } from "../../utils/type-check";
 
 import { DC } from "../constants";
 

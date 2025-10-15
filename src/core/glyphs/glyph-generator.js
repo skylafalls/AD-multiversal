@@ -8,7 +8,7 @@
 import { DC } from "../constants";
 import { GlyphInfo } from "../secret-formula/reality/core-glyph-info";
 
-import { deepmerge } from "@/utility/deepmerge";
+import { deepmerge } from "@/utils/deepmerge";
 
 class GlyphRNG {
   static get SECOND_GAUSSIAN_DEFAULT_VALUE() {

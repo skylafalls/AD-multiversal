@@ -4,7 +4,7 @@ import { GlyphInfoVue } from "@/components/modals/options/SelectGlyphInfoDropdow
 
 import { AUTOMATOR_MODE, AUTOMATOR_TYPE } from "./automator/automator-backend";
 import { DC } from "./constants";
-import { deepmergeAll } from "@/utility/deepmerge";
+import { deepmergeAll } from "@/utils/deepmerge";
 
 function getGlyphTypes() {
   const v = { ...GlyphInfo };

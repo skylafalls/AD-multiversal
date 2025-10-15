@@ -2,7 +2,7 @@ import { DC } from "../../constants";
 
 import { GameMechanicState } from "../../game-mechanics";
 
-import { deepmergeAll } from "@/utility/deepmerge";
+import { deepmergeAll } from "@/utils/deepmerge";
 
 class SingularityMilestoneState extends GameMechanicState {
   constructor(config) {

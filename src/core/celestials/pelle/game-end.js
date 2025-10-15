@@ -1,4 +1,4 @@
-import { isDecimal } from "../../../utility/type-check";
+import { isDecimal } from "../../../utils/type-check";
 
 export const END_STATE_MARKERS = {
   // Tab zalgoification starts as soon as endState > 0

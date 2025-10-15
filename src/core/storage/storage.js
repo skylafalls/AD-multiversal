@@ -4,7 +4,7 @@ import { DEV } from "@/env";
 import { devMigrations } from "./dev-migrations";
 import { migrations } from "./migrations";
 
-import { deepmergeAll } from "@/utility/deepmerge";
+import { deepmergeAll } from "@/utils/deepmerge";
 
 export const BACKUP_SLOT_TYPE = {
   ONLINE: 0,

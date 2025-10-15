@@ -1,1 +1,1 @@
-export * from "./type-check";
+export * from "../utils/type-check";
