@@ -1,4 +1,4 @@
-import { DC } from "@/core/constants";
+import { DC } from "#utils/constants.js";
 
 function roundAndStr(decimal, amnt = 4) {
   return decimal.toString().slice(0, amnt + Math.ceil(decimal.log10().toNumber()));

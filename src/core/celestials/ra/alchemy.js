@@ -1,4 +1,4 @@
-import { DC } from "../../constants";
+import { DC } from "#utils/constants.js";
 import { GameMechanicState } from "../../game-mechanics";
 
 /**

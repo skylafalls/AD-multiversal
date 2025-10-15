@@ -1,5 +1,5 @@
-import { DC } from "../constants";
-import { GlyphInfo } from "../secret-formula/reality/core-glyph-info";
+import { DC } from "#utils/constants.js";
+import { GlyphInfo } from "../secret-formula/reality/core-glyph-info.js";
 
 export const orderedEffectList = ["powerpow", "infinitypow", "replicationpow", "timepow",
   "dilationpow", "timeshardpow", "powermult", "powerdimboost", "powerbuy10",

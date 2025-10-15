@@ -1,6 +1,6 @@
 import { isDecimal } from "../../utils/type-check";
 
-import { DC } from "../constants";
+import { DC } from "#utils/constants.js";
 
 class BlackHoleUpgradeState {
   constructor(config) {

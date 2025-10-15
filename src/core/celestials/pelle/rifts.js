@@ -1,4 +1,4 @@
-import { GameMechanicState } from "../../utils";
+import { GameMechanicState } from "../../game-mechanics/index.js";
 
 class RiftMilestoneState extends GameMechanicState {
   lastChecked = false;

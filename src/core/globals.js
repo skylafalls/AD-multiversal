@@ -1,8 +1,10 @@
+export * from "#utils/cache.js";
+export * from "#utils/notations";
+
 export * from "./player";
 
 export * from "./performance-stats";
 export * from "./currency";
-export * from "./cache";
 export * from "./intervals";
 export * from "./keyboard";
 export * from "./hotkeys";
@@ -12,7 +14,6 @@ export * from "./confirmations";
 export * from "./autobuyers/autobuyers";
 export * from "./storage";
 
-export * from "./notations";
 
 export * from "./new-game";
 

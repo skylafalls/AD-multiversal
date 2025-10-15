@@ -1,5 +1,5 @@
-import { DC } from "../constants";
-import { deepmergeAll } from "@/utils/deepmerge";
+import { DC } from "#utils/constants.js";
+import { deepmergeAll } from "#utils/deepmerge.js";
 import { GameMechanicState } from "../game-mechanics";
 
 export function startEternityChallenge() {

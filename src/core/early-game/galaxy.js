@@ -1,4 +1,4 @@
-import { DC } from "../constants";
+import { DC } from "#utils/constants.js";
 
 export const GALAXY_TYPE = {
   NORMAL: 0,

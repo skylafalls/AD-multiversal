@@ -1,5 +1,5 @@
 import { RebuyableMechanicState, SetPurchasableMechanicState } from "../game-mechanics";
-import { DC } from "../constants";
+import { DC } from "#utils/constants.js";
 import FullScreenAnimationHandler from "../full-screen-animation-handler";
 import { SpeedrunMilestones } from "../speedrun";
 

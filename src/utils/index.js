@@ -10,5 +10,3 @@ import "./constants";
 import "./math";
 import "./async-utils";
 import "./event-hub";
-
-export * from "./game-mechanics";

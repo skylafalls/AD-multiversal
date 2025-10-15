@@ -1,5 +1,5 @@
 <script>
-import { DC } from "@/core/constants";
+import { DC } from "#utils/constants.js";
 
 export default {
   name: "AntimatterDimensionProgressBar",

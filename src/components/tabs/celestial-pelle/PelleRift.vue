@@ -1,5 +1,5 @@
 <script>
-import wordShift from "@/core/word-shift";
+import wordShift from "#utils/word-shift.js";
 
 import PelleRiftBar from "./PelleRiftBar";
 import PelleStrike from "./PelleStrike";

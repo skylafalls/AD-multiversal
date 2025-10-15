@@ -1,4 +1,4 @@
-import { DC } from "../../constants";
+import { DC } from "#utils/constants.js";
 
 export const alchemyResources = {
   // T1 resources (Non-Effarig "base" resources)

@@ -17,6 +17,7 @@ const config = defineConfig({
     extensions: [".js", ".ts", ".json", ".vue"],
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
+      "#utils": fileURLToPath(new URL("./src/utils", import.meta.url)),
     },
   },
   experimental: {

@@ -2,7 +2,7 @@
 
 import { Lexer, createToken } from "chevrotain";
 
-import { DC } from "../constants";
+import { DC } from "#utils/constants.js";
 
 const createCategory = name => createToken({ name, pattern: Lexer.NA, longer_alt: Identifier });
 

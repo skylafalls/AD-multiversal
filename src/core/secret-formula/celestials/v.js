@@ -1,4 +1,4 @@
-import { DC } from "../../constants";
+import { DC } from "#utils/constants.js";
 
 // This is supposed to be in ./navigation.js but importing doesn't work for some stupid reason
 function emphasizeEnd(valueA, valueB) {

@@ -1,6 +1,6 @@
-import { DC } from "../constants";
+import { DC } from "#utils/constants.js";
 
-import { DimensionState } from "./dimension";
+import { DimensionState } from "./dimension.js";
 
 // Multiplier applied to all Antimatter Dimensions, regardless of tier. This is cached using a Lazy
 // and invalidated every update.
