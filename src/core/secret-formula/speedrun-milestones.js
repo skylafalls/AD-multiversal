@@ -1,3 +1,5 @@
+import { GAME_EVENT } from "#utils/constants.js";
+
 export const speedrunMilestones = [
   {
     id: 1,

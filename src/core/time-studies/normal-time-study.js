@@ -1,3 +1,4 @@
+import { TIME_STUDY_PATH, TIME_STUDY_TYPE } from "#utils/constants.js";
 import { TimeStudyState } from "./time-studies";
 
 export const NormalTimeStudies = {};

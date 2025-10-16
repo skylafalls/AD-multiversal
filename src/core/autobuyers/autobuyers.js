@@ -22,6 +22,9 @@ import { TickspeedAutobuyerState } from "./tickspeed-autobuyer";
 import { TimeDimensionAutobuyerState } from "./time-dimension-autobuyer";
 import { TimeTheoremAutobuyerState } from "./time-theorem-autobuyer";
 
+// oxlint-disable-next-line sort-imports
+import { GAME_EVENT, PRESTIGE_EVENT } from "#utils/constants.js";
+
 export const Autobuyer = {
   annihilation: new AnnihilationAutobuyerState(),
   antimatterDimension: AntimatterDimensionAutobuyerState.createAccessor(),

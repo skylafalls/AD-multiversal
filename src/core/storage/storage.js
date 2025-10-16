@@ -4,7 +4,8 @@ import { DEV } from "@/env";
 import { devMigrations } from "./dev-migrations";
 import { migrations } from "./migrations";
 
-import { deepmergeAll } from "@/utils/deepmerge";
+import { deepmergeAll } from "#utils/deepmerge.js";
+import { GAME_EVENT } from "#utils/constants.js";
 
 export const BACKUP_SLOT_TYPE = {
   ONLINE: 0,

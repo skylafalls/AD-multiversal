@@ -1,4 +1,4 @@
-import { DC } from "#utils/constants.js";
+import { ALCHEMY_RESOURCE, DC } from "#utils/constants.js";
 
 // To help adding new glyphs to the game, we can concentrate a ton of information to this file.
 // The name of each object should be the same as it is in glyph types, so that we can easily check all glyphs

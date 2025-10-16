@@ -1,3 +1,5 @@
+import { GAME_EVENT } from "./constants.js";
+
 class Lazy {
   constructor(getValue) {
     this._getValue = getValue;

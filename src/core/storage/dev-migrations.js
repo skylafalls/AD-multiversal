@@ -1,3 +1,4 @@
+import { ALCHEMY_RESOURCE } from "#utils/constants.js";
 import { migrations } from "./migrations";
 
 function arrayToBits(array) {

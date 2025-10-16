@@ -1,5 +1,4 @@
-import { DC } from "#utils/constants.js";
-
+import { AUTOBUYER_MODE, DC, PRESTIGE_EVENT } from "#utils/constants.js";
 import { UpgradeableAutobuyerState } from "./autobuyer";
 
 export class AntimatterDimensionAutobuyerState extends UpgradeableAutobuyerState {

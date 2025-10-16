@@ -1,4 +1,4 @@
-import { DC } from "#utils/constants.js";
+import { ALTERATION_TYPE, DC } from "#utils/constants.js";
 
 export const GlyphCombiner = Object.freeze({
   /**

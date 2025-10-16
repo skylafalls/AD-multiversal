@@ -1,3 +1,4 @@
+import { GAME_EVENT } from "#utils/constants.js";
 import { compile } from "./compiler";
 
 export const AUTOMATOR_COMMAND_STATUS = Object.freeze({

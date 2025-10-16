@@ -2,7 +2,7 @@ import TWEEN from "tween.js";
 
 import { ElectronRuntime, SteamRuntime } from "@/steam";
 
-import { DC } from "#utils/constants.js";
+import { DC, GAME_EVENT } from "#utils/constants.js";
 import { deepmergeAll } from "#utils/deepmerge.js";
 import { DEV } from "@/env";
 import { SpeedrunMilestones } from "./core/speedrun";

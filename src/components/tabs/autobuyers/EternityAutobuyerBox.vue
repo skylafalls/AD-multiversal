@@ -1,4 +1,5 @@
 <script>
+import { AUTO_ETERNITY_MODE } from "#utils/constants.js";
 import AutobuyerBox from "./AutobuyerBox";
 import AutobuyerDropdownEntry from "./AutobuyerDropdownEntry";
 import AutobuyerInput from "./AutobuyerInput";

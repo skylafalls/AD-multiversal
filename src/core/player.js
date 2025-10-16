@@ -2,8 +2,8 @@ import { AutomatorPanels } from "@/components/tabs/automator/AutomatorDocs.vue";
 import { GlyphInfo } from "./secret-formula/reality/core-glyph-info.js";
 import { GlyphInfoVue } from "@/components/modals/options/SelectGlyphInfoDropdown.vue";
 
+import { AUTOBUYER_MODE, AUTO_GLYPH_SCORE, AUTO_GLYPH_REJECT, GLYPH_SIDEBAR_MODE, GLYPH_BG_SETTING, DC, SPEEDRUN_SEED_STATE } from "#utils/constants.js";
 import { AUTOMATOR_MODE, AUTOMATOR_TYPE } from "./automator/automator-backend.js";
-import { DC } from "#utils/constants.js";
 import { deepmergeAll } from "#utils/deepmerge.js";
 
 function getGlyphTypes() {

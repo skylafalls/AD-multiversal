@@ -1,3 +1,5 @@
+import { GAME_EVENT } from "#utils/constants.js";
+
 class SubtabState {
   constructor(parent, config) {
     this._parent = parent;

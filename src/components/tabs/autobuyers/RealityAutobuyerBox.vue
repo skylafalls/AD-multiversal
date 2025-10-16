@@ -1,4 +1,5 @@
 <script>
+import { AUTO_REALITY_MODE } from "#utils/constants.js";
 import AutobuyerBox from "./AutobuyerBox";
 import AutobuyerDropdownEntry from "./AutobuyerDropdownEntry";
 import AutobuyerInput from "./AutobuyerInput";
@@ -52,17 +53,23 @@ export default {
     },
     modeName(mode) {
       switch (mode) {
-        case AUTO_REALITY_MODE.RM: { return "Reality Machines";
+        case AUTO_REALITY_MODE.RM: {
+          return "Reality Machines";
         }
-        case AUTO_REALITY_MODE.GLYPH: { return "Glyph level";
+        case AUTO_REALITY_MODE.GLYPH: {
+          return "Glyph level";
         }
-        case AUTO_REALITY_MODE.EITHER: { return "RM OR Level";
+        case AUTO_REALITY_MODE.EITHER: {
+          return "RM OR Level";
         }
-        case AUTO_REALITY_MODE.BOTH: { return "RM AND Level";
+        case AUTO_REALITY_MODE.BOTH: {
+          return "RM AND Level";
         }
-        case AUTO_REALITY_MODE.TIME: { return "Real-time seconds";
+        case AUTO_REALITY_MODE.TIME: {
+          return "Real-time seconds";
         }
-        case AUTO_REALITY_MODE.RELIC_SHARD: { return "Relic Shards";
+        case AUTO_REALITY_MODE.RELIC_SHARD: {
+          return "Relic Shards";
         }
       }
       throw new Error("Unknown Auto Reality mode");

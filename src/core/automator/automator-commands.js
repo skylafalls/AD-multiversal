@@ -1,4 +1,5 @@
 import { tokenMap as T, standardizeAutomatorValues } from "./lexer";
+import { GAME_EVENT } from "#utils/constants.js";
 
 /**
  * Note: the $ shorthand for the parser object is required by Chevrotain. Don't mess with it.
