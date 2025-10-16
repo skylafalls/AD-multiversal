@@ -1,3 +1,4 @@
+import { GLYPH_BG_SETTING } from "#utils/constants.js";
 import { GlyphInfo } from "../secret-formula/reality/core-glyph-info";
 
 class CosmeticGlyphType {

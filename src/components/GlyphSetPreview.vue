@@ -1,8 +1,8 @@
 <script>
 import { GlyphInfo } from "../core/secret-formula/reality/core-glyph-info";
 
-import GlyphComponent from "@/components/GlyphComponent";
-import GlyphSetName from "@/components/GlyphSetName";
+import GlyphComponent from "@/components/GlyphComponent.vue";
+import GlyphSetName from "@/components/GlyphSetName.vue";
 
 export default {
   name: "GlyphSetPreview",

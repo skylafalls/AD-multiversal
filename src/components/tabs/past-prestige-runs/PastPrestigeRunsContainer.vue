@@ -1,4 +1,6 @@
 <script>
+import { RECENT_PRESTIGE_RESOURCE } from "#utils/constants.js";
+
 function averageRun(allRuns) {
   // Filter out all runs which have the default infinite value for time, but if we're left with no valid runs then we
   // take just one entry so that the averages also have the same value and we don't get division by zero.

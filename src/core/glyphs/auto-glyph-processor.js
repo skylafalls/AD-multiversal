@@ -1,4 +1,4 @@
-import { DC } from "#utils/constants.js";
+import { AUTO_GLYPH_REJECT, AUTO_GLYPH_SCORE, DC } from "#utils/constants.js";
 
 export const AutoGlyphProcessor = {
   get scoreMode() {

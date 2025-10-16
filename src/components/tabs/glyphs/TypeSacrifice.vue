@@ -1,4 +1,6 @@
 <script>
+import { AUTO_GLYPH_REJECT, GAME_EVENT } from "#utils/constants.js";
+
 export default {
   name: "TypeSacrifice",
   props: {

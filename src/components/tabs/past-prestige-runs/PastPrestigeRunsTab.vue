@@ -1,4 +1,5 @@
 <script>
+import { RECENT_PRESTIGE_RESOURCE } from "#utils/constants.js";
 import PastPrestigeRunsContainer from "./PastPrestigeRunsContainer";
 
 export default {

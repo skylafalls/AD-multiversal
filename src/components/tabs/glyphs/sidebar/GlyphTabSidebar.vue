@@ -1,4 +1,5 @@
 <script>
+import { GLYPH_SIDEBAR_MODE } from "#utils/constants.js";
 import GlyphFilterPanel from "./GlyphFilterPanel";
 import GlyphInventoryManagementPanel from "./GlyphInventoryManagementPanel";
 import GlyphRejectionPanel from "./GlyphRejectionPanel";

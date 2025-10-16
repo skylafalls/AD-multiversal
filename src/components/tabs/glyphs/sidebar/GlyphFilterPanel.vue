@@ -1,4 +1,5 @@
 <script>
+import { AUTO_GLYPH_SCORE } from "@/utils/constants";
 import AutoSacrificeAdvancedTab from "./AutoSacrificeAdvancedTab";
 import AutoSacrificeEffectTab from "./AutoSacrificeEffectTab";
 import GlyphComponent from "@/components/GlyphComponent";
@@ -59,7 +60,7 @@ export default {
       };
     },
     questionmarkTooltip() {
-      return `All Glyph choices are given a score and compared to a threshold based on the chosen mode. 
+      return `All Glyph choices are given a score and compared to a threshold based on the chosen mode.
         The Glyph with the highest score is picked, but will still be Sacrificed if below the threshold.
         (click for more detail)`;
     },

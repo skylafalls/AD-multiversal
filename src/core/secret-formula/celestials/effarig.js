@@ -1,4 +1,4 @@
-import { DC } from "#utils/constants.js";
+import { DC, GLYPH_SIDEBAR_MODE } from "#utils/constants.js";
 
 export const effarigUnlocks = {
   adjuster: {
