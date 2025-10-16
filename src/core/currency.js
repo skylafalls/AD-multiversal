@@ -227,25 +227,28 @@ export class Currency {
     this.value = this.operations.divide(this.value, amount);
   }
 
+  /* eslint-disable @typescript-eslint/no-confusing-void-expression */
+  /* not a void expression, typescript is acting weird */
   eq(amount) {
-    this.operations.eq(this.value, amount);
+    return this.operations.eq(this.value, amount);
   }
 
   gt(amount) {
-    this.operations.gt(this.value, amount);
+    return this.operations.gt(this.value, amount);
   }
 
   gte(amount) {
-    this.operations.gte(this.value, amount);
+    return this.operations.gte(this.value, amount);
   }
 
   lt(amount) {
-    this.operations.lt(this.value, amount);
+    return this.operations.lt(this.value, amount);
   }
 
   lte(amount) {
-    this.operations.lte(this.value, amount);
+    return this.operations.lte(this.value, amount);
   }
+  /* eslint-enable @typescript-eslint/no-confusing-void-expression */
 
   purchase(cost) {
     if (!this.gte(cost)) return false;
