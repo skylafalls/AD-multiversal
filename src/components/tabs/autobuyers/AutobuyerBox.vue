@@ -1,4 +1,5 @@
 <script>
+import { AUTO_ETERNITY_MODE } from "#utils/constants.js";
 import AutobuyerIntervalLabel from "./AutobuyerIntervalLabel";
 
 // This component is used for autobuyer entries which take up an entire row and may (AD/tickspeed) or may not

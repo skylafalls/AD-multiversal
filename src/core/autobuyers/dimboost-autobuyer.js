@@ -1,3 +1,4 @@
+import { PRESTIGE_EVENT } from "#utils/constants.js";
 import { UpgradeableAutobuyerState } from "./autobuyer";
 
 export class DimBoostAutobuyerState extends UpgradeableAutobuyerState {

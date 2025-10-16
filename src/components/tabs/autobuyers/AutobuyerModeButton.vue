@@ -1,4 +1,6 @@
 <script>
+import { AUTOBUYER_MODE } from "#utils/constants.js";
+
 export default {
   name: "AutobuyerModeButton",
   props: {
@@ -15,9 +17,11 @@ export default {
   computed: {
     modeDisplay() {
       switch (this.mode) {
-        case AUTOBUYER_MODE.BUY_SINGLE: { return "Buys singles";
+        case AUTOBUYER_MODE.BUY_SINGLE: {
+          return "Buys singles";
         }
-        case AUTOBUYER_MODE.BUY_10: { return "Buys max";
+        case AUTOBUYER_MODE.BUY_10: {
+          return "Buys max";
         }
       }
       throw new Error("Unknown Dimension Autobuyer mode");
