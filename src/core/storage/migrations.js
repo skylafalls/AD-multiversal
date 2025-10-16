@@ -1,5 +1,6 @@
+import { AUTOBUYER_MODE, SPEEDRUN_SEED_STATE } from "#utils/constants.js";
 import { beMigration } from "./be-migrations";
-import { deepmergeAll } from "@/utils/deepmerge";
+import { deepmergeAll } from "#utils/deepmerge.js";
 
 // WARNING: Don't use state accessors and functions from global scope here, that's not safe in long-term
 export const migrations = {

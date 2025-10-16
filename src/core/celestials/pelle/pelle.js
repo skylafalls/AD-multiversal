@@ -1,4 +1,4 @@
-import { DC, GAME_EVENT } from "#utils/constants.js";
+import { AUTO_CRUNCH_MODE, DC, GAME_EVENT } from "#utils/constants.js";
 import { Currency } from "../../currency.js";
 import { RebuyableMechanicState } from "@/core/game-mechanics/rebuyable";
 import { SetPurchasableMechanicState } from "@/core/game-mechanics/set-purchasable.js";

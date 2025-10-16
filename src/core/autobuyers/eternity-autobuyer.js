@@ -1,3 +1,4 @@
+import { AUTO_ETERNITY_MODE } from "#utils/constants.js";
 import { AutobuyerState } from "./autobuyer";
 
 export class EternityAutobuyerState extends AutobuyerState {

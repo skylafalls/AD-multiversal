@@ -1,4 +1,4 @@
-import { PRESTIGE_EVENT } from "#utils/constants.js";
+import { AUTO_CRUNCH_MODE, PRESTIGE_EVENT } from "#utils/constants.js";
 import { UpgradeableAutobuyerState } from "./autobuyer";
 
 export class BigCrunchAutobuyerState extends UpgradeableAutobuyerState {
