@@ -1,4 +1,5 @@
 import { DC, GAME_EVENT } from "#utils/constants.js";
+import { binomialDistribution, normalDistribution } from "#utils/math.js";
 import { Async } from "#utils/async-utils.js";
 import { Lazy } from "#utils/cache.js";
 

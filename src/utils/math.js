@@ -606,11 +606,15 @@ export class ExponentialCostScaling {
   }
 };
 
-// Numerical approximation for values from the Lambert W function, using Newton's method with some algebraic
-// changes to make it less likely to overflow. Relative precision of 1e-6 should be good enough for most purposes;
-// this should never be turned down to 0 as there can be oscillatory behavior due to floating point quantization
-// that never converges to a fixed point. It also seems to take much longer to converge at higher values.
-window.productLog = function productLog(x) {
+/**
+ * Numerical approximation for values from the Lambert W function, using Newton's method with some algebraic
+ * changes to make it less likely to overflow. Relative precision of 1e-6 should be good enough for most purposes;
+ * this should never be turned down to 0 as there can be oscillatory behavior due to floating point quantization
+ * that never converges to a fixed point. It also seems to take much longer to converge at higher values.
+ * @param {number} x A number to take the Lambert W of
+ * @returns {number} the W(x)
+ */
+export function productLog(x) {
   let curr = x, prev = 0;
   do {
     prev = curr;
@@ -619,7 +623,15 @@ window.productLog = function productLog(x) {
   return curr;
 };
 
-window.decimalProductLog = function decimalProductLog(x) {
+/**
+ * Numerical approximation for values from the Lambert W function, using Newton's method with some algebraic
+ * changes to make it less likely to overflow. Relative precision of 1e-6 should be good enough for most purposes;
+ * this should never be turned down to 0 as there can be oscillatory behavior due to floating point quantization
+ * that never converges to a fixed point. It also seems to take much longer to converge at higher values.
+ * @param {Decimal} x A Decimal to take the Lambert W of
+ * @returns {Decimal} the W(x)
+ */
+export function decimalProductLog(x) {
   let curr = x, prev = new Decimal();
   do {
     prev = curr;
@@ -628,11 +640,16 @@ window.decimalProductLog = function decimalProductLog(x) {
   return curr;
 };
 
-// Implementation of "Lehmer code" decoding to produce a specific permutation, given a permutation length and a
-// lexicographic index for the specified permutation. Calling with a lexicographic index that is too large will
-// not throw an error, but will use lexIndex % len! as an index instead.
-// This may behave incorrectly if len! > 9e15, which occurs when len > 18.
-window.permutationIndex = function permutationIndex(len, lexIndex) {
+/**
+ * Implementation of "Lehmer code" decoding to produce a specific permutation, given a permutation length and a
+ * lexicographic index for the specified permutation. Calling with a lexicographic index that is too large will
+ * not throw an error, but will use lexIndex % len! as an index instead.
+ * This may behave incorrectly if len! > 9e15, which occurs when len > 18.
+ * @param {number} len
+ * @param {number} lexIndex
+ * @returns {number[]}
+ */
+export function permutationIndex(len, lexIndex) {
   let numPerm = 1;
   for (let n = 1; n <= len; n++) numPerm *= n;
   let index = lexIndex % numPerm;
@@ -677,7 +694,7 @@ export function getHybridCostScaling(
   return costScale.calculateCost(postInfinityAmount);
 };
 
-window.logFactorial = (function () {
+export const logFactorial = (function () {
   const LOGS = Array.range(1, 11).map(Math.log);
   const TABLE = [0];
   for (const x of LOGS) {
@@ -690,7 +707,7 @@ window.logFactorial = (function () {
   };
 }());
 
-window.exp1m = function (x) {
+export function exp1m(x) {
   if (x.abs().gte(0.001)) {
     return x.exp().minus(1);
   }
@@ -701,7 +718,7 @@ window.exp1m = function (x) {
 };
 
 /** 32 bit XORSHIFT generator */
-window.xorshift32Update = function xorshift32Update(state) {
+export function xorshift32Update(state) {
   state ^= state << 13;
   state ^= state >>> 17;
   state ^= state << 5;
@@ -709,7 +726,7 @@ window.xorshift32Update = function xorshift32Update(state) {
   return state;
 };
 
-window.fastRandom = (function () {
+export const fastRandom = (function () {
   let state = Math.floor(Date.now()) % Math.pow(2, 32);
   const scale = 1 / (Math.pow(2, 32));
   return () => {
@@ -719,7 +736,7 @@ window.fastRandom = (function () {
 }());
 
 // Normal distribution with specified mean and standard deviation
-window.normalDistribution = (function () {
+export const normalDistribution = (function () {
   let haveSpare = false;
   let spare = 0;
   return (mean, stdDev) => {
@@ -742,7 +759,7 @@ window.normalDistribution = (function () {
 }());
 
 // Helper function for BTRD
-window.binomialGeneratorFC = (function () {
+export const binomialGeneratorFC = (function () {
   const stirlingBase = x => -8.10614667953272582e-2 + (x + 0.5) * Math.log1p(x) - x;
   const TABLE = Array.range(0, 20).map(x => logFactorial(x) - stirlingBase(x));
   return (x) => {
@@ -759,7 +776,7 @@ window.binomialGeneratorFC = (function () {
  * @param {number} p probability
  * @returns {number} number of samples that satisfied p
  */
-window.binomialDistributionSmallExpected = function binomialDistributionSmallExpected(numSamples, p) {
+export function binomialDistributionSmallExpected(numSamples, p) {
   const R = p / (1 - p);
   const NxR = (numSamples + 1) * R;
   // Calculate (1-p)^n without rounding error at 1 - p
@@ -776,7 +793,7 @@ window.binomialDistributionSmallExpected = function binomialDistributionSmallExp
   return output;
 };
 
-window.binomialDistribution = function binomialDistribution(numSamples, p) {
+export function binomialDistribution(numSamples, p) {
   if (p === 0) return 0;
   if (numSamples instanceof Decimal) {
     if (numSamples.log10().lt(300)) {
@@ -805,7 +822,7 @@ window.binomialDistribution = function binomialDistribution(numSamples, p) {
  * @param {number|Decimal} expected expected value of distribution
  * @returns {number|Decimal} number of poisson process events
  */
-window.poissonDistribution = function poissonDistribution(expected) {
+export function poissonDistribution(expected) {
   if (expected === 0) return 0;
   if (expected instanceof Decimal) {
     if (expected.log10().gt(32)) return expected;
@@ -820,7 +837,7 @@ window.poissonDistribution = function poissonDistribution(expected) {
 /**
  * Uses a normal approximation to sqrt(x)
  */
-window.poissonDistributionViaNormal = function poissonDistributionViaNormal(expected) {
+export function poissonDistributionViaNormal(expected) {
   const x = normalDistribution(Math.sqrt(expected), 0.5);
   return Math.floor(x * x);
 };
@@ -828,7 +845,7 @@ window.poissonDistributionViaNormal = function poissonDistributionViaNormal(expe
 /**
  * This manually inverts the cumulative probability distribution
  */
-window.poissonDistributionSmallExpected = function poissonDistributionSmallExpected(expected) {
+export function poissonDistributionSmallExpected(expected) {
   let pdf = Math.exp(-expected);
   let cdf = pdf;
   const u = fastRandom();
@@ -845,7 +862,7 @@ window.poissonDistributionSmallExpected = function poissonDistributionSmallExpec
 /**
  * Algorithm from https://core.ac.uk/download/pdf/11007254.pdf
  */
-window.binomialDistributionBTRD = function binomialDistributionBTRD(numSamples, p) {
+export function binomialDistributionBTRD(numSamples, p) {
   const expected = numSamples * p;
   const approximateVariance = expected * (1 - p);
   const approxStdev = Math.sqrt(approximateVariance);
@@ -911,7 +928,7 @@ window.binomialDistributionBTRD = function binomialDistributionBTRD(numSamples, 
  * @param {number} mu expected value of distribution
  * @returns {number} (integer) number of events in poisson process
  */
-window.poissonDistributionPTRD = function poissonDistributionPTRD(mu) {
+export function poissonDistributionPTRD(mu) {
   const sMu = Math.sqrt(mu);
   const b = 0.931 + 2.53 * sMu;
   const a = -0.059 + 0.02483 * b;
@@ -944,7 +961,7 @@ window.poissonDistributionPTRD = function poissonDistributionPTRD(mu) {
   }
 };
 
-window.depressedCubicRealRoots = function depressedCubicRealRoots(k3, k1, k0) {
+export function depressedCubicRealRoots(k3, k1, k0) {
   if (k3 === 0) {
     if (k1 === 0) return [];
     return [-k0 / k1];
@@ -976,7 +993,7 @@ window.depressedCubicRealRoots = function depressedCubicRealRoots(k3, k1, k0) {
   ];
 };
 
-window.quadraticRealRoots = function quadraticRealRoots(k2, k1, k0) {
+export function quadraticRealRoots(k2, k1, k0) {
   if (k2 === 0) {
     if (k1 === 0) return [];
     return [-k0 / k1];
@@ -996,7 +1013,7 @@ window.quadraticRealRoots = function quadraticRealRoots(k2, k1, k0) {
   ];
 };
 
-window.cubicRealRoots = function cubicRealRoots(k3, k2, k1, k0) {
+export function cubicRealRoots(k3, k2, k1, k0) {
   if (k3 === 0) {
     return quadraticRealRoots(k2, k1, k0);
   }
@@ -1018,7 +1035,7 @@ window.testCRR = function testCRR(k3, k2, k1, k0) {
   console.log(r.map(x => k0 + x * (k1 + x * (k2 + x * k3))));
 };
 
-window.depressedQuarticRealRoots = function depressedQuarticRealRoots(k4, k2, k1, k0) {
+export function depressedQuarticRealRoots(k4, k2, k1, k0) {
   if (k4 === 0) return quadraticRealRoots(k2, k1, k0);
   if (k0 === 0) {
     const reducedSol = depressedCubicRealRoots(k4, k2, k1);
@@ -1070,7 +1087,7 @@ window.testDQRR = function testDQRR(k4, k2, k1, k0) {
   console.log(r.map(x => k0 + x * (k1 + x * (k2 + x * x * k4))));
 };
 
-window.solveSimpleBiquadratic = function solveSimpleBiquadratic(A, B, C, D, E, F) {
+export function solveSimpleBiquadratic(A, B, C, D, E, F) {
   const solutions = [];
   if (A === 0) {
     if (B === 0 || E === 0) return [];

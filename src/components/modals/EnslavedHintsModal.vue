@@ -1,6 +1,7 @@
 <script>
 import ModalWrapper from "@/components/modals/ModalWrapper";
 import PrimaryButton from "@/components/PrimaryButton";
+import { decimalProductLog } from "#utils/math.js";
 
 export default {
   name: "EnslavedHintsModal",

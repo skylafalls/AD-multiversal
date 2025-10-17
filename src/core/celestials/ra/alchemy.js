@@ -1,4 +1,5 @@
 import { ALCHEMY_RESOURCE, DC } from "#utils/constants.js";
+import { poissonDistribution } from "#utils/math.js";
 import { GameMechanicState } from "../../game-mechanics";
 
 /**
