@@ -21,7 +21,7 @@ Math.PI_2 = Math.PI * 2;
  * @param {Boolean} n Should the root be subtracted to -b?
  * @returns {Decimal}
 */
-window.decimalQuadraticSolution = function decimalQuadraticSolution(a, b, c, n = false) {
+export function decimalQuadraticSolution(a, b, c, n = false) {
   const divsr = a.times(2);
   const nb = b.neg();
   const lroot = b.pow(2);
@@ -39,7 +39,7 @@ window.decimalQuadraticSolution = function decimalQuadraticSolution(a, b, c, n =
  * @param {Boolean} n Should the square root subtract?
  * @returns {Decimal}
 */
-window.decimalCubicSolution = function decimalCubicSolution(a, b, c, d, n = false) {
+export function decimalCubicSolution(a, b, c, d, n = false) {
   const delta0 = b.pow(2).sub(a.times(3).times(c));
   const delta1 = b.pow(3).times(2).sub(a.times(b).times(c).times(9)).add(a.pow(2).times(d).times(27));
   const ne = Decimal.sqrt(delta1.pow(2).sub(delta0.pow(3).times(4))).mul(n ? -1 : 1);
@@ -52,8 +52,8 @@ window.decimalCubicSolution = function decimalCubicSolution(a, b, c, d, n = fals
  * @param {Decimal|Number} b Variable before x in ax^3 + bx + c = 0
  * @param {Decimal|Number} c Variable after x in ax^3 + bx + c = 0
  * @returns {Decimal}
-*/
-window.decimalDepressedCubicSolution = function decimalDepressedCubicSolution(b, c) {
+ */
+export function decimalDepressedCubicSolution(b, c) {
   const u1 = Decimal.cbrt(c.neg().div(2).add(Decimal.sqrt(c.pow(2).div(4).add(b.pow(3).div(27)))));
   const u2 = Decimal.cbrt(c.neg().div(2).sub(Decimal.sqrt(c.pow(2).div(4).add(b.pow(3).div(27)))));
   return u1.add(u2);
@@ -64,11 +64,6 @@ window.decimalDepressedCubicSolution = function decimalDepressedCubicSolution(b,
  * @property {number} quantity amount purchased (relative)
  * @property {Decimal} purchasePrice amount that needs to be paid to get that
  */
-
-// Please, for the love of god, do not use this for ANY equation that is decimal.
-// BBBS is far too weak and its worth just writing inverses (or picking an equation that has inverses)
-// This is simply because you would need to run cost equations 30+ times which is wasteful
-// Again, avoid if possible.
 
 /**
  * bulkBuyBinarySearch is a helper for bulk buyers of non-linear prices. If the price of
@@ -90,9 +85,13 @@ window.decimalDepressedCubicSolution = function decimalDepressedCubicSolution(b,
  *   cost or just the highest cost.
  * @param {number} alreadyBought amount already purchased
  * @returns {bulkBuyBinarySearch_result | null}
+ * @deprecated  Please, for the love of god, do not use this for ANY equation that is decimal.
+ * BBBS is far too weak and its worth just writing inverses (or picking an equation that has inverses)
+ * This is simply because you would need to run cost equations 30+ times which is wasteful
+ * Again, avoid if possible.
  */
-window.bulkBuyBinarySearch = function bulkBuyBinarySearch(money, costInfo, alreadyBought, ignoreWarning = false) {
-  if (!ignoreWarning) console.log("Bulk Buy Binary Search was used");
+export function bulkBuyBinarySearch(money, costInfo, alreadyBought, ignoreWarning = false) {
+  if (!ignoreWarning) console.warn("Bulk Buy Binary Search was used");
   const costFunction = costInfo.costFunction;
   const firstCost = costInfo.firstCost === undefined ? costFunction(alreadyBought) : costInfo.firstCost;
   const isCumulative = costInfo.cumulative === undefined ? true : costInfo.cumulative;
@@ -167,8 +166,9 @@ window.bulkBuyBinarySearch = function bulkBuyBinarySearch(money, costInfo, alrea
  *   cost or just the highest cost.
  * @param {Decimal} alreadyBought amount already purchased
  * @returns {dBBBS_result | null}
+ * @deprecated see {@link bulkBuyBinarySearch}
  */
-window.dBBBS = function dBBBS(money, costInfo, alreadyBought) {
+export function dBBBS(money, costInfo, alreadyBought) {
   const costFunction = costInfo.costFunction;
   const firstCost = costInfo.firstCost === undefined ? costFunction(alreadyBought) : costInfo.firstCost;
   const isCumulative = costInfo.cumulative === undefined ? true : costInfo.cumulative;

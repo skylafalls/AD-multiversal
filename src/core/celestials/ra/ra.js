@@ -1,4 +1,5 @@
 import { DC, GAME_EVENT } from "#utils/constants.js";
+import { decimalQuadraticSolution } from "#utils/math.js";
 import { GameMechanicState } from "../../game-mechanics";
 import { Quotes } from "../quotes";
 

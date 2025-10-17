@@ -1,4 +1,5 @@
 import { DC, GAME_EVENT, TUTORIAL_STATE } from "#utils/constants.js";
+import { decimalCubicSolution } from "@/utils/math";
 import { EternityChallenge } from "../eternity/eternity-challenge";
 
 class DimBoostRequirement {

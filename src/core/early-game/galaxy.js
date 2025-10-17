@@ -1,4 +1,5 @@
 import { DC, GALAXY_TYPE, GAME_EVENT, TUTORIAL_STATE } from "#utils/constants.js";
+import { bulkBuyBinarySearch, decimalQuadraticSolution } from "#utils/math.js";
 
 class GalaxyRequirement {
   constructor(tier, amount) {
@@ -100,7 +101,7 @@ export class Galaxy {
     return new Decimal(bulkBuyBinarySearch(new Decimal(currency), {
       costFunction: x => this.requirementAt(new Decimal(x)).amount,
       cumulative: false,
-    }, 0, true).quantity).floor().add(1).max(minVal);
+    }, 0).quantity).floor().add(1).max(minVal);
   }
 
   static requirementAt(galaxies) {
