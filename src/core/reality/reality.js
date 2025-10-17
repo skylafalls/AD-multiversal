@@ -1,5 +1,6 @@
 import { DC, GAME_EVENT } from "#utils/constants.js";
 import { Async } from "#utils/async-utils.js";
+import { Lazy } from "#utils/cache.js";
 
 /**
  * Object that manages the selection of glyphs offered to the player

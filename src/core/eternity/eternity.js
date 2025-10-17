@@ -1,6 +1,7 @@
 import { DC, GAME_EVENT } from "#utils/constants.js";
 import { GameMechanicState, SetPurchasableMechanicState } from "../game-mechanics";
 import FullScreenAnimationHandler from "../full-screen-animation-handler";
+import { Lazy } from "#utils/cache.js";
 
 function giveEternityRewards(auto) {
   player.records.bestEternity.time = Decimal.min(player.records.thisEternity.time, player.records.bestEternity.time);

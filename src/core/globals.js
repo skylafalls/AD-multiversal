@@ -1,4 +1,4 @@
-export * from "#utils/cache.js";
+export { GameCache } from "#utils/cache.js";
 export * from "#utils/notations";
 
 export * from "./player";

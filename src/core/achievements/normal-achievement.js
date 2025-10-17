@@ -1,5 +1,6 @@
 import { DC, GAME_EVENT } from "#utils/constants.js";
 import { GameMechanicState } from "../game-mechanics";
+import { Lazy } from "#utils/cache.js";
 import { SteamRuntime } from "@/steam";
 
 class AchievementState extends GameMechanicState {
