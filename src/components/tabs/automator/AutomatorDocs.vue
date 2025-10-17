@@ -11,6 +11,7 @@ import AutomatorErrorPage from "./AutomatorErrorPage";
 import AutomatorEventLog from "./AutomatorEventLog";
 import AutomatorScriptDropdownEntryList from "./AutomatorScriptDropdownEntryList";
 import ExpandingControlBox from "@/components/ExpandingControlBox";
+import { GAME_EVENT } from "#utils/constants.js";
 
 export const AutomatorPanels = {
   INTRO_PAGE: 0,

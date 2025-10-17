@@ -1,4 +1,5 @@
 <script>
+import { COMPLETED_MILESTONES, SINGULARITY_MILESTONE_RESOURCE, SINGULARITY_MILESTONE_SORT, SORT_ORDER } from "#utils/constants.js";
 import ModalWrapper from "@/components/modals/ModalWrapper";
 import SingularityMilestoneComponent from "@/components/tabs/celestial-laitela/SingularityMilestoneComponent";
 

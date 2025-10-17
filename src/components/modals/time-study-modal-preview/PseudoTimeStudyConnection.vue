@@ -1,4 +1,5 @@
 <script>
+import { TIME_STUDY_PATH, TIME_STUDY_TYPE } from "#utils/constants.js";
 import { ForceBoughtState } from "./StudyStringPreview";
 
 export default {
@@ -31,17 +32,23 @@ export default {
       const to = connection.to;
       function pathClassOf(study) {
         switch (study.path) {
-          case TIME_STUDY_PATH.ANTIMATTER_DIM: { return "o-time-study-connection--antimatter-dim";
+          case TIME_STUDY_PATH.ANTIMATTER_DIM: {
+            return "o-time-study-connection--antimatter-dim";
           }
-          case TIME_STUDY_PATH.INFINITY_DIM: { return "o-time-study-connection--infinity-dim";
+          case TIME_STUDY_PATH.INFINITY_DIM: {
+            return "o-time-study-connection--infinity-dim";
           }
-          case TIME_STUDY_PATH.TIME_DIM: { return "o-time-study-connection--time-dim";
+          case TIME_STUDY_PATH.TIME_DIM: {
+            return "o-time-study-connection--time-dim";
           }
-          case TIME_STUDY_PATH.ACTIVE: { return "o-time-study-connection--active";
+          case TIME_STUDY_PATH.ACTIVE: {
+            return "o-time-study-connection--active";
           }
-          case TIME_STUDY_PATH.PASSIVE: { return "o-time-study-connection--passive";
+          case TIME_STUDY_PATH.PASSIVE: {
+            return "o-time-study-connection--passive";
           }
-          case TIME_STUDY_PATH.IDLE: { return "o-time-study-connection--idle";
+          case TIME_STUDY_PATH.IDLE: {
+            return "o-time-study-connection--idle";
           }
           default: { return;
           }

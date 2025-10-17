@@ -1,4 +1,4 @@
-import { DC, GAME_EVENT } from "#utils/constants.js";
+import { COMPLETED_MILESTONES, DC, GAME_EVENT, SINGULARITY_MILESTONE_SORT } from "#utils/constants.js";
 
 import { GameMechanicState } from "../../game-mechanics";
 

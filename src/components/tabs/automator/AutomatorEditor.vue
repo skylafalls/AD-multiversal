@@ -2,6 +2,7 @@
 import AutomatorBlockEditor from "./AutomatorBlockEditor";
 import AutomatorControls from "./AutomatorControls";
 import AutomatorTextEditor from "./AutomatorTextEditor";
+import { GAME_EVENT } from "#utils/constants.js";
 
 export default {
   name: "AutomatorEditor",

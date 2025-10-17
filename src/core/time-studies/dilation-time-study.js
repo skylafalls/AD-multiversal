@@ -1,4 +1,4 @@
-import { TIME_STUDY_TYPE } from "#utils/constants.js";
+import { GAME_EVENT, TIME_STUDY_TYPE } from "#utils/constants.js";
 import { TimeStudy } from "./normal-time-study";
 import { TimeStudyState } from "./time-studies";
 

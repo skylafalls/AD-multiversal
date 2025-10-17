@@ -1,3 +1,5 @@
+import { TIME_STUDY_PATH, TS_REQUIREMENT_TYPE } from "#utils/constants.js";
+
 /**
  * Abstract representation of a full time study tree object. The intended usage is to supply the constructor with
  * an import string and a budget of time/space theorems, which it will use together to determine which studies can

@@ -1,4 +1,5 @@
 import { GameMechanicState } from "../game-mechanics";
+import { TIME_STUDY_PATH } from "#utils/constants.js";
 
 function showSecondPreferredWarning(currTree) {
   const canPickSecond = currTree.allowedDimPathCount === 2 && currTree.currDimPathCount < 2;

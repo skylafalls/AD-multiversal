@@ -1,4 +1,6 @@
 <script>
+import { SPEEDRUN_SEED_STATE } from "#utils/constants.js";
+
 export default {
   name: "PreviousSpeedrunInfo",
   props: {

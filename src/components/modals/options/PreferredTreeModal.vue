@@ -1,5 +1,6 @@
 <script>
 import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
+import { TIME_STUDY_PATH } from "#utils/constants.js";
 
 export default {
   name: "PreferredTreeModal",

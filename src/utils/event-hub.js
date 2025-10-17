@@ -1,3 +1,5 @@
+import { GAME_EVENT } from "./constants.js";
+
 window.EventHub = class EventHub {
   constructor() {
     this._handlers = {};

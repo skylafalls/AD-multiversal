@@ -1,3 +1,4 @@
+import { GAME_EVENT } from "#utils/constants.js";
 import { SetPurchasableMechanicState } from "../game-mechanics";
 
 class PerkState extends SetPurchasableMechanicState {

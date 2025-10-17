@@ -1,5 +1,6 @@
 <script>
 import AutomatorDefineSingleEntry from "./AutomatorDefineSingleEntry";
+import { GAME_EVENT } from "#utils/constants.js";
 import PrimaryButton from "@/components/PrimaryButton";
 
 export default {

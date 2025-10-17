@@ -1,5 +1,5 @@
 <script>
-import { GLYPH_MIME_TYPE } from "#utils/constants.js";
+import { GAME_EVENT, GLYPH_MIME_TYPE } from "#utils/constants.js";
 import GlyphComponent from "@/components/GlyphComponent";
 import PrimaryButton from "@/components/PrimaryButton";
 

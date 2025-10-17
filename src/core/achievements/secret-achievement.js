@@ -1,3 +1,4 @@
+import { GAME_EVENT } from "#utils/constants.js";
 import { GameMechanicState } from "../game-mechanics";
 
 class SecretAchievementState extends GameMechanicState {

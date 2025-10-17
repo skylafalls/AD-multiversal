@@ -1,7 +1,6 @@
 <script>
+import { DC, GAME_EVENT, GLYPH_MIME_TYPE } from "#utils/constants.js";
 import { GlyphInfo } from "../../../core/secret-formula/index";
-
-import { DC, GLYPH_MIME_TYPE } from "#utils/constants.js";
 
 import TypeSacrifice from "./TypeSacrifice";
 

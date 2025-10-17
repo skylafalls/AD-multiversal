@@ -1,4 +1,5 @@
 <script>
+import { GAME_EVENT } from "#utils/constants.js";
 import ModalWrapper from "@/components/modals/ModalWrapper";
 import S12GameEntries from "./S12GameEntries";
 

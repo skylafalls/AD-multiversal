@@ -1,4 +1,5 @@
 <script>
+import { TIME_STUDY_TYPE } from "#utils/constants.js";
 import PseudoTimeStudyButton from "./PseudoTimeStudyButton";
 import PseudoTimeStudyConnection from "./PseudoTimeStudyConnection";
 
@@ -91,21 +92,29 @@ export default {
     },
     studyComponent(study) {
       switch (study.type) {
-        case TIME_STUDY_TYPE.NORMAL: { return NormalTimeStudy;
+        case TIME_STUDY_TYPE.NORMAL: {
+          return NormalTimeStudy;
         }
-        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: { return ECTimeStudy;
+        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: {
+          return ECTimeStudy;
         }
-        case TIME_STUDY_TYPE.DILATION: { return DilationTimeStudy;
+        case TIME_STUDY_TYPE.DILATION: {
+          return DilationTimeStudy;
         }
-        case TIME_STUDY_TYPE.TRIAD: { return TriadTimeStudy;
+        case TIME_STUDY_TYPE.TRIAD: {
+          return TriadTimeStudy;
         }
       }
       throw new Error("Unknown Time Study type");
     },
     studyString(study) {
       switch (study.type) {
-        case TIME_STUDY_TYPE.NORMAL: case TIME_STUDY_TYPE.TRIAD: { return `${study.id}`; }
-        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: { return `EC${study.id}`;
+        case TIME_STUDY_TYPE.NORMAL:
+        case TIME_STUDY_TYPE.TRIAD: {
+          return `${study.id}`;
+        }
+        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: {
+          return `EC${study.id}`;
         }
       }
       return "Dilation Study";

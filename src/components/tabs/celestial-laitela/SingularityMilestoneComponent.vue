@@ -1,5 +1,6 @@
 <script>
 import { LAITELA_UPGRADE_DIRECTION } from "@/core/secret-formula";
+import { SINGULARITY_MILESTONE_RESOURCE } from "#utils/constants.js";
 
 export default {
   name: "SingularityMilestoneComponent",
@@ -56,11 +57,14 @@ export default {
     },
     upgradeDirectionIcon() {
       switch (this.milestone.config.upgradeDirection) {
-        case LAITELA_UPGRADE_DIRECTION.SELF_BOOST: { return "<b>ᛝ</b>";
+        case LAITELA_UPGRADE_DIRECTION.SELF_BOOST: {
+          return "<b>ᛝ</b>";
         }
-        case LAITELA_UPGRADE_DIRECTION.BOOSTS_MAIN: { return "<i class=\"fas fa-arrows-alt\"></i>";
+        case LAITELA_UPGRADE_DIRECTION.BOOSTS_MAIN: {
+          return "<i class=\"fas fa-arrows-alt\"></i>";
         }
-        case LAITELA_UPGRADE_DIRECTION.BOOSTS_LAITELA: { return "<i class=\"fas fa-compress-arrows-alt\"></i>";
+        case LAITELA_UPGRADE_DIRECTION.BOOSTS_LAITELA: {
+          return "<i class=\"fas fa-compress-arrows-alt\"></i>";
         }
         default: { throw new Error("Unspecified Lai'tela upgrade direction in singularity milestone");
         }
