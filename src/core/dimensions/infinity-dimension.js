@@ -1,5 +1,6 @@
 import { DC, GAME_EVENT } from "#utils/constants.js";
 import { DimensionState } from "./dimension.js";
+import { LinearCostScaling } from "#utils/math.js";
 
 export function infinityDimensionCommonMultiplier() {
   let mult = new Decimal(1)

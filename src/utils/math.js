@@ -1,3 +1,4 @@
+// oxlint-disable max-classes-per-file
 import { log as lngamma } from "gamma";
 
 import { DC } from "./constants";
@@ -249,7 +250,7 @@ export function dBBBS(money, costInfo, alreadyBought) {
  * Note: this doesn't do well with small initial multipliers (close to 1). 1.01 is about low
  * as it's reasonable to go.
  */
-window.LinearMultiplierScaling = class LinearMultiplierScaling {
+export class LinearMultiplierScaling {
   /**
    * Construct the helper object, which can be invoked for various calculations
    * @param {number} baseRatio The first multiplier
@@ -356,7 +357,7 @@ window.LinearMultiplierScaling = class LinearMultiplierScaling {
 };
 
 // This function is used once. I get why its seperated, but why make it a window function not a local one?????
-window.getCostWithLinearCostScaling = function getCostWithLinearCostScaling(
+export function getCostWithLinearCostScaling(
   amountOfPurchases, costScalingStart, initialCost, costMult, costMultGrowth,
 ) {
   const preScalingPurchases = Math.max(0, Math.floor(Math.log(costScalingStart / initialCost) / Math.log(costMult)));
@@ -369,7 +370,7 @@ window.getCostWithLinearCostScaling = function getCostWithLinearCostScaling(
 
 // Using the same arguments as getCostWithLinearCostScaling() above, do a binary search for the first purchase with a
 // cost of Infinity.
-window.findFirstInfiniteCostPurchase = function findFirstInfiniteCostPurchase(
+export function findFirstInfiniteCostPurchase(
   costScalingStart, initialCost, costMult, costMultGrowth,
 ) {
   let upper = 1;
@@ -404,7 +405,7 @@ window.findFirstInfiniteCostPurchase = function findFirstInfiniteCostPurchase(
  * t = i * (1 - m^p) / (1 - m)
  * p = floor(log(1 + t * (m - 1) / i) / log(m))
  */
-window.LinearCostScaling = class LinearCostScaling {
+export class LinearCostScaling {
   /**
    * @param {Decimal} resourcesAvailable amount of available resources
    * @param {Decimal} initialCost current cost
@@ -455,7 +456,7 @@ window.LinearCostScaling = class LinearCostScaling {
  * have to pay for the highest tier when buying in bulk. That's a little bit cheaper,
  * but for the use cases this encounters, it's not a big deal.
  */
-window.ExponentialCostScaling = class ExponentialCostScaling {
+export class ExponentialCostScaling {
   /**
   * @param {Object} param configuration object with the following fields
   * @param {number|Decimal} param.baseCost the cost of the first purchase
@@ -648,11 +649,13 @@ window.permutationIndex = function permutationIndex(len, lexIndex) {
   return perm;
 };
 
-// This entire function is bullshit, there is 0 reason to notjust use exponentialCostScaling?
-// Calculate cost scaling for something that follows getCostWithLinearCostScaling() under Infinity and immediately
-// starts accelerated ExponentialCostScaling above Infinity.  Yes this is a fuckton of arguments, sorry.  It sort of
-// needs to inherit all arguments from both cost scaling functions.
-window.getHybridCostScaling = function getHybridCostScaling(
+/**
+ * Calculate cost scaling for something that follows getCostWithLinearCostScaling() under Infinity and immediately
+ * starts accelerated ExponentialCostScaling above Infinity.  Yes this is a fuckton of arguments, sorry.  It sort of
+ * needs to inherit all arguments from both cost scaling functions.
+ * @deprecated This entire function is bullshit, there is 0 reason to notjust use exponentialCostScaling?
+ */
+export function getHybridCostScaling(
   amountOfPurchases, linCostScalingStart, linInitialCost, linCostMult, linCostMultGrowth,
   expInitialCost, expCostMult, expCostMultGrowth,
 ) {
