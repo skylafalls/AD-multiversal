@@ -1,4 +1,4 @@
-import { AUTOBUYER_MODE, SPEEDRUN_SEED_STATE } from "#utils/constants.js";
+import { AUTOBUYER_MODE, SPEEDRUN_SEED_STATE, TUTORIAL_STATE } from "#utils/constants.js";
 import { beMigration } from "./be-migrations";
 import { deepmergeAll } from "#utils/deepmerge.js";
 

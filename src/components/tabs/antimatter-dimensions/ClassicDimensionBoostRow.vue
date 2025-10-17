@@ -1,5 +1,6 @@
 <script>
 import PrimaryButton from "@/components/PrimaryButton";
+import { TUTORIAL_STATE } from "#utils/constants.js";
 
 export default {
   name: "ClassicDimensionBoostRow",

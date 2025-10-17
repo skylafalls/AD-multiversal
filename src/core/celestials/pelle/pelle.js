@@ -143,7 +143,7 @@ export const Pelle = {
       return upgrade;
     }
 
-    return Boolean(!upgrade.canBeApplied);
+    return !!upgrade.canBeApplied;
   },
 
   get canArmageddon() {
@@ -331,7 +331,7 @@ export const Pelle = {
   },
 
   get activeGlyphType() {
-    return Glyphs.active.filter(Boolean)[0]?.type;
+    return Glyphs.active.find(Boolean)?.type;
   },
 
   get hasGalaxyGenerator() {

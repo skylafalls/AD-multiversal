@@ -1,7 +1,6 @@
 <script>
 import { DataSet, Network } from "vis-network";
-import { GAME_EVENT } from "#utils/constants.js";
-import { PERK_FAMILY } from "@/core/secret-formula";
+import { GAME_EVENT, PERK_FAMILY } from "#utils/constants.js";
 import PerkPointLabel from "./PerkPointLabel";
 
 export default {

@@ -1,14 +1,4 @@
-import { DC } from "#utils/constants.js";
-
-export const PERK_FAMILY = {
-  ANTIMATTER: "ANTIMATTER",
-  INFINITY: "INFINITY",
-  ETERNITY: "ETERNITY",
-  DILATION: "DILATION",
-  REALITY: "REALITY",
-  AUTOMATION: "AUTOMATION",
-  ACHIEVEMENT: "ACHIEVEMENT",
-};
+import { DC, PERK_FAMILY } from "#utils/constants.js";
 
 // This function isn't used in-game, see note below for its intended usage
 

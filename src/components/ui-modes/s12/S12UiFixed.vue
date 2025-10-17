@@ -2,6 +2,7 @@
 import CelestialQuoteHistoryDisplay from "@/components/modals/celestial-quotes/CelestialQuoteHistoryDisplay";
 import CelestialQuoteModal from "@/components/modals/celestial-quotes/CelestialQuoteModal";
 import CreditsContainer from "@/components/tabs/celestial-pelle/CreditsContainer";
+import { END_STATE_MARKERS } from "#utils/constants.js";
 import FadeAway from "@/components/tabs/celestial-pelle/FadeAway";
 import ModalProgressBar from "@/components/modals/ModalProgressBar";
 import NewGame from "@/components/tabs/celestial-pelle/NewGame";

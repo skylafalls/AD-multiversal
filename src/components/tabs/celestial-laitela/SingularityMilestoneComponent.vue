@@ -1,6 +1,5 @@
 <script>
-import { LAITELA_UPGRADE_DIRECTION } from "@/core/secret-formula";
-import { SINGULARITY_MILESTONE_RESOURCE } from "#utils/constants.js";
+import { LAITELA_UPGRADE_DIRECTION, SINGULARITY_MILESTONE_RESOURCE } from "#utils/constants.js";
 
 export default {
   name: "SingularityMilestoneComponent",

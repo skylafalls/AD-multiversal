@@ -1,4 +1,4 @@
-import { DC, GAME_EVENT } from "#utils/constants.js";
+import { DC, EFFARIG_STAGES, GAME_EVENT } from "#utils/constants.js";
 import { GameMechanicState, SetPurchasableMechanicState } from "../game-mechanics";
 
 class ChargedInfinityUpgradeState extends GameMechanicState {

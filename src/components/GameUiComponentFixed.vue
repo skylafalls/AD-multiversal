@@ -12,6 +12,7 @@ import SaveTimer from "@/components/SaveTimer";
 import SpectateGame from "@/components/SpectateGame";
 import SpeedrunStatus from "@/components/SpeedrunStatus";
 import TimeTheoremShop from "@/components/tabs/time-studies/tt-shop/TimeTheoremShop";
+import { END_STATE_MARKERS } from "#utils/constants.js";
 
 export default {
   name: "GameUiComponentFixed",

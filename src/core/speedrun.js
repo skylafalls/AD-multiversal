@@ -1,5 +1,6 @@
 import { GameDatabase } from "./secret-formula/game-database";
 import { GameMechanicState } from "./game-mechanics";
+import { SPEEDRUN_SEED_STATE } from "#utils/constants.js";
 
 export const Speedrun = {
   officialFixedSeed: 69420,

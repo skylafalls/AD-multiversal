@@ -1,10 +1,4 @@
-import { DC, GAME_EVENT } from "#utils/constants.js";
-
-export const GALAXY_TYPE = {
-  NORMAL: 0,
-  DISTANT: 1,
-  REMOTE: 2,
-};
+import { DC, GALAXY_TYPE, GAME_EVENT, TUTORIAL_STATE } from "#utils/constants.js";
 
 class GalaxyRequirement {
   constructor(tier, amount) {

@@ -1,4 +1,4 @@
-import { DC, TS_REQUIREMENT_TYPE } from "#utils/constants.js";
+import { DC, EFFARIG_STAGES, TS_REQUIREMENT_TYPE } from "#utils/constants.js";
 
 const thisInfinityMult = (thisInfinity) => {
   // All "this inf time" or "best inf time" mults are * 10

@@ -482,6 +482,90 @@ export enum GAME_EVENT {
   CLOSE_MODAL = "CLOSE_MODAL",
 };
 
+export enum PERK_FAMILY {
+  ANTIMATTER = "ANTIMATTER",
+  INFINITY = "INFINITY",
+  ETERNITY = "ETERNITY",
+  DILATION = "DILATION",
+  REALITY = "REALITY",
+  AUTOMATION = "AUTOMATION",
+  ACHIEVEMENT = "ACHIEVEMENT",
+};
+
+export enum FILL_STATE {
+  LOCKED = 0,
+  FILL = 1,
+  DRAIN = 2,
+  OVERFILL = 3,
+};
+
+export enum CELESTIAL_NAV_DRAW_ORDER {
+  // Node background is a black fuzzy circle drawn behind nodes. It can help show their
+  // outline in some cases, and can be used in cases where a connector passes under a node
+  NODE_BG = 0,
+  CONNECTORS = 1000,
+  NODES = 2000,
+  NODE_OVERLAYS = 3000,
+  CANVAS_OVERLAY = 4000,
+};
+
+// Used for UI purposes to give different theming for different kinds of upgrades
+export enum LAITELA_UPGRADE_DIRECTION {
+  SELF_BOOST = 0,
+  BOOSTS_MAIN = 1,
+  BOOSTS_LAITELA = 2,
+};
+
+export enum V_REDUCTION_MODE {
+  SUBTRACTION = 1,
+  DIVISION = 2,
+};
+
+// constified object rather then enum to avoid some comparison issues
+export const END_STATE_MARKERS = {
+  // Tab zalgoification starts as soon as endState > 0
+  GAME_END: 1,
+  TAB_START_HIDE: 1.5,
+  INTERACTIVITY_DISABLED: 2.5,
+  FADE_AWAY: 2.5,
+  SAVE_DISABLED: 4,
+  END_NUMBERS: 4.2,
+  CREDITS_START: 4.5,
+  SHOW_NEW_GAME: 13.5,
+  SPECTATE_GAME: 13.9,
+  // The song is 3:04 and the credits increment by 1 every 20 seconds. Needs changing if the song is changed.
+  SONG_END: 13.7,
+  CREDITS_END: 14.5,
+} as const;
+
+export enum BACKUP_SLOT_TYPE {
+  ONLINE = 0,
+  OFFLINE = 1,
+  RESERVE = 2,
+};
+
+export enum EFFARIG_STAGES {
+  INFINITY = 1,
+  ETERNITY = 2,
+  REALITY = 3,
+  COMPLETED = 4,
+};
+
+export enum GALAXY_TYPE {
+  NORMAL = 0,
+  DISTANT = 1,
+  REMOTE = 2,
+};
+
+export enum TUTORIAL_STATE {
+  DIM1 = 0,
+  DIM2 = 1,
+  TICKSPEED = 2,
+  DIMBOOST = 3,
+  GALAXY = 4,
+  AUTOMATOR = 5,
+};
+
 // We're just going to use cloneDeep from lodash, since its better
 // We're just going to use structuredClone from the ECMAScript standard since it's better
 // my bad it's not ECMAScript it's WHATWG i think

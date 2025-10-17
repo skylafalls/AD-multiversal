@@ -5,13 +5,7 @@ import { devMigrations } from "./dev-migrations";
 import { migrations } from "./migrations";
 
 import { deepmergeAll } from "#utils/deepmerge.js";
-import { GAME_EVENT } from "#utils/constants.js";
-
-export const BACKUP_SLOT_TYPE = {
-  ONLINE: 0,
-  OFFLINE: 1,
-  RESERVE: 2,
-};
+import { BACKUP_SLOT_TYPE, END_STATE_MARKERS, GAME_EVENT } from "#utils/constants.js";
 
 // Note: interval is in seconds, and only the first RESERVE slot is ever used. Having intervalStr as a redundant
 // prop is necessary because using our TimeSpan formatting functions produces undesirable strings like "1.00 minutes"

@@ -1,7 +1,6 @@
 <script>
+import { BACKUP_SLOT_TYPE } from "#utils/constants.js";
 import PrimaryButton from "@/components/PrimaryButton";
-
-import { BACKUP_SLOT_TYPE } from "@/core/storage";
 
 export default {
   name: "BackupEntry",

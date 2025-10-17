@@ -1,4 +1,5 @@
 <script>
+import { END_STATE_MARKERS } from "#utils/constants.js";
 import PreviousSpeedrunInfo from "./PreviousSpeedrunInfo";
 import PrimaryButton from "@/components/PrimaryButton";
 import SpeedrunMilestoneCompare from "./SpeedrunMilestoneCompare";

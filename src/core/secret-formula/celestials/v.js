@@ -1,4 +1,4 @@
-import { DC } from "#utils/constants.js";
+import { DC, V_REDUCTION_MODE } from "#utils/constants.js";
 
 // This is supposed to be in ./navigation.js but importing doesn't work for some stupid reason
 function emphasizeEnd(valueA, valueB) {
@@ -6,11 +6,6 @@ function emphasizeEnd(valueA, valueB) {
   const fraction = valueA.div(valueB).min(1).toNumber();
   return Math.pow(fraction, 10);
 }
-
-export const V_REDUCTION_MODE = {
-  SUBTRACTION: 1,
-  DIVISION: 2,
-};
 
 export const v = {
   // Note: mainUnlock IDs here are one-indexed to match with navigation indices

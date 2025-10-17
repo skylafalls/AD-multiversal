@@ -1,3 +1,4 @@
+import { END_STATE_MARKERS } from "#utils/constants.js";
 import Mousetrap from "mousetrap";
 
 // Add all numpad keys to Mousetrap (keycodes 97-105 correspond to numpad 1-9)

@@ -1,4 +1,4 @@
-import { GAME_EVENT } from "#utils/constants.js";
+import { EFFARIG_STAGES, GAME_EVENT } from "#utils/constants.js";
 
 export const speedrunMilestones = [
   {

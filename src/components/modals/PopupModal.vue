@@ -1,5 +1,5 @@
 <script>
-import { GAME_EVENT } from "#utils/constants.js";
+import { END_STATE_MARKERS, GAME_EVENT } from "#utils/constants.js";
 
 export default {
   name: "PopupModal",

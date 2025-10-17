@@ -1,5 +1,5 @@
 <script>
-import { GAME_EVENT } from "#utils/constants.js";
+import { GAME_EVENT, TUTORIAL_STATE } from "#utils/constants.js";
 import { blockifyTextAutomator } from "@/core/automator";
 
 export default {

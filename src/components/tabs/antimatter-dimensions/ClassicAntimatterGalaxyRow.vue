@@ -1,4 +1,5 @@
 <script>
+import { GALAXY_TYPE, TUTORIAL_STATE } from "#utils/constants.js";
 import PrimaryButton from "@/components/PrimaryButton";
 
 export default {

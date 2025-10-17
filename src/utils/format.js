@@ -1,3 +1,4 @@
+import { END_STATE_MARKERS } from "./constants";
 import { isDecimal } from "./type-check";
 
 function isEND() {

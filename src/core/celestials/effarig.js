@@ -1,15 +1,8 @@
-import { DC, GAME_EVENT } from "#utils/constants.js";
+import { DC, EFFARIG_STAGES, GAME_EVENT } from "#utils/constants.js";
 import { BitUpgradeState } from "../game-mechanics";
 import { GameDatabase } from "../secret-formula/game-database";
 
 import { Quotes } from "./quotes";
-
-export const EFFARIG_STAGES = {
-  INFINITY: 1,
-  ETERNITY: 2,
-  REALITY: 3,
-  COMPLETED: 4,
-};
 
 export const Effarig = {
   displayName: "Effarig",

@@ -1,5 +1,6 @@
 <script>
 import CreditsDisplay from "@/components/CreditsDisplay";
+import { END_STATE_MARKERS } from "#utils/constants.js";
 
 export default {
   name: "CreditsContainer",

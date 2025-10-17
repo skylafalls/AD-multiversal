@@ -1,7 +1,6 @@
 <script>
 import svgPanZoom from "svg-pan-zoom";
-
-import { CELESTIAL_NAV_DRAW_ORDER } from "@/core/secret-formula/celestials/navigation";
+import { CELESTIAL_NAV_DRAW_ORDER } from "#utils/constants.js";
 
 import NodeBackground from "./NodeBackground";
 import NodeOverlay from "./NodeOverlay";
