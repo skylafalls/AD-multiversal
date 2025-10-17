@@ -1,7 +1,7 @@
 <script>
-import { GlyphInfo } from "../core/secret-formula/reality/core-glyph-info";
-
+import { GAME_EVENT } from "#utils/constants.js";
 import GlyphComponent from "@/components/GlyphComponent.vue";
+import { GlyphInfo } from "../core/secret-formula/reality/core-glyph-info";
 import GlyphSetName from "@/components/GlyphSetName.vue";
 
 export default {

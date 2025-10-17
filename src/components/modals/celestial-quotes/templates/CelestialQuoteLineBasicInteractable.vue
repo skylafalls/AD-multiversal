@@ -1,5 +1,6 @@
 <script>
 import CelestialQuoteLine from "@/components/modals/celestial-quotes/CelestialQuoteLine";
+import { GAME_EVENT } from "#utils/constants.js";
 
 export default {
   name: "CelestialQuoteBasicInteractable",
@@ -73,9 +74,11 @@ export default {
     progressIn(direction) {
       if (!this.isFocused) return false;
       switch (direction) {
-        case "left": { return this.currentLine--;
+        case "left": {
+          return this.currentLine--;
         }
-        case "right": { return this.currentLine++;
+        case "right": {
+          return this.currentLine++;
         }
         default: { return false;
         }

@@ -1,4 +1,5 @@
 <script>
+import { GAME_EVENT } from "#utils/constants.js";
 import ModalCloseButton from "@/components/modals/ModalCloseButton";
 
 export default {

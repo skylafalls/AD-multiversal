@@ -1,4 +1,5 @@
 <script>
+import { GAME_EVENT } from "#utils/constants.js";
 import InfinityUpgradeButton from "@/components/InfinityUpgradeButton";
 import IpMultiplierButton from "./IpMultiplierButton";
 import PrimaryButton from "@/components/PrimaryButton";
