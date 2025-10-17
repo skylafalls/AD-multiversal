@@ -1,3 +1,4 @@
+import { Async } from "#utils/async-utils.js";
 import TWEEN from "tween.js";
 
 import { ElectronRuntime, SteamRuntime } from "@/steam";

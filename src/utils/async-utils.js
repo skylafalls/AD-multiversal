@@ -3,7 +3,7 @@
  * set of batches that don't lock up the UI.
  * run() is the nominal entry point.
  */
-window.Async = {
+export const Async = {
   _enabled: true,
   get enabled() {
     return this._enabled;
