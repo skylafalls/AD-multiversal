@@ -7,29 +7,28 @@ export function watchLatestCommit() {
   const url = "commit.json";
   let current;
 
-  function watch() {
-    fetch(url, { method: "GET" })
-      .then(response => response.json())
-      .then((json) => {
-        if (json === undefined) {
-          return;
-        }
-        current = current ?? json.sha;
-        if (current === json.sha) {
-          return;
-        }
+  async function watch() {
+    const res = await fetch(url, { method: "GET" });
+    const json = res.json();
 
-        Modal.message.show(
-          "Refresh the page (game will be saved), we've got new stuff: "
-          + `"${json.message}" by ${json.author}`,
-          {
-            callback: updateRefresh,
-            closeButton: true,
-          },
-          3,
-        );
-      });
+    current = current ?? json.sha;
+    if (current === json.sha) {
+      return;
+    }
+
+    Modal.message.show(
+      "Refresh the page (game will be saved), we've got new stuff: "
+      + `"${json.message}" by ${json.author}`,
+      {
+        callback: updateRefresh,
+        closeButton: true,
+      },
+      3,
+    );
   }
 
-  setInterval(watch, 60000);
+  // oxlint-disable-next-line prefer-await-to-callbacks
+  setInterval(() => watch().catch((/** @type {unknown} */ err) => {
+    console.err(err);
+  }), 60000);
 }
