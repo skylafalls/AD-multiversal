@@ -1,9 +1,4 @@
-// Used for UI purposes to give different theming for different kinds of upgrades
-export const LAITELA_UPGRADE_DIRECTION = {
-  SELF_BOOST: 0,
-  BOOSTS_MAIN: 1,
-  BOOSTS_LAITELA: 2,
-};
+import { LAITELA_UPGRADE_DIRECTION } from "#utils/constants.js";
 
 export const singularityMilestones = {
   // Infinite

@@ -1,17 +1,23 @@
-class Lazy {
-  constructor(getValue) {
+import { GAME_EVENT } from "./constants.js";
+
+// shut up about the empty object type it's really useful and NonNullable<unknown>
+// looks a lot uglier
+// eslint-disable-next-line ban-types, @typescript-eslint/no-empty-object-type
+export class Lazy<Value extends {} = {}> {
+  private _getValue: () => Value;
+  private static _registrar: Lazy[] = [];
+  private _value: Value | undefined;
+
+  constructor(getValue: () => Value) {
     this._getValue = getValue;
     Lazy.registerLazy(this);
   }
 
   static get registrar() {
-    if (Lazy._registrar === undefined) {
-      Lazy._registrar = [];
-    }
     return Lazy._registrar;
   }
 
-  static registerLazy(object) {
+  static registerLazy(object: Lazy) {
     Lazy.registrar.push(object);
   }
 
@@ -35,7 +41,7 @@ class Lazy {
   /**
    * @return {Lazy}
    */
-  invalidateOn(...events) {
+  invalidateOn(...events: GAME_EVENT[]) {
     for (const event of events) {
       EventHub.logic.on(event, () => {
         this.invalidate();
@@ -44,12 +50,14 @@ class Lazy {
     return this;
   }
 }
-window.Lazy = Lazy;
 
-function highestInArray(array, isNum = false) {
+function highestInArray(array: number[], isNum?: true): number;
+function highestInArray(array: Decimal[], isNum?: false): Decimal;
+function highestInArray(array: (Decimal | number)[], isNum = false): Decimal | number {
   let i = 0;
   let highestVal = isNum ? 0 : new Decimal(0);
   while (array[i] !== undefined) {
+    // @ts-expect-error TODO: wait until next commit please
     highestVal = isNum ? Math.max(highestVal, array[i]) : Decimal.max(highestVal, array[i]);
     i++;
   }

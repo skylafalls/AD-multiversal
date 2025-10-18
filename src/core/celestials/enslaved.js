@@ -1,7 +1,6 @@
+import { DC, GAME_EVENT } from "#utils/constants.js";
 import { BitUpgradeState } from "../game-mechanics";
 import { GameDatabase } from "../secret-formula/game-database";
-
-import { DC } from "#utils/constants.js";
 
 import { Quotes } from "./quotes";
 

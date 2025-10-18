@@ -1,4 +1,5 @@
 <script>
+import { GAME_EVENT, GLYPH_BG_SETTING } from "#utils/constants.js";
 import SelectGlyphInfoDropdown, { GlyphInfoVue } from ".././SelectGlyphInfoDropdown";
 
 import ExpandingControlBox from "@/components/ExpandingControlBox";

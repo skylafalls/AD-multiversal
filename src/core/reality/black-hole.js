@@ -1,6 +1,7 @@
-import { isDecimal } from "../../utils/type-check";
-
-import { DC } from "#utils/constants.js";
+import { DC, GAME_EVENT } from "#utils/constants.js";
+import { Lazy } from "#utils/cache.js";
+import { isDecimal } from "#utils/type-check.js";
+import { getHybridCostScaling } from "#utils/math.js";
 
 class BlackHoleUpgradeState {
   constructor(config) {

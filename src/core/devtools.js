@@ -4,7 +4,7 @@
 
 import { sha512_256 } from "js-sha512";
 import { Player } from "./player.js";
-import { DC } from "#utils/constants.js";
+import { GAME_EVENT, DC } from "#utils/constants.js";
 import FullScreenAnimationHandler from "./full-screen-animation-handler.js";
 
 export const dev = {};

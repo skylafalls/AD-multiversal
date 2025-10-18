@@ -1,4 +1,6 @@
 <script>
+import { END_STATE_MARKERS } from "#utils/constants.js";
+
 export default {
   name: "FadeAway",
   data() {

@@ -1,4 +1,5 @@
 <script>
+import { GAME_EVENT, TIME_STUDY_TYPE } from "#utils/constants.js";
 import { STUDY_TREE_LAYOUT_TYPE, TimeStudyTreeLayout } from "./time-study-tree-layout";
 
 import DilationTimeStudy from "./DilationTimeStudy";
@@ -115,13 +116,17 @@ export default {
     },
     studyComponent(study) {
       switch (study.type) {
-        case TIME_STUDY_TYPE.NORMAL: { return NormalTimeStudy;
+        case TIME_STUDY_TYPE.NORMAL: {
+          return NormalTimeStudy;
         }
-        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: { return ECTimeStudy;
+        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: {
+          return ECTimeStudy;
         }
-        case TIME_STUDY_TYPE.DILATION: { return DilationTimeStudy;
+        case TIME_STUDY_TYPE.DILATION: {
+          return DilationTimeStudy;
         }
-        case TIME_STUDY_TYPE.TRIAD: { return TriadTimeStudy;
+        case TIME_STUDY_TYPE.TRIAD: {
+          return TriadTimeStudy;
         }
       }
       throw new Error("Unknown Time Study type");

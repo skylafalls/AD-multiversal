@@ -1,4 +1,5 @@
 <script>
+import { BLACK_HOLE_PAUSE_MODE } from "#utils/constants.js";
 import { BlackHoleAnimation } from "./black-hole-animation";
 import BlackHoleChargingSliders from "./BlackHoleChargingSliders";
 import BlackHoleStateRow from "./BlackHoleStateRow";

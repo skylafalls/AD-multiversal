@@ -1,4 +1,4 @@
-import { DC } from "#utils/constants.js";
+import { DC, TS_REQUIREMENT_TYPE } from "#utils/constants.js";
 
 export const ecTimeStudies = [
   {

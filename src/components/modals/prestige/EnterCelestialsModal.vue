@@ -1,4 +1,5 @@
 <script>
+import { EFFARIG_STAGES } from "#utils/constants.js";
 import EnterCelestialsRaPet from "@/components/modals/prestige/EnterCelestialsRaPet";
 import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 

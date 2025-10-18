@@ -1,3 +1,5 @@
+import { PROGRESS_STAGE } from "#utils/constants.js";
+
 export const progressStages = [
   /**
    * This is used in both the catchup modal and for cloud save comparisons. Due to the fact that it's used for

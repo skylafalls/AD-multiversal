@@ -1,4 +1,5 @@
 <script>
+import { GAME_EVENT } from "#utils/constants.js";
 import { GlyphInfo } from "../core/secret-formula/reality/core-glyph-info";
 
 const GLYPH_NAMES = {

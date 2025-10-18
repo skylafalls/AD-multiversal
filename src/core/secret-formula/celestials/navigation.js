@@ -1,5 +1,6 @@
-import { DC } from "#utils/constants.js";
-import wordShift from "#utils/word-shift.js";
+import { CELESTIAL_NAV_DRAW_ORDER, DC, FILL_STATE } from "#utils/constants.js";
+import { LinearPath, LogarithmicSpiral, Vector } from "#utils/vectors.js";
+import { wordCycle } from "#utils/word-shift.js";
 
 export function emphasizeEnd(fraction) {
   if (fraction instanceof Decimal) return Decimal.pow(fraction, 10);
@@ -55,13 +56,6 @@ function pelleStarConnector(index, fillColor, isOverfill) {
   }());
 }
 
-const FILL_STATE = {
-  LOCKED: 0,
-  FILL: 1,
-  DRAIN: 2,
-  OVERFILL: 3,
-};
-
 function riftFillStage(name) {
   const rift = PelleRifts[name.toLowerCase()];
   if (!rift.canBeApplied) return FILL_STATE.LOCKED;
@@ -69,16 +63,6 @@ function riftFillStage(name) {
   if (rift.reducedTo < 1) return FILL_STATE.DRAIN;
   return FILL_STATE.OVERFILL;
 }
-
-export const CELESTIAL_NAV_DRAW_ORDER = {
-  // Node background is a black fuzzy circle drawn behind nodes. It can help show their
-  // outline in some cases, and can be used in cases where a connector passes under a node
-  NODE_BG: 0,
-  CONNECTORS: 1000,
-  NODES: 2000,
-  NODE_OVERLAYS: 3000,
-  CANVAS_OVERLAY: 4000,
-};
 
 const Positions = Object.freeze({
   teresa: new Vector(100, 100),
@@ -183,7 +167,7 @@ function pelleRiftFill(name, index, textAngle, fillType) {
       forceLegend: () => legendFn(),
       legend: {
         text: () => [
-          `${formatPercents(percentFn(), 1)} ${wordShift.wordCycle(PelleRifts[name.toLowerCase()].name)}`,
+          `${formatPercents(percentFn(), 1)} ${wordCycle(PelleRifts[name.toLowerCase()].name)}`,
         ],
         angle: textAngle,
         diagonal: 30,

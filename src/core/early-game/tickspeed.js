@@ -1,4 +1,5 @@
-import { DC } from "#utils/constants.js";
+import { DC, TUTORIAL_STATE } from "#utils/constants.js";
+import { ExponentialCostScaling } from "#utils/math.js";
 
 export function effectiveBaseGalaxies() {
   // Note that this already includes the "50% more" active path effect

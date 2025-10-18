@@ -1,4 +1,5 @@
 import { BitPurchasableMechanicState, RebuyableMechanicState } from "../game-mechanics";
+import { GAME_EVENT } from "#utils/constants.js";
 
 class RealityUpgradeState extends BitPurchasableMechanicState {
   constructor(config) {

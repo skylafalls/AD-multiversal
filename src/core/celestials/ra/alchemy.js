@@ -1,4 +1,6 @@
-import { DC } from "#utils/constants.js";
+import { ALCHEMY_RESOURCE, DC } from "#utils/constants.js";
+import { ExponentialMovingAverage } from "#utils/vectors.js";
+import { poissonDistribution } from "#utils/math.js";
 import { GameMechanicState } from "../../game-mechanics";
 
 /**

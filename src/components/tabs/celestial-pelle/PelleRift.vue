@@ -1,5 +1,5 @@
 <script>
-import wordShift from "#utils/word-shift.js";
+import { wordCycle } from "#utils/word-shift.js";
 
 import PelleRiftBar from "./PelleRiftBar";
 import PelleStrike from "./PelleStrike";
@@ -63,11 +63,11 @@ export default {
       return typeof value === "number" ? `${formatInt(100 * value)}%` : format(value, 2);
     },
     riftName() {
-      return wordShift.wordCycle(this.rift.name, true);
+      return wordCycle(this.rift.name, true);
     },
     drainResource() {
       return this.specialRift
-        ? wordShift.wordCycle(this.rift.drainResource)
+        ? wordCycle(this.rift.drainResource)
         : this.rift.drainResource;
     },
   },

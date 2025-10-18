@@ -1,3 +1,4 @@
+import { AUTO_GLYPH_SCORE, AUTO_REALITY_MODE } from "#utils/constants.js";
 import { AutobuyerState } from "./autobuyer";
 
 export class RealityAutobuyerState extends AutobuyerState {

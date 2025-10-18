@@ -1,5 +1,6 @@
 import { DC } from "#utils/constants.js";
 import { DimensionState } from "../../dimensions/dimension";
+import { ExponentialCostScaling } from "#utils/math.js";
 
 /**
  * Constants for easily adjusting values

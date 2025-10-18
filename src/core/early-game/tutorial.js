@@ -1,11 +1,4 @@
-export const TUTORIAL_STATE = {
-  DIM1: 0,
-  DIM2: 1,
-  TICKSPEED: 2,
-  DIMBOOST: 3,
-  GALAXY: 4,
-  AUTOMATOR: 5,
-};
+import { TUTORIAL_STATE } from "#utils/constants.js";
 
 // Tutorial has two ways of moving on, either by Tutorial.moveOn() or by having it's condition be true. This
 // is checked by moving on when the NEXT state's condition evaluates to true

@@ -1,4 +1,5 @@
 <script>
+import { GAME_EVENT } from "#utils/constants.js";
 import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 import SaveInfoEntry from "@/components/modals/cloud/SaveInfoEntry";
 
@@ -35,7 +36,7 @@ export default {
         ? `<b ${badStyle}>would overwrite a save with significantly more progress</b>`
         : `<b ${goodStyle}>is probably safe</b>`);
       if (this.hasDifferentName || this.wrongHash) {
-        suggestions.push(` ${warnOverwrite ? "Additionally" : "However"}, you may be overwriting a 
+        suggestions.push(` ${warnOverwrite ? "Additionally" : "However"}, you may be overwriting a
           <b ${badStyle}>save from a different device</b>.`);
       }
       if (warnOverwrite || this.hasDifferentName || this.wrongHash) {

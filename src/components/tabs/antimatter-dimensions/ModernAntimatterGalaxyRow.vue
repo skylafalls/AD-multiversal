@@ -1,4 +1,6 @@
 <script>
+import { GALAXY_TYPE, TUTORIAL_STATE } from "#utils/constants.js";
+
 export default {
   name: "ModernAntimatterGalaxyRow",
   data() {

@@ -1,4 +1,5 @@
-import { DC } from "#utils/constants.js";
+import { DC, GAME_EVENT } from "#utils/constants.js";
+import { binomialDistribution, decimalCubicSolution, decimalQuadraticSolution, poissonDistribution } from "#utils/math.js";
 
 // Slowdown parameters for replicanti growth, interval will increase by scaleFactor for every scaleLog10
 // OoM past the cap (default is 308.25 (log10 of 1.8e308), 1.2, Number.MAX_VALUE)

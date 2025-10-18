@@ -1,4 +1,5 @@
-import { CELESTIAL_NAV_DRAW_ORDER } from "../navigation";
+import { LinearPath, LogarithmicSpiral, Vector } from "#utils/vectors.js";
+import { CELESTIAL_NAV_DRAW_ORDER } from "#utils/constants.js";
 
 function sigilProgress() {
   const riftProgress = PelleRifts.all.map(r => Math.clamp(r.realPercentage, 0, 1)).min().clampMax(1e100).toNumber();

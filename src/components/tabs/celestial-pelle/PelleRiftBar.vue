@@ -1,5 +1,5 @@
 <script>
-import wordShift from "#utils/word-shift.js";
+import { wordCycle } from "#utils/word-shift.js";
 
 import CustomizeableTooltip from "@/components/CustomizeableTooltip";
 
@@ -56,7 +56,7 @@ export default {
       const rift = this.rift;
       return `${formatPercents(milestone.requirement)}
       (${this.formatRift(rift.config.percentageToFill(milestone.requirement))} \
-      ${rift.id === 3 ? wordShift.wordCycle(PelleRifts.decay.name) : rift.drainResource})`;
+      ${rift.id === 3 ? wordCycle(PelleRifts.decay.name) : rift.drainResource})`;
     },
     milestoneDescriptionText(milestone) {
       if (typeof milestone.description === "string") return milestone.description;

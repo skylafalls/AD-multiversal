@@ -1,6 +1,6 @@
-import { DC } from "#utils/constants.js";
-
+import { DC, TUTORIAL_STATE } from "#utils/constants.js";
 import { DimensionState } from "./dimension.js";
+import { ExponentialCostScaling } from "#utils/math.js";
 
 // Multiplier applied to all Antimatter Dimensions, regardless of tier. This is cached using a Lazy
 // and invalidated every update.

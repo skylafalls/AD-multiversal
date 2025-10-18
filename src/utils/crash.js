@@ -1,3 +1,6 @@
+/**
+ * @deprecated use the `abstract` marker instead if you're using typescript
+ */
 window.NotImplementedError = class NotImplementedError extends Error {
   constructor() {
     super("The method is not implemented.");

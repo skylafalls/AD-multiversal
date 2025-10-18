@@ -1,4 +1,6 @@
 <script>
+import { GAME_EVENT } from "#utils/constants.js";
+
 export const GlyphInfoVue = {
   types: {
     NONE: 0,

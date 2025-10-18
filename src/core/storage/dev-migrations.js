@@ -1,3 +1,4 @@
+import { ALCHEMY_RESOURCE, AUTO_GLYPH_REJECT, AUTO_GLYPH_SCORE, DC } from "#utils/constants.js";
 import { migrations } from "./migrations";
 
 function arrayToBits(array) {

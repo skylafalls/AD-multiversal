@@ -1,4 +1,6 @@
 <script>
+import { AUTO_GLYPH_REJECT } from "#utils/constants.js";
+
 export default {
   name: "GlyphRejectionPanel",
   data() {

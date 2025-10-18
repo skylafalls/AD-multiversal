@@ -1,4 +1,5 @@
 <script>
+import { GAME_EVENT } from "#utils/constants.js";
 import ModalCloseButton from "@/components/modals/ModalCloseButton";
 import ModalConfirmationCheck from "@/components/modals/ModalConfirmationCheck";
 import PrimaryButton from "@/components/PrimaryButton";

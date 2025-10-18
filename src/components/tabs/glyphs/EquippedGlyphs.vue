@@ -1,4 +1,5 @@
 <script>
+import { GLYPH_MIME_TYPE } from "#utils/constants.js";
 import GlyphComponent from "@/components/GlyphComponent";
 
 export default {

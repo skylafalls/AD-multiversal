@@ -1,3 +1,4 @@
+import { END_STATE_MARKERS } from "./constants";
 import { isDecimal } from "./type-check";
 
 function isEND() {
@@ -8,7 +9,13 @@ function isEND() {
   return player.celestials.pelle.doomed && Math.random() < threshold;
 }
 
-window.format = function format(value, places = 0, placesUnder1000 = 0) {
+/**
+ * @param {import("@/typings/break_eternity").DecimalSource} value
+ * @param {number} [places]
+ * @param {number} [placesUnder1000]
+ * @returns {string}
+ */
+globalThis.format = function format(value, places = 0, placesUnder1000 = 0) {
   if (isEND()) return "END";
 
   if (!isDecimal(value)) value = new Decimal(value);
@@ -16,7 +23,11 @@ window.format = function format(value, places = 0, placesUnder1000 = 0) {
   return LNotations.current.formatLDecimal(value, places);
 };
 
-window.formatInt = function formatInt(value) {
+/**
+ * @param {import("@/typings/break_eternity").DecimalSource} value
+ * @returns {string}
+ */
+globalThis.formatInt = function formatInt(value) {
   if (isEND()) return "END";
   // Suppress painful formatting for Standard because it's the most commonly used and arguably "least painful"
   // of the painful notations. Prevents numbers like 5004 from appearing imprecisely as "5.00 K" for example
@@ -31,7 +42,12 @@ window.formatInt = function formatInt(value) {
     : format(value, 2, 2);
 };
 
-window.formatFloat = function formatFloat(value, digits) {
+/**
+ * @param {import("@/typings/break_eternity").DecimalSource} value
+ * @param {number} [digits]
+ * @returns {string}
+ */
+globalThis.formatFloat = function formatFloat(value, digits) {
   if (isEND()) return "END";
   if (Notations.current.isPainful) {
     return format(value, Math.max(2, digits), digits);
@@ -39,7 +55,13 @@ window.formatFloat = function formatFloat(value, digits) {
   return formatWithCommas(value.toFixed(digits));
 };
 
-window.formatPostBreak = function formatPostBreak(value, places, placesUnder1000) {
+/**
+ * @param {import("@/typings/break_eternity").DecimalSource} value
+ * @param {number} [places]
+ * @param {number} [placesUnder1000]
+ * @returns {string}
+ */
+globalThis.formatPostBreak = function formatPostBreak(value, places, placesUnder1000) {
   if (isEND()) return "END";
   const notation = Notations.current;
   const lNotation = LNotations.current;
@@ -75,27 +97,53 @@ window.formatPostBreak = function formatPostBreak(value, places, placesUnder1000
     : notation.formatDecimal(decimal, places);
 };
 
-window.formatX = function formatX(value, places, placesUnder1000) {
+/**
+ * @param {import("@/typings/break_eternity").DecimalSource} value
+ * @param {number} [places]
+ * @param {number} [placesUnder1000]
+ * @returns {string}
+ */
+globalThis.formatX = function formatX(value, places, placesUnder1000) {
   return `×${format(value, places, placesUnder1000)}`;
 };
 
-window.formatPow = function formatPow(value, places, placesUnder1000) {
+/**
+ * @param {import("@/typings/break_eternity").DecimalSource} value
+ * @param {number} [places]
+ * @param {number} [placesUnder1000]
+ * @returns {string}
+ */
+globalThis.formatPow = function formatPow(value, places, placesUnder1000) {
   return `^${format(value, places, placesUnder1000)}`;
 };
 
-window.formatPercents = function formatPercents(value, places) {
+/**
+ * @param {import("@/typings/break_eternity").DecimalSource} value
+ * @param {number} [places]
+ * @returns {string}
+ */
+globalThis.formatPercents = function formatPercents(value, places) {
   return `${format(Decimal.mul(value, 100), 2, places)}%`;
 };
 
-window.formatRarity = function formatRarity(value) {
+/**
+ * @param {import("@/typings/break_eternity").DecimalSource} value
+ * @returns {string}
+ */
+globalThis.formatRarity = function formatRarity(value) {
   // We can, annoyingly, have rounding error here, so even though only rarities
   // are passed in, we can't trust our input to always be some integer divided by 10.
   const places = value.mod(1).eq(0) ? 0 : 1;
   return `${format(value, 2, places)}%`;
 };
 
+/**
+ * @param {import("@/typings/break_eternity").DecimalSource} realPart
+ * @param {import("@/typings/break_eternity").DecimalSource} imagPart
+ * @returns {string}
+ */
 // We assume 2/0, 2/2 decimal places to keep parameter count sensible; this is used very rarely
-window.formatMachines = function formatMachines(realPart, imagPart) {
+globalThis.formatMachines = function formatMachines(realPart, imagPart) {
   if (isEND()) return "END";
   const parts = [];
   if (Decimal.neq(realPart, 0)) parts.push(format(realPart, 2));
@@ -106,11 +154,23 @@ window.formatMachines = function formatMachines(realPart, imagPart) {
   return parts.join(" + ");
 };
 
-window.formatTet = function formatTet(value, places, placesUnder1000) {
+/**
+ * @param {import("@/typings/break_eternity").DecimalSource} value
+ * @param {number} [places]
+ * @param {number} [placesUnder1000]
+ * @returns {string}
+ */
+globalThis.formatTet = function formatTet(value, places, placesUnder1000) {
   return `^^${format(value, places, placesUnder1000)}`;
 };
 
-window.formatEffectPos = function formatEffectPos(effect, effectedValue, tet = true) {
+/**
+ * @param {import("@/typings/break_eternity").DecimalSource} effect
+ * @param {import("@/typings/break_eternity").DecimalSource} effectedValue
+ * @param {boolean} [tet]
+ * @returns {string}
+ */
+globalThis.formatEffectPos = function formatEffectPos(effect, effectedValue, tet = true) {
   if (effect.lt(1000)) {
     return formatInt(effect, 2, 4) + "%";
   }
@@ -130,8 +190,13 @@ window.formatEffectPos = function formatEffectPos(effect, effectedValue, tet = t
   return formatInt(Math.floor(effect.slog() - 1)) + "th Expo " + formatPow(val, 2, 2);
 };
 
+/**
+ * @param {import("@/typings/break_eternity").DecimalSource} effect
+ * @param {import("@/typings/break_eternity").DecimalSource} effectedValue
+ * @returns {string}
+ */
 // Does not take negative numbers fyi, just ints between 0-1 (excluding)
-window.formatEffectNeg = function formatEffectNeg(effect, effectedValue) {
+globalThis.formatEffectNeg = function formatEffectNeg(effect, effectedValue) {
   if (effect.gt(0.001)) {
     return formatInt(effect, 2, 4) + "%";
   }
@@ -147,27 +212,49 @@ window.formatEffectNeg = function formatEffectNeg(effect, effectedValue) {
   return formatInt(Math.floor(effect.recip().slog().toNumber() - 1)) + "th Expo " + formatPow(val, 2, 2);
 };
 
-window.formatEffectAuto = function formatEffectAuto(value, effectedValue) {
+/**
+ * @param {import("@/typings/break_eternity").DecimalSource} effect
+ * @param {import("@/typings/break_eternity").DecimalSource} effectedValue
+ * @returns {string}
+ */
+globalThis.formatEffectAuto = function formatEffectAuto(value, effectedValue) {
   if (value.gt(1)) {
     return formatEffectPos(value, effectedValue);
   }
   return formatEffectNeg(value, effectedValue, false);
 };
 
-window.timeDisplay = function timeDisplay(ms) {
+/**
+ * @param {Decimal} ms
+ * @returns {string}
+ */
+globalThis.timeDisplay = function timeDisplay(ms) {
   return TimeSpan.fromMilliseconds(ms).toString();
 };
 
-window.timeDisplayNoDecimals = function timeDisplayNoDecimals(ms) {
+/**
+ * @param {Decimal} ms
+ * @returns {string}
+ */
+globalThis.timeDisplayNoDecimals = function timeDisplayNoDecimals(ms) {
   return TimeSpan.fromMilliseconds(ms).toStringNoDecimals();
 };
 
-window.timeDisplayShort = function timeDisplayShort(ms) {
+/**
+ * @param {Decimal} ms
+ * @returns {string}
+ */
+globalThis.timeDisplayShort = function timeDisplayShort(ms) {
   return TimeSpan.fromMilliseconds(ms).toStringShort();
 };
 
 const commaRegexp = /\B(?=(\d{3})+(?!\d))/gu;
-window.formatWithCommas = function formatWithCommas(value) {
+
+/**
+ * @param {Decimal | number} value
+ * @returns {string}
+ */
+globalThis.formatWithCommas = function formatWithCommas(value) {
   const decimalPointSplit = value.toString().split(".");
   decimalPointSplit[0] = decimalPointSplit[0].replace(commaRegexp, ",");
   return decimalPointSplit.join(".");
@@ -196,10 +283,10 @@ const pluralDatabase = new Map([
  * @param  {string} word           - word to be pluralized
  * @param  {number|Decimal} amount - amount to be used to determine if the value is plural
  * @param  {string} [plural]       - if defined, a specific plural to override the generated plural
- * @return {string} - if the {amount} is anything other than one, return the {plural} provided or the
+ * @returns {string} - if the {amount} is anything other than one, return the {plural} provided or the
  *                    plural form of the input {word}. If the {amount} is singular, return {word}
  */
-window.pluralize = function pluralize(word, amount, plural) {
+globalThis.pluralize = function pluralize(word, amount, plural) {
   if (word === undefined || amount === undefined) throw new Error("Arguments must be defined");
 
   if (Decimal.eq(amount, 1)) return word;
@@ -214,9 +301,9 @@ window.pluralize = function pluralize(word, amount, plural) {
 /**
  * Creates a new plural based on PLURAL_HELPER and adds it to pluralDatabase
  * @param  {string} word - a word to be pluralized using the regex in PLURAL_HELPER
- * @return {string} - returns the pluralized word. if no pluralized word is found, simply returns the word itself.
+ * @returns {string} - returns the pluralized word. if no pluralized word is found, simply returns the word itself.
  */
-window.generatePlural = function generatePlural(word) {
+globalThis.generatePlural = function generatePlural(word) {
   for (const [match, replaceWith] of PLURAL_HELPER.entries()) {
     const newWord = word.replace(match, replaceWith);
     if (word !== newWord) return newWord;
@@ -231,10 +318,10 @@ window.generatePlural = function generatePlural(word) {
  * @param  {number} [places]              - number of places to display for the mantissa
  * @param  {number} [placesUnder1000]     - number of decimal places to display
  * @param  {function} [formatType=format] - how to format the {value}. defaults to format
- * @return {string} - the formatted {value} followed by the {name} after having been pluralized based on the {value}
+ * @returns {string} - the formatted {value} followed by the {name} after having been pluralized based on the {value}
  */
 
-window.quantify = function quantify(name, value, places, placesUnder1000, formatType = format) {
+globalThis.quantify = function quantify(name, value, places, placesUnder1000, formatType = format) {
   if (name === undefined || value === undefined) throw new Error("Arguments must be defined");
 
   const number = formatType(value, places, placesUnder1000);
@@ -246,9 +333,9 @@ window.quantify = function quantify(name, value, places, placesUnder1000, format
  * Returns the value formatted to formatInt followed by a name, pluralized based on the value input.
  * @param  {string} name                  - name to pluralize and display after {value}
  * @param  {number|Decimal} value         - number to format
- * @return {string} - the formatted {value} followed by the {name} after having been pluralized based on the {value}
+ * @returns {string} - the formatted {value} followed by the {name} after having been pluralized based on the {value}
  */
-window.quantifyInt = function quantifyInt(name, value) {
+globalThis.quantifyInt = function quantifyInt(name, value) {
   if (name === undefined || value === undefined) throw new Error("Arguments must be defined");
 
   const number = formatInt(value);
@@ -259,9 +346,9 @@ window.quantifyInt = function quantifyInt(name, value) {
 /**
  * Creates an enumated string, using the oxford comma, such that "a"; "a and b"; "a, b, and c"
  * @param  {string[]} items - an array of items to enumerate
- * @return {string} - a string of {items}, separated by commas and/or and as needed.
+ * @returns {string} - a string of {items}, separated by commas and/or and as needed.
  */
-window.makeEnumeration = function makeEnumeration(items) {
+globalThis.makeEnumeration = function makeEnumeration(items) {
   if (items.length === 0) return "";
   if (items.length === 1) return items[0];
   if (items.length === 2) return `${items[0]} and ${items[1]}`;

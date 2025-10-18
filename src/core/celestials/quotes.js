@@ -1,5 +1,5 @@
 import { BitUpgradeState } from "../game-mechanics/bit-upgrade-state.js";
-import wordShift from "#utils/word-shift.js";
+import { wordCycle } from "#utils/word-shift.js";
 
 export const Quote = {
   addToQueue(quote) {
@@ -86,7 +86,7 @@ class QuoteLine {
     this._line = typeof line === "string"
       ? line
       // This matches each digit after a $ and replaces it with the wordCycle of an array with the digit it matched.
-      : () => line.text.replaceAll(replacementMatch, (_, i) => wordShift.wordCycle(line[i]));
+      : () => line.text.replaceAll(replacementMatch, (_, i) => wordCycle(line[i]));
   }
 
   get line() {

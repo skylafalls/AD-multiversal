@@ -5,6 +5,7 @@
  * So, this interface is implemented by a real and fake RNG class; after creating one and
  * using it, call finalize on it to write the seed out.
  */
+import { permutationIndex, xorshift32Update } from "#utils/math.js";
 import { DC } from "#utils/constants.js";
 import { GlyphInfo } from "../secret-formula/reality/core-glyph-info.js";
 

@@ -1,4 +1,6 @@
 <script>
+import { ALTERATION_TYPE } from "#utils/constants.js";
+
 export default {
   name: "GlyphTooltipEffect",
   props: {

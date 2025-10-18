@@ -1,4 +1,5 @@
 import { IntervaledAutobuyerState } from "./autobuyer";
+import { PRESTIGE_EVENT } from "#utils/constants.js";
 
 export class InfinityDimensionAutobuyerState extends IntervaledAutobuyerState {
   get tier() {

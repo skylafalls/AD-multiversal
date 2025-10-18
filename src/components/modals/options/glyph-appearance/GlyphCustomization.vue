@@ -1,4 +1,5 @@
 <script>
+import { GAME_EVENT } from "#utils/constants.js";
 import GlyphComponent from "@/components/GlyphComponent";
 import GlyphCustomizationSingleType from "@/components/modals/options/glyph-appearance/GlyphCustomizationSingleType";
 import PrimaryButton from "@/components/PrimaryButton";

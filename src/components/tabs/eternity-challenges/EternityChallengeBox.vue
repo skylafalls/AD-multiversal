@@ -1,5 +1,5 @@
 <script>
-import wordShift from "#utils/word-shift.js";
+import { wordCycle } from "#utils/word-shift.js";
 
 import DescriptionDisplay from "@/components/DescriptionDisplay";
 import EffectDisplay from "@/components/EffectDisplay";
@@ -77,7 +77,7 @@ export default {
       this.canBeUnlocked = TimeStudy.eternityChallenge(challenge.id).canBeBought;
 
       this.lastGoal = (Enslaved.isRunning && this.challenge.id === 1)
-        ? wordShift.wordCycle(this.config.scrambleText.map(x => format(x)))
+        ? wordCycle(this.config.scrambleText.map(x => format(x)))
         : this.goalAtCompletions(this.challenge.maxCompletions - 1);
     },
     start() {

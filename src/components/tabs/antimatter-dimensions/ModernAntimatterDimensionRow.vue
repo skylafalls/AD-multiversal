@@ -1,5 +1,6 @@
 <script>
 import GenericDimensionRowText from "@/components/GenericDimensionRowText";
+import { TUTORIAL_STATE } from "#utils/constants.js";
 
 export default {
   name: "ModernAntimatterDimensionRow",

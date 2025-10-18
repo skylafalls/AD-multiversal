@@ -1,4 +1,5 @@
 import { BitUpgradeState } from "../../game-mechanics/bit-upgrade-state.js";
+import { GAME_EVENT } from "#utils/constants.js";
 
 class PelleStrikeState extends BitUpgradeState {
   get bits() {

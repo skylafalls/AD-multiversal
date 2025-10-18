@@ -1,6 +1,7 @@
 import { BitUpgradeState, GameMechanicState } from "../game-mechanics";
 import { GameDatabase } from "../secret-formula/game-database";
 
+import { GAME_EVENT } from "#utils/constants.js";
 import { SpeedrunMilestones } from "../speedrun";
 
 import { Quotes } from "./quotes";

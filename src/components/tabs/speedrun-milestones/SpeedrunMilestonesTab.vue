@@ -1,4 +1,5 @@
 <script>
+import { END_STATE_MARKERS } from "#utils/constants.js";
 import PrimaryToggleButton from "@/components/PrimaryToggleButton";
 import SpeedrunMilestoneSingle from "./SpeedrunMilestoneSingle";
 

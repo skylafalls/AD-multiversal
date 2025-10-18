@@ -1,8 +1,7 @@
 // Note: chevrotain doesn't play well with unicode regex
 
+import { AUTO_CRUNCH_MODE, AUTO_ETERNITY_MODE, AUTO_REALITY_MODE, DC, TIME_STUDY_PATH } from "#utils/constants.js";
 import { Lexer, createToken } from "chevrotain";
-
-import { DC } from "#utils/constants.js";
 
 const createCategory = name => createToken({ name, pattern: Lexer.NA, longer_alt: Identifier });
 

@@ -1,3 +1,4 @@
+// oxlint-disable max-classes-per-file
 import { log as lngamma } from "gamma";
 
 import { DC } from "./constants";
@@ -21,7 +22,7 @@ Math.PI_2 = Math.PI * 2;
  * @param {Boolean} n Should the root be subtracted to -b?
  * @returns {Decimal}
 */
-window.decimalQuadraticSolution = function decimalQuadraticSolution(a, b, c, n = false) {
+export function decimalQuadraticSolution(a, b, c, n = false) {
   const divsr = a.times(2);
   const nb = b.neg();
   const lroot = b.pow(2);
@@ -39,7 +40,7 @@ window.decimalQuadraticSolution = function decimalQuadraticSolution(a, b, c, n =
  * @param {Boolean} n Should the square root subtract?
  * @returns {Decimal}
 */
-window.decimalCubicSolution = function decimalCubicSolution(a, b, c, d, n = false) {
+export function decimalCubicSolution(a, b, c, d, n = false) {
   const delta0 = b.pow(2).sub(a.times(3).times(c));
   const delta1 = b.pow(3).times(2).sub(a.times(b).times(c).times(9)).add(a.pow(2).times(d).times(27));
   const ne = Decimal.sqrt(delta1.pow(2).sub(delta0.pow(3).times(4))).mul(n ? -1 : 1);
@@ -52,8 +53,8 @@ window.decimalCubicSolution = function decimalCubicSolution(a, b, c, d, n = fals
  * @param {Decimal|Number} b Variable before x in ax^3 + bx + c = 0
  * @param {Decimal|Number} c Variable after x in ax^3 + bx + c = 0
  * @returns {Decimal}
-*/
-window.decimalDepressedCubicSolution = function decimalDepressedCubicSolution(b, c) {
+ */
+export function decimalDepressedCubicSolution(b, c) {
   const u1 = Decimal.cbrt(c.neg().div(2).add(Decimal.sqrt(c.pow(2).div(4).add(b.pow(3).div(27)))));
   const u2 = Decimal.cbrt(c.neg().div(2).sub(Decimal.sqrt(c.pow(2).div(4).add(b.pow(3).div(27)))));
   return u1.add(u2);
@@ -64,11 +65,6 @@ window.decimalDepressedCubicSolution = function decimalDepressedCubicSolution(b,
  * @property {number} quantity amount purchased (relative)
  * @property {Decimal} purchasePrice amount that needs to be paid to get that
  */
-
-// Please, for the love of god, do not use this for ANY equation that is decimal.
-// BBBS is far too weak and its worth just writing inverses (or picking an equation that has inverses)
-// This is simply because you would need to run cost equations 30+ times which is wasteful
-// Again, avoid if possible.
 
 /**
  * bulkBuyBinarySearch is a helper for bulk buyers of non-linear prices. If the price of
@@ -90,9 +86,13 @@ window.decimalDepressedCubicSolution = function decimalDepressedCubicSolution(b,
  *   cost or just the highest cost.
  * @param {number} alreadyBought amount already purchased
  * @returns {bulkBuyBinarySearch_result | null}
+ * @deprecated  Please, for the love of god, do not use this for ANY equation that is decimal.
+ * BBBS is far too weak and its worth just writing inverses (or picking an equation that has inverses)
+ * This is simply because you would need to run cost equations 30+ times which is wasteful
+ * Again, avoid if possible.
  */
-window.bulkBuyBinarySearch = function bulkBuyBinarySearch(money, costInfo, alreadyBought, ignoreWarning = false) {
-  if (!ignoreWarning) console.log("Bulk Buy Binary Search was used");
+export function bulkBuyBinarySearch(money, costInfo, alreadyBought, ignoreWarning = false) {
+  if (!ignoreWarning) console.warn("Bulk Buy Binary Search was used");
   const costFunction = costInfo.costFunction;
   const firstCost = costInfo.firstCost === undefined ? costFunction(alreadyBought) : costInfo.firstCost;
   const isCumulative = costInfo.cumulative === undefined ? true : costInfo.cumulative;
@@ -167,8 +167,9 @@ window.bulkBuyBinarySearch = function bulkBuyBinarySearch(money, costInfo, alrea
  *   cost or just the highest cost.
  * @param {Decimal} alreadyBought amount already purchased
  * @returns {dBBBS_result | null}
+ * @deprecated see {@link bulkBuyBinarySearch}
  */
-window.dBBBS = function dBBBS(money, costInfo, alreadyBought) {
+export function dBBBS(money, costInfo, alreadyBought) {
   const costFunction = costInfo.costFunction;
   const firstCost = costInfo.firstCost === undefined ? costFunction(alreadyBought) : costInfo.firstCost;
   const isCumulative = costInfo.cumulative === undefined ? true : costInfo.cumulative;
@@ -249,7 +250,7 @@ window.dBBBS = function dBBBS(money, costInfo, alreadyBought) {
  * Note: this doesn't do well with small initial multipliers (close to 1). 1.01 is about low
  * as it's reasonable to go.
  */
-window.LinearMultiplierScaling = class LinearMultiplierScaling {
+export class LinearMultiplierScaling {
   /**
    * Construct the helper object, which can be invoked for various calculations
    * @param {number} baseRatio The first multiplier
@@ -356,7 +357,7 @@ window.LinearMultiplierScaling = class LinearMultiplierScaling {
 };
 
 // This function is used once. I get why its seperated, but why make it a window function not a local one?????
-window.getCostWithLinearCostScaling = function getCostWithLinearCostScaling(
+export function getCostWithLinearCostScaling(
   amountOfPurchases, costScalingStart, initialCost, costMult, costMultGrowth,
 ) {
   const preScalingPurchases = Math.max(0, Math.floor(Math.log(costScalingStart / initialCost) / Math.log(costMult)));
@@ -369,7 +370,7 @@ window.getCostWithLinearCostScaling = function getCostWithLinearCostScaling(
 
 // Using the same arguments as getCostWithLinearCostScaling() above, do a binary search for the first purchase with a
 // cost of Infinity.
-window.findFirstInfiniteCostPurchase = function findFirstInfiniteCostPurchase(
+export function findFirstInfiniteCostPurchase(
   costScalingStart, initialCost, costMult, costMultGrowth,
 ) {
   let upper = 1;
@@ -404,7 +405,7 @@ window.findFirstInfiniteCostPurchase = function findFirstInfiniteCostPurchase(
  * t = i * (1 - m^p) / (1 - m)
  * p = floor(log(1 + t * (m - 1) / i) / log(m))
  */
-window.LinearCostScaling = class LinearCostScaling {
+export class LinearCostScaling {
   /**
    * @param {Decimal} resourcesAvailable amount of available resources
    * @param {Decimal} initialCost current cost
@@ -455,7 +456,7 @@ window.LinearCostScaling = class LinearCostScaling {
  * have to pay for the highest tier when buying in bulk. That's a little bit cheaper,
  * but for the use cases this encounters, it's not a big deal.
  */
-window.ExponentialCostScaling = class ExponentialCostScaling {
+export class ExponentialCostScaling {
   /**
   * @param {Object} param configuration object with the following fields
   * @param {number|Decimal} param.baseCost the cost of the first purchase
@@ -605,11 +606,15 @@ window.ExponentialCostScaling = class ExponentialCostScaling {
   }
 };
 
-// Numerical approximation for values from the Lambert W function, using Newton's method with some algebraic
-// changes to make it less likely to overflow. Relative precision of 1e-6 should be good enough for most purposes;
-// this should never be turned down to 0 as there can be oscillatory behavior due to floating point quantization
-// that never converges to a fixed point. It also seems to take much longer to converge at higher values.
-window.productLog = function productLog(x) {
+/**
+ * Numerical approximation for values from the Lambert W function, using Newton's method with some algebraic
+ * changes to make it less likely to overflow. Relative precision of 1e-6 should be good enough for most purposes;
+ * this should never be turned down to 0 as there can be oscillatory behavior due to floating point quantization
+ * that never converges to a fixed point. It also seems to take much longer to converge at higher values.
+ * @param {number} x A number to take the Lambert W of
+ * @returns {number} the W(x)
+ */
+export function productLog(x) {
   let curr = x, prev = 0;
   do {
     prev = curr;
@@ -618,7 +623,15 @@ window.productLog = function productLog(x) {
   return curr;
 };
 
-window.decimalProductLog = function decimalProductLog(x) {
+/**
+ * Numerical approximation for values from the Lambert W function, using Newton's method with some algebraic
+ * changes to make it less likely to overflow. Relative precision of 1e-6 should be good enough for most purposes;
+ * this should never be turned down to 0 as there can be oscillatory behavior due to floating point quantization
+ * that never converges to a fixed point. It also seems to take much longer to converge at higher values.
+ * @param {Decimal} x A Decimal to take the Lambert W of
+ * @returns {Decimal} the W(x)
+ */
+export function decimalProductLog(x) {
   let curr = x, prev = new Decimal();
   do {
     prev = curr;
@@ -627,11 +640,16 @@ window.decimalProductLog = function decimalProductLog(x) {
   return curr;
 };
 
-// Implementation of "Lehmer code" decoding to produce a specific permutation, given a permutation length and a
-// lexicographic index for the specified permutation. Calling with a lexicographic index that is too large will
-// not throw an error, but will use lexIndex % len! as an index instead.
-// This may behave incorrectly if len! > 9e15, which occurs when len > 18.
-window.permutationIndex = function permutationIndex(len, lexIndex) {
+/**
+ * Implementation of "Lehmer code" decoding to produce a specific permutation, given a permutation length and a
+ * lexicographic index for the specified permutation. Calling with a lexicographic index that is too large will
+ * not throw an error, but will use lexIndex % len! as an index instead.
+ * This may behave incorrectly if len! > 9e15, which occurs when len > 18.
+ * @param {number} len
+ * @param {number} lexIndex
+ * @returns {number[]}
+ */
+export function permutationIndex(len, lexIndex) {
   let numPerm = 1;
   for (let n = 1; n <= len; n++) numPerm *= n;
   let index = lexIndex % numPerm;
@@ -648,11 +666,13 @@ window.permutationIndex = function permutationIndex(len, lexIndex) {
   return perm;
 };
 
-// This entire function is bullshit, there is 0 reason to notjust use exponentialCostScaling?
-// Calculate cost scaling for something that follows getCostWithLinearCostScaling() under Infinity and immediately
-// starts accelerated ExponentialCostScaling above Infinity.  Yes this is a fuckton of arguments, sorry.  It sort of
-// needs to inherit all arguments from both cost scaling functions.
-window.getHybridCostScaling = function getHybridCostScaling(
+/**
+ * Calculate cost scaling for something that follows getCostWithLinearCostScaling() under Infinity and immediately
+ * starts accelerated ExponentialCostScaling above Infinity.  Yes this is a fuckton of arguments, sorry.  It sort of
+ * needs to inherit all arguments from both cost scaling functions.
+ * @deprecated This entire function is bullshit, there is 0 reason to notjust use exponentialCostScaling?
+ */
+export function getHybridCostScaling(
   amountOfPurchases, linCostScalingStart, linInitialCost, linCostMult, linCostMultGrowth,
   expInitialCost, expCostMult, expCostMultGrowth,
 ) {
@@ -674,7 +694,7 @@ window.getHybridCostScaling = function getHybridCostScaling(
   return costScale.calculateCost(postInfinityAmount);
 };
 
-window.logFactorial = (function () {
+export const logFactorial = (function () {
   const LOGS = Array.range(1, 11).map(Math.log);
   const TABLE = [0];
   for (const x of LOGS) {
@@ -687,7 +707,7 @@ window.logFactorial = (function () {
   };
 }());
 
-window.exp1m = function (x) {
+export function exp1m(x) {
   if (x.abs().gte(0.001)) {
     return x.exp().minus(1);
   }
@@ -698,7 +718,7 @@ window.exp1m = function (x) {
 };
 
 /** 32 bit XORSHIFT generator */
-window.xorshift32Update = function xorshift32Update(state) {
+export function xorshift32Update(state) {
   state ^= state << 13;
   state ^= state >>> 17;
   state ^= state << 5;
@@ -706,7 +726,7 @@ window.xorshift32Update = function xorshift32Update(state) {
   return state;
 };
 
-window.fastRandom = (function () {
+export const fastRandom = (function () {
   let state = Math.floor(Date.now()) % Math.pow(2, 32);
   const scale = 1 / (Math.pow(2, 32));
   return () => {
@@ -716,7 +736,7 @@ window.fastRandom = (function () {
 }());
 
 // Normal distribution with specified mean and standard deviation
-window.normalDistribution = (function () {
+export const normalDistribution = (function () {
   let haveSpare = false;
   let spare = 0;
   return (mean, stdDev) => {
@@ -739,7 +759,7 @@ window.normalDistribution = (function () {
 }());
 
 // Helper function for BTRD
-window.binomialGeneratorFC = (function () {
+export const binomialGeneratorFC = (function () {
   const stirlingBase = x => -8.10614667953272582e-2 + (x + 0.5) * Math.log1p(x) - x;
   const TABLE = Array.range(0, 20).map(x => logFactorial(x) - stirlingBase(x));
   return (x) => {
@@ -756,7 +776,7 @@ window.binomialGeneratorFC = (function () {
  * @param {number} p probability
  * @returns {number} number of samples that satisfied p
  */
-window.binomialDistributionSmallExpected = function binomialDistributionSmallExpected(numSamples, p) {
+export function binomialDistributionSmallExpected(numSamples, p) {
   const R = p / (1 - p);
   const NxR = (numSamples + 1) * R;
   // Calculate (1-p)^n without rounding error at 1 - p
@@ -773,7 +793,7 @@ window.binomialDistributionSmallExpected = function binomialDistributionSmallExp
   return output;
 };
 
-window.binomialDistribution = function binomialDistribution(numSamples, p) {
+export function binomialDistribution(numSamples, p) {
   if (p === 0) return 0;
   if (numSamples instanceof Decimal) {
     if (numSamples.log10().lt(300)) {
@@ -802,7 +822,7 @@ window.binomialDistribution = function binomialDistribution(numSamples, p) {
  * @param {number|Decimal} expected expected value of distribution
  * @returns {number|Decimal} number of poisson process events
  */
-window.poissonDistribution = function poissonDistribution(expected) {
+export function poissonDistribution(expected) {
   if (expected === 0) return 0;
   if (expected instanceof Decimal) {
     if (expected.log10().gt(32)) return expected;
@@ -817,7 +837,7 @@ window.poissonDistribution = function poissonDistribution(expected) {
 /**
  * Uses a normal approximation to sqrt(x)
  */
-window.poissonDistributionViaNormal = function poissonDistributionViaNormal(expected) {
+export function poissonDistributionViaNormal(expected) {
   const x = normalDistribution(Math.sqrt(expected), 0.5);
   return Math.floor(x * x);
 };
@@ -825,7 +845,7 @@ window.poissonDistributionViaNormal = function poissonDistributionViaNormal(expe
 /**
  * This manually inverts the cumulative probability distribution
  */
-window.poissonDistributionSmallExpected = function poissonDistributionSmallExpected(expected) {
+export function poissonDistributionSmallExpected(expected) {
   let pdf = Math.exp(-expected);
   let cdf = pdf;
   const u = fastRandom();
@@ -842,7 +862,7 @@ window.poissonDistributionSmallExpected = function poissonDistributionSmallExpec
 /**
  * Algorithm from https://core.ac.uk/download/pdf/11007254.pdf
  */
-window.binomialDistributionBTRD = function binomialDistributionBTRD(numSamples, p) {
+export function binomialDistributionBTRD(numSamples, p) {
   const expected = numSamples * p;
   const approximateVariance = expected * (1 - p);
   const approxStdev = Math.sqrt(approximateVariance);
@@ -908,7 +928,7 @@ window.binomialDistributionBTRD = function binomialDistributionBTRD(numSamples, 
  * @param {number} mu expected value of distribution
  * @returns {number} (integer) number of events in poisson process
  */
-window.poissonDistributionPTRD = function poissonDistributionPTRD(mu) {
+export function poissonDistributionPTRD(mu) {
   const sMu = Math.sqrt(mu);
   const b = 0.931 + 2.53 * sMu;
   const a = -0.059 + 0.02483 * b;
@@ -941,7 +961,7 @@ window.poissonDistributionPTRD = function poissonDistributionPTRD(mu) {
   }
 };
 
-window.depressedCubicRealRoots = function depressedCubicRealRoots(k3, k1, k0) {
+export function depressedCubicRealRoots(k3, k1, k0) {
   if (k3 === 0) {
     if (k1 === 0) return [];
     return [-k0 / k1];
@@ -973,7 +993,7 @@ window.depressedCubicRealRoots = function depressedCubicRealRoots(k3, k1, k0) {
   ];
 };
 
-window.quadraticRealRoots = function quadraticRealRoots(k2, k1, k0) {
+export function quadraticRealRoots(k2, k1, k0) {
   if (k2 === 0) {
     if (k1 === 0) return [];
     return [-k0 / k1];
@@ -993,7 +1013,7 @@ window.quadraticRealRoots = function quadraticRealRoots(k2, k1, k0) {
   ];
 };
 
-window.cubicRealRoots = function cubicRealRoots(k3, k2, k1, k0) {
+export function cubicRealRoots(k3, k2, k1, k0) {
   if (k3 === 0) {
     return quadraticRealRoots(k2, k1, k0);
   }
@@ -1015,7 +1035,7 @@ window.testCRR = function testCRR(k3, k2, k1, k0) {
   console.log(r.map(x => k0 + x * (k1 + x * (k2 + x * k3))));
 };
 
-window.depressedQuarticRealRoots = function depressedQuarticRealRoots(k4, k2, k1, k0) {
+export function depressedQuarticRealRoots(k4, k2, k1, k0) {
   if (k4 === 0) return quadraticRealRoots(k2, k1, k0);
   if (k0 === 0) {
     const reducedSol = depressedCubicRealRoots(k4, k2, k1);
@@ -1067,7 +1087,7 @@ window.testDQRR = function testDQRR(k4, k2, k1, k0) {
   console.log(r.map(x => k0 + x * (k1 + x * (k2 + x * x * k4))));
 };
 
-window.solveSimpleBiquadratic = function solveSimpleBiquadratic(A, B, C, D, E, F) {
+export function solveSimpleBiquadratic(A, B, C, D, E, F) {
   const solutions = [];
   if (A === 0) {
     if (B === 0 || E === 0) return [];
@@ -1113,525 +1133,5 @@ window.testSSBQ = function testSSBQ(A, B, C, D, E, F) {
     const e2 = D * s.y * s.y + E * s.x + F;
 
     console.log(`${s.x} ${s.y} ${e1} ${e2}`);
-  }
-};
-
-window.AffineTransform = class AffineTransform {
-  constructor(a00 = 1, a01 = 0, a10 = 0, a11 = 1, o0 = 0, o1 = 0) {
-    this.a00 = a00;
-    this.a01 = a01;
-    this.a10 = a10;
-    this.a11 = a11;
-    this.o0 = o0;
-    this.o1 = o1;
-  }
-
-  times(ot) {
-    if (ot instanceof AffineTransform) {
-      return new AffineTransform(
-        this.a00 * ot.a00 + this.a01 * ot.a10, this.a00 * ot.a01 + this.a01 * ot.a11,
-        this.a10 * ot.a00 + this.a11 * ot.a10, this.a10 * ot.a01 + this.a11 * ot.a11,
-        this.a00 * ot.o0 + this.a01 * ot.o1 + this.o0,
-        this.a10 * ot.o0 + this.a11 * ot.o1 + this.o1,
-      );
-    }
-    if (ot instanceof Vector) return ot.transformedBy(this);
-    throw new Error("unsupported operation");
-  }
-
-  translated(offX, offY) {
-    if (offX instanceof Vector) {
-      return new AffineTransform(this.a00, this.a01, this.a10, this.a11, this.o0 + offX.x, this.o1 + offX.y);
-    }
-    return new AffineTransform(this.a00, this.a01, this.a10, this.a11, this.o0 + offX, this.o1 + offY);
-  }
-
-  rotated(angle) {
-    return AffineTransform.rotation(angle).times(this);
-  }
-
-  scaled(scale) {
-    return AffineTransform.scale(scale).times(this);
-  }
-
-  get withoutTranslation() {
-    return new AffineTransform(this.a00, this.a01, this.a10, this.a11);
-  }
-
-  static translation(offX, offY) {
-    if (offX instanceof Vector) {
-      return new AffineTransform(1, 0, 0, 1, offX.x, offX.y);
-    }
-    return new AffineTransform(1, 0, 0, 1, offX, offY);
-  }
-
-  static rotation(angle) {
-    const c = Math.cos(angle), s = Math.sin(angle);
-    return new AffineTransform(c, -s, s, c);
-  }
-
-  static scale(sc) {
-    return new AffineTransform(sc, 0, 0, sc);
-  }
-
-  static identity() {
-    return new AffineTransform();
-  }
-};
-
-window.Vector = class Vector {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-
-  get length() {
-    return Math.sqrt(this.x * this.x + this.y * this.y);
-  }
-
-  plus(v) {
-    return new Vector(this.x + v.x, this.y + v.y);
-  }
-
-  dot(v) {
-    return this.x * v.x + this.y * v.y;
-  }
-
-  cross(v) {
-    // Produces scalar, z term of 3D vectors
-    return this.x * v.y - this.y * v.x;
-  }
-
-  minus(v) {
-    return new Vector(this.x - v.x, this.y - v.y);
-  }
-
-  times(s) {
-    return new Vector(this.x * s, this.y * s);
-  }
-
-  asTranslate() {
-    return `translate(${this.x}, ${this.y})`;
-  }
-
-  asRotate() {
-    return `rotate(${180 / Math.PI * Math.atan2(this.y, this.x)})`;
-  }
-
-  toString() {
-    return `${this.x}, ${this.y}`;
-  }
-
-  round(factor) {
-    return new Vector(Math.round(this.x * factor) / factor, Math.round(this.y * factor) / factor);
-  }
-
-  get copy() {
-    return new Vector(this.x, this.y);
-  }
-
-  matrixTransform(a00, a01, a10, a11) {
-    return new Vector(a00 * this.x + a01 * this.y, a10 * this.x + a11 * this.y);
-  }
-
-  transformedBy(tform) {
-    return new Vector(tform.a00 * this.x + tform.a01 * this.y + tform.o0,
-      tform.a10 * this.x + tform.a11 * this.y + tform.o1);
-  }
-
-  get negative() {
-    return new Vector(-this.x, -this.y);
-  }
-
-  get normalized() {
-    return this.times(1 / this.length);
-  }
-
-  get right90() {
-    return new Vector(this.y, -this.x);
-  }
-
-  get left90() {
-    return new Vector(-this.y, this.x);
-  }
-
-  get angle() {
-    return Math.atan2(this.y, this.x);
-  }
-
-  static horiz(x) {
-    return new Vector(x, 0);
-  }
-
-  static unitFromRadians(rad) {
-    return new Vector(Math.cos(rad), Math.sin(rad));
-  }
-
-  static unitFromDegrees(deg) {
-    return Vector.unitFromRadians(deg * Math.PI / 180);
-  }
-};
-
-window.Curve = class Curve {
-  /**
-   * @abstract
-   * @param {number} t
-   * @returns {Vector}
-  */
-  position() {
-    throw new NotImplementedError();
-  }
-
-  /**
-   * @abstract
-   * @param {number} t
-   * @returns {Vector}
-  */
-  derivative() {
-    throw new NotImplementedError();
-  }
-
-  /**
-   * @abstract
-   * @param {number} t
-   * @returns {Vector}
-  */
-  secondDerivative() {
-    throw new NotImplementedError();
-  }
-
-  /**
-   * @param {number} t
-   * @returns {number}
-   */
-  curvature(t) {
-    const d = this.derivative(t);
-    const dd = this.secondDerivative(t);
-    const dMag = d.length;
-    return d.cross(dd) / (dMag * dMag * dMag);
-  }
-
-  shapeAt(t) {
-    const d = this.derivative(t);
-    return {
-      t,
-      position: this.position(t),
-      derivative: d,
-      direction: d.normalized,
-      curvature: this.curvature(t),
-    };
-  }
-
-  minimumDistanceTo(pDes, tMin, tMax) {
-    let tGuess = 0.5 * (tMin + tMax);
-    const tTol = Math.max(Math.abs(tMax), Math.abs(tMin)) * Number.EPSILON * 16;
-    for (let iter = 0; ; ++iter) {
-      const p = this.position(tGuess);
-      const d = this.derivative(tGuess);
-      const dd = this.secondDerivative(tGuess);
-      const offset = p.minus(pDes);
-      const dist = offset.length;
-      const distDeriv = offset.dot(d) * 2;
-
-      if (distDeriv > 0) tMax = tGuess;
-      else tMin = tGuess;
-
-      const distSecondDeriv = (offset.dot(dd) + d.dot(d)) * 2;
-      const tStep = distSecondDeriv < 0 ? -dist / distDeriv : -distDeriv / distSecondDeriv;
-      if (Math.abs(tStep) < tTol || iter >= 16) return dist;
-      tGuess = Math.clamp(tGuess + tStep, tMin, tMax);
-    }
-  }
-};
-
-window.LinearPath = class LinearPath extends Curve {
-  constructor(p0, p1) {
-    super();
-    this.p0 = p0.copy;
-    this.p1 = p1.copy;
-  }
-
-  position(t) {
-    return this.p0.times(1 - t).plus(this.p1.times(t));
-  }
-
-  derivative() {
-    return this.p1.minus(this.p0);
-  }
-
-  secondDerivative() {
-    return new Vector(0, 0);
-  }
-
-  curvature(t) {
-    return 0;
-  }
-
-  trimStart(len) {
-    const dir = this.p1.minus(this.p0).normalized;
-    return new LinearPath(this.p0.plus(dir.times(len)), this.p1);
-  }
-
-  trimEnd(len) {
-    const dir = this.p1.minus(this.p0).normalized;
-    return new LinearPath(this.p0, this.p1.minus(dir.times(len)));
-  }
-
-  transformed(tform) {
-    return new LinearPath(this.p0.transformedBy(tform), this.p1.transformedBy(tform));
-  }
-
-  get relativeSVG() {
-    const d1 = this.p1.minus(this.p0);
-    return `l ${d1.x} ${d1.y}\n`;
-  }
-
-  createOffsetLine(offset, t0 = 0, t1 = 1) {
-    const off = this.p1.minus(this.p0).normalized.right90.times(offset);
-    return new LinearPath(this.position(t0).plus(off), this.position(t1).plus(off));
-  }
-
-  static connectCircles(p0, r0, p1, r1) {
-    const dir = p1.minus(p0).normalized;
-    return new LinearPath(p0.plus(dir.times(r0)), p1.minus(dir.times(r1)));
-  }
-};
-
-class CubicBezier extends Curve {
-  constructor(p0, p1, p2, p3) {
-    super();
-    this.p0 = p0.copy;
-    this.p1 = p1.copy;
-    this.p2 = p2.copy;
-    this.p3 = p3.copy;
-  }
-
-  position(t) {
-    const nt2 = (1 - t) * (1 - t);
-    const t2 = t * t;
-    return this.p0.times((1 - t) * nt2)
-      .plus(this.p1.times(3 * t * nt2))
-      .plus(this.p2.times(3 * t2 * (1 - t)))
-      .plus(this.p3.times(t2 * t));
-  }
-
-  derivative(t) {
-    return this.p1.minus(this.p0).times(3 * (1 - t) * (1 - t))
-      .plus(this.p2.minus(this.p1).times(6 * t * (1 - t)))
-      .plus(this.p3.minus(this.p2).times(3 * t * t));
-  }
-
-  secondDerivative(t) {
-    return this.p2.minus(this.p1.times(2)).plus(this.p0).times(6 * (1 - t))
-      .plus(this.p3.minus(this.p2.times(2)).plus(this.p1).times(6 * t));
-  }
-
-  transformed(tform) {
-    return new CubicBezier(this.p0.transformedBy(tform), this.p1.transformedBy(tform),
-      this.p2.transformedBy(tform), this.p3.transformedBy(tform));
-  }
-
-  get relativeSVG() {
-    const d1 = this.p1.minus(this.p0);
-    const d2 = this.p2.minus(this.p0);
-    const d3 = this.p3.minus(this.p0);
-    return `c ${d1.x} ${d1.y} ${d2.x} ${d2.y} ${d3.x} ${d3.y}\n`;
-  }
-
-  get reverse() {
-    return new CubicBezier(this.p3, this.p2, this.p1, this.p0);
-  }
-
-  static fitCurveSection(shape0, shape1) {
-    const dP = shape1.position.minus(shape0.position);
-    const reversed = shape0.t > shape1.t;
-    const pathRotation = shape0.direction.cross(shape1.direction);
-    let magSol = solveSimpleBiquadratic(
-      1.5 * shape0.curvature, pathRotation, -shape0.direction.cross(dP),
-      1.5 * shape1.curvature, pathRotation, shape1.direction.cross(dP));
-    magSol = reversed ? magSol.filter(o => o.x <= 0 && o.y <= 0) : magSol.filter(o => o.x >= 0 && o.y >= 0);
-    if (magSol.length === 0) return null;
-    return new CubicBezier(
-      shape0.position, shape0.position.plus(shape0.direction.times(magSol[0].x)),
-      shape1.position.minus(shape1.direction.times(magSol[0].y)), shape1.position);
-  }
-}
-
-// This is an "inset/outset" kind of transform
-window.OffsetCurve = class OffsetCurve extends Curve {
-  constructor(baseCurve, offset) {
-    super();
-    this.base = baseCurve;
-    this.offset = offset;
-  }
-
-  position(t) {
-    const p = this.base.position(t);
-    const d = this.base.derivative(t);
-    return p.plus(d.normalized.right90.times(this.offset));
-  }
-
-  derivative(t) {
-    return this.base.derivative(t);
-  }
-
-  // 2nd derivative not implemented as only curvature is used atm
-  curvature(t) {
-    const c = this.base.curvature(t);
-    return 1 / (1 / c + this.offset);
-  }
-
-  shapeAt(t) {
-    const shape = this.base.shapeAt(t);
-    return {
-      t: shape.t,
-      position: shape.position.plus(shape.direction.right90.times(this.offset)),
-      derivative: shape.derivative,
-      direction: shape.direction,
-      curvature: shape.curvature / (1 + this.offset * shape.curvature),
-    };
-  }
-};
-
-window.LogarithmicSpiral = class LogarithmicSpiral extends Curve {
-  constructor(center, scale, rate) {
-    super();
-    this.center = center;
-    this.scale = scale;
-    this.rate = rate;
-  }
-
-  position(t) {
-    return Vector.unitFromRadians(t)
-      .times(this.scale * Math.exp(this.rate * t))
-      .plus(this.center);
-  }
-
-  derivative(t) {
-    const unit = Vector.unitFromRadians(t);
-    const radius = this.scale * Math.exp(this.rate * t);
-    return unit.times(radius * this.rate).plus(unit.left90.times(radius));
-  }
-
-  secondDerivative(t) {
-    const unit = Vector.unitFromRadians(t);
-    const radius = this.scale * Math.exp(this.rate * t);
-    return unit.times(radius * (this.rate * this.rate - 1))
-      .plus(unit.left90.times(2 * radius * this.rate));
-  }
-
-  shapeAt(t) {
-    const unit = Vector.unitFromRadians(t);
-    const radius = this.scale * Math.exp(this.rate * t);
-    const ur = unit.times(radius);
-    const d = ur.times(this.rate).plus(ur.left90);
-    return {
-      t,
-      position: ur.plus(this.center),
-      derivative: d,
-      direction: d.normalized,
-      curvature: 1 / (Math.abs(radius) * Math.sqrt(1 + this.rate * this.rate)),
-    };
-  }
-
-  angleFromRadius(r) {
-    return Math.log(r / this.scale) / this.rate;
-  }
-
-  static fromPolarEndpoints(center, theta0, r0, theta1, r1) {
-    const rate = Math.log(r1 / r0) / (theta1 - theta0);
-    return new LogarithmicSpiral(center, r0 / Math.exp(rate * theta0), rate);
-  }
-};
-
-window.PiecewisePath = class PiecewisePath {
-  constructor(data) {
-    this.path = data ? data : [];
-  }
-
-  push(element) {
-    this.path.push(element);
-  }
-
-  transformedBy(tform) {
-    return new PiecewisePath(this.path.map(x => x.transformed(tform)));
-  }
-
-  toSVG(initialPrefix) {
-    const p0 = this.path[0].position(0);
-    const lines = [`${initialPrefix} ${p0.x} ${p0.y}\n`];
-    for (const part of this.path) lines.push(part.relativeSVG);
-    return lines.join("");
-  }
-
-  static cubicBezierFitToCurveSection(curve, t0, t1, tol = 1, minPieces = 1) {
-    const output = new PiecewisePath();
-    const shape0 = curve.shapeAt(t0);
-    const shape1 = curve.shapeAt(t1);
-    function subdivide(shapeStart, shapeEnd, maxDepth = 8) {
-      const shapeMid = curve.shapeAt(0.5 * (shapeStart.t + shapeEnd.t));
-      return single(shapeStart, shapeMid, maxDepth - 1)
-        && single(shapeMid, shapeEnd, maxDepth - 1);
-    }
-    function single(shapeStart, shapeEnd, maxDepth = 8) {
-      const singleFit = CubicBezier.fitCurveSection(shapeStart, shapeEnd);
-      if (singleFit === null) {
-        if (maxDepth <= 0) throw new Error("coulnd't decompose curve");
-        return subdivide(shapeStart, shapeEnd, maxDepth);
-      }
-      const tMid = 0.5 * (shapeStart.t + shapeEnd.t);
-      const err = singleFit.minimumDistanceTo(curve.position(tMid), 0, 1);
-      if (err > tol) {
-        return subdivide(shapeStart, shapeEnd, maxDepth);
-      }
-      output.push(singleFit);
-      return true;
-    }
-    if (minPieces > 1) subdivide(shape0, shape1);
-    else single(shape0, shape1);
-    return output;
-  }
-};
-
-// https://stackoverflow.com/a/9201081
-window.ExponentialMovingAverage = class ExponentialMovingAverage {
-  constructor(alpha = 0.02, maxOutliers = 5, highOutlierThreshold = 3, lowOutlierThreshold = 0.4) {
-    this.alpha = alpha;
-    this.maxOutliers = maxOutliers;
-    this.highOutlierThreshold = highOutlierThreshold;
-    this.lowOutlierThreshold = lowOutlierThreshold;
-    this.outliers = 0;
-    this._average = new Decimal(0);
-  }
-
-  get average() {
-    if (this._average.eq(0)) {
-      return 0;
-    }
-    return this._average;
-  }
-
-  addValue(value) {
-    if (this._average.eq(0)) {
-      this._average = value;
-    } else {
-      this._average = this._average.add((value.sub(this._average)).mul(this.average));
-
-      const absValue = Decimal.abs(value);
-      const absAverage = Decimal.abs(this._average);
-      const highOutlier = absValue.gt(absAverage.mul(this.highOutlierThreshold));
-      const lowOutlier = absValue.lt(absAverage.mul(this.lowOutlierThreshold));
-      const outlier = highOutlier || lowOutlier;
-
-      if (outlier) {
-        this.outliers++;
-        if (this.outliers >= this.maxOutliers) {
-          this._average = value;
-          this.outliers = 0;
-        }
-      } else {
-        this.outliers = 0;
-      }
-    }
   }
 };

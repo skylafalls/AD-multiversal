@@ -1,6 +1,7 @@
 <script>
 import ModalWrapper from "@/components/modals/ModalWrapper";
 import PrimaryButton from "@/components/PrimaryButton";
+import { SPEEDRUN_SEED_STATE } from "#utils/constants.js";
 
 export default {
   name: "ModifySeedModal",

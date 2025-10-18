@@ -1,4 +1,5 @@
 <script>
+import { GAME_EVENT } from "#utils/constants.js";
 import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
 import SaveInfoEntry from "@/components/modals/cloud/SaveInfoEntry";
 

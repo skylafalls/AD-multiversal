@@ -1,8 +1,8 @@
 <script>
-import { getRarity } from "../core/globals";
+import { AUTO_GLYPH_REJECT, GAME_EVENT, GLYPH_MIME_TYPE } from "#utils/constants.js";
 import { GlyphInfoVue } from "../../src/components/modals/options/SelectGlyphInfoDropdown";
-
 import GlyphTooltip from "@/components/GlyphTooltip";
+import { getRarity } from "../core/globals";
 
 // We generate the border effects with CSS gradients; for the sake of flexibility and for dynamically using
 // the glyph color instead of the fixed rarity color, the border patterns are stored below and then parsed

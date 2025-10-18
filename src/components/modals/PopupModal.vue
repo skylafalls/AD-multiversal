@@ -1,4 +1,6 @@
 <script>
+import { END_STATE_MARKERS, GAME_EVENT } from "#utils/constants.js";
+
 export default {
   name: "PopupModal",
   props: {

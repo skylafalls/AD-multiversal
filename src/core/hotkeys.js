@@ -4,6 +4,8 @@ import { ElectronRuntime } from "@/steam";
 
 import { GameKeyboard } from "./keyboard";
 
+import { GAME_EVENT } from "#utils/constants.js";
+
 // Add your hotkeys and combinations here
 // GameKeyboard.bind for single press combinations
 // GameKeyboard.bindRepeatable for repeatable combinations
