@@ -44,9 +44,9 @@ export const GameDatabase = {
   tabs,
 };
 
-window.GameDatabase = GameDatabase;
+globalThis.GameDatabase = GameDatabase;
 
-window.mapGameData = function mapGameData(gameData, mapFn) {
+globalThis.mapGameData = function mapGameData(gameData, mapFn) {
   const result = [];
   for (const data of gameData) {
     result[data.id] = mapFn(data);
@@ -54,7 +54,7 @@ window.mapGameData = function mapGameData(gameData, mapFn) {
   return result;
 };
 
-window.mapGameDataToObject = function mapGameDataToObject(gameData, mapFun) {
+globalThis.mapGameDataToObject = function mapGameDataToObject(gameData, mapFun) {
   const array = Object.entries(gameData);
   const out = {};
   for (let idx = 0; idx < array.length; idx++) {

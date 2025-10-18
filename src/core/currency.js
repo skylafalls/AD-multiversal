@@ -311,7 +311,7 @@ class DecimalCurrency extends Currency {
     return DC.D0;
   }
 }
-window.DecimalCurrency = DecimalCurrency;
+globalThis.DecimalCurrency = DecimalCurrency;
 
 Currency.antimatter = new class extends DecimalCurrency {
   get value() {

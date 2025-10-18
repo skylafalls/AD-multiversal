@@ -1,14 +1,14 @@
 /**
  * @deprecated use the `abstract` marker instead if you're using typescript
  */
-window.NotImplementedError = class NotImplementedError extends Error {
+globalThis.NotImplementedError = class NotImplementedError extends Error {
   constructor() {
     super("The method is not implemented.");
     this.name = "NotImplementedError";
   }
 };
 
-window.GlobalErrorHandler = {
+globalThisGlobalErrorHandler = {
   handled: false,
   cleanStart: false,
   onerror(event) {
