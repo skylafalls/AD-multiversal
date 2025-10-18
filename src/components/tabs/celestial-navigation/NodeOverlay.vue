@@ -1,4 +1,5 @@
 <script>
+import { Vector } from "#utils/vectors.js";
 import { svgRingPath } from "./svg-ring-path";
 
 export default {

@@ -1,3 +1,4 @@
+import { LinearPath, LogarithmicSpiral, Vector } from "#utils/vectors.js";
 import { CELESTIAL_NAV_DRAW_ORDER } from "#utils/constants.js";
 
 function sigilProgress() {

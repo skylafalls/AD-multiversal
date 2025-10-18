@@ -1,4 +1,5 @@
 import { CELESTIAL_NAV_DRAW_ORDER, DC, FILL_STATE } from "#utils/constants.js";
+import { LinearPath, LogarithmicSpiral, Vector } from "#utils/vectors.js";
 import wordShift from "#utils/word-shift.js";
 
 export function emphasizeEnd(fraction) {

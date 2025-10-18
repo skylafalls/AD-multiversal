@@ -1,4 +1,5 @@
 import { CELESTIAL_NAV_DRAW_ORDER } from "#utils/constants.js";
+import { LogarithmicSpiral } from "#utils/vectors.js";
 import { pelleStarPosition } from "../navigation";
 
 // Determines styling, overall visibility, and placement/scaling of the sigil. Center and size are defined such that

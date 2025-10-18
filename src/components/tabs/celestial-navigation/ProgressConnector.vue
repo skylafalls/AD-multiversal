@@ -1,4 +1,6 @@
 <script>
+import { AffineTransform, LinearPath, OffsetCurve, PiecewisePath } from "#utils/vectors.js";
+
 export default {
   name: "ProgressConnector",
   props: {

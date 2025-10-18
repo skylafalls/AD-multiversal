@@ -2,6 +2,7 @@
 import { DataSet, Network } from "vis-network";
 import { GAME_EVENT, PERK_FAMILY } from "#utils/constants.js";
 import PerkPointLabel from "./PerkPointLabel";
+import { Vector } from "#utils/vectors.js";
 
 export default {
   name: "PerksTab",
