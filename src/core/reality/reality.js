@@ -1,5 +1,5 @@
-import { DC, GAME_EVENT } from "#utils/constants.js";
-import { binomialDistribution, normalDistribution } from "#utils/math.js";
+import { AUTO_GLYPH_SCORE, DC, GAME_EVENT } from "#utils/constants.js";
+import { binomialDistribution, normalDistribution, permutationIndex } from "#utils/math.js";
 import { Async } from "#utils/async-utils.js";
 import { Lazy } from "#utils/cache.js";
 

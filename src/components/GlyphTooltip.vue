@@ -1,4 +1,5 @@
 <script>
+import { AUTO_GLYPH_SCORE } from "#utils/constants.js";
 import { GlyphInfo } from "../core/secret-formula/reality/core-glyph-info";
 
 import GlyphTooltipEffect from "@/components/GlyphTooltipEffect";

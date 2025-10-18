@@ -29,12 +29,12 @@ export function wordCycle(list, noBuffer = false) {
 
   // Blend with adjacent words, in such a way that mod5 being 0 or 5 corresponds with a 0.5 blend parameter
   if (mod5 < 0.6) {
-    v = this.blendWords(list[(largeTick + list.length - 1) % list.length], list[largeTick], (mod5 + 0.6) / 1.2);
+    v = blendWords(list[(largeTick + list.length - 1) % list.length], list[largeTick], (mod5 + 0.6) / 1.2);
   } else if (mod5 > 4.4) {
-    v = this.blendWords(list[largeTick], list[(largeTick + 1) % list.length], (mod5 - 4.4) / 1.2);
+    v = blendWords(list[largeTick], list[(largeTick + 1) % list.length], (mod5 - 4.4) / 1.2);
   }
 
-  v = this.randomCrossWords(v, 0.1 * Math.pow(mod5 - 2.5, 4) - 0.6);
+  v = randomCrossWords(v, 0.1 * Math.pow(mod5 - 2.5, 4) - 0.6);
   if (noBuffer) return v;
 
   const maxWordLen = Math.max(...list.map(x => x.length));

@@ -1058,7 +1058,7 @@ export function depressedQuarticRealRoots(k4, k2, k1, k0) {
   k0 /= k4;
 
   const mSol = cubicRealRoots(8, 8 * k2, 2 * k2 * k2 - 8 * k0, -k1 * k1);
-  const m = mSol.max();
+  const m = mSol.nMax();
   // I don't think this can happen, but I haven't double checked the math
   if (m <= 0) return [];
   const sqrt2m = Math.sqrt(2 * m);

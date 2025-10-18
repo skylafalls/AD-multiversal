@@ -82,7 +82,8 @@ for (const perk of Perks.all) {
 }
 
 export function checkPerkValidity() {
-  if (player.reality.perks.every(id => Perks.some(id) !== undefined)) return;
+  // oxlint-disable-next-line prefer-array-some: this is not an array
+  if (player.reality.perks.every(id => Perks.find(id) !== undefined)) return;
   dev.respecPerks();
   if (Currency.perkPoints.gte(Perks.all.length)) {
     dev.buyAllPerks();
