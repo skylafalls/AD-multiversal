@@ -1,5 +1,5 @@
 import { DC } from "#utils/constants.js";
-import wordShift from "#utils/word-shift.js";
+import { wordCycle } from "#utils/word-shift.js";
 
 export const pelleRifts = {
   vacuum: {
@@ -40,7 +40,7 @@ export const pelleRifts = {
       {
         resource: "vacuum",
         requirement: 0.4,
-        description: () => `${wordShift.wordCycle(PelleRifts.vacuum.name)} also affects EP gain`,
+        description: () => `${wordCycle(PelleRifts.vacuum.name)} also affects EP gain`,
         effect: () => Decimal.pow(4, PelleRifts.vacuum.totalFill.max(1).log10().div(616).add(3)),
         formatEffect: x => `EP gain ${formatX(x, 2, 2)}`,
       },
@@ -128,7 +128,7 @@ export const pelleRifts = {
       {
         resource: "chaos",
         requirement: 0.09,
-        description: () => `${wordShift.wordCycle(PelleRifts.decay.name)} \
+        description: () => `${wordCycle(PelleRifts.decay.name)} \
         effect is always maxed and milestones always active`,
       },
       {

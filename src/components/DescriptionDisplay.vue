@@ -1,5 +1,5 @@
 <script>
-import wordShift from "#utils/word-shift.js";
+import { wordCycle } from "#utils/word-shift.js";
 import { isFunction, isString } from "#utils/type-check.js";
 
 export default {
@@ -73,10 +73,10 @@ export default {
         if (isString(value)) {
           // This is a special case for scrambling EC6 description text
           if (this.config.scrambleText) {
-            this.description = capitalize(value).replace("*", wordShift.wordCycle(this.config.scrambleText, true));
+            this.description = capitalize(value).replace("*", wordCycle(this.config.scrambleText, true));
             this.updateFunction = () =>
               this.description = capitalize(description())
-                .replace("*", wordShift.wordCycle(this.config.scrambleText, true));
+                .replace("*", wordCycle(this.config.scrambleText, true));
             return;
           }
           this.description = capitalize(value);

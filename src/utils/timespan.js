@@ -1,4 +1,4 @@
-window.TimeSpan = class TimeSpan {
+globalThis.TimeSpan = class TimeSpan {
   /**
    * @param {Decimal} value
    * @returns {TimeSpan}

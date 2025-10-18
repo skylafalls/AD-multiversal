@@ -5,7 +5,7 @@ import { SetPurchasableMechanicState } from "@/core/game-mechanics/set-purchasab
 
 import { Quotes } from "../quotes.js";
 
-import wordShift from "#utils/word-shift.js";
+import { randomCrossWords, wordCycle } from "#utils/word-shift.js";
 
 import zalgo from "./zalgo.js";
 
@@ -120,7 +120,7 @@ export const Pelle = {
   },
 
   get displayName() {
-    return Date.now() % 4000 > 500 ? "Pelle" : wordShift.randomCrossWords("Pelle");
+    return Date.now() % 4000 > 500 ? "Pelle" : randomCrossWords("Pelle");
   },
 
   get isUnlocked() {
@@ -242,7 +242,7 @@ export const Pelle = {
       }
       case "replication": {
         return `Replication speed ${formatX(10 ** 53 ** (PelleRifts.vacuum.percentage), 2)} \
-        (based on ${wordShift.wordCycle(PelleRifts.vacuum.name)})`;
+        (based on ${wordCycle(PelleRifts.vacuum.name)})`;
       }
       case "dilation": {
         return `Dilated Time gain ${formatX(Decimal.pow(player.dilation.totalTachyonGalaxies, 1.5).max(1), 2)}

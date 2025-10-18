@@ -1,7 +1,7 @@
 <script>
 import { Replicanti } from "@/core/infinity/replicanti";
 
-import wordShift from "#utils/word-shift";
+import { wordCycle } from "#utils/word-shift.js";
 
 import ReplicantiUpgradeButton, { ReplicantiUpgradeButtonSetup } from "./ReplicantiUpgradeButton";
 import PrimaryButton from "@/components/PrimaryButton";
@@ -172,7 +172,7 @@ export default {
       this.estimateToMax = this.calculateEstimate();
     },
     vacuumText() {
-      return wordShift.wordCycle(PelleRifts.vacuum.name);
+      return wordCycle(PelleRifts.vacuum.name);
     },
     // This is copied out of a short segment of ReplicantiGainText with comments and unneeded variables stripped
     calculateEstimate() {

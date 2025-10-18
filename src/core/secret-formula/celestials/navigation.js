@@ -1,6 +1,6 @@
 import { CELESTIAL_NAV_DRAW_ORDER, DC, FILL_STATE } from "#utils/constants.js";
 import { LinearPath, LogarithmicSpiral, Vector } from "#utils/vectors.js";
-import wordShift from "#utils/word-shift.js";
+import { wordCycle } from "#utils/word-shift.js";
 
 export function emphasizeEnd(fraction) {
   if (fraction instanceof Decimal) return Decimal.pow(fraction, 10);
@@ -167,7 +167,7 @@ function pelleRiftFill(name, index, textAngle, fillType) {
       forceLegend: () => legendFn(),
       legend: {
         text: () => [
-          `${formatPercents(percentFn(), 1)} ${wordShift.wordCycle(PelleRifts[name.toLowerCase()].name)}`,
+          `${formatPercents(percentFn(), 1)} ${wordCycle(PelleRifts[name.toLowerCase()].name)}`,
         ],
         angle: textAngle,
         diagonal: 30,

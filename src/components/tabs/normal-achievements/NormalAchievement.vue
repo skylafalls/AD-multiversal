@@ -1,5 +1,5 @@
 <script>
-import wordShift from "#utils/word-shift.js";
+import { randomCrossWords } from "#utils/word-shift.js";
 
 import EffectDisplay from "@/components/EffectDisplay";
 import HintText from "@/components/HintText";
@@ -161,7 +161,7 @@ export default {
       // The garbling effect often replaces spaces with non-spaces, which affects line length and can cause individual
       // lines to become long enough that they can't word-wrap. To address that, we take the template as a reference
       // and put spaces back into the same spots, ensuring that text can't overflow any worse than the original text
-      const raw = wordShift.randomCrossWords(garbledTemplate);
+      const raw = randomCrossWords(garbledTemplate);
       let modified = "";
       for (let i = 0; i < raw.length; i++) {
         if (garbledTemplate[i] === " ") modified += " ";
