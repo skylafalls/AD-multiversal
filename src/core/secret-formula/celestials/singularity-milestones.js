@@ -207,7 +207,7 @@ export const singularityMilestones = {
     repeat: 0,
     limit: 1,
     description: "Annihilation mult. generates 4th DMD when Annihilation is available",
-    effect: () => structuredClone(Laitela.darkMatterMult),
+    effect: () => Decimal.fromDecimal(Laitela.darkMatterMult),
     effectFormat: x => `${format(x, 2, 1)}/s`,
     upgradeDirection: LAITELA_UPGRADE_DIRECTION.SELF_BOOST,
   },
