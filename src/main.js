@@ -1,9 +1,10 @@
+// oxlint-disable no-unassigned-import
 import "drag-drop-touch";
-import "./shims";
-import "./merge-globals";
-import { browserCheck, init } from "./game";
-import { DEV } from "./env";
-import { watchLatestCommit } from "./commit-watcher";
+import "./shims.js";
+import "./merge-globals.js";
+import { browserCheck, init } from "./game.js";
+import { DEV } from "./env.js";
+import { watchLatestCommit } from "./commit-watcher.js";
 
 if (browserCheck()) init();
 if (DEV) watchLatestCommit();

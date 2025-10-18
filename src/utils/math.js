@@ -3,11 +3,11 @@ import { log as lngamma } from "gamma";
 
 import { DC } from "./constants";
 
-window.LOG10_MAX_VALUE = Math.log10(Number.MAX_VALUE);
-window.DLOG10_MAXNUM = Decimal.log10(Number.MAX_VALUE);
-window.LN_SQRT_2_PI = 0.5 * Math.log(2 * Math.PI);
-window.LOG10_2 = Math.log10(2);
-window.LOG10_E = Math.log10(Math.E);
+globalThis.LOG10_MAX_VALUE = Math.log10(Number.MAX_VALUE);
+globalThis.DLOG10_MAXNUM = Decimal.log10(Number.MAX_VALUE);
+globalThis.LN_SQRT_2_PI = 0.5 * Math.log(2 * Math.PI);
+globalThis.LOG10_2 = Math.log10(2);
+globalThis.LOG10_E = Math.log10(Math.E);
 
 Math.PI_2 = Math.PI * 2;
 
@@ -1027,7 +1027,7 @@ export function cubicRealRoots(k3, k2, k1, k0) {
   return dcrr.map(t => t - bo3a);
 };
 
-window.testCRR = function testCRR(k3, k2, k1, k0) {
+globalThis.testCRR = function testCRR(k3, k2, k1, k0) {
   const r = cubicRealRoots(k3, k2, k1, k0);
 
   console.log(r);
@@ -1079,7 +1079,7 @@ export function depressedQuarticRealRoots(k4, k2, k1, k0) {
   return solution;
 };
 
-window.testDQRR = function testDQRR(k4, k2, k1, k0) {
+globalThis.testDQRR = function testDQRR(k4, k2, k1, k0) {
   const r = depressedQuarticRealRoots(k4, k2, k1, k0);
 
   console.log(r);
@@ -1125,7 +1125,7 @@ export function solveSimpleBiquadratic(A, B, C, D, E, F) {
   return solutions;
 };
 
-window.testSSBQ = function testSSBQ(A, B, C, D, E, F) {
+globalThis.testSSBQ = function testSSBQ(A, B, C, D, E, F) {
   console.log({ A, B, C, D, E, F });
   const sols = solveSimpleBiquadratic(A, B, C, D, E, F);
   for (const s of sols) {

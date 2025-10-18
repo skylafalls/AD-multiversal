@@ -16,7 +16,7 @@ function getGlyphTypes() {
 
 // This is actually reassigned when importing saves
 
-window.player = {
+globalThis.player = {
   antimatter: DC.E1,
   dimensions: {
     antimatter: Array.range(0, 8).map(() => ({

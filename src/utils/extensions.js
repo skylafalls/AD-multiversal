@@ -79,7 +79,7 @@ Decimal.prototype.expEquiv = function (decimal, floor = false) {
   return decimal.max(1).log10().floor();
 };
 
-window.copyToClipboard = (function () {
+globalThis.copyToClipboard = (function () {
   const el = document.createElement("textarea");
   document.body.append(el);
   el.style.position = "absolute";
@@ -97,7 +97,7 @@ window.copyToClipboard = (function () {
   };
 }());
 
-window.safeCall = function safeCall(fn) {
+globalThis.safeCall = function safeCall(fn) {
   if (fn) fn();
 };
 

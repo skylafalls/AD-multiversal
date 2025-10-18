@@ -113,9 +113,11 @@ export const GameUI = {
   flushPromise: undefined,
   initialized: false,
   globalClickListener: null,
+  // oxlint-disable prefer-global-this
   touchDevice: ("ontouchstart" in window
     || window.navigator.maxTouchPoints > 0 || window.navigator.msMaxTouchPoints > 0
-    || (window.DocumentTouch && document instanceof DocumentTouch)),
+    || (globalThis.DocumentTouch && document instanceof DocumentTouch)),
+  // oxlint-enable prefer-global-this
   dispatch(event, args) {
     const index = this.events.indexOf(event);
     if (index !== -1) {
