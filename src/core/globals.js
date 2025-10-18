@@ -67,7 +67,6 @@ export * from "./glyphs/glyph-purge-handler";
 export * from "./glyphs/auto-glyph-processor";
 export * from "./devtools";
 export * from "./news-ticker";
-export * from "./shop";
 export * from "./tabs";
 export * from "./tab-notifications";
 export * from "./speedrun";
