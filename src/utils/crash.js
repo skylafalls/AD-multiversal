@@ -8,7 +8,7 @@ globalThis.NotImplementedError = class NotImplementedError extends Error {
   }
 };
 
-globalThisGlobalErrorHandler = {
+globalThis.GlobalErrorHandler = {
   handled: false,
   cleanStart: false,
   onerror(event) {
@@ -44,7 +44,8 @@ globalThisGlobalErrorHandler = {
   },
 };
 
-window.onerror = (event, source) => {
-  if (!source.endsWith(".js")) return;
-  GlobalErrorHandler.onerror(event);
-};
+// oxlint-disable-next-line prefer-global-this
+window.addEventListener("error", (event) => {
+  if (!event.filename.endsWith(".js")) return;
+  GlobalErrorHandler.onerror(event.error);
+});

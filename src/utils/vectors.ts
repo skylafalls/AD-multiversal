@@ -1,5 +1,5 @@
 import type { DecimalSource } from "@/typings/break_eternity";
-import { solveSimpleBiquadratic } from "./math";
+import { solveSimpleBiquadratic } from "./math.js";
 
 // oxlint-disable max-classes-per-file
 export class AffineTransform {

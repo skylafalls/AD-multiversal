@@ -1,7 +1,7 @@
 import * as ADLNotations from "adnot-beport-large";
 import * as ADNotations from "adnot-beport-small";
 
-import { DC, GAME_EVENT } from "./constants";
+import { DC, GAME_EVENT } from "./constants.js";
 
 export const Notation = (function () {
   const N = ADNotations;

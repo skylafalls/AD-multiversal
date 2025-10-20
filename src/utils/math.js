@@ -1,7 +1,7 @@
 // oxlint-disable max-classes-per-file
 import { log as lngamma } from "gamma";
 
-import { DC } from "./constants";
+import { DC } from "./constants.js";
 
 globalThis.LOG10_MAX_VALUE = Math.log10(Number.MAX_VALUE);
 globalThis.DLOG10_MAXNUM = Decimal.log10(Number.MAX_VALUE);

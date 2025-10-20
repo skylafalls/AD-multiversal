@@ -1,13 +1,13 @@
 import VTooltip from "v-tooltip";
 
-import { DEV } from "@/env";
+import { DEV } from "#env";
 
-import { useLongPress, useRepeatingClick } from "./longpress";
-import { notify } from "./notify";
-import { state } from "./ui.init";
+import { useLongPress, useRepeatingClick } from "./longpress.js";
+import { notify } from "./notify.js";
+import { state } from "./ui.init.js";
 import { GAME_EVENT } from "#utils/constants.js";
 
-import GameUIComponent from "@/components/GameUIComponent";
+import GameUIComponent from "@/components/GameUIComponent.vue";
 
 Vue.mixin({
   computed: {

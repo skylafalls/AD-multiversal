@@ -1,4 +1,4 @@
-import { DC } from "./constants";
+import { DC } from "./constants.js";
 
 Array.prototype.distinct = function () {
   return this.filter((value, index, self) => self.indexOf(value) === index);

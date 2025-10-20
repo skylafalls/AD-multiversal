@@ -4,7 +4,7 @@ import ModalWrapper from "@/components/modals/ModalWrapper";
 import PrimaryButton from "@/components/PrimaryButton";
 
 import { AutoBackupSlots } from "@/core/storage";
-import { STEAM } from "@/env";
+import { STEAM } from "#env";
 
 export default {
   name: "BackupWindowModal",
