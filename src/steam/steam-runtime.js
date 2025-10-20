@@ -9,7 +9,7 @@ import {
 
 import * as Greenworks from "./bindings/greenworks";
 
-import { MAC, STEAM } from "@/env";
+import { MAC, STEAM } from "#env";
 
 let isInitialized = false;
 let isActive = false;

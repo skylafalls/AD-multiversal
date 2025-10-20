@@ -1,5 +1,5 @@
-import { END_STATE_MARKERS } from "./constants";
-import { isDecimal } from "./type-check";
+import { END_STATE_MARKERS } from "./constants.js";
+import { isDecimal } from "./type-check.js";
 
 function isEND() {
   const threshold = GameEnd.endState >= END_STATE_MARKERS.END_NUMBERS

@@ -1,4 +1,4 @@
-import { STEAM } from "@/env";
+import { STEAM } from "#env";
 
 /**
  * @template TModule

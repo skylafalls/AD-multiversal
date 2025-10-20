@@ -9,7 +9,7 @@ import { get, getDatabase, ref, set } from "firebase/database";
 import { initializeApp } from "firebase/app";
 import { sha512_256 } from "js-sha512";
 
-import { STEAM } from "@/env";
+import { STEAM } from "#env";
 
 import { firebaseConfig } from "./firebase-config";
 import { ProgressChecker } from "./progress-checker";

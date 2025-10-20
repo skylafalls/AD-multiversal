@@ -5,9 +5,9 @@ import { ElectronRuntime, SteamRuntime } from "@/steam";
 
 import { DC, EFFARIG_STAGES, END_STATE_MARKERS, GAME_EVENT } from "#utils/constants.js";
 import { deepmergeAll } from "#utils/deepmerge.js";
-import { DEV } from "@/env";
-import { SpeedrunMilestones } from "./core/speedrun";
-import { supportedBrowsers } from "./supported-browsers";
+import { DEV } from "#env";
+import { SpeedrunMilestones } from "./core/speedrun.js";
+import { supportedBrowsers } from "./supported-browsers.js";
 
 if (GlobalErrorHandler.handled) {
   throw new Error("Initialization failed");
@@ -1046,7 +1046,7 @@ export function simulateTime(seconds, real, fast) {
   }
 }
 
-window.onload = function () {
+window.addEventListener("load", () => {
   const supportedBrowser = browserCheck();
   GameUI.initialized = supportedBrowser;
   ui.view.initialized = supportedBrowser;
@@ -1059,15 +1059,15 @@ window.onload = function () {
     document.querySelector("#loading").style.display = "none";
     document.querySelector("#browser-warning").style.display = "flex";
   }
-};
+});
 
-window.onfocus = function () {
+window.addEventListener("focus", () => {
   setShiftKey(false);
-};
+});
 
-window.onblur = function () {
+window.addEventListener("blur", () => {
   GameKeyboard.stopSpins();
-};
+});
 
 export function setShiftKey(isDown) {
   ui.view.shiftDown = isDown;
