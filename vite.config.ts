@@ -25,6 +25,7 @@ const config = defineConfig({
   },
   build: {
     cssMinify: "lightningcss",
+    minify: "esbuild",
   },
 });
 
