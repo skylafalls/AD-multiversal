@@ -7,7 +7,7 @@ class GameEvent extends Event {
   }
 }
 
-type HandlerTargetMap = Record<GAME_EVENT, {
+type HandlerTargetMap = Record<GAME_EVENT | string, {
   fn: (evt: GameEvent) => void
   target: any
 }[]>;
@@ -69,13 +69,16 @@ class EventHub extends EventTarget {
     [GAME_EVENT.CLOSE_MODAL]: [],
   };
 
-  on(event: GAME_EVENT, fn: (evt: GameEvent) => void, target: any) {
+  on(event: GAME_EVENT | string, fn: (evt: GameEvent) => void, target: any) {
     this.addEventListener(event, fn);
+    if (this._handlerTargetMap[event] === undefined) {
+      this._handlerTargetMap[event] = [];
+    }
     this._handlerTargetMap[event].push({ fn, target });
   }
 
   override addEventListener(
-    type: GAME_EVENT,
+    type: GAME_EVENT | string,
     callback: ((evt: GameEvent) => void) | null,
     options?: AddEventListenerOptions | boolean,
   ): void {
@@ -84,11 +87,11 @@ class EventHub extends EventTarget {
 
   offAll(target: any) {
     for (const event of Object.keys(this._handlerTargetMap)) {
-      const removeArray = this._handlerTargetMap[event as GAME_EVENT].filter(handler => handler.target === target);
+      const removeArray = this._handlerTargetMap[event].filter(handler => handler.target === target);
       for (const handler of removeArray) {
         this.removeEventListener(event, handler.fn);
       }
-      this._handlerTargetMap[event as GAME_EVENT] = this._handlerTargetMap[event as GAME_EVENT].filter(handler => handler.target !== target);
+      this._handlerTargetMap[event as GAME_EVENT] = this._handlerTargetMap[event].filter(handler => handler.target !== target);
     }
   }
 
