@@ -61,7 +61,7 @@ export default {
       return `${format(this.theoremGeneration, 2, 2)} TT/sec`;
     },
     totalTimeTheoremText() {
-      return `${quantify("total Time Theorem", this.totalTimeTheorems, 2, 2, this.formatTimeTheoremType)}`;
+      return quantify("total Time Theorem", this.totalTimeTheorems, 2, 2, this.formatTimeTheoremType);
     },
     minimizeArrowStyle() {
       return {

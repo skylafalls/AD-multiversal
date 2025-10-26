@@ -4,7 +4,7 @@ import Decimal from "break_eternity.js";
 const LOG4 = Math.log10(4);
 const NUMBERS = [
   "4-4", "4÷4", "√4", "4-4÷4", "4", "4+4÷4", "4!÷4", "(4!+4)÷4", "4+4",
-  "4+4+4÷4", "4!÷4+4", "44÷4", "4!÷√4", "44÷4+√4", "4×4-√4", "4×4-4÷4"
+  "4+4+4÷4", "4!÷4+4", "44÷4", "4!÷√4", "44÷4+√4", "4×4-√4", "4×4-4÷4",
 ];
 
 export class FoursNotation extends Notation {
@@ -27,7 +27,6 @@ export class FoursNotation extends Notation {
   public formatVerySmallDecimal(val: Decimal): string {
     return this.formatDecimal(val);
   }
-
 
   public formatNegativeUnder1000(val: number): string {
     const str = this.formatUnder1000(val);

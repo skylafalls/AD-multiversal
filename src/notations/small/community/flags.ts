@@ -1,5 +1,3 @@
-/* eslint-disable no-inline-comments */
-/* eslint-disable line-comment-position */
 import { CustomNotation } from "../custom";
 
 const FLAGS = [
@@ -260,7 +258,7 @@ const FLAGS = [
   "\uD83C\uDDFE\uD83C\uDDF9", // Mayotte
   "\uD83C\uDDFF\uD83C\uDDE6", // South Africa
   "\uD83C\uDDFF\uD83C\uDDF2", // Zambia
-  "\uD83C\uDDFF\uD83C\uDDFC" // Zimbabwe
+  "\uD83C\uDDFF\uD83C\uDDFC", // Zimbabwe
 ];
 
 export class FlagsNotation extends CustomNotation {

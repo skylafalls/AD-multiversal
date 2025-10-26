@@ -4,7 +4,7 @@ import { formatWithCommas } from "./utils";
 
 const ZALGO_CHARS = [
   "\u030D", "\u0336", "\u0353", "\u033F", "\u0489",
-  "\u0330", "\u031A", "\u0338", "\u035A", "\u0337"
+  "\u0330", "\u031A", "\u0338", "\u035A", "\u0337",
 ];
 
 const HE_COMES = ["H", "E", " ", "C", "O", "M", "E", "S"];
@@ -20,7 +20,7 @@ export class ZalgoNotation extends Notation {
 
   public get infinite(): string {
     return HE_COMES
-      .map((char) => char + randomElement(ZALGO_CHARS))
+      .map(char => char + randomElement(ZALGO_CHARS))
       .join("");
   }
 

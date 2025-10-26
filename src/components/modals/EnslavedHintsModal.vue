@@ -22,10 +22,10 @@ export default {
   },
   computed: {
     hintCost() {
-      return `${quantify("year", TimeSpan.fromMilliseconds(this.nextHintCost).totalYears, 2)}`;
+      return quantify("year", TimeSpan.fromMilliseconds(this.nextHintCost).totalYears, 2);
     },
     formattedStored() {
-      return `${quantify("year", TimeSpan.fromMilliseconds(this.currentStored).totalYears, 2)}`;
+      return quantify("year", TimeSpan.fromMilliseconds(this.currentStored).totalYears, 2);
     },
     hasProgress(id) {
       return this.progressEntries.some(entry => entry.id === id);
@@ -47,14 +47,14 @@ export default {
       const minCostEstimate = (TimeSpan.fromYears(new Decimal(1e40)).totalMilliseconds.sub(this.currentStored))
         .div(storeRate);
       if (TimeSpan.fromSeconds(minCostEstimate).totalDays.gt(this.hints)) {
-        return `${TimeSpan.fromSeconds(minCostEstimate).toStringShort(true)}`;
+        return TimeSpan.fromSeconds(minCostEstimate).toStringShort(true);
       }
 
       // Decay is 3x per day, but the math needs decay per second
       const K = Decimal.pow(3, 1 / 86400);
       const x = Decimal.ln(K).mul(Decimal.pow(K, alreadyWaited)).mul(decaylessTime);
       const timeToGoal = decimalProductLog(x).div(Decimal.ln(K).sub(alreadyWaited));
-      return `${TimeSpan.fromSeconds(timeToGoal).toStringShort(true)}`;
+      return TimeSpan.fromSeconds(timeToGoal).toStringShort(true);
     },
   },
   methods: {

@@ -4,7 +4,7 @@ import { Notation } from "../notation";
 const JPNNOT_SUFFIXES = [
   "", "万", "億", "兆", "京", "垓", "秭",
   "穣", "溝", "澗", "正", "載", "極",
-  "恒河沙", "阿僧祇", "那由他", "不可思議", "無量大数"
+  "恒河沙", "阿僧祇", "那由他", "不可思議", "無量大数",
 ];
 
 export class JapaneseNotation extends Notation {

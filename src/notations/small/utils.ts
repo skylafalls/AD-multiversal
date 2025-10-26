@@ -7,14 +7,14 @@ function commaSection(value: string, index: number): string {
   }
   return value.slice(
     -3 * (index + 1),
-    -3 * index
+    -3 * index,
   );
 }
 
 function addCommas(value: string): string {
   return [...Array(Math.ceil(value.length / 3))].map((_, i) => commaSection(
     value,
-    i
+    i,
   ))
     .toReversed()
     .join(",");
@@ -25,7 +25,7 @@ export function formatWithCommas(value: number | string): string {
   // Handles higher bases without additional complexity while still removing the decimal point.
   decimalPointSplit[0] = decimalPointSplit[0].replaceAll(
     /\w+$/g,
-    addCommas
+    addCommas,
   );
   return decimalPointSplit.join(".");
 }
@@ -34,19 +34,19 @@ export function formatWithCommas(value: number | string): string {
  * Fixes cases like (9.6e3, 0), which results in "10e3" (but we need "1e4" instead)
  * because toFixed rounds numbers to closest integer
  */
-// eslint-disable-next-line max-params
+
 export function fixMantissaOverflow(
   value: Decimal,
   places: number,
   threshold: number,
-  powerOffset: number
+  powerOffset: number,
 ): Decimal {
   const pow10 = 10 ** places;
   const isOverflowing = Math.round(value.mantissa * pow10) >= threshold * pow10;
   if (isOverflowing) {
     return Decimal.fromMantissaExponent_noNormalize(
       1,
-      value.exponent + powerOffset
+      value.exponent + powerOffset,
     );
   }
   return value;
@@ -61,7 +61,7 @@ export function toEngineering(value: Decimal): Decimal {
   const exponentOffset = value.exponent % 3;
   return Decimal.fromMantissaExponent_noNormalize(
     value.mantissa * 10 ** exponentOffset,
-    value.exponent - exponentOffset
+    value.exponent - exponentOffset,
   );
 }
 
@@ -76,7 +76,7 @@ export function toLongScale(value: Decimal): Decimal {
   const exponentOffset = value.exponent % mod;
   return Decimal.fromMantissaExponent_noNormalize(
     value.mantissa * 10 ** exponentOffset,
-    value.exponent - exponentOffset
+    value.exponent - exponentOffset,
   );
 }
 
@@ -85,7 +85,7 @@ export function toFixedEngineering(value: Decimal, places: number): Decimal {
     toEngineering(value),
     places,
     1000,
-    3
+    3,
   );
 }
 
@@ -95,7 +95,7 @@ export function toFixedLongScale(value: Decimal, places: number): Decimal {
     toLongScale(value),
     places,
     10 ** overflowPlaces,
-    overflowPlaces
+    overflowPlaces,
   );
 }
 
@@ -103,7 +103,7 @@ const SUBSCRIPT_NUMBERS = ["₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇
 
 export function toSubscript(value: number): string {
   return [...value.toFixed(0)]
-    .map((x) => x === "-" ? "₋" : SUBSCRIPT_NUMBERS[Number.parseInt(x, 10)])
+    .map(x => x === "-" ? "₋" : SUBSCRIPT_NUMBERS[Number.parseInt(x, 10)])
     .join("");
 }
 
@@ -111,18 +111,18 @@ const SUPERSCRIPT_NUMBERS = ["⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷"
 
 export function toSuperscript(value: number): string {
   return [...value.toFixed(0)]
-    .map((x) => x === "-" ? "⁻" : SUPERSCRIPT_NUMBERS[Number.parseInt(x, 10)])
+    .map(x => x === "-" ? "⁻" : SUPERSCRIPT_NUMBERS[Number.parseInt(x, 10)])
     .join("");
 }
 
 const STANDARD_ABBREVIATIONS = [
-  "K", "M", "B", "T", "Qa", "Qt", "Sx", "Sp", "Oc", "No"
+  "K", "M", "B", "T", "Qa", "Qt", "Sx", "Sp", "Oc", "No",
 ];
 
 const STANDARD_PREFIXES = [
   ["", "U", "D", "T", "Qa", "Qt", "Sx", "Sp", "O", "N"],
   ["", "Dc", "Vg", "Tg", "Qd", "Qi", "Se", "St", "Og", "Nn"],
-  ["", "Ce", "Dn", "Tc", "Qe", "Qu", "Sc", "Si", "Oe", "Ne"]
+  ["", "Ce", "Dn", "Tc", "Qe", "Qu", "Sc", "Si", "Oe", "Ne"],
 ];
 
 const STANDARD_PREFIXES_2 = ["", "MI-", "MC-", "NA-", "PC-", "FM-", "AT-", "ZP-"];
@@ -175,9 +175,9 @@ export function isExponentFullyShown(exponent: number): boolean {
 // to the threshold, meaning in some cases that the exponent will have its own exponent and that we don't
 // want to show the mantissa.
 export function formatMantissaWithExponent(mantissaFormatting: (n: number, precision: number) => string,
-exponentFormatting: (n: number, precision: number) => string, base: number, steps: number,
-mantissaFormattingIfExponentIsFormatted?: (n: number, precision: number) => string,
-separator: string = "e", forcePositiveExponent: boolean = false):
+  exponentFormatting: (n: number, precision: number) => string, base: number, steps: number,
+  mantissaFormattingIfExponentIsFormatted?: (n: number, precision: number) => string,
+  separator: string = "e", forcePositiveExponent: boolean = false):
 ((n: Decimal, precision: number, precisionExponent: number) => string) {
   return function (n: Decimal, precision: number, precisionExponent: number): string {
     const realBase = base ** steps;
@@ -215,12 +215,12 @@ separator: string = "e", forcePositiveExponent: boolean = false):
     // this will use at least precision 2 on the exponent if relevant, due to the default
     // value of largeExponentPrecision: number = Math.max(2, precision) in formatExponent.
     const e = exponentFormatting(exponent, precisionExponent);
-    if (typeof mantissaFormattingIfExponentIsFormatted !== 'undefined' && !isExponentFullyShown(exponent)) {
+    if (typeof mantissaFormattingIfExponentIsFormatted !== "undefined" && !isExponentFullyShown(exponent)) {
       // No need to do a second check for roll-over.
       m = mantissaFormattingIfExponentIsFormatted(mantissa, precision);
     }
-    // eslint-disable-next-line no-negated-condition
-    return `${!isExponentFullyShown(exponent) ? `${separator}${e}` : `${m}${separator}${e}`}`;
+
+    return !isExponentFullyShown(exponent) ? `${separator}${e}` : `${m}${separator}${e}`;
   };
 }
 

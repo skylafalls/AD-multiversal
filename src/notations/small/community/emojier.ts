@@ -24,9 +24,9 @@ export class EmojierNotation extends Notation {
     const seenDigits: number[] = [];
     for (let i = 0; i < characters.length; i++) {
       if ("0123456789".includes(characters[i])) {
-        if (seenDigits.map((x) => x % 5).includes(Number(characters[i]) % 5)) {
-          const emojierIndex = seenDigits.map((x) => x % 5).indexOf(Number(characters[i]) % 5) +
-            5 * ((Number(!seenDigits.includes(Number(characters[i]))) + i) % 2);
+        if (seenDigits.map(x => x % 5).includes(Number(characters[i]) % 5)) {
+          const emojierIndex = seenDigits.map(x => x % 5).indexOf(Number(characters[i]) % 5)
+            + 5 * ((Number(!seenDigits.includes(Number(characters[i]))) + i) % 2);
           characters[i] = EMOJIER[emojierIndex];
         } else {
           seenDigits.push(Number(characters[i]));

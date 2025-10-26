@@ -58,7 +58,7 @@ export const dilationUpgrades = {
     // The 38th purchase is at 1e80, and is the last purchase.
     effect: bought => (bought.lt(38) ? Decimal.pow(0.8, bought) : new Decimal()),
     formatEffect: (effect) => {
-      if (effect === 0) return `${formatX(getTachyonGalaxyMult(effect), 4, 4)}`;
+      if (effect === 0) return formatX(getTachyonGalaxyMult(effect), 4, 4);
       const nextEffect = effect === Decimal.pow(0.8, 37) ? new Decimal() : effect.mul(0.8);
       return `${formatX(getTachyonGalaxyMult(effect), 4, 4)} ➜
         Next: ${formatX(getTachyonGalaxyMult(nextEffect), 4, 4)}`;

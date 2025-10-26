@@ -177,7 +177,7 @@ export const AutomatorCommands = [
           autobuyer.mode = durationMode;
           autobuyer.time = duration / 1000;
           // Can't do the units provided in the script because it's been parsed away like 4 layers up the call stack
-          currSetting = `${autobuyer.time > 1000 ? formatInt(autobuyer.time) : quantify("second", autobuyer.time)}`;
+          currSetting = autobuyer.time > 1000 ? formatInt(autobuyer.time) : quantify("second", autobuyer.time);
         } else if (xHighest !== undefined) {
           autobuyer.mode = xHighestMode;
           autobuyer.xHighest = new Decimal(xHighest);

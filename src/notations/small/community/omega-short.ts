@@ -11,7 +11,7 @@ export class OmegaShortNotation extends OmegaNotation {
     const step = Decimal.floor(value.div(1000));
     const omegaAmount = Decimal.floor(step.div(this.greek.length));
     let lastLetter = this.greek[step.toNumber() % this.greek.length] + toSubscript(value.toNumber() % 1000);
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+
     const beyondGreekArrayBounds = this.greek[step.toNumber() % this.greek.length] === undefined;
     if (beyondGreekArrayBounds || step.toNumber() > Number.MAX_SAFE_INTEGER) {
       lastLetter = "ω";

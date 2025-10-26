@@ -3,7 +3,7 @@ import { Notation } from "./notation";
 
 const SIGNS = {
   positive: 0,
-  negative: 1
+  negative: 1,
 };
 
 export class HexNotation extends Notation {
@@ -82,12 +82,12 @@ export class HexNotation extends Notation {
     }
     // Convert the signs to a number, adding zeros at the end
     // in case the above loop breaks early.
-    let resultValue = Number.parseInt(signs.map((x) => x === SIGNS.positive ? 1 : 0)
+    let resultValue = Number.parseInt(signs.map(x => x === SIGNS.positive ? 1 : 0)
       .join("")
       .padEnd(numberOfBits, "0"), 2);
     // This conditional is just here for correct rounding.
-    if (resultValue !== 2 ** numberOfBits - 1 &&
-      (value > 0 || value === 0 && resultValue % 2 === 1)) {
+    if (resultValue !== 2 ** numberOfBits - 1
+      && (value > 0 || value === 0 && resultValue % 2 === 1)) {
       resultValue += 1;
     }
     return resultValue;

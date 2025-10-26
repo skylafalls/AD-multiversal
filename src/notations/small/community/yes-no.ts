@@ -23,12 +23,10 @@ export class YesNoNotation extends Notation {
   }
 
   public formatNegativeUnder1000(x: number): string {
-    // eslint-disable-next-line no-negated-condition
     return x !== 0 ? "YES" : "NO";
   }
 
   public formatUnder1000(x: number): string {
-    // eslint-disable-next-line no-negated-condition
     return x !== 0 ? "YES" : "NO";
   }
 

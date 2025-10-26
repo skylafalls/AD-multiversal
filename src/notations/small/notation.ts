@@ -8,7 +8,7 @@ export abstract class Notation {
 
   public format(
     value: DecimalSource, places: number = 0, placesUnder1000: number = 0,
-    placesExponent: number = places
+    placesExponent: number = places,
   ): string {
     if (typeof value === "number" && !Number.isFinite(value)) {
       return this.infinite;
@@ -72,8 +72,8 @@ export abstract class Notation {
 
   protected formatExponent(
     exponent: number, precision: number = Settings.exponentDefaultPlaces,
-    specialFormat: (n: number, p: number) => string = ((n, _) => n.toString()),
-    largeExponentPrecision: number = Math.max(2, precision)
+    specialFormat: (n: number, p: number) => string = (n, _) => n.toString(),
+    largeExponentPrecision: number = Math.max(2, precision),
   ): string {
     // This is for log notation, which wants a digit of precision on all small exponents.
     if (noSpecialFormatting(exponent)) {
@@ -83,7 +83,7 @@ export abstract class Notation {
       // need this to use specialformat first
       return formatWithCommas(specialFormat(exponent, 0));
     }
-    //I really, really hope this works
+    // I really, really hope this works
     return this.format(exponent, largeExponentPrecision, largeExponentPrecision);
   }
 }

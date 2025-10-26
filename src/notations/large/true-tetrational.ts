@@ -14,7 +14,7 @@ export class TrueTetrationalNotation extends Notation {
   public formatLDecimal(value: Decimal, places: number): string {
     if (value.isNan()) return "NaN";
     if (!value.isFinite) return `${value.sign === -1 ? "-" : ""}Infinity`;
-    // eslint-disable-next-line newline-per-chained-call
+
     return `${value.sign === -1 ? "-" : ""}10^^${formatNumber(value.abs().slog().toNumber(), places + 1, false)}`;
   }
 //  Public formatDecimal(value: Decimal, places: number, placesExponent: number): string {

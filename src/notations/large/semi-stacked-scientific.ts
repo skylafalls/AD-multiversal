@@ -1,10 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type Decimal from "break_eternity.js";
 import { Notation } from "./notation";
-import { formatNumber, layerMagFormatting} from "./utils";
+import { formatNumber, layerMagFormatting } from "./utils";
 // Import { formatMantissaWithExponent, formatMantissaBaseTen } from "./utils";
-
 
 export class SemiStackedScientificNotation extends Notation {
   public get name(): string {

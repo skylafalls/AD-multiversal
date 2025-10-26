@@ -4,21 +4,21 @@ import { toFixedEngineering } from "../utils";
 
 const UNITS = [
   "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
-  "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+  "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen",
 ];
 
 const TENS = [
   "", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty",
-  "ninety"
+  "ninety",
 ];
 
 const PREFIXES = [
   ["", "un", "duo", "tre", "quattuor", "quin", "se", "septe", "octo", "nove"],
   [
     "", "deci", "viginti", "triginta", "quadraginta", "quinquaginta", "sexaginta",
-    "septuaginta", "octoginta", "nonaginta"
+    "septuaginta", "octoginta", "nonaginta",
   ],
-  ["", "centi", "ducenti", "trecenti", "quadringenti", "quingenti", "sescenti", "septingenti", "octingenti", "nongenti"]
+  ["", "centi", "ducenti", "trecenti", "quadringenti", "quingenti", "sescenti", "septingenti", "octingenti", "nongenti"],
 ];
 
 const PREFIXES_2 = [
@@ -40,7 +40,7 @@ const PREFIXES_2 = [
   "penteoctaconto-", "hexeoctaconto-", "hepteoctaconto-", "octeoctaconto-", "enneoctaconto-",
   "ennaconto-", "meennaconto-", "dueeennaconto-", "trioennaconto-", "tetreennaconto-",
   "penteennaconto-", "hexeennaconto-", "hepteennaconto-", "octeennaconto-", "enneennaconto-",
-  "hecto-", "mehecto-", "duehecto-"
+  "hecto-", "mehecto-", "duehecto-",
 ];
 
 export class EnglishNotation extends EngineeringNotation {
@@ -143,7 +143,7 @@ export class EnglishNotation extends EngineeringNotation {
         a++;
       }
     }
-    return ans.filter((i) => i !== "").join(" ");
+    return ans.filter(i => i !== "").join(" ");
   }
 
   private formatPrefixes(e: number): string {
@@ -165,8 +165,8 @@ export class EnglishNotation extends EngineeringNotation {
     }
     let abbreviation = "";
     while (index2 >= 0) {
-      if (prefix[index2 * 3] !== "un" || prefix[index2 * 3 + 1] !== "" ||
-        prefix[index2 * 3 + 2] !== "" || index2 === 0) {
+      if (prefix[index2 * 3] !== "un" || prefix[index2 * 3 + 1] !== ""
+        || prefix[index2 * 3 + 2] !== "" || index2 === 0) {
         let abb2 = prefix[index2 * 3 + 1] + prefix[index2 * 3 + 2];
         // Special cases.
         if (["tre", "se"].includes(prefix[index2 * 3]) && ["v", "t", "q"].includes(abb2.slice(0, 1))) {

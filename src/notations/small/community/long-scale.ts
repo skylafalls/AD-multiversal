@@ -12,13 +12,13 @@ export class LongScaleNotation extends Notation {
   public formatDecimal(value: Decimal, places: number): string {
     const longScale = toFixedLongScale(
       value,
-      places
+      places,
     );
     const mantissa = longScale.mantissa.toFixed(places);
     const abbreviation = abbreviateStandard(Math.floor(longScale.exponent / 6) + 1);
     return `${mantissa} ${abbreviation}`.replaceAll(
       /[,.]/g,
-      (x) => x === "." ? "," : "."
+      x => x === "." ? "," : ".",
     );
   }
 }

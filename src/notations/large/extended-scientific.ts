@@ -12,7 +12,6 @@ export class ExtendedScientificNotation extends Notation {
     return false;
   }
 
-
   public formatLDecimal(value: Decimal, places: number): string {
     if (value.isNan()) return "NaN";
     if (!value.isFinite) return `${value.sign === -1 ? "-" : ""}Infinity`;

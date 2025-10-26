@@ -58,11 +58,11 @@ export default {
     },
     gained() {
       const gainedResources = [];
-      gainedResources.push(`${quantify("Reality", this.simRealities)}`);
-      gainedResources.push(`${quantify("Perk Point", this.simRealities)}`);
-      gainedResources.push(`${quantify("Reality Machine", this.realityMachines, 2)}`);
+      gainedResources.push(quantify("Reality", this.simRealities));
+      gainedResources.push(quantify("Perk Point", this.simRealities));
+      gainedResources.push(quantify("Reality Machine", this.realityMachines, 2));
       if (this.effarigUnlocked) {
-        gainedResources.push(`${quantify("Relic Shard", this.shardsGained, 2)}`);
+        gainedResources.push(quantify("Relic Shard", this.shardsGained, 2));
       }
       return `You will gain ${makeEnumeration(gainedResources)}`;
     },

@@ -49,7 +49,7 @@ export default {
       if (num.lt(0.001)) {
         return `${formatInt(1)} / ${format(Decimal.div(1, num), 2)}`;
       }
-      return `${format(num, 2)}`;
+      return format(num, 2);
     },
   },
 };

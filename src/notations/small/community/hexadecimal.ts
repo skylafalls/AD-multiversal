@@ -9,4 +9,3 @@ export class HexadecimalNotation extends CustomBaseNotation {
     return "Hexadecimal";
   }
 }
-

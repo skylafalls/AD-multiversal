@@ -14,18 +14,16 @@ export abstract class AbstractInfixNotation extends Notation {
   public formatDecimal(value: Decimal, places: number, _placesExponent: number): string {
     return this.formatInfix(
       value,
-      places
+      places,
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public format(value: DecimalSource, places = 0, _placesUnder1000 = 0, placesExponent = places): string {
     if (typeof value === "number" && !Number.isFinite(value)) {
       return this.infinite;
     }
 
     const decimal = Decimal.fromValue_noAlloc(value);
-    
 
     if (Settings.isInfinite(decimal.abs())) {
       return decimal.sign < 0 ? this.negativeInfinite : this.infinite;
@@ -33,20 +31,20 @@ export abstract class AbstractInfixNotation extends Notation {
 
     return decimal.sign < 0
       ? this.formatNegativeDecimal(
-        decimal.abs(),
-        places,
-        placesExponent
-      )
+          decimal.abs(),
+          places,
+          placesExponent,
+        )
       : this.formatDecimal(
-        decimal,
-        places,
-        placesExponent
-      );
+          decimal,
+          places,
+          placesExponent,
+        );
   }
 
-  protected abstract formatMantissa (digit: number): string;
+  protected abstract formatMantissa(digit: number): string;
 
-  protected abstract formatExponent (digit: number): string;
+  protected abstract formatExponent(digit: number): string;
 
   protected formatInfix(inputValue: Decimal, inputPlaces: number): string {
     // Stop numbers starting with a lot of 9s from having those 9s rounded up,
@@ -58,18 +56,18 @@ export abstract class AbstractInfixNotation extends Notation {
       inputValue,
       this.numberOfPlaces(
         inputValue,
-        inputPlaces
+        inputPlaces,
       ),
       10,
-      1
+      1,
     );
     const places = this.numberOfPlaces(
       value,
-      inputPlaces
+      inputPlaces,
     );
     const mantissaString = value.mantissa.toFixed(places).replace(
       ".",
-      ""
+      "",
     );
     const result = [];
     let anyExponent = false;

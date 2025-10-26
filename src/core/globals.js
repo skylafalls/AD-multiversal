@@ -14,7 +14,6 @@ export * from "./confirmations";
 export * from "./autobuyers/autobuyers";
 export * from "./storage";
 
-
 export * from "./new-game";
 
 export * from "./celestials/quotes";

@@ -9,7 +9,7 @@ function expFormat(value: Decimal, places: number, mantissa: boolean): string {
   let eText = "";
   if (e.gte(1e9)) {
     // `expFormat` and `format` are defined cyclically, so there's no way to get around it
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+
     eText = format(e, places);
   } else if (e.gte(10000)) {
     eText = formatNumber(e.toNumber(), 99, true);

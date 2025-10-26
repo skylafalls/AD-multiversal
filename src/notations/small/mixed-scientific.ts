@@ -14,14 +14,14 @@ export class MixedScientificNotation extends Notation {
     if (value.exponent < 33) {
       return standard.formatDecimal(value, places, placesExponent);
     }
-    // eslint-disable-next-line function-call-argument-newline
+
     return formatMantissaWithExponent(
       formatMantissaBaseTen,
       this.formatExponent.bind(this),
       10,
       1,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      (x, _) => formatMantissaBaseTen(x, 0)
+
+      (x, _) => formatMantissaBaseTen(x, 0),
     )(value, places, placesExponent);
   }
 }

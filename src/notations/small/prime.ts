@@ -31,7 +31,7 @@ const MAX_PRIME = PRIMES[LAST_PRIME_INDEX];
 const EXPONENT_CHARACTERS = [
   "\u2070", "\u00B9", "\u00B2", "\u00B3", "\u2074",
   "\u2075", "\u2076", "\u2077", "\u2078", "\u2079",
-  "\u00B9\u2070", "\u00B9\u00B9", "\u00B9\u00B2", "\u00B9\u00B3"
+  "\u00B9\u2070", "\u00B9\u00B9", "\u00B9\u00B2", "\u00B9\u00B3",
 ];
 
 export class PrimeNotation extends Notation {
@@ -42,7 +42,6 @@ export class PrimeNotation extends Notation {
   public get infinite(): string {
     return "Primefinity?";
   }
-
 
   public formatUnder1000(value: number): string {
     return this.primify(new Decimal(value));
@@ -164,7 +163,7 @@ export class PrimeNotation extends Notation {
       // all greater values won't be factors anyway
       const halfFactoring = factoringValue / 2;
       let primeIndex = this.findGreatestLtePrimeIndex(halfFactoring);
-      // eslint-disable-next-line @typescript-eslint/init-declarations
+
       let factor;
       while (factor === undefined) {
         const prime = PRIMES[primeIndex--];

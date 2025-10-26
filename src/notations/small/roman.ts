@@ -26,7 +26,7 @@ const ROMAN_NUMBERS: [number, string][] = [
   [9, "ⅠⅩ"],
   [5, "Ⅴ"],
   [4, "ⅠⅤ"],
-  [1, "Ⅰ"]
+  [1, "Ⅰ"],
 ];
 const ROMAN_FRACTIONS = ["", "·", ":", "∴", "∷", "⁙"];
 const MAXIMUM = 4000000;

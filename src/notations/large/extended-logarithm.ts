@@ -1,4 +1,3 @@
-/* eslint-disable newline-per-chained-call */
 import type Decimal from "break_eternity.js";
 import { Notation } from "./notation";
 import { formatNumber } from "./utils";

@@ -1,7 +1,6 @@
 import Decimal from "break_eternity.js";
 import { Notation } from "./notation";
 
-// eslint-disable-next-line @typescript-eslint/no-type-alias
 type VolumeUnit = [number, string, number];
 
 // The first column is the size in pL
@@ -27,13 +26,13 @@ const VOLUME_UNITS: VolumeUnit[] = [
   [61611520 * 60 * 8 * 4 * 2 * 2 * 2 * 4 * 54, "hogshead", 5],
   [61611520 * 60 * 8 * 4 * 2 * 2 * 2 * 4 * 72, "puncheon", 6],
   [61611520 * 60 * 8 * 4 * 2 * 2 * 2 * 4 * 108, "butt", 7],
-  [61611520 * 60 * 8 * 4 * 2 * 2 * 2 * 4 * 216, "tun", 7]
+  [61611520 * 60 * 8 * 4 * 2 * 2 * 2 * 4 * 216, "tun", 7],
 ];
 const MINIMS = VOLUME_UNITS[1];
 const VOLUME_ADJECTIVES = [
   "minute ", "tiny ", "petite ", "small ", "modest ", "medium ", "generous ",
   "large ", "great ", "grand ", "huge ", "gigantic ", "immense ", "colossal ",
-  "vast ", "galactic ", "cosmic ", "infinite ", "eternal "
+  "vast ", "galactic ", "cosmic ", "infinite ", "eternal ",
 ];
 const VOWELS = new Set("aeiouAEIOU");
 const MAX_VOLUME = 10 * VOLUME_UNITS.at(-1)[0];
@@ -196,7 +195,7 @@ export class ImperialNotation extends Notation {
 
   // Try to do "almost a big thing" or "a thing short of a big thing", based on the setting
   // we have for rounding error units; may return nothing if we are not actually near something
-  // eslint-disable-next-line max-params
+
   private checkAlmost(adjective: string, x: number, numBig: number, bigIndex: number): string | undefined {
     const big = VOLUME_UNITS[bigIndex];
     if (x + VOLUME_UNITS[bigIndex - big[2]][0] >= big[0]) {
@@ -209,7 +208,6 @@ export class ImperialNotation extends Notation {
     return undefined;
   }
 
-  // eslint-disable-next-line max-params
   private bigAndSmall(adjective: string, numBig: number, big: VolumeUnit, numSmall: number, small: VolumeUnit): string {
     const bigStr = this.pluralOrArticle(numBig, adjective + big[1]);
     return numSmall === 0 ? bigStr : `${bigStr} and ${this.pluralOrArticle(numSmall, small[1])}`;
@@ -219,7 +217,6 @@ export class ImperialNotation extends Notation {
     return `almost ${this.pluralOrArticle(numBig, adjective + big[1])}`;
   }
 
-  // eslint-disable-next-line max-params
   private almostOrShortOf(x: number, adjective: string, numBig: number, big: VolumeUnit, small: VolumeUnit): string {
     const short = Math.round((numBig * big[0] - x) / small[0]);
     return short === 0
@@ -227,7 +224,6 @@ export class ImperialNotation extends Notation {
       : this.shortOf(adjective, numBig, big, short, small);
   }
 
-  // eslint-disable-next-line max-params
   private shortOf(adjective: string, numBig: number, big: VolumeUnit, numSmall: number, small: VolumeUnit): string {
     return `${this.pluralOrArticle(numSmall, small[1])} short of ${
       this.pluralOrArticle(numBig, adjective + big[1])}`;

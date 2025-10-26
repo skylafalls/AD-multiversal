@@ -48,13 +48,13 @@ export class BarNotation extends Notation {
     if (value.lessThan(1) && value.greaterThan(0)) {
       return `/${this.formatDecimal(Decimal.div(1, value))}`;
     }
-    const log8 = Math.LN10 / LOG8 * value.exponent
+    const log8 = Math.LN10 / LOG8 * value.exponent;
     let wholeLog = Math.floor(log8);
     const decimalLog = log8 - wholeLog;
     const decimalLog64 = Math.floor(decimalLog * 64);
     const parts = [
       BARS[decimalLog64 % 8],
-      BARS[Math.floor(decimalLog64 / 8)]
+      BARS[Math.floor(decimalLog64 / 8)],
     ];
     while (wholeLog >= 8) {
       const remainder = wholeLog % 8;

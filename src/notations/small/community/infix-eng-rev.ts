@@ -9,7 +9,7 @@ export class InfixEngineeringReverseNotation extends AbstractInfixNotation {
     return `₋${this.formatDecimal(
       value,
       places,
-      placesExponent
+      placesExponent,
     )}`;
   }
 

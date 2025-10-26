@@ -12,7 +12,7 @@ export class InfixShortScaleNotation extends AbstractInfixNotation {
     return `₋${this.formatDecimal(
       value,
       places,
-      placesExponent
+      placesExponent,
     )}`;
   }
 

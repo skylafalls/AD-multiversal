@@ -1,4 +1,4 @@
-/* eslint linebreak-style: ["error", "unix"]*/
+/* eslint linebreak-style: ["error", "unix"] */
 import type Decimal from "break_eternity.js";
 import { Notation } from "./notation";
 // Import { layerMagFormatting} from "./utils";
@@ -11,7 +11,7 @@ function formatStandard(exp: number, places: number): string {
   const STANDARD_PREFIXES = [
     ["", "U", "D", "T", "Qa", "Qt", "Sx", "Sp", "O", "N"],
     ["", "Dc", "Vg", "Tg", "Qd", "Qi", "Se", "St", "Og", "Nn"],
-    ["", "Ce", "Dn", "Tc", "Qe", "Qu", "Sc", "Si", "Oe", "Ne"]
+    ["", "Ce", "Dn", "Tc", "Qe", "Qu", "Sc", "Si", "Oe", "Ne"],
   ];
 
   // Const STANDARD_PREFIXES_2 = ["", "MI-", "MC-", "NA-", "PC-", "FM-", "AT-", "ZP-"];
@@ -82,9 +82,9 @@ export class StackedMixedScientificNotation extends Notation {
     let str = "";
     if (value.mag >= 1e9) {
       num += 1;
-      str = `${formatStandard(Math.log10(value.mag), places)}`;
+      str = formatStandard(Math.log10(value.mag), places);
     } else {
-      str = `${formatStandard(value.mag, places)}`;
+      str = formatStandard(value.mag, places);
     }
     return `[e^${num}]e${str}`;
   }

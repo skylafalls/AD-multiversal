@@ -24,8 +24,8 @@ export default {
     types: () => GlyphInfo.sacrificeGlyphTypes,
     lastMachines() {
       return this.lastMachinesTeresa.lt(DC.E10000)
-        ? `${quantify("Reality Machine", this.lastMachinesTeresa, 2)}`
-        : `${quantify("Imaginary Machine", this.lastMachinesTeresa.dividedBy(DC.E10000), 2)}`;
+        ? quantify("Reality Machine", this.lastMachinesTeresa, 2)
+        : quantify("Imaginary Machine", this.lastMachinesTeresa.dividedBy(DC.E10000), 2);
     },
     dropDownIconClass() {
       return this.hideAlteration ? "far fa-plus-square" : "far fa-minus-square";

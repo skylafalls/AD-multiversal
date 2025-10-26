@@ -66,15 +66,15 @@ export class PrecisePrimeNotation extends Notation {
   }
 
   private formatPowerTower(exps: number[]): string {
-    const factorizations = exps.map((x) => this.primesFromInt(x));
+    const factorizations = exps.map(x => this.primesFromInt(x));
     const superscriptLastExponent = factorizations[exps.length - 1].length === 1;
-    const parenthesize = factorizations.map((x, i) => x[0] !== x.at(-1) ||
-      i === exps.length - 2 && x.length > 1 && superscriptLastExponent);
+    const parenthesize = factorizations.map((x, i) => x[0] !== x.at(-1)
+      || i === exps.length - 2 && x.length > 1 && superscriptLastExponent);
     const formattedExps = factorizations.map((x, i) => this.maybeParenthesize(
       i === exps.length - 1 && superscriptLastExponent
         ? toSuperscript(x[0])
         : this.formatFromList(x),
-      parenthesize[i]
+      parenthesize[i],
     ));
     if (superscriptLastExponent) {
       const superscript = formattedExps.pop();

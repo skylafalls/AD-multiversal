@@ -13,10 +13,10 @@ export class InfixLongScaleNotation extends AbstractInfixNotation {
   public formatDecimal(value: Decimal, places: number, _placesExponent: number): string {
     return this.formatInfix(
       value,
-      places
+      places,
     ).replaceAll(
       /[,.]/g,
-      (x) => x === "." ? "," : "."
+      x => x === "." ? "," : ".",
     );
   }
 
@@ -24,7 +24,7 @@ export class InfixLongScaleNotation extends AbstractInfixNotation {
     return `₋${this.formatDecimal(
       value,
       places,
-      placesExponent
+      placesExponent,
     )}`;
   }
 

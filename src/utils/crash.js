@@ -16,7 +16,9 @@ globalThis.GlobalErrorHandler = {
     this.handled = true;
     if (!this.cleanStart) {
       document.querySelector("#loading").style.display = "none";
-      requestAnimationFrame(() => this.crash(event));
+      requestAnimationFrame(() => {
+        this.crash(event);
+      });
       return;
     }
     this.stopGame();

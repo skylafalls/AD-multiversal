@@ -35,7 +35,7 @@ const notationList = [
   new BarNotation(),
   new ShiNotation(),
   new BlobsNotation(),
-  new BlindNotation()
+  new BlindNotation(),
 ];
 
 export class AllNotation extends Notation {
@@ -56,7 +56,6 @@ export class AllNotation extends Notation {
   }
 
   public formatDecimal(value: Decimal, places: number): string {
-    // eslint-disable-next-line newline-per-chained-call
     const index = Math.floor(Math.log2(value.abs().plus(2).log2().toNumber()));
     const notation = notationList[index % notationList.length];
     return notation.format(value, places, places);

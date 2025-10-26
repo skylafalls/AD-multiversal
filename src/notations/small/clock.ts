@@ -63,8 +63,8 @@ export class ClockNotation extends Notation {
       exponent = (exponent - 1728) / 12;
       ++clockHigh;
     }
-    return this.hour(clockHigh) + this.hour(exponent / 144) +
-      this.hour(exponent % 144 / 12) + this.hour(exponent % 12);
+    return this.hour(clockHigh) + this.hour(exponent / 144)
+      + this.hour(exponent % 144 / 12) + this.hour(exponent % 12);
   }
 
   private hour(number: number): string {

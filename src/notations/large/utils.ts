@@ -1,12 +1,5 @@
-/* eslint-disable max-lines */
-/* eslint-disable capitalized-comments */
-/* eslint-disable max-len */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable max-params */
 import type Decimal from "break_eternity.js";
 import { BigSettings } from "./settings";
-
 
 // All the below sections of code are converted to break_eternity. For numbers less that e9e15, we can use the normal AD notations code, which also gives us the ability to use different notations for pre e9e15 and post e9e15 (well we could
 // do that if we merged the two, but having them seperate makes it easier to do shit and allows me to work on the be port so that it works with the pre e9e15 before dealing with this shit)
@@ -17,14 +10,14 @@ function commaSection(value: string, index: number): string {
   }
   return value.slice(
     -3 * (index + 1),
-    -3 * index
+    -3 * index,
   );
 }
 
 function addCommas(value: string): string {
   return [...Array(Math.ceil(value.length / 3))].map((_, i) => commaSection(
     value,
-    i
+    i,
   ))
     .toReversed()
     .join(",");
@@ -56,7 +49,7 @@ function formatBetterMag(value: number, accuracy: number) {
   return `e${formatNumber(value, 4, true)}`;
 }
 
-export function roundExpTo(value: {mag: number; layer: number; sign: number}, accuracy: number) {
+export function roundExpTo(value: { mag: number, layer: number, sign: number }, accuracy: number) {
   const temp = Number(toAccuracy(value.mag, accuracy, true));
   const val = value;
   if (temp >= 9e15) {
@@ -75,12 +68,12 @@ export function magLayerFormatting(
   inValue: Decimal,
   accuracy: number,
   magtext: string,
-  layertext: string
+  layertext: string,
 ) {
   let value = {
     mag: inValue.mag,
     layer: inValue.layer,
-    sign: inValue.sign
+    sign: inValue.sign,
   };
   value = roundExpTo(value, accuracy);
   let output = magtext;
@@ -98,12 +91,12 @@ export function layerMagFormatting(
   inValue: Decimal,
   accuracy: number,
   magtext: string,
-  layertext: string
+  layertext: string,
 ) {
   let value = {
     mag: inValue.mag,
     layer: inValue.layer,
-    sign: inValue.sign
+    sign: inValue.sign,
   };
   value = roundExpTo(value, accuracy);
   let output = layertext;

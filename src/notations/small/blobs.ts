@@ -20,14 +20,13 @@ for (let i = 0; i < LEN; i++) {
 // Important constant for reduceNumber method (due to double log being used starting at 1000)
 const LOG3 = Math.log10(3);
 
-
 export class BlobsNotation extends Notation {
   public get name(): string {
     return "Blobs";
   }
 
   public get infinite(): string {
-    return `${INFINITY}`;
+    return INFINITY;
   }
 
   public get negativeInfinite(): string {

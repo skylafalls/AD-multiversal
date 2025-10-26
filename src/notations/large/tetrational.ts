@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import type Decimal from "break_eternity.js";
 import { Notation } from "./notation";
 import { layerMagFormatting } from "./utils";
