@@ -1,5 +1,5 @@
 import CodeMirror from "codemirror/lib/codemirror.js";
-import Decimal from "break_eternity.js";
+import { Decimal } from "#utils/break_eternity.js";
 import Vue from "vue";
 
 // oxlint-disable no-unassigned-import
