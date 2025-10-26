@@ -82,7 +82,7 @@ export class HexNotation extends Notation {
     }
     // Convert the signs to a number, adding zeros at the end
     // in case the above loop breaks early.
-    let resultValue = parseInt(signs.map((x) => x === SIGNS.positive ? 1 : 0)
+    let resultValue = Number.parseInt(signs.map((x) => x === SIGNS.positive ? 1 : 0)
       .join("")
       .padEnd(numberOfBits, "0"), 2);
     // This conditional is just here for correct rounding.

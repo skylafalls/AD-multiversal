@@ -1,4 +1,4 @@
-import Decimal from "break_eternity.js";
+import { Decimal } from "#utils/break_eternity.js";
 import { Notation } from "../notation";
 
 const ELEMENT_LISTS = [

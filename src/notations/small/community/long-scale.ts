@@ -1,6 +1,6 @@
 import type Decimal from "break_eternity.js";
 import { Notation } from "../notation";
-import { toFixedLongScale, abbreviateStandard } from "../utils";
+import { abbreviateStandard, toFixedLongScale } from "../utils";
 
 // Name comes from https://en.wikipedia.org/wiki/Long_and_short_scales
 // Period-comma swaps are because where the long scale is used, the period
@@ -16,7 +16,7 @@ export class LongScaleNotation extends Notation {
     );
     const mantissa = longScale.mantissa.toFixed(places);
     const abbreviation = abbreviateStandard(Math.floor(longScale.exponent / 6) + 1);
-    return `${mantissa} ${abbreviation}`.replace(
+    return `${mantissa} ${abbreviation}`.replaceAll(
       /[,.]/g,
       (x) => x === "." ? "," : "."
     );

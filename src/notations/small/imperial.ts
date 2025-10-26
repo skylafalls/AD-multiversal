@@ -36,7 +36,7 @@ const VOLUME_ADJECTIVES = [
   "vast ", "galactic ", "cosmic ", "infinite ", "eternal "
 ];
 const VOWELS = new Set("aeiouAEIOU");
-const MAX_VOLUME = 10 * VOLUME_UNITS[VOLUME_UNITS.length - 1][0];
+const MAX_VOLUME = 10 * VOLUME_UNITS.at(-1)[0];
 const LOG_MAX_VOLUME = Math.log10(MAX_VOLUME);
 const REDUCE_RATIO = Math.log10(MAX_VOLUME / MINIMS[0]);
 

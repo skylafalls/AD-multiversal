@@ -52,6 +52,6 @@ export class CustomNotation extends EngineeringNotation {
       }
     }
     letters.push(this.letters[normalizedExponent - 1]);
-    return letters.reverse();
+    return letters.toReversed();
   }
 }

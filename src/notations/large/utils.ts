@@ -22,17 +22,17 @@ function commaSection(value: string, index: number): string {
 }
 
 function addCommas(value: string): string {
-  return Array.from(Array(Math.ceil(value.length / 3))).map((_, i) => commaSection(
+  return [...Array(Math.ceil(value.length / 3))].map((_, i) => commaSection(
     value,
     i
   ))
-    .reverse()
+    .toReversed()
     .join(",");
 }
 
 function toAccuracy(value: number, accuracy: number, fancy: boolean) {
   if (fancy || accuracy === 0) {
-    const output = parseFloat(value.toPrecision(Math.max(accuracy, 1))).toString();
+    const output = Number.parseFloat(value.toPrecision(Math.max(accuracy, 1))).toString();
     return output;
   }
   return value.toPrecision(accuracy);

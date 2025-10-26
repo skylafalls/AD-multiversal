@@ -13,8 +13,8 @@ export class HahaFunnyNotation extends Notation {
       return "42069";
     }
     if (value.lt(1)) {
-      return this.formatDecimal(value.pow(-1)).split("")
-        .reverse()
+      return [...this.formatDecimal(value.pow(-1))]
+        .toReversed()
         .join("");
     }
     const log69 = Math.LN10 / LOG69 * (value.exponent + Math.log(Math.max(value.mantissa, 1)));

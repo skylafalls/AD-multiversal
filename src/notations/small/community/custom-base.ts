@@ -1,6 +1,6 @@
 import type { Decimal } from "#utils/break_eternity.js";
 import { Notation } from "../notation";
-import { formatMantissaWithExponent, formatMantissa } from "../utils";
+import { formatMantissa, formatMantissaWithExponent } from "../utils";
 
 export class CustomBaseNotation extends Notation {
   private readonly formatBase: number;

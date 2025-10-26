@@ -12,18 +12,18 @@ function commaSection(value: string, index: number): string {
 }
 
 function addCommas(value: string): string {
-  return Array.from(Array(Math.ceil(value.length / 3))).map((_, i) => commaSection(
+  return [...Array(Math.ceil(value.length / 3))].map((_, i) => commaSection(
     value,
     i
   ))
-    .reverse()
+    .toReversed()
     .join(",");
 }
 
 export function formatWithCommas(value: number | string): string {
   const decimalPointSplit = value.toString().split(".");
   // Handles higher bases without additional complexity while still removing the decimal point.
-  decimalPointSplit[0] = decimalPointSplit[0].replace(
+  decimalPointSplit[0] = decimalPointSplit[0].replaceAll(
     /\w+$/g,
     addCommas
   );
@@ -102,16 +102,16 @@ export function toFixedLongScale(value: Decimal, places: number): Decimal {
 const SUBSCRIPT_NUMBERS = ["₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉"];
 
 export function toSubscript(value: number): string {
-  return value.toFixed(0).split("")
-    .map((x) => x === "-" ? "₋" : SUBSCRIPT_NUMBERS[parseInt(x, 10)])
+  return [...value.toFixed(0)]
+    .map((x) => x === "-" ? "₋" : SUBSCRIPT_NUMBERS[Number.parseInt(x, 10)])
     .join("");
 }
 
 const SUPERSCRIPT_NUMBERS = ["⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"];
 
 export function toSuperscript(value: number): string {
-  return value.toFixed(0).split("")
-    .map((x) => x === "-" ? "⁻" : SUPERSCRIPT_NUMBERS[parseInt(x, 10)])
+  return [...value.toFixed(0)]
+    .map((x) => x === "-" ? "⁻" : SUPERSCRIPT_NUMBERS[Number.parseInt(x, 10)])
     .join("");
 }
 
@@ -153,7 +153,7 @@ export function abbreviateStandard(rawExp: number): string {
   for (let i = prefix.length / 3 - 1; i >= 0; i--) {
     abbreviation += prefix.slice(i * 3, i * 3 + 3).join("") + STANDARD_PREFIXES_2[i];
   }
-  return abbreviation.replace(/-[A-Z]{2}-/g, "-").replace(/U([A-Z]{2}-)/g, "$1").replace(/-$/, "");
+  return abbreviation.replaceAll(/-[A-Z]{2}-/g, "-").replaceAll(/U([A-Z]{2}-)/g, "$1").replace(/-$/, "");
 }
 
 // So much of this file is a mess and I'm not sure where's best to add stuff
@@ -197,7 +197,7 @@ separator: string = "e", forcePositiveExponent: boolean = false):
     // inaccurancy being something like (realBase^(1e-16 * Math.log10(mantissa))).
     // mantissa should be at most roughly 10 so this is pretty small.
     // IDK if using Math.log or Math.log10 is faster.
-    if (!(1 <= mantissa && mantissa < realBase)) {
+    if (!(mantissa >= 1 && mantissa < realBase)) {
       const adjust = Math.floor(Math.log(mantissa) / Math.log(realBase));
       mantissa /= Math.pow(realBase, adjust);
       exponent += steps * adjust;
@@ -241,7 +241,7 @@ export function formatMantissa(base: number, digits: string): ((n: number, preci
       d.push(digits[value % base]);
       value = Math.floor(value / base);
     }
-    let result = d.reverse().join("");
+    let result = d.toReversed().join("");
     // This only happens for positive values so if precision is negative it's not a concern.
     if (precision > 0) {
       result = result.padStart(precision + 1, "0");

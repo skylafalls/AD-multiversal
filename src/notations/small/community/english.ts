@@ -57,12 +57,12 @@ export class EnglishNotation extends EngineeringNotation {
   }
 
   public formatNegativeVerySmallDecimal(value: Decimal, places: number): string {
-    return `negative one ${this.formatDecimal(value.reciprocal(), places).replace(/ /g, "-")
+    return `negative one ${this.formatDecimal(value.reciprocal(), places).replaceAll(/ /g, "-")
       .replace("--", "-")}th`;
   }
 
   public formatVerySmallDecimal(value: Decimal, places: number): string {
-    return `one ${this.formatDecimal(value.reciprocal(), places).replace(/ /g, "-")
+    return `one ${this.formatDecimal(value.reciprocal(), places).replaceAll(/ /g, "-")
       .replace("--", "-")}th`;
   }
 
@@ -169,16 +169,16 @@ export class EnglishNotation extends EngineeringNotation {
         prefix[index2 * 3 + 2] !== "" || index2 === 0) {
         let abb2 = prefix[index2 * 3 + 1] + prefix[index2 * 3 + 2];
         // Special cases.
-        if (["tre", "se"].includes(prefix[index2 * 3]) && ["v", "t", "q"].includes(abb2.substr(0, 1))) {
+        if (["tre", "se"].includes(prefix[index2 * 3]) && ["v", "t", "q"].includes(abb2.slice(0, 1))) {
           abb2 = `s${abb2}`;
         }
-        if (prefix[index2 * 3] === "se" && ["c", "o"].includes(abb2.substr(0, 1))) {
+        if (prefix[index2 * 3] === "se" && ["c", "o"].includes(abb2.slice(0, 1))) {
           abb2 = `x${abb2}`;
         }
-        if (["septe", "nove"].includes(prefix[index2 * 3]) && ["v", "o"].includes(abb2.substr(0, 1))) {
+        if (["septe", "nove"].includes(prefix[index2 * 3]) && ["v", "o"].includes(abb2.slice(0, 1))) {
           abb2 = `m${abb2}`;
         }
-        if (["septe", "nove"].includes(prefix[index2 * 3]) && ["d", "c", "t", "q", "s"].includes(abb2.substr(0, 1))) {
+        if (["septe", "nove"].includes(prefix[index2 * 3]) && ["d", "c", "t", "q", "s"].includes(abb2.slice(0, 1))) {
           abb2 = `n${abb2}`;
         }
         abbreviation += prefix[index2 * 3] + abb2;

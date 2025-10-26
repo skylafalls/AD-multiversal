@@ -7,7 +7,7 @@ export class GreekLettersNotation extends Notation {
   }
 
   private get greek(): string[] {
-    return "άαβγδεζηθικλμνξοπρστυφχψωΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ".split("");
+    return [..."άαβγδεζηθικλμνξοπρστυφχψωΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ"];
   }
 
   public formatDecimal(value: Decimal, places: number): string {

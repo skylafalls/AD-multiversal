@@ -20,7 +20,7 @@ export class EmojierNotation extends Notation {
   }
 
   public affect(formatted: string): string {
-    const characters = formatted.split("");
+    const characters = [...formatted];
     const seenDigits: number[] = [];
     for (let i = 0; i < characters.length; i++) {
       if ("0123456789".includes(characters[i])) {

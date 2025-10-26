@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type Decimal from "break_eternity.js";
 import { Notation } from "./notation";
-import { layerMagFormatting, formatNumber} from "./utils";
+import { formatNumber, layerMagFormatting} from "./utils";
 // Import { formatMantissaWithExponent, formatMantissaBaseTen } from "./utils";
 
 

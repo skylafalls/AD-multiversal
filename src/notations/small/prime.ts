@@ -175,6 +175,6 @@ export class PrimeNotation extends Notation {
       factoringValue /= factor;
       factors.push(factor);
     }
-    return factors.reverse();
+    return factors.toReversed();
   }
 }

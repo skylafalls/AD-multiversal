@@ -106,7 +106,7 @@ export class FoursNotation extends Notation {
 
   private bracketify(str: string): string {
     // contains +, -, × or ÷, and the first operator is not ^
-    if ((str.match(/[\+\-\×÷\^]/) || ["^"])[0] !== "^") {
+    if ((str.match(/[+\-×÷^]/) || ["^"])[0] !== "^") {
       return `(${str})`;
     }
     return str;
@@ -129,12 +129,15 @@ export class FoursNotation extends Notation {
 
   private bracket(char: string): number {
     switch (char) {
-      case "(":
+      case "(": {
         return 1;
-      case ")":
+      }
+      case ")": {
         return -1;
-      default:
+      }
+      default: {
         return 0;
+      }
     }
   }
 }

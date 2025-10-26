@@ -1,6 +1,6 @@
 import type Decimal from "break_eternity.js";
 import { Notation } from "./notation";
-import { formatMantissaWithExponent, formatMantissaBaseTen } from "./utils";
+import { formatMantissaBaseTen, formatMantissaWithExponent } from "./utils";
 
 export class ScientificNotation extends Notation {
   public get name(): string {

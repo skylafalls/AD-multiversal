@@ -1,7 +1,7 @@
 import type Decimal from "break_eternity.js";
 import { Notation } from "./notation";
 import { StandardNotation } from "./standard";
-import { formatMantissaWithExponent, formatMantissaBaseTen } from "./utils";
+import { formatMantissaBaseTen, formatMantissaWithExponent } from "./utils";
 
 const standard = new StandardNotation();
 

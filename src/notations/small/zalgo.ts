@@ -38,11 +38,11 @@ export class ZalgoNotation extends Notation {
     const displayPart = Number(scaled.toFixed(2));
     const zalgoPart = Math.floor(Math.abs(2 ** 30 * (scaled - displayPart)));
 
-    const displayChars = Array.from(formatWithCommas(displayPart));
-    const zalgoIndices = Array.from(zalgoPart.toString() + scaled.toFixed(0));
+    const displayChars = [...formatWithCommas(displayPart)];
+    const zalgoIndices = [...zalgoPart.toString() + scaled.toFixed(0)];
 
     for (let i = 0; i < zalgoIndices.length; i++) {
-      const zalgoIndex = parseInt(zalgoIndices[i], 10);
+      const zalgoIndex = Number.parseInt(zalgoIndices[i], 10);
       const displayIndex = 37 * i % displayChars.length;
       displayChars[displayIndex] += ZALGO_CHARS[zalgoIndex];
     }

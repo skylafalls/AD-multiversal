@@ -13,7 +13,7 @@ const NEGATIVE = "\uE028";
 
 const BLOBS: string[] = [];
 for (let i = 0; i < LEN; i++) {
-  const char = String.fromCharCode(START_HEX + i);
+  const char = String.fromCodePoint(START_HEX + i);
   BLOBS.push(char);
 }
 
