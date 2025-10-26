@@ -1021,6 +1021,8 @@ export const Player = {
           maxGlyphs: glyphCount,
           slowestBH: BlackHoles.areNegative ? player.blackHoleNegative : DC.D1,
         };
+
+        // fallsthrough
       }
 
       case "eternity": {
@@ -1030,6 +1032,8 @@ export const Player = {
           noAD1: true,
           noRG: true,
         };
+
+        // fallsthrough
       }
 
       case "infinity": {
