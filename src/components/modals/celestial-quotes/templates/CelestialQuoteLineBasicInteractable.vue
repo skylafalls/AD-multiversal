@@ -64,7 +64,7 @@ export default {
   },
   created() {
     this.$nextTick(() => {
-      this.on$(GAME_EVENT.ARROW_KEY_PRESSED, arrow => this.progressIn(arrow[0]));
+      this.on$(GAME_EVENT.ARROW_KEY_PRESSED, arrow => this.progressIn(arrow.args[0]));
       this.on$(GAME_EVENT.ENTER_PRESSED, () => {
         if (this.isQuoteEnd) this.close();
       });
