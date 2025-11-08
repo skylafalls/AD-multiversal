@@ -259,7 +259,7 @@ export default {
         return this.isRange ? dir : dir[1]
       }
         return this.isRange ? [dir, dir] : dir
-      
+
     },
     tooltipStatus() {
       return this.tooltip === 'hover' && this.flag ? 'ad-slider-always' : this.tooltip ? `ad-slider-${this.tooltip}` : ''
@@ -323,14 +323,14 @@ export default {
         return this.data ? this.currentValue : [this.getIndexByValue(this.currentValue[0]), this.getIndexByValue(this.currentValue[1])]
       }
         return this.getIndexByValue(this.currentValue)
-      
+
     },
     indexRange() {
       if (this.isRange) {
         return this.currentIndex
       }
         return [0, this.currentIndex]
-      
+
     },
     maximum() {
       return this.data ? (this.data.length - 1) : this.max
@@ -361,7 +361,7 @@ export default {
         return [(this.currentValue[0] - this.minimum) / this.spacing * this.gap + this.dotAxialSizePx / 2, (this.currentValue[1] - this.minimum) / this.spacing * this.gap + this.dotAxialSizePx / 2]
       }
         return ((this.currentValue - this.minimum) / this.spacing * this.gap + this.dotAxialSizePx / 2)
-      
+
     },
     isFixed() {
       return this.fixed || this.minRange
@@ -372,10 +372,10 @@ export default {
           return [[this.dotAxialSizePx / 2, this.dotAxialSizePx / 2 + (this.total - this.fixedValue) * this.gap], [this.fixedValue * this.gap + this.dotAxialSizePx / 2, this.size - this.dotAxialSizePx / 2]]
         }
           return [[this.dotAxialSizePx / 2, this.position[1]], [this.position[0], this.size - this.dotAxialSizePx / 2]];
-        
+
       }
         return [this.dotAxialSizePx / 2, this.size - this.dotAxialSizePx / 2];
-      
+
     },
     valueLimit() {
       return this.isRange ? this.isFixed ? [[this.minimum, this.maximum - (this.fixedValue * (this.spacing * this.multiple)) / this.multiple], [this.minimum + (this.fixedValue * (this.spacing * this.multiple)) / this.multiple, this.maximum]] : [[this.minimum, this.currentValue[1]], [this.currentValue[0], this.maximum]] : [this.minimum, this.maximum]
@@ -402,7 +402,7 @@ export default {
         return this.sliderStyle(this.val, this.currentIndex)
       }
         return this.isRange ? [this.sliderStyle, this.sliderStyle] : this.sliderStyle
-      
+
     },
     focusStyles() {
       if (Array.isArray(this.focusStyle)) {
@@ -411,7 +411,7 @@ export default {
         return this.focusStyle(this.val, this.currentIndex)
       }
         return this.isRange ? [this.focusStyle, this.focusStyle] : this.focusStyle
-      
+
     },
     disabledDotStyles() {
       const disabledStyle = this.disabledDotStyle
@@ -428,7 +428,7 @@ export default {
         }, {
           backgroundColor: '#ccc'
         }]
-      
+
     },
     tooltipStyles() {
       if (Array.isArray(this.tooltipStyle)) {
@@ -437,7 +437,7 @@ export default {
         return this.tooltipStyle(this.val, this.currentIndex)
       }
         return this.isRange ? [this.tooltipStyle, this.tooltipStyle] : this.tooltipStyle
-      
+
     },
     elemStyles() {
       return this.direction === 'vertical' ? {
@@ -672,7 +672,7 @@ export default {
       this.setValueOnPos(pos)
       if (this.isRange && this.tooltipMerge) {
         const timer = setInterval(() => this.handleOverlapTooltip(), 16.7)
-        setTimeout(() => window.clearInterval(timer), this.speed * 1000)
+        setTimeout(() => clearInterval(timer), this.speed * 1000)
       }
     },
     moveStart(e, index = 0, isProcess) {
@@ -738,7 +738,7 @@ export default {
         return false
       }
       this.flag = false
-      window.setTimeout(() => {
+      setTimeout(() => {
         this.crossFlag = false
         this.dragFlag = false
         this.processFlag = false
@@ -929,7 +929,7 @@ export default {
         return val.map((v) => inRange(v))
       }
         return inRange(val)
-      
+
     },
     isActive(index) {
       return index >= this.indexRange[0] && index <= this.indexRange[1]

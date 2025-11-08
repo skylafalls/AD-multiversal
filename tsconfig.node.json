@@ -31,5 +31,5 @@
     "useDefineForClassFields": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["*.ts", "*.js"]
+  "include": ["*.ts", "*.js", "build/*.js"]
 }

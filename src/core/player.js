@@ -2,7 +2,7 @@ import { AutomatorPanels } from "@/components/tabs/automator/AutomatorDocs.vue";
 import { GlyphInfo } from "./secret-formula/reality/core-glyph-info.js";
 import { GlyphInfoVue } from "@/components/modals/options/SelectGlyphInfoDropdown.vue";
 
-import { AUTOBUYER_MODE, AUTO_GLYPH_SCORE, AUTO_GLYPH_REJECT, GLYPH_SIDEBAR_MODE, GLYPH_BG_SETTING, DC, SPEEDRUN_SEED_STATE } from "#utils/constants.js";
+import { AUTOBUYER_MODE, AUTO_GLYPH_REJECT, AUTO_GLYPH_SCORE, DC, GLYPH_BG_SETTING, GLYPH_SIDEBAR_MODE, SPEEDRUN_SEED_STATE } from "#utils/constants.js";
 import { AUTOMATOR_MODE, AUTOMATOR_TYPE } from "./automator/automator-backend.js";
 import { deepmergeAll } from "#utils/deepmerge.js";
 
@@ -16,7 +16,7 @@ function getGlyphTypes() {
 
 // This is actually reassigned when importing saves
 
-window.player = {
+globalThis.player = {
   antimatter: DC.E1,
   dimensions: {
     antimatter: Array.range(0, 8).map(() => ({
@@ -1021,6 +1021,8 @@ export const Player = {
           maxGlyphs: glyphCount,
           slowestBH: BlackHoles.areNegative ? player.blackHoleNegative : DC.D1,
         };
+
+        // fallsthrough
       }
 
       case "eternity": {
@@ -1030,6 +1032,8 @@ export const Player = {
           noAD1: true,
           noRG: true,
         };
+
+        // fallsthrough
       }
 
       case "infinity": {

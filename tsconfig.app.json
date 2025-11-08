@@ -19,6 +19,7 @@
     "moduleResolution": "Bundler",
     "isolatedModules": true,
     "resolveJsonModule": true,
+    "allowUmdGlobalAccess": true,
     "allowImportingTsExtensions": true,
 
     /* Linting settings */
@@ -40,7 +41,9 @@
     /* Path resolution */
     "paths": {
       "@/*": ["./src/*"],
-      "#utils/*": ["./src/utils/*"]
+      "#utils/*": ["./src/utils/*"],
+      "#mechanics/*": ["./src/core/game-mechanics/*"],
+      "#env": ["./src/env.js"]
     }
   },
   "include": [

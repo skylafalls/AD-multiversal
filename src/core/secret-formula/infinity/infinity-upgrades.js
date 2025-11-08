@@ -85,7 +85,7 @@ export const infinityUpgrades = {
     charged: {
       description: () => "Decrease Dimension Boost requirement based on Teresa level",
       effect: () => 1 / (1 + Math.sqrt(Ra.pets.teresa.level) / 10),
-      formatEffect: value => `${formatX(value, 4, 4)}`,
+      formatEffect: value => formatX(value, 4, 4),
     },
   },
   buy10Mult: {

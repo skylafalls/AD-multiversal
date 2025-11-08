@@ -73,7 +73,7 @@ export default {
     this.unlockedQuotes = this.quotes.filter(x => x.isUnlocked).map(x => ({ quote: x, currentLine: 0 }));
     this.$nextTick(() => {
       this.on$(GAME_EVENT.ARROW_KEY_PRESSED, (arrow) => {
-        switch (arrow[0]) {
+        switch (arrow.args[0]) {
           case "up": {
             this.progressUp();
             break;

@@ -25,7 +25,7 @@ export default {
         [true, structuredClone(Glyphs.copyForRecords(bestReality.bestEPSet)), "Highest Eternity Points",
           `${format(bestReality.bestEP, 2, 2)} EP`],
         [true, structuredClone(Glyphs.copyForRecords(bestReality.speedSet)), "Fastest Reality (real time)",
-          `${TimeSpan.fromMilliseconds(bestReality.realTime).toStringShort()}`],
+          TimeSpan.fromMilliseconds(bestReality.realTime).toStringShort()],
         [player.celestials.teresa.bestRunAM.gt(1), structuredClone(Glyphs.copyForRecords(player.celestials.teresa.bestAMSet)),
           `Highest Antimatter in ${Teresa.possessiveName} Reality`,
           `${format(player.celestials.teresa.bestRunAM, 2, 2)} Antimatter`],

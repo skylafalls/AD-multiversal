@@ -33,16 +33,16 @@ export default {
 
       this.isInEffarig = Effarig.isRunning;
       if (this.isInEffarig) {
-        this.effarigMultNerfText = `${formatPow(Effarig.nerfFactor(Currency.infinityPower.value).add(1).div(4), 0, 5)}`;
-        this.effarigTickNerfText = `${formatPow(Effarig.nerfFactor(Currency.timeShards.value).add(7).div(10), 0, 5)}`;
+        this.effarigMultNerfText = formatPow(Effarig.nerfFactor(Currency.infinityPower.value).add(1).div(4), 0, 5);
+        this.effarigTickNerfText = formatPow(Effarig.nerfFactor(Currency.timeShards.value).add(7).div(10), 0, 5);
       }
       this.isInLaitela = Laitela.isRunning;
       if (this.isInLaitela) {
         if (player.celestials.laitela.entropy.gt(0)) {
-          this.laitelaEntropy = `${formatPercents(player.celestials.laitela.entropy, 2, 2)}`;
+          this.laitelaEntropy = formatPercents(player.celestials.laitela.entropy, 2, 2);
           this.laitelaTimer = Time.thisRealityRealTime.toStringShort();
         } else {
-          this.laitelaEntropy = `${formatPercents(1, 2, 2)}`;
+          this.laitelaEntropy = formatPercents(1, 2, 2);
           this.laitelaTimer = TimeSpan.fromSeconds(new Decimal(player.celestials.laitela.thisCompletion))
             .toStringShort();
         }

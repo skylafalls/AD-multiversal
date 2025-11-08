@@ -68,7 +68,7 @@ export default {
       let level = glyphState.actualLevel;
       if (!level.isFinite()) level = new Decimal();
       const decimalPoints = this.glyphLevel.gt(1e3) ? 0 : 1;
-      return `${formatPercents(level.sub(level.floor()).clampMax(0.999), decimalPoints)}`;
+      return formatPercents(level.sub(level.floor()).clampMax(0.999), decimalPoints);
     },
     update() {
       this.hasRealityStudy = TimeStudy.reality.isBought;

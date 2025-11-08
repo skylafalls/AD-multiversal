@@ -134,7 +134,7 @@ export const singularityMilestones = {
     limit: 4,
     description: "Increased Singularity gain per cap increase",
     effect: completions => completions.add(11),
-    effectFormat: x => `${formatX(x)}`,
+    effectFormat: x => formatX(x),
     upgradeDirection: LAITELA_UPGRADE_DIRECTION.SELF_BOOST,
   },
   intervalCostScalingReduction: {
@@ -143,7 +143,7 @@ export const singularityMilestones = {
     limit: 5,
     description: "DMD Interval cost scaling is better",
     effect: completions => completions.mul(0.03).sub(1).neg(),
-    effectFormat: x => `${formatPow(x, 2, 2)}`,
+    effectFormat: x => formatPow(x, 2, 2),
     upgradeDirection: LAITELA_UPGRADE_DIRECTION.SELF_BOOST,
   },
   // Unique

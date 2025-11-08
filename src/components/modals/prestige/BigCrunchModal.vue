@@ -33,9 +33,9 @@ export default {
     },
     startingResources() {
       const gainedResources = [];
-      if (this.startingAM.gte(10)) gainedResources.push(`${quantify("Antimatter", this.startingAM, 2, 1)}`);
-      if (this.startingBoosts.gte(0)) gainedResources.push(`${quantify("Dimension Boost", this.startingBoosts)}`);
-      if (this.willStartWithGalaxy) gainedResources.push(`${quantify("Galaxy", 1)}`);
+      if (this.startingAM.gte(10)) gainedResources.push(quantify("Antimatter", this.startingAM, 2, 1));
+      if (this.startingBoosts.gte(0)) gainedResources.push(quantify("Dimension Boost", this.startingBoosts));
+      if (this.willStartWithGalaxy) gainedResources.push(quantify("Galaxy", 1));
 
       return `You will start your next Infinity with ${makeEnumeration(gainedResources)}.`;
     },

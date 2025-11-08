@@ -397,7 +397,7 @@ export const normalAchievements = [
     },
     effect: () => new Decimal(6).div(Time.thisInfinity.totalMinutes.add(3)).max(1),
     effectCondition: () => Time.thisInfinity.totalMinutes.lt(3),
-    formatEffect: value => `${formatX(value, 2, 2)}`,
+    formatEffect: value => formatX(value, 2, 2),
   },
   {
     id: 57,
@@ -480,7 +480,7 @@ export const normalAchievements = [
     },
     effect: () => (Player.isInAnyChallenge ? Decimal.max(new Decimal(4).div(Time.thisInfinity.totalMinutes.add(1)), 1) : 1),
     effectCondition: () => Player.isInAnyChallenge && Time.thisInfinity.totalMinutes.lt(3),
-    formatEffect: value => `${formatX(value, 2, 2)}`,
+    formatEffect: value => formatX(value, 2, 2),
   },
   {
     id: 66,
@@ -555,7 +555,7 @@ export const normalAchievements = [
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     reward: "Antimatter Dimensions gain a multiplier based on current antimatter.",
     effect: () => Currency.antimatter.value.pow(0.00002).plus(1),
-    formatEffect: value => `${formatX(value, 2, 2)}`,
+    formatEffect: value => formatX(value, 2, 2),
   },
   {
     id: 74,
@@ -590,7 +590,7 @@ export const normalAchievements = [
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     reward: "Extremely small multiplier to Antimatter Dimensions based on time played.",
     effect: () => Decimal.max(Decimal.pow(Time.totalTimePlayed.totalDays.div(2), 0.05), 1),
-    formatEffect: value => `${formatX(value, 2, 2)}`,
+    formatEffect: value => formatX(value, 2, 2),
   },
   {
     id: 77,
@@ -644,7 +644,7 @@ export const normalAchievements = [
       return `Tickspeed is just over ${formatPercents(new Decimal(0.05))} faster per Antimatter Galaxy.`;
     },
     effect: () => DC.D0_95.pow(player.galaxies),
-    formatEffect: value => `${formatX(value.recip(), 2, 2)}`,
+    formatEffect: value => formatX(value.recip(), 2, 2),
   },
   {
     id: 84,
@@ -656,7 +656,7 @@ export const normalAchievements = [
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     reward: "Antimatter Dimensions are stronger the more unspent antimatter you have.",
     effect: () => Currency.antimatter.value.pow(0.00002).plus(1),
-    formatEffect: value => `${formatX(value, 2, 2)}`,
+    formatEffect: value => formatX(value, 2, 2),
   },
   {
     id: 85,
@@ -728,7 +728,7 @@ export const normalAchievements = [
     },
     effect: () => Decimal.max((new Decimal(5).sub(Time.thisInfinity.totalSeconds)).times(60), 1),
     effectCondition: () => Time.thisInfinity.totalSeconds.lt(5),
-    formatEffect: value => `${formatX(value, 2, 2)}`,
+    formatEffect: value => formatX(value, 2, 2),
   },
   {
     id: 92,
@@ -744,7 +744,7 @@ export const normalAchievements = [
     },
     effect: () => Decimal.max((DC.D1.sub(Time.thisInfinity.totalMinutes)).times(100), 1),
     effectCondition: () => Time.thisInfinity.totalMinutes.lt(1),
-    formatEffect: value => `${formatX(value, 2, 2)}`,
+    formatEffect: value => formatX(value, 2, 2),
   },
   {
     id: 93,
@@ -857,7 +857,7 @@ export const normalAchievements = [
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     reward: "Time Dimensions gain a multiplier based on tickspeed.",
     effect: () => Tickspeed.perSecond.pow(0.000005),
-    formatEffect: value => `${formatX(value, 2, 2)}`,
+    formatEffect: value => formatX(value, 2, 2),
   },
   {
     id: 106,
@@ -1040,7 +1040,7 @@ export const normalAchievements = [
       return DC.D2.pow(Decimal.log(thisInfinity, Math.E).times(Decimal.min(Decimal.pow(thisInfinity, 0.11), 500)));
     },
     cap: () => Effarig.eternityCap,
-    formatEffect: value => `${formatX(value, 2, 2)}`,
+    formatEffect: value => formatX(value, 2, 2),
   },
   {
     id: 126,
@@ -1074,7 +1074,7 @@ export const normalAchievements = [
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     reward: "Time Dimensions are multiplied by the number of Time Studies you have.",
     effect: () => Math.max(player.timestudy.studies.length, 1),
-    formatEffect: value => `${formatX(value)}`,
+    formatEffect: value => formatX(value),
   },
   {
     id: 131,
@@ -1104,7 +1104,7 @@ export const normalAchievements = [
     checkEvent: GAME_EVENT.GALAXY_RESET_AFTER,
     reward: "Gain a multiplier to Tachyon Particle and Dilated Time gain based on Antimatter Galaxies.",
     effect: () => Decimal.max(Decimal.pow(player.galaxies, 0.04), 1).times(1.22),
-    formatEffect: value => `${formatX(value, 2, 2)}`,
+    formatEffect: value => formatX(value, 2, 2),
   },
   {
     id: 133,
@@ -1430,7 +1430,7 @@ export const normalAchievements = [
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     reward: "Gain more Reality Machines based on your current Reality Machines.",
     effect: () => Decimal.clampMin(1, Currency.realityMachines.value.max(1).log2()),
-    formatEffect: value => `${formatX(value, 2, 2)}`,
+    formatEffect: value => formatX(value, 2, 2),
   },
   {
     id: 168,

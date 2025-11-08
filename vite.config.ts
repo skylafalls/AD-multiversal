@@ -18,6 +18,8 @@ const config = defineConfig({
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
       "#utils": fileURLToPath(new URL("./src/utils", import.meta.url)),
+      "#mechanics": fileURLToPath(new URL("./src/core/game-mechanics", import.meta.url)),
+      "#env": fileURLToPath(new URL("./src/env.js", import.meta.url)),
     },
   },
   experimental: {

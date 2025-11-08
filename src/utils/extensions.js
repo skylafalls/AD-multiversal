@@ -1,4 +1,4 @@
-import { DC } from "./constants";
+import { DC } from "./constants.js";
 
 Array.prototype.distinct = function () {
   return this.filter((value, index, self) => self.indexOf(value) === index);
@@ -44,14 +44,6 @@ Array.prototype.previousSibling = function (current) {
   return this[this.previousSiblingIndex(current)];
 };
 
-Decimal.sumReducer = function (accumulator, previous) {
-  return Decimal.add(accumulator, previous);
-};
-
-Decimal.prodReducer = function (accumulator, previous) {
-  return Decimal.mul(accumulator, previous);
-};
-
 Number.sumReducer = function (accumulator, previous) {
   return accumulator + previous;
 };
@@ -60,26 +52,7 @@ Number.prodReducer = function (accumulator, previous) {
   return accumulator * previous;
 };
 
-Decimal.maxReducer = function (a, b) {
-  return Decimal.max(a, b);
-};
-
-Decimal.prototype.copyFrom = function (decimal) {
-  if (!(decimal instanceof Decimal) && !(decimal instanceof DecimalCurrency)) {
-    throw new Error("Copy value is not Decimal or DecimalCurrency");
-  }
-  this.mag = decimal.mag;
-  this.layer = decimal.layer;
-  this.sign = decimal.sign;
-};
-
-Decimal.prototype.expEquiv = function (decimal, floor = false) {
-  if (decimal.abs().lte(1)) return new Decimal(0);
-  if (!floor) return decimal.max(1).log10();
-  return decimal.max(1).log10().floor();
-};
-
-window.copyToClipboard = (function () {
+globalThis.copyToClipboard = (function () {
   const el = document.createElement("textarea");
   document.body.append(el);
   el.style.position = "absolute";
@@ -97,7 +70,7 @@ window.copyToClipboard = (function () {
   };
 }());
 
-window.safeCall = function safeCall(fn) {
+globalThis.safeCall = function safeCall(fn) {
   if (fn) fn();
 };
 
@@ -238,15 +211,6 @@ Array.prototype.countWhere = function (predicate) {
 };
 
 /**
- * @returns {Decimal}
- */
-Decimal.prototype.clampMaxExponent = function (maxExp) {
-  return this.max(1).log10().gte(maxExp)
-    ? Decimal.fromMantissaExponent_noNormalize(1, maxExp)
-    : this;
-};
-
-/**
  * @return {Decimal}
  */
 Number.prototype.toDecimal = function () {
@@ -257,10 +221,6 @@ Math.log4 = Math.log(4);
 
 Array.prototype.randomElement = function () {
   return this[Math.floor(Math.random() * this.length)];
-};
-
-Decimal.prototype.valueOf = () => {
-  throw new Error("Implicit conversion from Decimal to number");
 };
 
 Set.prototype.countWhere = function (predicate) {

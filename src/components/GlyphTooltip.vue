@@ -235,7 +235,7 @@ export default {
     },
     sacrificeText() {
       if (!GlyphInfo[this.type].hasSacrifice) return "";
-      const powerText = `${format(this.sacrificeReward, 2, 2)}`;
+      const powerText = format(this.sacrificeReward, 2, 2);
       const isCurrentAction = this.currentAction === "sacrifice";
       return `<span style="font-weight: ${isCurrentAction ? "bold" : ""};">
               Sacrifice: ${powerText}

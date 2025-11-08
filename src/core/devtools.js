@@ -165,7 +165,7 @@ dev.removeAch = function(name) {
   return "failed to delete achievement";
 };
 
-window.nextNewsMessageId = undefined;
+globalThis.nextNewsMessageId = undefined;
 
 dev.setNextNewsMessage = function(id) {
   nextNewsMessageId = id;

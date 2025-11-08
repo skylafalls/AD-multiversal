@@ -44,7 +44,7 @@ class AutomatorParser extends Parser {
       commandAlts.push(`$.SUBRULE($.${cmd.id})`);
     }
 
-    const commandOr = window.Function("$", "EOF", `
+    const commandOr = Function("$", "EOF", `
       return () => $.OR($.c1 || ($.c1 = [
         ${commandAlts.map(e => `{ ALT: () => ${e} },`).join("\n")}]));
     `);

@@ -1,5 +1,5 @@
 import type { DecimalSource } from "@/typings/break_eternity";
-import { solveSimpleBiquadratic } from "./math";
+import { solveSimpleBiquadratic } from "./math.js";
 
 // oxlint-disable max-classes-per-file
 export class AffineTransform {
@@ -326,7 +326,7 @@ class CubicBezier extends Curve {
     let magSol = solveSimpleBiquadratic(
       1.5 * shape0.curvature, pathRotation, -shape0.direction.cross(dP),
       1.5 * shape1.curvature, pathRotation, shape1.direction.cross(dP));
-    magSol = reversed ? magSol.filter((o) => o.x <= 0 && o.y <= 0) : magSol.filter((o) => o.x >= 0 && o.y >= 0);
+    magSol = reversed ? magSol.filter(o => o.x <= 0 && o.y <= 0) : magSol.filter(o => o.x >= 0 && o.y >= 0);
     if (magSol.length === 0) return null;
     return new CubicBezier(
       shape0.position, shape0.position.plus(shape0.direction.times(magSol[0]?.x)),
@@ -442,7 +442,7 @@ export class PiecewisePath {
   }
 
   transformedBy(tform: any) {
-    return new PiecewisePath(this.path.map((x: { transformed: (arg0: any) => any; }) => x.transformed(tform)));
+    return new PiecewisePath(this.path.map((x: { transformed: (arg0: any) => any }) => x.transformed(tform)));
   }
 
   toSVG(initialPrefix: number) {

@@ -863,6 +863,7 @@ export const AutomatorBackend = {
   },
 
   findScript(id) {
+    // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
     return this._scripts.find(e => e.id === id);
   },
 

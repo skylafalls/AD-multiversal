@@ -58,7 +58,7 @@ export const imaginaryUpgrades = [
     costMult: 500,
     description: () => `Increase the Reality Machine cap by ${formatX(1e100)}`,
     effect: 1e100,
-    formatEffect: value => `${formatX(value)}`,
+    formatEffect: value => formatX(value),
     isDecimal: true,
   }),
   rebuyable({
@@ -77,7 +77,7 @@ export const imaginaryUpgrades = [
     costMult: 800,
     description: () => `Multiply Infinity Dimensions by ${format("1e100000")}`,
     effect: DC.E100000,
-    formatEffect: value => `${formatX(value)}`,
+    formatEffect: value => formatX(value),
     isDecimal: true,
   }),
   rebuyable({
@@ -96,7 +96,7 @@ export const imaginaryUpgrades = [
     costMult: 2000,
     description: () => "Increase Singularity gain",
     effect: 1,
-    formatEffect: value => `${formatX(value.add(1), 2)}`,
+    formatEffect: value => formatX(value.add(1), 2),
   }),
   {
     name: "Suspicion of Interference",
@@ -109,7 +109,7 @@ export const imaginaryUpgrades = [
     checkEvent: GAME_EVENT.REALITY_RESET_AFTER,
     description: "Time Dimension power based on total antimatter",
     effect: () => player.records.totalAntimatter.max(1).log10().max(1).log10().div(100).add(1),
-    formatEffect: value => `${formatPow(value, 0, 4)}`,
+    formatEffect: value => formatPow(value, 0, 4),
     isDisabledInDoomed: true,
   },
   {
@@ -124,7 +124,7 @@ export const imaginaryUpgrades = [
     checkEvent: GAME_EVENT.REALITY_RESET_BEFORE,
     description: "Gain free Dimboosts based on Imaginary rebuyable count",
     effect: () => ImaginaryUpgrades.totalRebuyables.mul(2e4),
-    formatEffect: value => `${format(value, 1)}`,
+    formatEffect: value => format(value, 1),
     isDisabledInDoomed: true,
   },
   {
@@ -140,7 +140,7 @@ export const imaginaryUpgrades = [
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: "Increase Imaginary Machine Cap based on Imaginary Upgrades purchased",
     effect: () => ImaginaryUpgrades.totalRebuyables.div(20).add(1).add(ImaginaryUpgrades.totalSinglePurchase / 2),
-    formatEffect: value => `${formatX(value, 2, 1)}`,
+    formatEffect: value => formatX(value, 2, 1),
     isDisabledInDoomed: true,
   },
   {
@@ -250,7 +250,7 @@ export const imaginaryUpgrades = [
     lockEvent: "enable Continuum",
     description: "Annihilation multiplier gain is improved based on Imaginary Machines",
     effect: () => Decimal.clampMin(Decimal.pow(Decimal.log10(Currency.imaginaryMachines.value).sub(10), 3), 1),
-    formatEffect: value => `${formatX(value, 2, 1)}`,
+    formatEffect: value => formatX(value, 2, 1),
     isDisabledInDoomed: true,
   },
   {
@@ -281,7 +281,7 @@ export const imaginaryUpgrades = [
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: "Increase free Dimboost count based on Tesseract count",
     effect: () => Tesseracts.effectiveCount.pow(2).div(4).floor(),
-    formatEffect: value => `${formatX(value)}`,
+    formatEffect: value => formatX(value),
     isDisabledInDoomed: true,
   },
   {
@@ -301,7 +301,7 @@ export const imaginaryUpgrades = [
     // Three locking events: uninvert, discharge, and entering (but not auto-completing) EC12
     description: "Increase free Dimboost strength based on Singularity count",
     effect: () => Decimal.pow(player.celestials.laitela.singularities, 300),
-    formatEffect: value => `${formatX(value, 2, 1)}`,
+    formatEffect: value => formatX(value, 2, 1),
     isDisabledInDoomed: true,
   },
   {

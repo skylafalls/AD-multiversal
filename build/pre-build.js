@@ -1,9 +1,9 @@
 import { getUserAgentRegExp } from "browserslist-useragent-regexp";
-import { resolve } from "node:path";
 import { writeFileSync } from "node:fs";
+import { resolve } from "node:path";
 
 const userAgentRegExp = getUserAgentRegExp({ allowHigherVersions: true });
-const checkFunction = `export const supportedBrowsers = ${userAgentRegExp};`;
+const checkFunction = `export const supportedBrowsers = ${userAgentRegExp.toString()};`;
 writeFileSync(resolve(import.meta.dirname, "../src/supported-browsers.js"), checkFunction);
 
 const firebaseConfig = process.env.FIREBASE_CONFIG;

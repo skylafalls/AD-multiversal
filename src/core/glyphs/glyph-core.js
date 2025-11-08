@@ -269,7 +269,7 @@ export const Glyphs = {
     return allMatches.map(m => m.glyph);
   },
   findById(id) {
-    return player.reality.glyphs.inventory.find(glyph => glyph.id === id);
+    player.reality.glyphs.inventory.find(glyph => glyph.id === id);
   },
   findByInventoryIndex(inventoryIndex) {
     return this.inventory[inventoryIndex];

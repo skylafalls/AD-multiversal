@@ -50,7 +50,7 @@ export const NG = {
   restartWithCarryover() {
     const backUpOptions = JSON.stringify(player.options);
     // This can't be JSONed as it contains sets
-    const secretUnlocks = player.secretUnlocks;
+    const secretUnlocks = structuredClone(player.secretUnlocks);
     const secretAchievements = JSON.stringify(player.secretAchievementBits);
     // We don't backup the whole player.reality.automator object because it contains "state",
     // which could lead to some edge cases where it starts when it shouldn't (ie before it's unlocked)

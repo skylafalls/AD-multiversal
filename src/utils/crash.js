@@ -1,14 +1,14 @@
 /**
  * @deprecated use the `abstract` marker instead if you're using typescript
  */
-window.NotImplementedError = class NotImplementedError extends Error {
+globalThis.NotImplementedError = class NotImplementedError extends Error {
   constructor() {
     super("The method is not implemented.");
     this.name = "NotImplementedError";
   }
 };
 
-window.GlobalErrorHandler = {
+globalThis.GlobalErrorHandler = {
   handled: false,
   cleanStart: false,
   onerror(event) {
@@ -16,7 +16,9 @@ window.GlobalErrorHandler = {
     this.handled = true;
     if (!this.cleanStart) {
       document.querySelector("#loading").style.display = "none";
-      requestAnimationFrame(() => this.crash(event));
+      requestAnimationFrame(() => {
+        this.crash(event);
+      });
       return;
     }
     this.stopGame();
@@ -44,7 +46,8 @@ window.GlobalErrorHandler = {
   },
 };
 
-window.onerror = (event, source) => {
-  if (!source.endsWith(".js")) return;
-  GlobalErrorHandler.onerror(event);
-};
+// oxlint-disable-next-line prefer-global-this
+window.addEventListener("error", (event) => {
+  if (!event.filename.endsWith(".js")) return;
+  GlobalErrorHandler.onerror(event.error);
+});
